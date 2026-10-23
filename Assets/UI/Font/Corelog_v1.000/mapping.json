@@ -1,0 +1,86 @@
+{
+  "family": "Corelog",
+  "maker": "wookdev",
+  "icons": [
+    {
+      "codepoint": "U+E000",
+      "character": "",
+      "name": "battery_full"
+    },
+    {
+      "codepoint": "U+E001",
+      "character": "",
+      "name": "battery_half"
+    },
+    {
+      "codepoint": "U+E002",
+      "character": "",
+      "name": "battery_low"
+    },
+    {
+      "codepoint": "U+E003",
+      "character": "",
+      "name": "signal_bars"
+    },
+    {
+      "codepoint": "U+E004",
+      "character": "",
+      "name": "warning"
+    },
+    {
+      "codepoint": "U+E005",
+      "character": "",
+      "name": "thermometer"
+    },
+    {
+      "codepoint": "U+E006",
+      "character": "",
+      "name": "oxygen"
+    },
+    {
+      "codepoint": "U+E007",
+      "character": "",
+      "name": "power"
+    },
+    {
+      "codepoint": "U+E008",
+      "character": "",
+      "name": "gear"
+    },
+    {
+      "codepoint": "U+E009",
+      "character": "",
+      "name": "shield"
+    },
+    {
+      "codepoint": "U+E00A",
+      "character": "",
+      "name": "rocket"
+    },
+    {
+      "codepoint": "U+E00B",
+      "character": "",
+      "name": "ringed_planet"
+    },
+    {
+      "codepoint": "U+E00C",
+      "character": "",
+      "name": "satellite_dish"
+    },
+    {
+      "codepoint": "U+E00D",
+      "character": "",
+      "name": "crosshair"
+    },
+    {
+      "codepoint": "U+E00E",
+      "character": "",
+      "name": "heart_rate"
+    },
+    {
+      "codepoint": "U+E00F",
+      "character": "",
+      "name": "data_chip"
+    }
+  ]
+}

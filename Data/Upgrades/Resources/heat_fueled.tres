@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/upgrade.gd" id="1_upgrade"]
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/conditional_effect.gd" id="2_conditional_effect"]
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/stat_effect.gd" id="3_stat_effect"]
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="4_upgrade_effect"]
+
+[sub_resource type="Resource" id="e0"]
+script = ExtResource("2_conditional_effect")
+cond = 0
+threshold = 0.5
+fuel_per_sec = 2.0
+
+[sub_resource type="Resource" id="e1"]
+script = ExtResource("3_stat_effect")
+stats = Array[int]([16])
+mode = 1
+amount = 0.2
+
+[resource]
+script = ExtResource("1_upgrade")
+title = "Heat Fueled"
+description = "While heat above 50%: +2 fuel/s\n+20% Heat Gain"
+rarity = 1
+tags = Array[StringName]([&"heat", &"fuel"])
+max_stacks = 2
+effects = Array[ExtResource("4_upgrade_effect")]([SubResource("e0"), SubResource("e1")])

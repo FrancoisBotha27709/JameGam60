@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/upgrade.gd" id="1_upgrade"]
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/chaos_effect.gd" id="2_chaos_effect"]
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="3_upgrade_effect"]
+
+[sub_resource type="Resource" id="e0"]
+script = ExtResource("2_chaos_effect")
+interval = 6.0
+chance = 1.0
+fuel = 15.0
+heat = 15.0
+
+[resource]
+script = ExtResource("1_upgrade")
+title = "Roulette"
+description = "Every 6s: random fuel up to ±15, random heat up to ±15"
+rarity = 1
+tags = Array[StringName]([&"chaos", &"fuel", &"heat"])
+max_stacks = 2
+effects = Array[ExtResource("3_upgrade_effect")]([SubResource("e0")])

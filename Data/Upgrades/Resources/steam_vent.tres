@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/upgrade.gd" id="1_upgrade"]
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/conditional_effect.gd" id="2_conditional_effect"]
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="3_upgrade_effect"]
+
+[sub_resource type="Resource" id="e0"]
+script = ExtResource("2_conditional_effect")
+cond = 0
+threshold = 0.8
+heat_per_sec = -25.0
+drag = 0.4
+
+[resource]
+script = ExtResource("1_upgrade")
+title = "Steam Vent"
+description = "While heat above 80%: 40% drag/s, -25 heat/s"
+rarity = 2
+tags = Array[StringName]([&"heat"])
+max_stacks = 2
+effects = Array[ExtResource("3_upgrade_effect")]([SubResource("e0")])

@@ -1,0 +1,25 @@
+{
+ "_about": "Sprite Font property values per sheet. Character set / Spacing data name the file whose whole content goes into that property. x_shift_px: every glyph sits this many px right of the pen so a left overhang fits in its cell (whole lines shift, spacing is exact).",
+ "sheets": {
+  "Corelog-Regular_1x.png": {
+   "Character width": 8,
+   "Character height": 16,
+   "Character set": "Corelog_charset.txt",
+   "Spacing data": "Corelog-Regular_1x_spacing.json",
+   "Character spacing": 0,
+   "Line height": 0,
+   "columns": 16,
+   "x_shift_px": 0
+  },
+  "Corelog-Regular_2x.png": {
+   "Character width": 16,
+   "Character height": 32,
+   "Character set": "Corelog_charset.txt",
+   "Spacing data": "Corelog-Regular_2x_spacing.json",
+   "Character spacing": 0,
+   "Line height": 0,
+   "columns": 16,
+   "x_shift_px": 0
+  }
+ }
+}

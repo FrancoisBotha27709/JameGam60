@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://dpuo78p623q3o"]
+
+[ext_resource type="Theme" uid="uid://pq4bga7u0c3f" path="res://Assets/base_theme.tres" id="1_aerps"]
+[ext_resource type="Script" uid="uid://deslb1x1h7g58" path="res://Data/Menu/main_menu.gd" id="2_cvj8v"]
+[ext_resource type="PackedScene" uid="uid://cvkpk14dqnyt" path="res://Data/Menu/LoadingScreen.tscn" id="3_stymn"]
+[ext_resource type="Script" uid="uid://yryxog222lnx" path="res://Data/Menu/QuickSettings.gd" id="4_gn7en"]
+[ext_resource type="Script" uid="uid://d0wyaxol5hj2n" path="res://Assets/lighting/LightEnvironment.gd" id="4_stymn"]
+
+[node name="MainMenu" type="Control" unique_id=1796408136 node_paths=PackedStringArray("play_btn", "options_btn", "quit_btn", "tutorial_btn")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_aerps")
+script = ExtResource("2_cvj8v")
+game_path = ExtResource("3_stymn")
+play_btn = NodePath("MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer/PlayBtn")
+options_btn = NodePath("MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer/OptionsBtn")
+quit_btn = NodePath("MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer/QuitBtn")
+tutorial_btn = NodePath("MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer2/Button")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=518617267]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=2065061795]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=1749020340]
+custom_minimum_size = Vector2(512, 192)
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PanelContainer" unique_id=1732399969]
+layout_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer" unique_id=539494349]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer3" unique_id=716335953]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("4_gn7en")
+keys = Array[String](["game_mode", "difficulty", "controls"])
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer2" unique_id=205691828]
+layout_mode = 2
+text = "Tutorial"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer3" unique_id=659741903]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer3" unique_id=73604449]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=1837843260]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Garbage Collector"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=1032138852]
+layout_mode = 2
+
+[node name="PlayBtn" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=781129125]
+layout_mode = 2
+text = "Play"
+
+[node name="OptionsBtn" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=712104015]
+layout_mode = 2
+text = "Options"
+
+[node name="QuitBtn" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=476669105]
+layout_mode = 2
+text = "Quit"
+
+[node name="LightEnvironment" type="Node" parent="." unique_id=1211713012]
+script = ExtResource("4_stymn")
+ambient = Color(1, 1, 1, 1)
+star_enabled = true
+metadata/_custom_type_script = "uid://d0wyaxol5hj2n"

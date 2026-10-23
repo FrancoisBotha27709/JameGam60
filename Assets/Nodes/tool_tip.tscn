@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://cgm2st02jk30v"]
+
+[ext_resource type="Script" uid="uid://cs1ad26n0rh2w" path="res://Assets/Nodes/tool_tip.gd" id="1_4sb65"]
+
+[node name="ToolTip" type="Control" unique_id=259926961 node_paths=PackedStringArray("title_label", "body_label")]
+custom_minimum_size = Vector2(384, 512)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -256.0
+offset_right = 64.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4sb65")
+title_label = NodePath("PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TitleLbl")
+body_label = NodePath("PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/RichTextLabel")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=2052016945]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=275924657]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer" unique_id=1229743521]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/PanelContainer" unique_id=1539133524]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/PanelContainer/MarginContainer" unique_id=855143278]
+layout_mode = 2
+
+[node name="TitleLbl" type="Label" parent="PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=125097372]
+layout_mode = 2
+text = "Plastic"
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=150720201]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=587209751]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+fit_content = true

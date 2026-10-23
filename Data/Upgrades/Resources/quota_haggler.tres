@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/upgrade.gd" id="1_upgrade"]
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_stat_effect"]
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="3_upgrade_effect"]
+
+[sub_resource type="Resource" id="e0"]
+script = ExtResource("2_stat_effect")
+stats = Array[int]([22])
+mode = 1
+amount = -0.3
+
+[sub_resource type="Resource" id="e1"]
+script = ExtResource("2_stat_effect")
+stats = Array[int]([5])
+mode = 1
+amount = -0.2
+
+[resource]
+script = ExtResource("1_upgrade")
+title = "Quota Haggler"
+description = "-30% Quota\n-20% Time Limit"
+rarity = 0
+tags = Array[StringName]([&"score", &"time"])
+max_stacks = 3
+effects = Array[ExtResource("3_upgrade_effect")]([SubResource("e0"), SubResource("e1")])

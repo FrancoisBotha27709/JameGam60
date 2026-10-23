@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/upgrade.gd" id="1_upgrade"]
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/delivery_effect.gd" id="2_delivery_effect"]
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="3_upgrade_effect"]
+
+[sub_resource type="Resource" id="e0"]
+script = ExtResource("2_delivery_effect")
+every_n = 3
+points_mult = 1.5
+
+[resource]
+script = ExtResource("1_upgrade")
+title = "Bulk Discount"
+description = "Every 3th delivery: +150% points"
+rarity = 1
+tags = Array[StringName]([&"score"])
+max_stacks = 3
+effects = Array[ExtResource("3_upgrade_effect")]([SubResource("e0")])

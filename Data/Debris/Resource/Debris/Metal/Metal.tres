@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Debris" format=3 uid="uid://d12ksvcy0qiwb"]
+
+[ext_resource type="Script" uid="uid://b7nuj2r4d1vdc" path="res://Data/Debris/Resource/Debris/Debris.gd" id="1_6jpde"]
+[ext_resource type="Resource" uid="uid://cf8cnbwbg2r5h" path="res://Assets/lighting/Presets/debris_metal.tres" id="1_uct1b"]
+[ext_resource type="PackedScene" uid="uid://c75lp5w1bi3sn" path="res://Data/Debris/Resource/Debris/Metal/metal.tscn" id="2_nc6xi"]
+[ext_resource type="Texture2D" uid="uid://ckd4pnvxe8002" path="res://icon.svg" id="4_bnt04"]
+
+[resource]
+script = ExtResource("1_6jpde")
+tag = 2
+scene = ExtResource("2_nc6xi")
+texture = ExtResource("4_bnt04")
+stat_value = 3
+stat_weight = 2.0
+quantum_chance = 0.1
+quantum_multiplier = 3.39
+quantum_lifetime = 2.005
+rope_width = 4.0
+rope_pull_strength = 12.0
+drift_speed_min = 20.0
+drift_speed_max = 120.0
+light_preset = ExtResource("1_uct1b")
+light_chance = 0.55
+metadata/_custom_type_script = "uid://b7nuj2r4d1vdc"

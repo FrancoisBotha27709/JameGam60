@@ -1,0 +1,26 @@
+{
+ "node": {
+  "amount": 40,
+  "lifetime": 0.5,
+  "local_coords": false
+ },
+ "sim": {
+  "emit_box": [
+   3,
+   0
+  ],
+  "direction_deg": 90,
+  "spread_deg": 8,
+  "spread_bias": 1.8,
+  "speed": [
+   90,
+   180
+  ],
+  "drag": 2.0,
+  "turb_amp": 25,
+  "size_start": 0.6,
+  "size_end": 0.0,
+  "life_random": 0.3
+ },
+ "draw": {}
+}

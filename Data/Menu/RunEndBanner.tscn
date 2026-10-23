@@ -1,0 +1,280 @@
+[gd_scene format=3 uid="uid://bcbp1txr7i5rt"]
+
+[ext_resource type="Script" uid="uid://cht58hs2woi7k" path="res://Data/Menu/RunEndBanner.gd" id="1_script"]
+[ext_resource type="Shader" uid="uid://bd2ivxe3mx85y" path="res://Data/Menu/DitherVignette.gdshader" id="2_jjhxa"]
+[ext_resource type="Script" uid="uid://c1qhnv5gfhb82" path="res://Data/Menu/DitherVignette.gd" id="3_7fbf0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r2qbd"]
+shader = ExtResource("2_jjhxa")
+shader_parameter/tint = Color(1, 0.2, 0.2, 1)
+shader_parameter/intensity = 0.0
+shader_parameter/pixel_size = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s6fcj"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="RunEndBanner" type="Control" unique_id=711584712 node_paths=PackedStringArray("overlay", "backpanel", "tag", "title", "sub", "score", "flash", "overlow", "summary_lbl")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_script")
+overlay = NodePath("Overlay")
+backpanel = NodePath("MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel")
+tag = NodePath("MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer/TagLbl")
+title = NodePath("MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer/TitleLbl")
+sub = NodePath("MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer/SubLbl")
+score = NodePath("MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer/ScoreLbl")
+flash = NodePath("Flash")
+overlow = NodePath("MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/OverflowLbl")
+summary_lbl = NodePath("MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer/SummaryLbl")
+sputter_time = 0.63
+
+[node name="Overlay" type="ColorRect" parent="." unique_id=806446686]
+material = SubResource("ShaderMaterial_r2qbd")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_7fbf0")
+metadata/_custom_type_script = "uid://c1qhnv5gfhb82"
+
+[node name="Flash" type="ColorRect" parent="." unique_id=720189122]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1945109676]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer2" unique_id=1037066405]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/PanelContainer" unique_id=1221937566]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer2/PanelContainer/MarginContainer" unique_id=341192802]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer" unique_id=227273413]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="HBoxContainer" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2" unique_id=1908241442]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="OverflowLbl" type="RichTextLabel" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2" unique_id=214818911]
+custom_minimum_size = Vector2(885, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[color=red][ ERROR ] [/color] Memory buffer overflow
+[color=red][ ERROR ] [/color] Stack corruption detected
+[color=yellow][ WARN ] [/color] CPU temp critical: 98C
+[color=red][ ERROR ] [/color] Page fault in kernel space
+[color=red][ ERROR ] [/color] Heap allocation failed
+[color=yellow][ WARN ] [/color] Fan speed 0 RPM
+[color=red][ ERROR ] [/color] Segmentation fault
+[color=red][ ERROR ] [/color] Disk I/O timeout
+[color=red][ ERROR ] [/color] Filesystem journal corrupted
+[color=yellow][ WARN ] [/color] Swap space exhausted
+[color=red][ ERROR ] [/color] Process 1337 unresponsive
+[color=red][ ERROR ] [/color] Kernel panic: unable to sync
+[color=red][ ERROR ] [/color] Watchdog timer expired
+[color=red][ ERROR ] [/color] NULL pointer dereference
+[color=yellow][ WARN ] [/color] Voltage drop on 3.3V rail
+[color=red][ ERROR ] [/color] Network stack failure
+[color=red][ ERROR ] [/color] DNS resolver crashed
+[color=red][ ERROR ] [/color] Packet checksum mismatch
+[color=red][ ERROR ] [/color] Cache coherency violation
+[color=red][ ERROR ] [/color] Interrupt storm on IRQ 7
+[color=yellow][ WARN ] [/color] Thermal throttle ignored
+[color=red][ ERROR ] [/color] GPU driver hung
+[color=red][ ERROR ] [/color] Framebuffer unmapped
+[color=red][ ERROR ] [/color] Mutex deadlock detected
+[color=red][ ERROR ] [/color] Race condition in scheduler
+[color=red][ ERROR ] [/color] Bootloader signature invalid
+[color=red][ ERROR ] [/color] RAID array degraded
+[color=red][ ERROR ] [/color] Sector 0x00FF unreadable
+[color=red][ ERROR ] [/color] Encryption keys lost
+[color=yellow][ WARN ] [/color] Backup power failing
+[color=red][ ERROR ] [/color] Double fault exception
+[color=red][ ERROR ] [/color] Recovery routine failed
+[color=red][ ERROR ] [/color] Recovery routine failed
+[color=red][ ERROR ] [/color] Recovery routine failed
+[color=red][ ERROR ] [/color] Kernel module unload failed
+[color=red][ ERROR ] [/color] Orphaned process tree
+[color=red][ ERROR ] [/color] Zombie process overflow
+[color=yellow][ WARN ] [/color] File descriptors exhausted
+[color=red][ ERROR ] [/color] Socket bind failed
+[color=red][ ERROR ] [/color] Connection reset by peer
+[color=red][ ERROR ] [/color] TLS handshake aborted
+[color=red][ ERROR ] [/color] Certificate chain invalid
+[color=red][ ERROR ] [/color] Authentication daemon dead
+[color=red][ ERROR ] [/color] Privilege escalation blocked
+[color=yellow][ WARN ] [/color] Unauthorized memory access
+[color=red][ ERROR ] [/color] Syscall table modified
+[color=red][ ERROR ] [/color] Kernel integrity check failed
+[color=red][ ERROR ] [/color] ACPI table corrupted
+[color=red][ ERROR ] [/color] BIOS checksum error
+[color=red][ ERROR ] [/color] CMOS battery dead
+[color=yellow][ WARN ] [/color] System clock drift: +4382s
+[color=red][ ERROR ] [/color] Timer interrupt lost
+[color=red][ ERROR ] [/color] Scheduler queue overflow
+[color=red][ ERROR ] [/color] Context switch failed
+[color=red][ ERROR ] [/color] Thread pool exhausted
+[color=red][ ERROR ] [/color] Pipe broken
+[color=red][ ERROR ] [/color] Buffer underrun
+[color=red][ ERROR ] [/color] Buffer overrun
+[color=red][ ERROR ] [/color] Unhandled exception 0xC0000005
+[color=red][ ERROR ] [/color] Unhandled exception 0xC0000094
+[color=red][ ERROR ] [/color] Unhandled exception 0xDEADBEEF
+[color=yellow][ WARN ] [/color] Disk SMART status: FAILING
+[color=red][ ERROR ] [/color] Bad block count: 40960
+[color=red][ ERROR ] [/color] Inode table destroyed
+[color=red][ ERROR ] [/color] Superblock invalid
+[color=red][ ERROR ] [/color] Mount failed: /home
+[color=red][ ERROR ] [/color] Mount failed: /var
+[color=red][ ERROR ] [/color] Mount failed: /boot
+[color=red][ ERROR ] [/color] Mount failed: /
+[color=yellow][ WARN ] [/color] Read-only filesystem forced
+[color=red][ ERROR ] [/color] Write failed: no space left
+[color=red][ ERROR ] [/color] Log rotation failed
+[color=red][ ERROR ] [/color] Audit subsystem offline
+[color=red][ ERROR ] [/color] Firewall rules purged
+[color=red][ ERROR ] [/color] Intrusion detection offline
+[color=yellow][ WARN ] [/color] Unknown device on PCI bus
+[color=red][ ERROR ] [/color] PCI bus error
+[color=red][ ERROR ] [/color] USB controller reset loop
+[color=red][ ERROR ] [/color] Audio driver crashed
+[color=red][ ERROR ] [/color] Input device lost
+[color=red][ ERROR ] [/color] Display signal lost
+[color=red][ ERROR ] [/color] VRAM corruption detected
+[color=red][ ERROR ] [/color] Shader compile failed
+[color=red][ ERROR ] [/color] Render pipeline stalled
+[color=yellow][ WARN ] [/color] GPU temp critical: 112C
+[color=red][ ERROR ] [/color] Voltage regulator fault
+[color=red][ ERROR ] [/color] Power rail 12V unstable
+[color=red][ ERROR ] [/color] Power rail 5V unstable
+[color=red][ ERROR ] [/color] Power rail 3.3V collapsed
+[color=yellow][ WARN ] [/color] Battery critical: 1%
+[color=red][ ERROR ] [/color] Machine check exception
+[color=red][ ERROR ] [/color] ECC uncorrectable error
+[color=red][ ERROR ] [/color] ECC uncorrectable error
+[color=red][ ERROR ] [/color] ECC uncorrectable error
+[color=red][ ERROR ] [/color] DIMM 0 not responding
+[color=red][ ERROR ] [/color] DIMM 1 not responding
+[color=red][ ERROR ] [/color] DIMM 2 not responding
+[color=red][ ERROR ] [/color] DIMM 3 not responding
+[color=red][ ERROR ] [/color] Memory map destroyed
+[color=red][ ERROR ] [/color] Triple fault imminent
+[color=red][ ERROR ] [/color] Memory integrity c0rrupt3d
+[color=red][ ERROR ] [/color] St4ck 0v3rfl0w
+[color=red][ ERROR ] [/color] K3rn3l p4n1c
+[color=red][ ERROR ] [/color] Ret_urn addr3ss ov3rwr1tt3n
+[color=red][ ERROR ] [/color] ░▒▓█ SYSTEM UNSTABLE █▓▒░
+[color=red][ ERROR ] [/color] ▓▒░ DATA LOSS IN PROGRESS ░▒▓
+[color=red][ ERROR ] [/color] Cor3 t3mp3r4tur3 runaway
+[color=red][ ERROR ] [/color] Thermal shutdown FAILED
+[color=red][ ERROR ] [/color] Emergency halt FAILED
+[color=red][ ERROR ] [/color] Emergency halt FAILED
+[color=red][ ERROR ] [/color] Emergency halt FAILED
+[color=red][ ERROR ] [/color] ERROR ERROR ERROR ERROR
+[color=red][ ERROR ] [/color] ERROR ERROR ERROR ERROR
+[color=red][ ERROR ] [/color] ERROR ERROR ERROR ERROR
+[color=red][ ERROR ] [/color] 0x00000000 0x00000000 0x0000
+[color=red][ ERROR ] [/color] ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+[color=red][ ERROR ] [/color] All processes terminated
+[color=red][ ERROR ] [/color] All memory freed
+[color=red][ ERROR ] [/color] All drives unmounted
+[color=red][ ERROR ] [/color] Shutdown sequence failed
+[color=red][ ERROR ] [/color] Power supply fail
+[color=red][ ERROR ] [/color] Power suppl
+[color=red][ ERROR ] [/color] Pow
+[color=red][ ERROR ] [/color] P
+[color=red][ ERR"
+scroll_active = false
+scroll_following_visible_characters = true
+autowrap_mode = 2
+
+[node name="Control" type="Control" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2" unique_id=1675574607]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel" type="Panel" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control" unique_id=929771653]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_s6fcj")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel" unique_id=1988266473]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer" unique_id=344973796]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TagLbl" type="Label" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer" unique_id=1447505334]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = " // Hul //"
+
+[node name="TitleLbl" type="Label" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer" unique_id=1362498994]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "CRITICAL MELTDOWN"
+
+[node name="SubLbl" type="Label" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer" unique_id=1774224809]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "REACTOR BREACHED - SHIP DESTROYED"
+
+[node name="ScoreLbl" type="Label" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer" unique_id=1328485966]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "SCORE 0 / 5
+SHORT BY 5"
+
+[node name="SummaryLbl" type="Label" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer" unique_id=24649924]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32

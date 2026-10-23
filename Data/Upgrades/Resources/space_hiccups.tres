@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/upgrade.gd" id="1_upgrade"]
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/random_kick_effect.gd" id="2_random_kick_effect"]
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/tick_effect.gd" id="3_tick_effect"]
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="4_upgrade_effect"]
+
+[sub_resource type="Resource" id="e0"]
+script = ExtResource("2_random_kick_effect")
+strength = 150.0
+
+[sub_resource type="Resource" id="e1"]
+script = ExtResource("3_tick_effect")
+spin = 0.5
+
+[resource]
+script = ExtResource("1_upgrade")
+title = "Space Hiccups"
+description = "Constant random nudges (150)\nconstant spin (0.5)"
+rarity = 4
+tags = Array[StringName]([&"cursed", &"chaos"])
+max_stacks = 2
+effects = Array[ExtResource("4_upgrade_effect")]([SubResource("e0"), SubResource("e1")])

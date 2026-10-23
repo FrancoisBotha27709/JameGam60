@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="LightPreset" format=3 uid="uid://cf8cnbwbg2r5h"]
+
+[ext_resource type="Script" uid="uid://cfrrqkbruh1gk" path="res://Assets/lighting/LightPreset.gd" id="1_eh8l7"]
+
+[resource]
+script = ExtResource("1_eh8l7")
+color = Color(0.75, 0.85, 1, 1)
+energy = 1.1
+radius = 80.0
+falloff = 2.2
+flicker = 0.05
+flicker_speed = 16.0
+pulse = 0.7
+pulse_speed = 1.6

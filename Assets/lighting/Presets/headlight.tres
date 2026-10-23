@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="LightPreset" format=3 uid="uid://fhaxfu5ae136"]
+
+[ext_resource type="Script" uid="uid://cfrrqkbruh1gk" path="res://Assets/lighting/LightPreset.gd" id="1_5j2jq"]
+
+[resource]
+script = ExtResource("1_5j2jq")
+color = Color(0.9, 0.95, 1, 1)
+energy = 1.4
+radius = 420.0
+falloff = 1.3
+shape = 1
+cone_angle = 50.0
+cast_shadows = true

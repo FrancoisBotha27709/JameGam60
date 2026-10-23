@@ -1,0 +1,164 @@
+[gd_scene format=3 uid="uid://c1i1hc7qb6u8e"]
+
+[ext_resource type="PackedScene" uid="uid://tcujdfv68u1q" path="res://Data/Player/Player.tscn" id="1_ebypj"]
+[ext_resource type="Script" uid="uid://c02643syag532" path="res://Data/main.gd" id="1_y3l5h"]
+[ext_resource type="Script" uid="uid://01l2bs3x3jmp" path="res://Data/Player/camera_2d.gd" id="2_so8ww"]
+[ext_resource type="Script" uid="uid://b7nuj2r4d1vdc" path="res://Data/Debris/Resource/Debris/Debris.gd" id="2_yjl1i"]
+[ext_resource type="Resource" uid="uid://b7a88qax8cudd" path="res://Data/Debris/Resource/Debris/Empty/Empty.tres" id="3_m7nvt"]
+[ext_resource type="Resource" uid="uid://cm1v7yhm8im33" path="res://Data/Debris/Resource/Debris/Plastic/Plastic.tres" id="4_ovwru"]
+[ext_resource type="PackedScene" uid="uid://c31puknu7vtev" path="res://Data/Particles/Scenes/ion_storm.tscn" id="4_wblto"]
+[ext_resource type="PackedScene" uid="uid://k71wmfo8ls4" path="res://Data/Particles/Scenes/nebula_wisps.tscn" id="5_j3rrk"]
+[ext_resource type="Resource" uid="uid://d12ksvcy0qiwb" path="res://Data/Debris/Resource/Debris/Metal/Metal.tres" id="5_uuyxi"]
+[ext_resource type="PackedScene" uid="uid://cxdh7ckhxuq3e" path="res://Data/Particles/Scenes/space_dust.tscn" id="6_csoh3"]
+[ext_resource type="PackedScene" uid="uid://qrddfut7w8e6" path="res://Data/Depot/depot.tscn" id="6_m7nvt"]
+[ext_resource type="PackedScene" uid="uid://lhb62bvlu1js" path="res://Data/Particles/Scenes/star_twinkle.tscn" id="7_ovwru"]
+[ext_resource type="Script" uid="uid://d0wyaxol5hj2n" path="res://Assets/lighting/LightEnvironment.gd" id="11_j3rrk"]
+[ext_resource type="Resource" uid="uid://dm2v5kus4ucva" path="res://Assets/lighting/Presets/star.tres" id="12_csoh3"]
+[ext_resource type="Script" uid="uid://c1qhnv5gfhb82" path="res://Data/Menu/DitherVignette.gd" id="14_hgh0v"]
+[ext_resource type="PackedScene" uid="uid://d178jfvy1duwh" path="res://Data/Debris/Resource/Asteroid/asteroid.tscn" id="15_2agvk"]
+[ext_resource type="Script" uid="uid://iuh4bi5j3fe" path="res://Data/Debris/Resource/Asteroid/asteroidField.gd" id="15_cshp7"]
+[ext_resource type="Script" uid="uid://drl42lhnl0xd3" path="res://Data/Debris/DebrisField.gd" id="16_frmus"]
+[ext_resource type="Script" uid="uid://cpoj2ilwrmakf" path="res://Data/minimap.gd" id="16_ubbbe"]
+[ext_resource type="PackedScene" uid="uid://btjdy0jl7l7fv" path="res://Data/Menu/RunStartBanner.tscn" id="19_l7apa"]
+[ext_resource type="PackedScene" uid="uid://37d4ekvjsc1u" path="res://Data/Menu/pause_menu.tscn" id="21_xdmp3"]
+
+[sub_resource type="Environment" id="Environment_csoh3"]
+glow_enabled = true
+
+[node name="Main" type="Node2D" unique_id=1309701960 node_paths=PackedStringArray("background_sprite_container", "mist_container", "stars_container", "galaxy_container", "planets_container", "player", "cam", "minimap", "field", "debfield", "start_banner")]
+script = ExtResource("1_y3l5h")
+background_sprite_container = NodePath("Background")
+mist_container = NodePath("Mist")
+stars_container = NodePath("Starts")
+galaxy_container = NodePath("Galaxies")
+planets_container = NodePath("Planets")
+debris_amount = 1
+debris_scenes = Array[ExtResource("2_yjl1i")]([ExtResource("3_m7nvt"), ExtResource("4_ovwru"), ExtResource("5_uuyxi")])
+light_colors = Array[Color]([Color(1, 0.55, 0.3, 1), Color(1, 0.75, 0.4, 1), Color(0.95, 0.45, 0.4, 1), Color(0.8980392, 0.93333334, 0.6, 1)])
+particle_pool = Array[PackedScene]([ExtResource("4_wblto"), ExtResource("5_j3rrk"), ExtResource("6_csoh3"), ExtResource("7_ovwru")])
+particle_count = 200
+world_size = Vector2(20000, 20000)
+player = NodePath("Player")
+cam = NodePath("Camera2D")
+minimap = NodePath("CanvasLayer/Control/Minimap")
+quota_margin = 1.755
+spawn_max_distance = 1000.0
+spawn_growth_per_upgrade = 0.605
+leash_factor = 1.4
+asteroid_scene = ExtResource("15_2agvk")
+field = NodePath("AsteroidField")
+debfield = NodePath("DebrisField")
+start_banner = NodePath("CanvasLayer2/RunEndBanner")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=552402762]
+
+[node name="Control" type="MarginContainer" parent="CanvasLayer" unique_id=385056300]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Minimap" type="Control" parent="CanvasLayer/Control" unique_id=1797736508 node_paths=PackedStringArray("player")]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+script = ExtResource("16_ubbbe")
+player = NodePath("../../../Player")
+follow_player = true
+view_range = 4000.0
+
+[node name="Background" type="Parallax2D" parent="." unique_id=1735351015]
+scroll_offset = Vector2(500, 250)
+
+[node name="Starts" type="Parallax2D" parent="." unique_id=1474301297]
+scroll_scale = Vector2(0.7, 0.7)
+scroll_offset = Vector2(256.095, 125)
+
+[node name="Galaxies" type="Parallax2D" parent="." unique_id=776562013]
+scroll_scale = Vector2(0.265, 0.265)
+scroll_offset = Vector2(600, 300)
+
+[node name="Planets" type="Parallax2D" parent="." unique_id=1118541363]
+scroll_scale = Vector2(0.83, 0.83)
+scroll_offset = Vector2(450, 135)
+
+[node name="Player" parent="." unique_id=1263876198 instance=ExtResource("1_ebypj")]
+position = Vector2(4, 746)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1823881639 node_paths=PackedStringArray("follow_target", "dither")]
+position = Vector2(4, 746)
+script = ExtResource("2_so8ww")
+follow_target = NodePath("../Player")
+follow_speed = 3.0
+padding = Vector2(10, 10)
+dither = NodePath("CanvasLayer/DitherVignette")
+look_ahead_time = 0.6
+look_ahead_smoothing = 2.0
+velocity_stretch = 0.2
+speed_effect_min_intensity = 0.04
+speed_effect_max_intensity = 0.11
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D" unique_id=1954766128]
+
+[node name="DitherVignette" type="ColorRect" parent="Camera2D/CanvasLayer" unique_id=1179210851]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("14_hgh0v")
+tint = Color(0.86700004, 0.79, 1, 1)
+metadata/_custom_type_script = "uid://c1qhnv5gfhb82"
+
+[node name="Depot" parent="." unique_id=2101250495 instance=ExtResource("6_m7nvt")]
+position = Vector2(820, 523)
+
+[node name="Depot2" parent="." unique_id=945286397 instance=ExtResource("6_m7nvt")]
+position = Vector2(-3594, -1902)
+
+[node name="Depot3" parent="." unique_id=1973926978 instance=ExtResource("6_m7nvt")]
+position = Vector2(-1850, 3472)
+
+[node name="Depot4" parent="." unique_id=10067261 instance=ExtResource("6_m7nvt")]
+position = Vector2(4782, -453)
+
+[node name="Mist" type="Parallax2D" parent="." unique_id=2064931236]
+visible = false
+scroll_scale = Vector2(1.16, 1.16)
+
+[node name="AsteroidField" type="Node2D" parent="." unique_id=1019477162 node_paths=PackedStringArray("focus")]
+script = ExtResource("15_cshp7")
+focus = NodePath("../Player")
+asteroid_scene = ExtResource("15_2agvk")
+small_density = 0.34
+medium_density = 0.28
+large_density = 0.1
+metadata/_custom_type_script = "uid://iuh4bi5j3fe"
+
+[node name="DebrisField" type="Node2D" parent="." unique_id=425128084 node_paths=PackedStringArray("focus")]
+script = ExtResource("16_frmus")
+focus = NodePath("../Player")
+metadata/_custom_type_script = "uid://drl42lhnl0xd3"
+
+[node name="LightEnvironment" type="Node" parent="." unique_id=763232216]
+script = ExtResource("11_j3rrk")
+ambient = Color(0.082503326, 0.09719064, 0.15101883, 1)
+sun_enabled = true
+sun_color = Color(0.33880255, 0.27034003, 0, 1)
+sun_energy = 0.3
+sun_shadows = false
+sun_shadow_distance = 750.0
+star_position = Vector2(52.85, 0)
+star_preset = ExtResource("12_csoh3")
+metadata/_custom_type_script = "uid://d0wyaxol5hj2n"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2062266465]
+environment = SubResource("Environment_csoh3")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1810851145]
+
+[node name="RunEndBanner" parent="CanvasLayer2" unique_id=711584712 instance=ExtResource("19_l7apa")]
+
+[node name="PauseMenu" parent="CanvasLayer2" unique_id=1786774158 instance=ExtResource("21_xdmp3")]

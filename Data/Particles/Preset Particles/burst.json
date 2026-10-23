@@ -1,0 +1,25 @@
+{
+ "node": {
+  "amount": 24,
+  "lifetime": 0.45,
+  "one_shot": true,
+  "explosiveness": 1.0,
+  "local_coords": false
+ },
+ "sim": {
+  "spread_deg": 180,
+  "speed": [
+   60,
+   220
+  ],
+  "speed_bias": 0.7,
+  "drag": 4.0,
+  "turb_amp": 0,
+  "size_start": 0.9,
+  "size_end": 0.0,
+  "size_curve": 1.5
+ },
+ "draw": {
+  "erode": 0.6
+ }
+}

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://wbm18bsvunt7"]
+
+[ext_resource type="Script" uid="uid://cgg4yga220lsk" path="res://Assets/lighting/light_rig.gd" id="1_gwwgi"]
+
+[node name="LightRig" type="Node2D" unique_id=623708359]
+script = ExtResource("1_gwwgi")

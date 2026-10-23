@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://d178jfvy1duwh"]
+
+[ext_resource type="Script" uid="uid://dt3yfl0w0tj2b" path="res://Data/Debris/Resource/Asteroid/asteroidObject.gd" id="1_yp8ce"]
+[ext_resource type="PackedScene" uid="uid://dfqj0dmfn07yj" path="res://Data/Particles/Scenes/asteroid_dust.tscn" id="2_qi6bk"]
+[ext_resource type="Script" uid="uid://cgg4yga220lsk" path="res://Assets/lighting/light_rig.gd" id="3_bk3ga"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qi6bk"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_bk3ga"]
+polygon = PackedVector2Array(11, -9, 2, -6, 6, -3, 12, -4)
+
+[node name="Asteroid" type="Area2D" unique_id=1792663811 node_paths=PackedStringArray("node_collision", "node_polygon", "node_occluder", "node_light_rig")]
+script = ExtResource("1_yp8ce")
+node_collision = NodePath("CollisionShape2D")
+node_polygon = NodePath("Polygon2D")
+node_occluder = NodePath("LightOccluder2D")
+node_light_rig = NodePath("LightRig")
+weight = 500.0
+spin_speed = 1.0
+size = 2
+hit_particle = ExtResource("2_qi6bk")
+max_health = 400.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1001462704]
+shape = SubResource("RectangleShape2D_qi6bk")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=832112011]
+polygon = PackedVector2Array(2, 4, -3, 2, -2, -3, 2, -3)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=119757966]
+occluder = SubResource("OccluderPolygon2D_bk3ga")
+
+[node name="LightRig" type="Node" parent="." unique_id=1251880887]
+script = ExtResource("3_bk3ga")
+metadata/_custom_type_script = "uid://cgg4yga220lsk"

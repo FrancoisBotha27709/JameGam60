@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://dmiev56frk4j4"]
+
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="1_upgrade"]
+[ext_resource type="Script" uid="uid://cxj8fd8tyax1e" path="res://Data/Upgrades/Effects/delivery_effect.gd" id="2_delivery_effect"]
+[ext_resource type="Texture2D" uid="uid://bhcaxvo3cooxf" path="res://Assets/UI/Runes/MossRobotEars.png" id="3_ivfo5"]
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="3_upgrade_effect"]
+
+[sub_resource type="Resource" id="e0"]
+script = ExtResource("2_delivery_effect")
+points_mult = 0.5
+heat = 10.0
+
+[resource]
+script = ExtResource("1_upgrade")
+title = "Adrenaline"
+description = "On delivery: +50% points, +10 heat"
+icon = ExtResource("3_ivfo5")
+effects = Array[ExtResource("3_upgrade_effect")]([SubResource("e0")])

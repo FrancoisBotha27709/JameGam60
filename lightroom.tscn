@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bmugeosii31ft"]
+
+[ext_resource type="Script" uid="uid://bten8eu6q52oc" path="res://lightroom.gd" id="1_wtx7c"]
+
+[node name="Node2D" type="Node2D" unique_id=1190395098]
+script = ExtResource("1_wtx7c")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1080016502]

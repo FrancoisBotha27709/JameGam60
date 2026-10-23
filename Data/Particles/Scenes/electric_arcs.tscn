@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://7huj7ca1r148"]
+
+[ext_resource type="Shader" uid="uid://c71v6lan6717q" path="res://Data/Particles/shader/fx_particles_draw.gdshader" id="1_mquec"]
+[ext_resource type="Shader" uid="uid://bvpaf34vwgl3o" path="res://Data/Particles/shader/fx_particles.gdshader" id="2_dy0e3"]
+[ext_resource type="Script" uid="uid://b24f0pd5w3uta" path="res://Data/Particles/fx_emitter.gd" id="3_im0cc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ieu0"]
+resource_local_to_scene = true
+shader = ExtResource("1_mquec")
+shader_parameter/col_core = Color(1, 1, 1, 1)
+shader_parameter/col_hot = Color(0.8392157, 0.95686275, 1, 1)
+shader_parameter/col_mid = Color(0.30980393, 0.7647059, 1, 1)
+shader_parameter/col_cool = Color(0.105882354, 0.23137255, 0.6117647, 1)
+shader_parameter/col_outline = Color(0.12, 0.03, 0.05, 1)
+shader_parameter/thresholds = Vector3(0.2, 0.45, 0.75)
+shader_parameter/core_bias = 0.6
+shader_parameter/life_heat = 1.0
+shader_parameter/heat_jitter = 0.2
+shader_parameter/hue_shift = 0.0
+shader_parameter/additive = 1.0
+shader_parameter/glow = 1.5
+shader_parameter/shape = 2.0
+shader_parameter/aspect = Vector2(1, 0.2)
+shader_parameter/thickness = 0.3
+shader_parameter/ring = 0.0
+shader_parameter/pixel_res = 3.0
+shader_parameter/softness = 0.0
+shader_parameter/erode = 0.0
+shader_parameter/outline = 0.0
+shader_parameter/edge_noise = 0.0
+shader_parameter/grain = 0.0
+shader_parameter/fade_in = 0.0
+shader_parameter/fade_start = 0.3
+shader_parameter/dither = 1.0
+shader_parameter/flicker = 0.7
+shader_parameter/flicker_freq = 12.0
+
+[sub_resource type="Gradient" id="Gradient_uvcfv"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8yoa5"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_uvcfv")
+width = 16
+height = 16
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5opym"]
+resource_local_to_scene = true
+shader = ExtResource("2_dy0e3")
+shader_parameter/emit_offset = Vector2(0, 0)
+shader_parameter/emit_box = Vector2(16, 16)
+shader_parameter/emit_ring = Vector2(0, 0)
+shader_parameter/direction_deg = 90.0
+shader_parameter/spread_deg = 180.0
+shader_parameter/spread_bias = 1.0
+shader_parameter/outward = 0.0
+shader_parameter/speed = Vector2(60, 160)
+shader_parameter/speed_bias = 1.0
+shader_parameter/drag = 6.0
+shader_parameter/accel = Vector2(0, 0)
+shader_parameter/propel = 0.0
+shader_parameter/curl = 0.0
+shader_parameter/curl_random = 0.0
+shader_parameter/turb_amp = 80.0
+shader_parameter/turb_freq = 8.0
+shader_parameter/turb_chaos = 1.0
+shader_parameter/size_start = 0.3
+shader_parameter/size_end = 0.0
+shader_parameter/size_bulge = 0.0
+shader_parameter/size_curve = 1.0
+shader_parameter/size_random = 0.3
+shader_parameter/pulse_amp = 0.0
+shader_parameter/pulse_freq = 4.0
+shader_parameter/align_to_velocity = 1.0
+shader_parameter/stretch = 0.015
+shader_parameter/spin_deg = 0.0
+shader_parameter/rot_random = 0.0
+shader_parameter/rot_steps = 8
+shader_parameter/life_random = 0.6
+shader_parameter/tint_jitter = 0.0
+shader_parameter/alpha_jitter = 0.0
+shader_parameter/power = 1.0
+
+[node name="electric_arcs" type="GPUParticles2D" unique_id=1969832079]
+material = SubResource("ShaderMaterial_8ieu0")
+emitting = false
+amount = 16
+texture = SubResource("GradientTexture2D_8yoa5")
+lifetime = 0.25
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 20
+local_coords = true
+process_material = SubResource("ShaderMaterial_5opym")
+script = ExtResource("3_im0cc")
+preset = "electric_arcs"
+autoplay = false

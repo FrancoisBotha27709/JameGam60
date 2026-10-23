@@ -1,0 +1,1 @@
+{"node":{"amount":1,"lifetime":1.6,"quad_px":128,"local_coords":true},"sim":{"size_start":0.05,"size_end":1,"size_curve":0.7,"size_random":0,"life_random":0,"speed":[0,0],"spread_deg":0},"draw":{"shape":0,"ring":0.05,"pixel_res":48,"additive":0.9,"glow":1.2,"erode":0,"fade_start":0.3,"dither":0,"life_heat":0,"core_bias":0,"heat_jitter":0,"col_core":"#7dff8a"}}

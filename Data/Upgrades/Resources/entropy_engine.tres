@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/upgrade.gd" id="1_upgrade"]
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/random_stat_effect.gd" id="2_random_stat_effect"]
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/chaos_effect.gd" id="3_chaos_effect"]
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="4_upgrade_effect"]
+
+[sub_resource type="Resource" id="e0"]
+script = ExtResource("2_random_stat_effect")
+pool = Array[int]([])
+count = 6
+min_amount = -0.25
+max_amount = 1.0
+
+[sub_resource type="Resource" id="e1"]
+script = ExtResource("3_chaos_effect")
+interval = 5.0
+chance = 1.0
+kick = 80.0
+fuel = 10.0
+heat = 10.0
+
+[resource]
+script = ExtResource("1_upgrade")
+title = "Entropy Engine"
+description = "Rolls 6 random stat changes (-25% to +100%)\nEvery 5s: random shove (80), random fuel up to ±10, random heat up to ±10"
+rarity = 3
+tags = Array[StringName]([&"chaos"])
+max_stacks = 1
+effects = Array[ExtResource("4_upgrade_effect")]([SubResource("e0"), SubResource("e1")])

@@ -1,0 +1,17 @@
+[remap]
+
+importer="font_data_bmfont"
+type="FontFile"
+uid="uid://dhw00xdkx0cm1"
+path="res://.godot/imported/Corelog-Regular_1x.fnt-523d60cc50f413b4ab449685e08120af.fontdata"
+
+[deps]
+
+source_file="res://Assets/UI/Font/Corelog_v1.000/BMFont/Corelog-Regular_1x.fnt"
+dest_files=["res://.godot/imported/Corelog-Regular_1x.fnt-523d60cc50f413b4ab449685e08120af.fontdata"]
+
+[params]
+
+fallbacks=[]
+compress=true
+scaling_mode=2

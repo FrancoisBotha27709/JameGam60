@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="LightPreset" format=3 uid="uid://brxoiitlvwsvl"]
+
+[ext_resource type="Script" uid="uid://cfrrqkbruh1gk" path="res://Assets/lighting/LightPreset.gd" id="1_toh63"]
+
+[resource]
+script = ExtResource("1_toh63")
+color = Color(0.15, 1, 0.3, 1)
+energy = 1.2
+radius = 60.0
+pulse = 1.0
+pulse_speed = 0.7

@@ -1,0 +1,135 @@
+[gd_scene format=3 uid="uid://carf6gmsridye"]
+
+[ext_resource type="PackedScene" uid="uid://2ldixl4hfc68" path="res://Data/Debris/Resource/Debris/UI/debris_object_ui.tscn" id="1_bfcyi"]
+[ext_resource type="Script" uid="uid://cfr6ei68wvjvu" path="res://Data/Player/ui.gd" id="1_yk0yh"]
+[ext_resource type="PackedScene" uid="uid://blvdksbtdj3uy" path="res://Assets/Nodes/progress_bar.tscn" id="2_bl2fu"]
+[ext_resource type="PackedScene" uid="uid://dnauxc4tcis2n" path="res://Data/Upgrades/UpgradeScreen.tscn" id="4_ug852"]
+[ext_resource type="PackedScene" uid="uid://bcbp1txr7i5rt" path="res://Data/Menu/RunEndBanner.tscn" id="5_ejbcy"]
+
+[node name="UI" type="Control" unique_id=1598766862 node_paths=PackedStringArray("node_debris_container", "node_score_lbl", "node_timer_lbl", "node_fuel_bar", "node_heat_bar", "node_speed_lbl", "run_end_banner", "node_continue_btn", "upgrade_screen")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yk0yh")
+node_debris_container = NodePath("MarginContainer2/MarginContainer/PanelContainer/MarginContainer/PanelContainer/HBoxContainer/DebrisContainer")
+node_score_lbl = NodePath("MarginContainer2/MarginContainer/PanelContainer/MarginContainer/PanelContainer/HBoxContainer/Bars/HBoxContainer/ScoreLbl")
+node_timer_lbl = NodePath("TimerLbl")
+node_fuel_bar = NodePath("MarginContainer2/MarginContainer/PanelContainer/MarginContainer/PanelContainer/HBoxContainer/Bars/FuelBar")
+node_heat_bar = NodePath("MarginContainer2/MarginContainer/PanelContainer/MarginContainer/PanelContainer/HBoxContainer/Bars/HeatBar")
+node_speed_lbl = NodePath("SpeedLbl")
+run_end_banner = NodePath("RunEndBanner")
+debris_item_scene = ExtResource("1_bfcyi")
+node_continue_btn = NodePath("Button")
+upgrade_screen = NodePath("UpgradeScreen")
+
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=2086985880]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2" unique_id=1990695559]
+visible = false
+custom_minimum_size = Vector2(384, 256)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer2/MarginContainer" unique_id=1530947525]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/MarginContainer/PanelContainer" unique_id=1079805371]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer2/MarginContainer/PanelContainer/MarginContainer" unique_id=1391817853]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/MarginContainer/PanelContainer/MarginContainer/PanelContainer" unique_id=334896120]
+layout_mode = 2
+
+[node name="DebrisContainer" type="VBoxContainer" parent="MarginContainer2/MarginContainer/PanelContainer/MarginContainer/PanelContainer/HBoxContainer" unique_id=1613130329]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Bars" type="VBoxContainer" parent="MarginContainer2/MarginContainer/PanelContainer/MarginContainer/PanelContainer/HBoxContainer" unique_id=473831531]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/MarginContainer/PanelContainer/MarginContainer/PanelContainer/HBoxContainer/Bars" unique_id=1964188683]
+layout_mode = 2
+
+[node name="ScoreLbl" type="Label" parent="MarginContainer2/MarginContainer/PanelContainer/MarginContainer/PanelContainer/HBoxContainer/Bars/HBoxContainer" unique_id=554044572]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "500"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FuelBar" parent="MarginContainer2/MarginContainer/PanelContainer/MarginContainer/PanelContainer/HBoxContainer/Bars" unique_id=1919688242 instance=ExtResource("2_bl2fu")]
+layout_mode = 2
+size_flags_vertical = 3
+bar_text = "Fuel"
+
+[node name="HeatBar" parent="MarginContainer2/MarginContainer/PanelContainer/MarginContainer/PanelContainer/HBoxContainer/Bars" unique_id=1648255209 instance=ExtResource("2_bl2fu")]
+layout_mode = 2
+size_flags_vertical = 3
+bar_text = "Heat"
+
+[node name="UpgradeScreen" parent="." unique_id=423598974 instance=ExtResource("4_ug852")]
+visible = false
+layout_mode = 1
+
+[node name="RunEndBanner" parent="." unique_id=711584712 instance=ExtResource("5_ejbcy")]
+visible = false
+layout_mode = 1
+
+[node name="TimerLbl" type="Label" parent="." unique_id=467214372]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -106.0
+offset_top = -331.0
+offset_right = -13.0
+offset_bottom = -286.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+
+[node name="SpeedLbl" type="Label" parent="." unique_id=1663950436]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -303.0
+offset_right = -6.0
+offset_bottom = -258.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Speed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=13425141]
+layout_mode = 0
+offset_left = 1345.0
+offset_top = 939.0
+offset_right = 1564.0
+offset_bottom = 1014.0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 48
+text = "Continue"

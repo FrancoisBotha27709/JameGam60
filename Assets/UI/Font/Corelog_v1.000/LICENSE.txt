@@ -1,0 +1,27 @@
+Corelog pixel font - License
+Copyright (c) 2026 wookdev
+
+By purchasing or downloading these files you receive a non-exclusive, worldwide,
+perpetual license to use them under the following terms.
+
+YOU MAY:
+- Use the font (TTF, WOFF, BMFont files, PNG sheets, glyph data) in commercial and
+  non-commercial projects: games, apps, websites, videos, streams, printed matter,
+  logos and merchandise.
+- Embed the font files inside a compiled or packaged game/app, as long as they are
+  not offered to end users as a separately usable font download.
+- Serve the WOFF/TTF files from your own website or web app (for example with
+  @font-face) to display text on that site.
+- Modify the glyphs, metrics and sheets freely, and use your modified versions
+  under these same terms.
+- Use it without attribution. A credit ("Font: Corelog by wookdev") is
+  appreciated but not required.
+
+YOU MAY NOT:
+- Resell, sublicense, share or redistribute the files as-is or modified, on their
+  own or as part of another font, asset pack, template, library or collection
+  (free or paid).
+- Upload the files to font sites, asset stores or public repositories where other
+  people can download them.
+
+The files are provided "as is", without warranty of any kind.

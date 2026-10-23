@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cjmsdi0pd1mdq"]
+
+[ext_resource type="Script" uid="uid://cya1b8yxbopub" path="res://Assets/lighting/Presets/light_showcase.gd" id="1_show"]
+
+[node name="LightShowcase" type="Node2D" unique_id=609720136]
+script = ExtResource("1_show")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=368428520]
+zoom = Vector2(0.45, 0.45)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=927790176]
+layer = 10

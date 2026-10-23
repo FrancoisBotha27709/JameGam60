@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Debris" format=3 uid="uid://b7a88qax8cudd"]
+
+[ext_resource type="PackedScene" uid="uid://hyf8aio5sm1f" path="res://Data/Debris/Resource/Debris/Empty/empty.tscn" id="1_0k3tb"]
+[ext_resource type="Resource" uid="uid://to0pawcy41mc" path="res://Assets/lighting/Presets/debris_cement.tres" id="1_w4sgy"]
+[ext_resource type="Script" uid="uid://b7nuj2r4d1vdc" path="res://Data/Debris/Resource/Debris/Debris.gd" id="2_mrplw"]
+[ext_resource type="Texture2D" uid="uid://ckd4pnvxe8002" path="res://icon.svg" id="3_mrplw"]
+
+[resource]
+script = ExtResource("2_mrplw")
+scene = ExtResource("1_0k3tb")
+texture = ExtResource("3_mrplw")
+quantum_lifetime = 1.5
+light_preset = ExtResource("1_w4sgy")
+light_chance = 0.0

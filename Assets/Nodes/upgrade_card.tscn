@@ -1,0 +1,126 @@
+[gd_scene format=3 uid="uid://btwxad7b8is7j"]
+
+[ext_resource type="Script" uid="uid://0jesrkqvuh82" path="res://Assets/Nodes/upgrade_card.gd" id="1_1ncmc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ncmc"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ejs0x"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kwgwu"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.225, 0.225, 0.225, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kll4a"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ldcyo"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[node name="UpgradeCard" type="Control" unique_id=421865687 node_paths=PackedStringArray("node_title_lbl", "node_desc_lbl", "node_icon", "node_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_1ncmc")
+node_title_lbl = NodePath("MarginContainer/VBoxContainer/Title")
+node_desc_lbl = NodePath("MarginContainer/VBoxContainer/Desc")
+node_icon = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/TextureRect")
+node_button = NodePath("Button")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1656523757]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1532418494]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1957433133]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=786494520]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1761896047]
+layout_mode = 2
+size_flags_horizontal = 3
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Desc" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1503003511]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="." unique_id=1152985206]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_1ncmc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ejs0x")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kwgwu")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_kll4a")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ldcyo")

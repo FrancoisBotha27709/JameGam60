@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/upgrade.gd" id="1_upgrade"]
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/delivery_effect.gd" id="2_delivery_effect"]
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/stat_effect.gd" id="3_stat_effect"]
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="4_upgrade_effect"]
+
+[sub_resource type="Resource" id="e0"]
+script = ExtResource("2_delivery_effect")
+ramp = 0.03
+ramp_cap = 1.0
+
+[sub_resource type="Resource" id="e1"]
+script = ExtResource("3_stat_effect")
+stats = Array[int]([5])
+mode = 1
+amount = -0.1
+
+[resource]
+script = ExtResource("1_upgrade")
+title = "Combo Chain"
+description = "On delivery: +3% points per delivery so far (max +100%)\n-10% Time Limit"
+rarity = 2
+tags = Array[StringName]([&"score"])
+max_stacks = 2
+effects = Array[ExtResource("4_upgrade_effect")]([SubResource("e0"), SubResource("e1")])

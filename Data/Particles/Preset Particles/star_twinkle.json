@@ -1,0 +1,37 @@
+{
+  "node": {
+    "amount": 30,
+    "lifetime": 2.5,
+    "preprocess": 2.5,
+    "quad_px": 12,
+    "local_coords": false
+  },
+  "sim": {
+    "emit_box": [820, 760],
+    "spread_deg": 180,
+    "speed": [0, 3],
+    "drag": 1,
+    "size_start": 0.7,
+    "size_end": 0.7,
+    "size_random": 0.5,
+    "pulse_amp": 0.7,
+    "pulse_freq": 2,
+    "life_random": 0.6,
+    "alpha_jitter": 0.3
+  },
+  "draw": {
+    "shape": 3,
+    "thickness": 0.25,
+    "pixel_res": 7,
+    "additive": 1,
+    "glow": 1.2,
+    "erode": 0,
+    "fade_in": 0.4,
+    "fade_start": 0.5,
+    "dither": 0,
+    "life_heat": 0,
+    "core_bias": 0,
+    "heat_jitter": 0,
+    "col_core": "#ffffff"
+  }
+}

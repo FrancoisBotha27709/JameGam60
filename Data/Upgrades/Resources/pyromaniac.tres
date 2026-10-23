@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/upgrade.gd" id="1_upgrade"]
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/synergy_effect.gd" id="2_synergy_effect"]
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="3_upgrade_effect"]
+
+[sub_resource type="Resource" id="e0"]
+script = ExtResource("2_synergy_effect")
+tag = &"risk"
+stats = Array[int]([6])
+amount = 0.1
+
+[resource]
+script = ExtResource("1_upgrade")
+title = "Pyromaniac"
+description = "+10% Score per owned risk upgrade"
+rarity = 2
+tags = Array[StringName]([&"risk", &"score"])
+max_stacks = 2
+effects = Array[ExtResource("3_upgrade_effect")]([SubResource("e0")])

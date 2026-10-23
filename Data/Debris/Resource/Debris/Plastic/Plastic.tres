@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Debris" format=3 uid="uid://cm1v7yhm8im33"]
+
+[ext_resource type="Resource" uid="uid://cbgtobs27mmc5" path="res://Assets/lighting/Presets/debris_plastic.tres" id="1_gnaa5"]
+[ext_resource type="Script" uid="uid://b7nuj2r4d1vdc" path="res://Data/Debris/Resource/Debris/Debris.gd" id="1_sk8lx"]
+[ext_resource type="PackedScene" uid="uid://c12g8aklefi22" path="res://Data/Debris/Resource/Debris/Plastic/plastic.tscn" id="2_j5jdh"]
+[ext_resource type="Texture2D" uid="uid://ckd4pnvxe8002" path="res://icon.svg" id="4_28pp7"]
+
+[resource]
+script = ExtResource("1_sk8lx")
+tag = 1
+scene = ExtResource("2_j5jdh")
+texture = ExtResource("4_28pp7")
+rope_length = 40.0
+drift_speed_min = 10.0
+drift_speed_max = 230.0
+drift_turn_rate = 4.0
+drift_spin_max = 4.0
+drift_attached_factor = 0.1
+light_preset = ExtResource("1_gnaa5")
+light_chance = 0.35
+metadata/_custom_type_script = "uid://b7nuj2r4d1vdc"

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/upgrade.gd" id="1_upgrade"]
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/random_stat_effect.gd" id="2_random_stat_effect"]
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="3_upgrade_effect"]
+
+[sub_resource type="Resource" id="e0"]
+script = ExtResource("2_random_stat_effect")
+pool = Array[int]([])
+count = 4
+min_amount = -0.3
+max_amount = 0.7
+
+[resource]
+script = ExtResource("1_upgrade")
+title = "Gambler's Core"
+description = "Rolls 4 random stat changes (-30% to +70%)"
+rarity = 2
+tags = Array[StringName]([&"chaos"])
+max_stacks = 2
+effects = Array[ExtResource("3_upgrade_effect")]([SubResource("e0")])

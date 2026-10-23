@@ -1,0 +1,43 @@
+{
+  "node": {
+    "amount": 20,
+    "lifetime": 7,
+    "preprocess": 7,
+    "quad_px": 96,
+    "local_coords": false
+  },
+  "sim": {
+    "emit_box": [600, 800],
+    "spread_deg": 180,
+    "speed": [2, 10],
+    "drag": 0.2,
+    "turb_amp": 12,
+    "turb_freq": 1.5,
+    "turb_chaos": 0.8,
+    "size_start": 1,
+    "size_end": 2,
+    "size_bulge": 0.4,
+    "spin_deg": 8,
+    "rot_random": 1,
+    "life_random": 0.5,
+    "alpha_jitter": 0.5
+  },
+  "draw": {
+    "shape": 0,
+    "pixel_res": 24,
+    "softness": 0.9,
+    "dither": 0,
+    "additive": 0.9,
+    "glow": 0.7,
+    "erode": 0.3,
+    "edge_noise": 0.5,
+    "hue_shift": 0.3,
+    "fade_in": 0.4,
+    "fade_start": 0.2,
+    "life_heat": 0.5,
+    "col_core": "#ffd6f5",
+    "col_hot": "#d36bff",
+    "col_mid": "#5b2bb5",
+    "col_cool": "#1a0f40"
+  }
+}

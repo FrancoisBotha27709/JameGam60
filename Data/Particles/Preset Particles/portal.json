@@ -1,0 +1,42 @@
+{
+ "node": {
+  "amount": 60,
+  "lifetime": 1.0,
+  "local_coords": true
+ },
+ "sim": {
+  "emit_ring": [
+   26,
+   28
+  ],
+  "outward": 1.0,
+  "speed": [
+   10,
+   30
+  ],
+  "drag": 0.3,
+  "curl": 240,
+  "curl_random": 0.4,
+  "turb_amp": 0,
+  "size_start": 0.35,
+  "size_end": 0.0,
+  "pulse_amp": 0.3,
+  "pulse_freq": 3,
+  "life_random": 0.4
+ },
+ "draw": {
+  "shape": 1,
+  "additive": 0.85,
+  "glow": 1.4,
+  "hue_shift": 0.5,
+  "pixel_res": 4,
+  "erode": 0.3,
+  "col_core": "#f4ffff",
+  "col_hot": "#7ef0ff",
+  "col_mid": "#8a5cff",
+  "col_cool": "#2a1a6e",
+  "col_outline": "#0b0630",
+  "fade_start": 0.4,
+  "flicker": 0.3
+ }
+}

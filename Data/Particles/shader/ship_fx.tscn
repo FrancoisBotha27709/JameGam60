@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://chcul5oawyipr"]
+
+[ext_resource type="Script" uid="uid://dm3x2iolc26wr" path="res://Data/Particles/shader/ship_fx.gd" id="1_fx"]
+[ext_resource type="Shader" uid="uid://cb02wyd5mfrav" path="res://Data/Particles/shader/ship_particles.gdshader" id="2_sim"]
+[ext_resource type="Shader" uid="uid://d4dpxo5ugnary" path="res://Data/Particles/shader/ship_particles_draw.gdshader" id="3_draw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_draw"]
+shader = ExtResource("3_draw")
+shader_parameter/col_core = Color(1, 0.96, 0.75, 1)
+shader_parameter/col_hot = Color(1, 0.75, 0.2, 1)
+shader_parameter/col_mid = Color(0.95, 0.3, 0.1, 1)
+shader_parameter/col_cool = Color(0.35, 0.12, 0.15, 1)
+shader_parameter/thresholds = Vector3(0.2, 0.45, 0.75)
+shader_parameter/core_bias = 0.6
+shader_parameter/shape = 0
+shader_parameter/pixel_res = 4.0
+shader_parameter/softness = 0.0
+shader_parameter/erode = 0.4
+shader_parameter/fade_start = 0.5
+shader_parameter/dither = 1.0
+
+[sub_resource type="Gradient" id="Gradient_quad"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_quad"]
+gradient = SubResource("Gradient_quad")
+width = 16
+height = 16
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sim"]
+shader = ExtResource("2_sim")
+shader_parameter/emit_offset = Vector2(0, 0)
+shader_parameter/emit_box = Vector2(3, 0)
+shader_parameter/direction_deg = 90.0
+shader_parameter/spread_deg = 8.0
+shader_parameter/spread_bias = 1.8
+shader_parameter/speed_min = 90.0
+shader_parameter/speed_max = 180.0
+shader_parameter/drag = 2.0
+shader_parameter/accel = Vector2(0, 0)
+shader_parameter/turb_amp = 25.0
+shader_parameter/turb_freq = 3.0
+shader_parameter/size_start = 0.6
+shader_parameter/size_end = 0.0
+shader_parameter/size_curve = 1.0
+shader_parameter/size_random = 0.3
+shader_parameter/life_random = 0.3
+shader_parameter/align_to_velocity = true
+shader_parameter/stretch = 0.0
+shader_parameter/spin_deg = 0.0
+shader_parameter/rot_random = 0.0
+shader_parameter/rot_steps = 0
+shader_parameter/power = 1.0
+
+[node name="ShipFX" type="Node2D" unique_id=1987884942 node_paths=PackedStringArray("thrust")]
+script = ExtResource("1_fx")
+thrust = NodePath("Thrust")
+
+[node name="Thrust" type="GPUParticles2D" parent="." unique_id=1402192479]
+material = SubResource("ShaderMaterial_draw")
+amount = 40
+texture = SubResource("GradientTexture2D_quad")
+lifetime = 0.5
+visibility_rect = Rect2(-200, -200, 400, 400)
+process_material = SubResource("ShaderMaterial_sim")

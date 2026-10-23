@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://blvdksbtdj3uy"]
+
+[ext_resource type="Script" uid="uid://b3op40lp4giat" path="res://Assets/Nodes/progress_bar.gd" id="1_4sikf"]
+
+[node name="AmmoBar" type="ProgressBar" unique_id=1919688242 node_paths=PackedStringArray("label")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+show_percentage = false
+script = ExtResource("1_4sikf")
+label = NodePath("Label")
+
+[node name="Label" type="Label" parent="." unique_id=371173677]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Fuel"
+horizontal_alignment = 1
+vertical_alignment = 1

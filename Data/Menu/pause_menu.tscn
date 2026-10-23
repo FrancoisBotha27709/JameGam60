@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://37d4ekvjsc1u"]
+
+[ext_resource type="Theme" uid="uid://pq4bga7u0c3f" path="res://Assets/base_theme.tres" id="1_7f14a"]
+[ext_resource type="Script" uid="uid://b11geif4s4pml" path="res://Data/Menu/pause_menu.gd" id="2_uo63q"]
+[ext_resource type="Script" uid="uid://c1qhnv5gfhb82" path="res://Data/Menu/DitherVignette.gd" id="3_qbuqd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qbuqd"]
+bg_color = Color(0.15127608, 0.15127608, 0.15127605, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="PauseMenu" type="Control" unique_id=1786774158 node_paths=PackedStringArray("node_resume_btn", "node_option_btn", "node_quit_menu_btn", "node_quit_desk_btn", "node_dither")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7f14a")
+script = ExtResource("2_uo63q")
+node_resume_btn = NodePath("PanelContainer/MarginContainer/Panel/VBoxContainer/ResumeBtn")
+node_option_btn = NodePath("PanelContainer/MarginContainer/Panel/VBoxContainer/OptionsBtn")
+node_quit_menu_btn = NodePath("PanelContainer/MarginContainer/Panel/VBoxContainer/QuitMenuBtn")
+node_quit_desk_btn = NodePath("PanelContainer/MarginContainer/Panel/VBoxContainer/QuitDeskBtn")
+node_dither = NodePath("DitherVignette")
+
+[node name="DitherVignette" type="ColorRect" parent="." unique_id=165186939]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_qbuqd")
+tint = Color(0.81632423, 0.45513362, 3.85046e-07, 1)
+metadata/_custom_type_script = "uid://c1qhnv5gfhb82"
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=289071921]
+custom_minimum_size = Vector2(256, 192)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -96.0
+offset_right = 128.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qbuqd")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1233843755]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="PanelContainer/MarginContainer" unique_id=2011198736]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/Panel" unique_id=151862763]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ResumeBtn" type="Button" parent="PanelContainer/MarginContainer/Panel/VBoxContainer" unique_id=157152555]
+layout_mode = 2
+text = "Resume"
+
+[node name="OptionsBtn" type="Button" parent="PanelContainer/MarginContainer/Panel/VBoxContainer" unique_id=1196005977]
+layout_mode = 2
+text = "Options"
+
+[node name="QuitMenuBtn" type="Button" parent="PanelContainer/MarginContainer/Panel/VBoxContainer" unique_id=390648044]
+layout_mode = 2
+text = "Quit to Main Menu"
+
+[node name="QuitDeskBtn" type="Button" parent="PanelContainer/MarginContainer/Panel/VBoxContainer" unique_id=1103277741]
+layout_mode = 2
+text = "Quit to Desktop"

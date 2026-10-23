@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LightPreset" format=3 uid="uid://c7dcarqg3oltk"]
+
+[ext_resource type="Script" uid="uid://cfrrqkbruh1gk" path="res://Assets/lighting/LightPreset.gd" id="1_vc28y"]
+
+[resource]
+script = ExtResource("1_vc28y")
+color = Color(0.7, 0.85, 1, 1)
+energy = 0.6
+radius = 70.0
+falloff = 1.5

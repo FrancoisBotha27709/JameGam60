@@ -1,0 +1,1 @@
+{"node":{"amount":10,"lifetime":0.3,"quad_px":12,"local_coords":false},"sim":{"direction_deg":90,"spread_deg":12,"speed":[40,90],"drag":3,"size_start":0.5,"size_end":0,"life_random":0.4},"draw":{"shape":0,"pixel_res":4,"erode":0.6,"fade_start":0.3,"col_core":"#ffffff","col_hot":"#e0f0ff","col_mid":"#a0b8d0","col_cool":"#506080"}}

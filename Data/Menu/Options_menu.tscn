@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cc8yw7aqoghqx"]
+
+[ext_resource type="Script" uid="uid://dhffxyo6m72py" path="res://Data/Menu/options.gd" id="1_lnor8"]
+[ext_resource type="Theme" uid="uid://pq4bga7u0c3f" path="res://Assets/base_theme.tres" id="1_vccv7"]
+
+[node name="Options" type="PanelContainer" unique_id=1565028202 node_paths=PackedStringArray("node_tabs")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_vccv7")
+script = ExtResource("1_lnor8")
+node_tabs = NodePath("MarginContainer/TabContainer")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1108551585]
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer" unique_id=800159608]
+layout_mode = 2

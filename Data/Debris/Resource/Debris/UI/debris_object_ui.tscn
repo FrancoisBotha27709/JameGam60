@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://2ldixl4hfc68"]
+
+[ext_resource type="Script" uid="uid://bs2kvvlq3txgv" path="res://Data/Debris/Resource/Debris/UI/debris_object_ui.gd" id="1_gpip2"]
+
+[node name="DebrisObject" type="Control" unique_id=581606169 node_paths=PackedStringArray("node_debris_lbl", "node_icon")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gpip2")
+node_debris_lbl = NodePath("PanelContainer/MarginContainer/VBoxContainer/DebrisLbl")
+node_icon = NodePath("PanelContainer/MarginContainer/VBoxContainer/TextureRect")
+
+[node name="PanelContainer" type="Panel" parent="." unique_id=1076074298]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=2018897042]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1019727854]
+layout_mode = 2
+
+[node name="DebrisLbl" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=375074026]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Debris
+[A]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1402745044]
+layout_mode = 2
+size_flags_vertical = 3

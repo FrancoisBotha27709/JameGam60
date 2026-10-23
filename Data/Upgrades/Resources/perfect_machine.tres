@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/upgrade.gd" id="1_upgrade"]
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_stat_effect"]
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="3_upgrade_effect"]
+
+[sub_resource type="Resource" id="e0"]
+script = ExtResource("2_stat_effect")
+stats = Array[int]([0, 1, 7, 2, 3, 17, 15, 6])
+mode = 1
+amount = 0.1
+
+[resource]
+script = ExtResource("1_upgrade")
+title = "Perfect Machine"
+description = "+10% Max Speed, +10% Rotation Speed, +10% Thrust Accel, +10% Throttle Accel, +10% Fuel Max, +10% Cool Rate, +10% Heat Max, +10% Score"
+rarity = 3
+tags = Array[StringName]([&"utility"])
+max_stacks = 1
+effects = Array[ExtResource("3_upgrade_effect")]([SubResource("e0")])

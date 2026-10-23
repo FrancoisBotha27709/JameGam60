@@ -1,0 +1,158 @@
+[gd_scene format=3 uid="uid://btjdy0jl7l7fv"]
+
+[ext_resource type="Theme" uid="uid://pq4bga7u0c3f" path="res://Assets/base_theme.tres" id="1_466ml"]
+[ext_resource type="Script" uid="uid://23h8tdjob1ju" path="res://Data/Menu/RunStartBanner.gd" id="1_script"]
+[ext_resource type="Shader" uid="uid://bd2ivxe3mx85y" path="res://Data/Menu/DitherVignette.gdshader" id="2_jjhxa"]
+[ext_resource type="Script" uid="uid://c1qhnv5gfhb82" path="res://Data/Menu/DitherVignette.gd" id="3_7fbf0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r2qbd"]
+shader = ExtResource("2_jjhxa")
+shader_parameter/tint = Color(0.3, 1, 0.6, 1)
+shader_parameter/intensity = 0.0
+shader_parameter/pixel_size = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s6fcj"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="RunStartBanner" type="Control" unique_id=863598694 node_paths=PackedStringArray("overlay", "backpanel", "tag", "title", "sub", "score", "flash", "overlow", "summary_lbl")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_466ml")
+script = ExtResource("1_script")
+overlay = NodePath("Overlay")
+backpanel = NodePath("MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel")
+tag = NodePath("MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer/TagLbl")
+title = NodePath("MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer/TitleLbl")
+sub = NodePath("MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer/SubLbl")
+score = NodePath("MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer/ScoreLbl")
+flash = NodePath("Flash")
+overlow = NodePath("MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/OverflowLbl")
+summary_lbl = NodePath("MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer/SummaryLbl")
+
+[node name="Overlay" type="ColorRect" parent="." unique_id=852170689]
+material = SubResource("ShaderMaterial_r2qbd")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_7fbf0")
+metadata/_custom_type_script = "uid://c1qhnv5gfhb82"
+
+[node name="Flash" type="ColorRect" parent="." unique_id=1712057555]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1900601611]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer2" unique_id=1692780676]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/PanelContainer" unique_id=1748113553]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer2/PanelContainer/MarginContainer" unique_id=292357951]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer" unique_id=133489595]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="HBoxContainer" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2" unique_id=196188155]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="OverflowLbl" type="RichTextLabel" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2" unique_id=1867278152]
+custom_minimum_size = Vector2(885, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[color=green][  OK  ] [/color] Power rails stable"
+scroll_active = false
+scroll_following_visible_characters = true
+autowrap_mode = 2
+
+[node name="Control" type="Control" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2" unique_id=784432720]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel" type="Panel" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control" unique_id=1001090996]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_s6fcj")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel" unique_id=890609364]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer" unique_id=1557420589]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TagLbl" type="Label" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer" unique_id=1387217036]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 1, 0.6, 1)
+theme_override_font_sizes/font_size = 40
+text = "// RUN 01 //"
+
+[node name="TitleLbl" type="Label" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer" unique_id=738310002]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 1, 0.6, 1)
+theme_override_font_sizes/font_size = 48
+text = "SYSTEMS ONLINE"
+
+[node name="SubLbl" type="Label" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer" unique_id=1904045575]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "COLLECT DEBRIS - DELIVER TO THE DEPOT"
+
+[node name="ScoreLbl" type="Label" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer" unique_id=1813625781]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "QUOTA  5"
+
+[node name="SummaryLbl" type="Label" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer" unique_id=1694619822]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32

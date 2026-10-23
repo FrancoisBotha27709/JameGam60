@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://c8neutrc7nafv"]
+
+[ext_resource type="Texture2D" uid="uid://6dw87451o7hj" path="res://Assets/UI/Assets Wenrexa UI Sci-Fi Minimalism #01/Elements/ArrowRight.png" id="1_d11ps"]
+[ext_resource type="Script" uid="uid://bgr5bdnghd8wm" path="res://Data/Debris/waypoint_marker.gd" id="2_d11ps"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_d11ps"]
+light_mode = 1
+
+[node name="WaypointMarker" type="Sprite2D" unique_id=1242334999]
+z_index = 4096
+material = SubResource("CanvasItemMaterial_d11ps")
+rotation = 1.5707964
+texture = ExtResource("1_d11ps")
+script = ExtResource("2_d11ps")
+fade_near_distance = 500.0
+fade_far_distance = 700.0

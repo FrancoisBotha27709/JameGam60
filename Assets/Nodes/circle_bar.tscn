@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://b05dh03r3iqn"]
+
+[ext_resource type="Script" uid="uid://cxwrps6phae61" path="res://Assets/Nodes/circle_bar.gd" id="1_rsmb6"]
+[ext_resource type="Texture2D" uid="uid://cm8f8dy2idgbh" path="res://Assets/UI/Circle/circle_fill.png" id="4_u7imb"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fu322"]
+light_mode = 1
+
+[node name="CircleBar" type="Control" unique_id=470699223]
+modulate = Color(1, 1, 1, 0.21176471)
+y_sort_enabled = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rsmb6")
+
+[node name="Ghost" type="TextureProgressBar" parent="." unique_id=1802665036]
+material = SubResource("CanvasItemMaterial_fu322")
+layout_mode = 0
+offset_left = -128.0
+offset_top = -128.0
+offset_right = 128.0
+offset_bottom = 128.0
+fill_mode = 4
+texture_progress = ExtResource("4_u7imb")
+tint_progress = Color(0.6039216, 1, 1, 0.21176471)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=405783496]
+material = SubResource("CanvasItemMaterial_fu322")
+layout_mode = 0
+offset_left = -128.0
+offset_top = -128.0
+offset_right = 128.0
+offset_bottom = 128.0
+fill_mode = 4
+texture_progress = ExtResource("4_u7imb")
+tint_over = Color(0.12591085, 0.12591085, 0.12591082, 1)

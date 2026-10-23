@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/upgrade.gd" id="1_upgrade"]
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/synergy_effect.gd" id="2_synergy_effect"]
+[ext_resource type="Script" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="3_upgrade_effect"]
+
+[sub_resource type="Resource" id="e0"]
+script = ExtResource("2_synergy_effect")
+tag = &"time"
+stats = Array[int]([5])
+amount = 0.1
+
+[resource]
+script = ExtResource("1_upgrade")
+title = "Chrono Scholar"
+description = "+10% Time Limit per owned time upgrade"
+rarity = 1
+tags = Array[StringName]([&"time"])
+max_stacks = 2
+effects = Array[ExtResource("3_upgrade_effect")]([SubResource("e0")])
