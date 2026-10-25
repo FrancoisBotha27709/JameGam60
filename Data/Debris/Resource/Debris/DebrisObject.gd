@@ -13,6 +13,8 @@ signal quantum_expired
 @export var flash_rate_end : float = 18.0
 @export var teleport_min : float = 500.0
 @export var teleport_max : float = 900.0
+@export var sprite : Sprite2D
+var _base_color := Color.WHITE
 
 const ROPE_PTS := 9
 @export var rope_slack : float = 1.08
@@ -210,7 +212,7 @@ func attach_to(target : Node2D) -> void:
 		quantum_caught = true
 		modulate = quantum_tint
 
-	var base := ($Shape as Polygon2D).color
+	var base := _base_color
 	var hs := randf_range(-0.04, 0.04)
 	var c0 := base.darkened(randf_range(0.3, 0.5))
 	var c1 := base.lightened(randf_range(0.3, 0.5))
@@ -348,19 +350,18 @@ func _bounce_off_world() -> void:
 func _apply_shape() -> void:
 	var v := DebrisShapes.make(data.tag)
 	var poly : PackedVector2Array = v.poly
+	_base_color = v.color
 
-	var shape := $Shape as Polygon2D
-	shape.polygon = poly
-	shape.color = (v.color as Color).lightened(randf_range(-0.06, 0.06))
-	shape.texture = DebrisShapes.surface(data.tag)
-	shape.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	shape.uv = poly
-	shape.texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED
-	shape.texture_offset = Vector2(randf(), randf()) * 64.0
+	sprite.texture = v.tex
+	sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	sprite.scale = Vector2(DebrisShapes.PX, DebrisShapes.PX)
+	var f := randf_range(0.9, 1.1)
+	sprite.self_modulate = Color(f, f, f)   # self_modulate so quantum's node modulate still works
+	rotation = randf() * TAU
 
 	var col := $CollisionShape2D as CollisionShape2D
 	(col.shape as RectangleShape2D).size = v.size
-	col.position = v.center
+	col.position = Vector2.ZERO
 
 	var occ := $LightOccluder2D as LightOccluder2D
 	occ.visible = data.shadow_cast

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpeniy37vaav"
-path="res://.godot/imported/Ship_normal_inverted.png-e9aabdb72f18ac47b7a13da703ea9ced.ctex"
+uid="uid://dprylfwjh66tw"
+path="res://.godot/imported/frame_02.png-49e44b617387d5a00046cebb6c93b29d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/UI/Ship/Ship_normal_inverted.png"
-dest_files=["res://.godot/imported/Ship_normal_inverted.png-e9aabdb72f18ac47b7a13da703ea9ced.ctex"]
+source_file="res://Assets/UI/Ship/Designs/ship_693398_05/animation/frame_02.png"
+dest_files=["res://.godot/imported/frame_02.png-49e44b617387d5a00046cebb6c93b29d.ctex"]
 
 [params]
 

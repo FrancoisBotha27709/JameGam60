@@ -225,6 +225,11 @@ func register_delivery(debris : Debris) -> void:
 	entry["count"] += 1
 	entry["points"] += points
 	collected_by_tag[tag_name] = entry
+
+	for depot in get_tree().get_nodes_in_group("Depot"):
+		if depot is Depot:
+			depot.update_depot_sprite()
+	
 	SignalBus.emit_signal("score_updated", roundi(score))
 
 	_check_quota.call_deferred()
@@ -258,6 +263,12 @@ func _finish_run(reason : EndReason) -> void:
 	var final_score := roundi(score)
 	if uses_timer():
 		SignalBus.emit_signal("time_updated", 0.0)
+
+	if reason == EndReason.QUOTA_MET:
+		for depot in get_tree().get_nodes_in_group("Depot"):
+			if depot is Depot:
+				depot.reset_depot()
+				
 	get_tree().paused = true
 	SignalBus.emit_signal("run_finished", final_score, collected_by_tag.duplicate(true),
 		reason != EndReason.MELTDOWN and final_score >= get_quota())

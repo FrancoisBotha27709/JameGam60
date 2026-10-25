@@ -9,10 +9,10 @@
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_bk3ga"]
 polygon = PackedVector2Array(11, -9, 2, -6, 6, -3, 12, -4)
 
-[node name="Asteroid" type="Area2D" unique_id=1792663811 node_paths=PackedStringArray("node_collision", "node_polygon", "node_occluder", "node_light_rig")]
+[node name="Asteroid" type="Area2D" unique_id=1792663811 node_paths=PackedStringArray("node_collision", "node_sprite", "node_occluder", "node_light_rig")]
 script = ExtResource("1_yp8ce")
 node_collision = NodePath("CollisionShape2D")
-node_polygon = NodePath("Polygon2D")
+node_sprite = NodePath("Sprite2D")
 node_occluder = NodePath("LightOccluder2D")
 node_light_rig = NodePath("LightRig")
 weight = 500.0
@@ -24,12 +24,11 @@ max_health = 400.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1001462704]
 shape = SubResource("RectangleShape2D_qi6bk")
 
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=832112011]
-polygon = PackedVector2Array(2, 4, -3, 2, -2, -3, 2, -3)
-
 [node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=119757966]
 occluder = SubResource("OccluderPolygon2D_bk3ga")
 
 [node name="LightRig" type="Node" parent="." unique_id=1251880887]
 script = ExtResource("3_bk3ga")
 metadata/_custom_type_script = "uid://cgg4yga220lsk"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1003833866]

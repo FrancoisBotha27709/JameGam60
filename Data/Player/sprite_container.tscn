@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://italmpyxktyx"]
 
 [ext_resource type="Shader" uid="uid://011mmfm5oy0x" path="res://Data/Player/png_glow.gdshader" id="1_uc8k4"]
-[ext_resource type="Texture2D" uid="uid://nv7suvnb7321" path="res://Assets/UI/Ship/Ship.png" id="2_h7era"]
-[ext_resource type="Texture2D" uid="uid://cu3uagpd4jhjd" path="res://Assets/UI/Ship/Ship_normal.png" id="3_ffr34"]
+[ext_resource type="Texture2D" uid="uid://8yyjo872clgp" path="res://Assets/UI/Ship/Designs/Bull/ship_981828_02.png" id="2_uc8k4"]
+[ext_resource type="Texture2D" uid="uid://yhxpoeal6mqv" path="res://Assets/UI/Ship/Designs/Bull/ship_981828_02_n.png" id="3_h7era"]
 [ext_resource type="Script" uid="uid://e8u1tvxx6cku" path="res://Data/Player/sprite_container.gd" id="4_a1j1v"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ul456"]
@@ -14,12 +14,12 @@ shader_parameter/intensity = 47.95
 shader_parameter/opacity = 0.13
 shader_parameter/glow_color = Color(0.50158626, 0.86458075, 0.9442951, 1)
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_myild"]
-diffuse_texture = ExtResource("2_h7era")
-normal_texture = ExtResource("3_ffr34")
-texture_filter = 1
+[sub_resource type="CanvasTexture" id="CanvasTexture_ffr34"]
+diffuse_texture = ExtResource("2_uc8k4")
+normal_texture = ExtResource("3_h7era")
 
 [node name="Sprite2D" type="Sprite2D" unique_id=1358334316]
 material = SubResource("ShaderMaterial_ul456")
-texture = SubResource("CanvasTexture_myild")
+rotation = -1.5707964
+texture = SubResource("CanvasTexture_ffr34")
 script = ExtResource("4_a1j1v")

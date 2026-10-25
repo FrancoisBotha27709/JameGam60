@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://b05dh03r3iqn" path="res://Assets/Nodes/circle_bar.tscn" id="15_dk4bn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sw308"]
-size = Vector2(64, 64)
+size = Vector2(98, 128)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2es7p"]
 content_margin_left = 0.0
@@ -98,12 +98,82 @@ shader_parameter/dither = 1.0
 shader_parameter/flicker = 0.0
 shader_parameter/flicker_freq = 12.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8mrtr"]
+resource_local_to_scene = true
+shader = ExtResource("7_e5wor")
+shader_parameter/col_core = Color(1, 1, 1, 1)
+shader_parameter/col_hot = Color(0.8784314, 0.9411765, 1, 1)
+shader_parameter/col_mid = Color(0.627451, 0.72156864, 0.8156863, 1)
+shader_parameter/col_cool = Color(0.3137255, 0.3764706, 0.5019608, 1)
+shader_parameter/col_outline = Color(0.12, 0.03, 0.05, 1)
+shader_parameter/thresholds = Vector3(0.2, 0.45, 0.75)
+shader_parameter/core_bias = 0.6
+shader_parameter/life_heat = 1.0
+shader_parameter/heat_jitter = 0.2
+shader_parameter/hue_shift = 0.0
+shader_parameter/additive = 0.0
+shader_parameter/glow = 1.0
+shader_parameter/shape = 0.0
+shader_parameter/aspect = Vector2(1, 1)
+shader_parameter/thickness = 0.3
+shader_parameter/ring = 0.0
+shader_parameter/pixel_res = 4.0
+shader_parameter/softness = 0.0
+shader_parameter/erode = 0.6
+shader_parameter/outline = 0.0
+shader_parameter/edge_noise = 0.0
+shader_parameter/grain = 0.0
+shader_parameter/fade_in = 0.0
+shader_parameter/fade_start = 0.3
+shader_parameter/dither = 1.0
+shader_parameter/flicker = 0.0
+shader_parameter/flicker_freq = 12.0
+
+[sub_resource type="Gradient" id="Gradient_kpgwr"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b3cwg"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_kpgwr")
+width = 12
+height = 12
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dk4bn"]
+resource_local_to_scene = true
+shader = ExtResource("7_e5wor")
+shader_parameter/col_core = Color(1, 0.96, 0.75, 1)
+shader_parameter/col_hot = Color(1, 0.75, 0.2, 1)
+shader_parameter/col_mid = Color(0.95, 0.3, 0.1, 1)
+shader_parameter/col_cool = Color(0.35, 0.12, 0.15, 1)
+shader_parameter/col_outline = Color(0.12, 0.03, 0.05, 1)
+shader_parameter/thresholds = Vector3(0.2, 0.45, 0.75)
+shader_parameter/core_bias = 0.6
+shader_parameter/life_heat = 1.0
+shader_parameter/heat_jitter = 0.2
+shader_parameter/hue_shift = 0.0
+shader_parameter/additive = 0.0
+shader_parameter/glow = 1.0
+shader_parameter/shape = 0.0
+shader_parameter/aspect = Vector2(1, 1)
+shader_parameter/thickness = 0.3
+shader_parameter/ring = 0.0
+shader_parameter/pixel_res = 4.0
+shader_parameter/softness = 0.0
+shader_parameter/erode = 0.4
+shader_parameter/outline = 0.0
+shader_parameter/edge_noise = 0.0
+shader_parameter/grain = 0.0
+shader_parameter/fade_in = 0.0
+shader_parameter/fade_start = 0.5
+shader_parameter/dither = 1.0
+shader_parameter/flicker = 0.0
+shader_parameter/flicker_freq = 12.0
+
 [node name="Player" type="CharacterBody2D" unique_id=1263876198 node_paths=PackedStringArray("node_sprite", "ui_root", "fx", "fx_explosion", "rig", "collision_shape", "circle_fuel_prog_bar", "circle_heat_prog_bar") groups=["Player"]]
 script = ExtResource("1_o0p0d")
 node_sprite = NodePath("Sprite2D")
 ship_color = Color(0.12156863, 0.72156864, 0.15686275, 1)
 ui_root = NodePath("CanvasLayer/UI")
-fx = NodePath("ShipFX")
+fx = NodePath("RCSContainer/ShipFX")
 fx_explosion = NodePath("ship_explosion")
 rig = NodePath("LightRig")
 collision_shape = NodePath("CollisionShape2D")
@@ -111,6 +181,7 @@ circle_fuel_prog_bar = NodePath("FuelBar")
 circle_heat_prog_bar = NodePath("HeatBar")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1317612103]
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_sw308")
 
 [node name="FollowTarget" type="Marker2D" parent="." unique_id=1840121728]
@@ -130,9 +201,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_2es7p")
 
 [node name="UI" parent="CanvasLayer" unique_id=1598766862 instance=ExtResource("4_x8ab7")]
 theme = ExtResource("5_ipw5p")
-
-[node name="ShipFX" parent="." unique_id=1987884942 instance=ExtResource("5_d7hhy")]
-position = Vector2(0, 21)
 
 [node name="ship_explosion" parent="." unique_id=492080604 instance=ExtResource("6_e4jm7")]
 material = SubResource("ShaderMaterial_tuul6")
@@ -209,3 +277,20 @@ bar_scale = Vector2(1.3, 1.3)
 
 [node name="HeatBar" parent="." unique_id=657834111 instance=ExtResource("15_dk4bn")]
 reverse_color_progression = true
+
+[node name="RCSContainer" type="Node2D" parent="." unique_id=1851737646]
+
+[node name="ShipFX" parent="RCSContainer" unique_id=1987884942 instance=ExtResource("5_d7hhy")]
+position = Vector2(0, 52)
+
+[node name="rcs_puff" parent="RCSContainer" unique_id=761577883 instance=ExtResource("6_e4jm7")]
+material = SubResource("ShaderMaterial_8mrtr")
+position = Vector2(19, 41)
+amount = 10
+texture = SubResource("GradientTexture2D_b3cwg")
+lifetime = 0.3
+one_shot = false
+preprocess = 0.0
+local_coords = false
+process_material = SubResource("ShaderMaterial_dk4bn")
+preset = "rcs_puff"

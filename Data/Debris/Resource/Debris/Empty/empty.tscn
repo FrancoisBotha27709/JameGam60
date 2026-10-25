@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://hyf8aio5sm1f"]
 
 [ext_resource type="Script" uid="uid://dbd7mja1lijo7" path="res://Data/Debris/Resource/Debris/DebrisObject.gd" id="1_esoat"]
-[ext_resource type="Texture2D" uid="uid://ckd4pnvxe8002" path="res://icon.svg" id="1_hsali"]
 [ext_resource type="PackedScene" uid="uid://7huj7ca1r148" path="res://Data/Particles/Scenes/electric_arcs.tscn" id="2_8ieu0"]
 [ext_resource type="PackedScene" uid="uid://c0rwf35b0kfeb" path="res://Data/Particles/fx_emitter.tscn" id="2_k7kba"]
 [ext_resource type="PackedScene" uid="uid://c8neutrc7nafv" path="res://Data/Debris/waypoint_marker.tscn" id="3_pwbxm"]
@@ -11,7 +10,7 @@
 [ext_resource type="Script" uid="uid://321jkmqngl84" path="res://Assets/lighting/SpaceLight.gd" id="9_8ieu0"]
 [ext_resource type="Resource" uid="uid://brxoiitlvwsvl" path="res://Assets/lighting/Presets/nav_green.tres" id="10_8yoa5"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ehlyn"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vi44x"]
 resource_local_to_scene = true
 shader = ExtResource("3_u34qw")
 shader_parameter/col_core = Color(0.7882353, 0.81960785, 0.8392157, 1)
@@ -44,13 +43,13 @@ shader_parameter/flicker_freq = 12.0
 
 [sub_resource type="Gradient" id="Gradient_mnjda"]
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_8ieu0"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ehlyn"]
 resource_local_to_scene = true
 gradient = SubResource("Gradient_mnjda")
 width = 16
 height = 16
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8yoa5"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ieu0"]
 resource_local_to_scene = true
 shader = ExtResource("3_u34qw")
 shader_parameter/col_core = Color(1, 0.96, 0.75, 1)
@@ -87,7 +86,7 @@ size = Vector2(46, 53)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_8ieu0"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_x5oxy"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8yoa5"]
 resource_local_to_scene = true
 shader = ExtResource("3_u34qw")
 shader_parameter/col_core = Color(1, 1, 1, 1)
@@ -120,13 +119,13 @@ shader_parameter/flicker_freq = 12.0
 
 [sub_resource type="Gradient" id="Gradient_e51ic"]
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_5opym"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_x5oxy"]
 resource_local_to_scene = true
 gradient = SubResource("Gradient_e51ic")
 width = 16
 height = 16
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wyvmp"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5opym"]
 resource_local_to_scene = true
 shader = ExtResource("3_u34qw")
 shader_parameter/col_core = Color(1, 0.96, 0.75, 1)
@@ -157,28 +156,27 @@ shader_parameter/dither = 1.0
 shader_parameter/flicker = 0.0
 shader_parameter/flicker_freq = 12.0
 
-[node name="Empty" type="Area2D" unique_id=336183694 node_paths=PackedStringArray("fx_pickup", "quantum_container")]
+[node name="Empty" type="Area2D" unique_id=336183694 node_paths=PackedStringArray("fx_pickup", "quantum_container", "sprite")]
 script = ExtResource("1_esoat")
 fx_pickup = NodePath("pickup_pop")
 quantum_container = NodePath("QuantumParticleContainer")
 quantum_particle_scene = ExtResource("2_8ieu0")
+sprite = NodePath("Icon")
 rope_length_variation = 0.41
 
 [node name="trash_trail" parent="." unique_id=492080604 instance=ExtResource("2_k7kba")]
-material = SubResource("ShaderMaterial_ehlyn")
-texture = SubResource("GradientTexture2D_8ieu0")
+material = SubResource("ShaderMaterial_vi44x")
+texture = SubResource("GradientTexture2D_ehlyn")
 lifetime = 0.6
 one_shot = false
 explosiveness = 0.0
 local_coords = false
-process_material = SubResource("ShaderMaterial_8yoa5")
+process_material = SubResource("ShaderMaterial_8ieu0")
 preset = "trash_trail"
 quad_px = 16
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=756991960]
-visible = false
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_hsali")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1120275231]
 position = Vector2(0, 0.5)
@@ -206,14 +204,14 @@ visible = false
 position = Vector2(16, -12)
 
 [node name="pickup_pop" parent="." unique_id=584333015 instance=ExtResource("2_k7kba")]
-material = SubResource("ShaderMaterial_x5oxy")
+material = SubResource("ShaderMaterial_8yoa5")
 emitting = false
 amount = 14
-texture = SubResource("GradientTexture2D_5opym")
+texture = SubResource("GradientTexture2D_x5oxy")
 lifetime = 0.35
 preprocess = 0.0
 local_coords = false
-process_material = SubResource("ShaderMaterial_wyvmp")
+process_material = SubResource("ShaderMaterial_5opym")
 preset = "pickup_pop"
 quad_px = 16
 
@@ -221,7 +219,7 @@ quad_px = 16
 texture_filter = 1
 position = Vector2(0, -19)
 color = Color(0.15, 1, 0.3, 1)
-energy = 0.9840549
+energy = 0.21124709
 range_z_min = -4096
 range_z_max = 4096
 range_layer_min = -128
@@ -236,5 +234,3 @@ pulse_speed = 0.7
 metadata/_custom_type_script = "uid://321jkmqngl84"
 
 [node name="QuantumParticleContainer" type="Node2D" parent="." unique_id=1368531087]
-
-[node name="Shape" type="Polygon2D" parent="." unique_id=1697031028]

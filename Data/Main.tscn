@@ -144,7 +144,7 @@ metadata/_custom_type_script = "uid://drl42lhnl0xd3"
 
 [node name="LightEnvironment" type="Node" parent="." unique_id=763232216]
 script = ExtResource("11_j3rrk")
-ambient = Color(0.082503326, 0.09719064, 0.15101883, 1)
+ambient = Color(0.1719608, 0.19750443, 0.28420988, 1)
 sun_enabled = true
 sun_color = Color(0.33880255, 0.27034003, 0, 1)
 sun_energy = 0.3

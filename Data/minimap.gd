@@ -1,18 +1,13 @@
 extends Control
 class_name Minimap
 
-## Draws a scaled-down view of the whole map. Creates no child nodes.
-## Needs groups: "Asteroid", "Depot", "Player".
-
 @export var player : Player
 
-## World area to show. Leave at zero size to auto-fit to everything found,
-## or call set_world_bounds(rect) from your level script.
 @export var world_rect : Rect2 = Rect2()
 
 @export_group("View")
 @export var follow_player : bool = false
-@export var view_range : float = 3000.0 ## world units across the minimap width when following
+@export var view_range : float = 3000.0
 @export var padding : float = 6.0
 
 @export_group("Style")
@@ -25,23 +20,19 @@ class_name Minimap
 @export var player_px : float = 5.0
 
 var _scale : float = 1.0
-var _origin : Vector2 = Vector2.ZERO # world point shown at the minimap center
-
+var _origin : Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	clip_contents = true
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 
-
 func set_world_bounds(rect : Rect2) -> void:
 	world_rect = rect
-
 
 func _process(_delta : float) -> void:
 	if player == null:
 		player = get_tree().get_first_node_in_group("Player") as Player
 	queue_redraw()
-
 
 func _update_view() -> void:
 	var inner := size - Vector2(padding, padding) * 2.0
@@ -60,7 +51,6 @@ func _update_view() -> void:
 	_scale = minf(inner.x / rect.size.x, inner.y / rect.size.y)
 	_origin = rect.get_center()
 
-
 func _auto_bounds() -> Rect2:
 	var found := false
 	var r := Rect2()
@@ -75,10 +65,8 @@ func _auto_bounds() -> Rect2:
 					r = r.expand(p)
 	return r.grow(200.0) if found else r
 
-
 func _to_map(world : Vector2) -> Vector2:
 	return (world - _origin) * _scale + size * 0.5
-
 
 func _draw() -> void:
 	draw_rect(Rect2(Vector2.ZERO, size), background_color)
@@ -87,22 +75,29 @@ func _draw() -> void:
 	# World border (only when a rect is set)
 	if world_rect.size.x > 0.0 and world_rect.size.y > 0.0:
 		var r := world_rect
-		var pts := PackedVector2Array([
+		var border := PackedVector2Array([
 			_to_map(r.position), _to_map(Vector2(r.end.x, r.position.y)),
 			_to_map(r.end), _to_map(Vector2(r.position.x, r.end.y)),
 			_to_map(r.position)])
-		draw_polyline(pts, asteroid_color.darkened(0.4), line_px)
+		draw_polyline(border, asteroid_color.darkened(0.4), line_px)
 
-	# Asteroids
+	# Asteroids: silhouette comes from the shared variant cache, transform from the node.
+	var view := Rect2(Vector2.ZERO, size).grow(32.0)
 	for a in get_tree().get_nodes_in_group("Asteroid"):
-		var poly : Polygon2D = a.get("node_polygon")
-		if poly == null or poly.polygon.is_empty():
+		var rock := a as AsteroidObject
+		if rock == null or not rock.visible:
 			continue
-		var xf : Transform2D = poly.global_transform
+		var centre := _to_map(rock.global_position)
+		var reach := rock.radius * _scale
+		if not view.grow(reach).has_point(centre):
+			continue   # off the minimap
+		var poly = AsteroidShapes.variant(rock.size, rock.variant).poly
+		var xf := rock.global_transform
 		var pts := PackedVector2Array()
-		for p in poly.polygon:
-			pts.append(_to_map(xf * p))
-		pts.append(pts[0])
+		pts.resize(poly.size() + 1)
+		for i in poly.size():
+			pts[i] = _to_map(xf * poly[i])
+		pts[poly.size()] = pts[0]
 		draw_polyline(pts, asteroid_color, line_px)
 
 	# Depots
@@ -115,7 +110,7 @@ func _draw() -> void:
 		var s := player_px
 		var shape := PackedVector2Array([
 			Vector2(0, -s), Vector2(s * 0.7, s * 0.7), Vector2(0, s * 0.3), Vector2(-s * 0.7, s * 0.7)])
-		var xf := Transform2D(player.global_rotation, _to_map(player.global_position))
+		var pxf := Transform2D(player.global_rotation, _to_map(player.global_position))
 		for i in shape.size():
-			shape[i] = xf * shape[i]
+			shape[i] = pxf * shape[i]
 		draw_colored_polygon(shape, player_color)
