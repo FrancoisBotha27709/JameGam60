@@ -98,7 +98,7 @@ shader_parameter/dither = 1.0
 shader_parameter/flicker = 0.0
 shader_parameter/flicker_freq = 12.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8mrtr"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dk4bn"]
 resource_local_to_scene = true
 shader = ExtResource("7_e5wor")
 shader_parameter/col_core = Color(1, 1, 1, 1)
@@ -131,13 +131,13 @@ shader_parameter/flicker_freq = 12.0
 
 [sub_resource type="Gradient" id="Gradient_kpgwr"]
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_b3cwg"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3nxmj"]
 resource_local_to_scene = true
 gradient = SubResource("Gradient_kpgwr")
 width = 12
 height = 12
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dk4bn"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ul456"]
 resource_local_to_scene = true
 shader = ExtResource("7_e5wor")
 shader_parameter/col_core = Color(1, 0.96, 0.75, 1)
@@ -171,6 +171,13 @@ shader_parameter/flicker_freq = 12.0
 [node name="Player" type="CharacterBody2D" unique_id=1263876198 node_paths=PackedStringArray("node_sprite", "ui_root", "fx", "fx_explosion", "rig", "collision_shape", "circle_fuel_prog_bar", "circle_heat_prog_bar") groups=["Player"]]
 script = ExtResource("1_o0p0d")
 node_sprite = NodePath("Sprite2D")
+tap_punch_strength = 0.01
+boost_punch_strength = 0.01
+pickup_punch_strength = 0.01
+delivery_punch_strength = 0.01
+squash_ratio = 0.0
+thrust_stretch = 0.01
+bank_per_angular_velocity = 0.01
 ship_color = Color(0.12156863, 0.72156864, 0.15686275, 1)
 ui_root = NodePath("CanvasLayer/UI")
 fx = NodePath("RCSContainer/ShipFX")
@@ -284,13 +291,13 @@ reverse_color_progression = true
 position = Vector2(0, 52)
 
 [node name="rcs_puff" parent="RCSContainer" unique_id=761577883 instance=ExtResource("6_e4jm7")]
-material = SubResource("ShaderMaterial_8mrtr")
+material = SubResource("ShaderMaterial_dk4bn")
 position = Vector2(19, 41)
 amount = 10
-texture = SubResource("GradientTexture2D_b3cwg")
+texture = SubResource("GradientTexture2D_3nxmj")
 lifetime = 0.3
 one_shot = false
 preprocess = 0.0
 local_coords = false
-process_material = SubResource("ShaderMaterial_dk4bn")
+process_material = SubResource("ShaderMaterial_ul456")
 preset = "rcs_puff"
