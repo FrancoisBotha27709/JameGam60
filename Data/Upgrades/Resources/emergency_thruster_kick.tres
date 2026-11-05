@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://6j1iykjniywm"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_cx2tn"]
+[ext_resource type="Script" uid="uid://bq57rhsvpty50" path="res://Data/Upgrades/Effects/random_kick_effect.gd" id="2_k3iya"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_2ptwg"]
+
+[sub_resource type="Resource" id="Resource_cx2tn"]
+script = ExtResource("2_k3iya")
+strength = 24.0
+
+[resource]
+resource_name = "Emergency Thruster Kick"
+script = ExtResource("3_2ptwg")
+title = "Emergency Thruster Kick"
+description = "[color=#D7E7F5]This prototype bears a hand-painted depot insignia from a settlement erased from current navigation charts.[/color]
+
+[color=#9AA9B8]A damaged auxiliary thruster occasionally kicks the ship off-axis.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#FFCC78]24[/color] [color=#C8D5E0]Random impulse strength[/color]"
+max_stacks = 2
+effects = Array[ExtResource("1_cx2tn")]([SubResource("Resource_cx2tn")])

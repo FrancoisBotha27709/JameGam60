@@ -1,0 +1,52 @@
+[gd_resource type="Resource" script_class="ShipDesign" format=3 uid="uid://d0n2x54bq6jjm"]
+
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="1_0nnnd"]
+[ext_resource type="Script" uid="uid://ca62057uoi4ir" path="res://Assets/UI/Ship/Designs/ShipDesign.gd" id="2_sg8j0"]
+[ext_resource type="Texture2D" uid="uid://dhv5m663s5ryu" path="res://Assets/UI/Ship/Designs/ship_640337_05/ship_640337_05.png" id="2_uy1w1"]
+[ext_resource type="Texture2D" uid="uid://bpo7pklb2dhkp" path="res://Assets/UI/Ship/Designs/ship_640337_05/px1_ship_640337_05.png" id="3_8fssf"]
+[ext_resource type="Texture2D" uid="uid://c8j37hsa2ky6t" path="res://Assets/UI/Ship/Designs/ship_640337_05/px1_ship_640337_05_n.png" id="4_3nqsn"]
+[ext_resource type="PackedScene" uid="uid://chcul5oawyipr" path="res://Data/Particles/shader/Ship FX/ship_fx.tscn" id="5_8fssf"]
+[ext_resource type="Texture2D" uid="uid://cqh283jb1tbg6" path="res://Assets/UI/Ship/Designs/ship_640337_05/ship_640337_05_n.png" id="5_08qpf"]
+
+[resource]
+script = ExtResource("2_sg8j0")
+ship_name = "Turtle"
+description = "The Turtle is not designed to win races or dodge debris; it is designed to keep moving under heavy loads and remain operational for long periods."
+diffuse_texture = ExtResource("2_uy1w1")
+normal_texture = ExtResource("5_08qpf")
+en_diffuse_texture = ExtResource("3_8fssf")
+en_normal_texture = ExtResource("4_3nqsn")
+thrust_marker_position = Vector2(13, -44)
+wing_marker_position = Vector2(3, 29)
+tip_marker_position = Vector2(53, 4)
+exhaust_marker_position = Vector2(-37, -2)
+fx_scenes = Array[PackedScene]([ExtResource("5_8fssf"), ExtResource("5_8fssf")])
+fx_marker_positions = Array[Vector2]([Vector2(-53, -36), Vector2(-53, 36)])
+max_speed = 245.0
+collision_shape_scale = 1.65
+rotation_speed = 1.05
+angular_acceleration = 2.8
+angular_drag = 5.5
+thrust_accel = 165.0
+throttle_accel = 24.0
+throttle_decel = 110.0
+hold_delay = 0.35
+tap_impulse = 42.0
+grip = 0.8
+coast_drag = 7.0
+brake_drag = 115.0
+overspeed_drag = 180.0
+boost_speed_mult = 1.3
+boost_fuel_mult = 1.35
+fuel_max = 230.0
+fuel_depletion_rate = 2.8
+tap_fuel_cost = 0.2
+weight_fuel_factor = 0.018
+heat_max = 155.0
+tap_heat = 7.0
+hold_heat_rate = 2.8
+cool_rate = 19.0
+meltdown_time = 9.0
+weight_drag = 0.018
+min_speed_factor = 0.62
+metadata/_custom_type_script = "uid://ca62057uoi4ir"

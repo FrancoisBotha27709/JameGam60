@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://dl5o1kth8miam"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_qlftd"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_kyi2t"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_8u6gs"]
+
+[sub_resource type="Resource" id="Resource_qlftd"]
+script = ExtResource("2_kyi2t")
+stats = Array[int]([5])
+amount = 0.12
+
+[resource]
+resource_name = "Survey Array"
+script = ExtResource("3_8u6gs")
+title = "Survey Array"
+description = "[color=#D7E7F5]This prototype bears a hand-painted depot insignia from a settlement erased from current navigation charts.[/color]
+
+[color=#9AA9B8]Additional scan time helps plan a more efficient run.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]+12%[/color] [color=#C8D5E0]Run Time[/color]"
+max_stacks = 2
+effects = Array[ExtResource("1_qlftd")]([SubResource("Resource_qlftd")])

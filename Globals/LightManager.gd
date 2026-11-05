@@ -5,12 +5,14 @@ extends Node
 @export var cull_interval := 0.1
 @export var auto_background_layers := true
 
+@export_range(0.0, 1.0, 0.01) var sky_ambient_floor := 0.15  # 0 = sky lit like the world, 1 = sky ignores ambient
+
 var ambient_color := Color(0.04, 0.05, 0.09):
 	set(v):
 		ambient_color = v
 		for m in _modulates:
 			if is_instance_valid(m):
-				m.color = v
+				m.color = v.lerp(Color.WHITE, m.get_meta(&"floor", 0.0))
 
 var _modulates : Array = []
 var _sun: DirectionalLight2D
@@ -39,7 +41,8 @@ func light_layer(layer: CanvasLayer) -> void:
 		return
 	layer.set_meta(&"lm_lit", true)
 	var m := CanvasModulate.new()
-	m.color = ambient_color
+	m.set_meta(&"floor", sky_ambient_floor)
+	m.color = ambient_color.lerp(Color.WHITE, sky_ambient_floor)
 	_modulates.append(m)
 	layer.add_child.call_deferred(m)
 

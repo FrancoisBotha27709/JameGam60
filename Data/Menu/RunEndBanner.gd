@@ -3,7 +3,6 @@ class_name RunEndBanner
 
 signal sequence_finished
 
-## Padding to make the error label look more techy. The cut-off tail is appended once at the very end.
 const PAYLOAD : String = "[color=red][ ERROR ] [/color] Memory buffer overflow
 [color=red][ ERROR ] [/color] Stack corruption detected
 [color=yellow][ WARN ] [/color] CPU temp critical: 98C
@@ -132,9 +131,8 @@ const PAYLOAD_TAIL : String = "[color=red][ ERROR ] [/color] Power suppl
 [color=red][ ERR"
 
 @export_group("Nodes")
-## Change this node's type in your scene from ColorRect to DitherVignette.
 @export var overlay : DitherVignette
-@export var backpanel : Panel
+@export var backpanel : PanelContainer
 @export var tag : Label
 @export var title : Label
 @export var sub : Label
@@ -237,6 +235,36 @@ func _config(reason : int) -> Dictionary:
 	return {"title": "QUOTA MISSED", "sub": "THE COLLECTIVE IS NOT IMPRESSED",
 		"tag": "// TIME EXPIRED //", "color": Color(0.3, 0.85, 1.0), "shake": shake_default}
 
+func _player() -> Player:
+	if not is_instance_valid(DataCollector.player):
+		return null
+	return DataCollector.player
+
+func _music_begin(reason : int) -> void:
+	var p := _player()
+	if p:
+		p.begin_end_music(reason)
+
+func _music_progress(t : float) -> void:
+	var p := _player()
+	if p:
+		p.set_end_music_progress(t)
+
+func _music_death() -> void:
+	var p := _player()
+	if p:
+		p.end_music_death()
+
+func _music_aftermath() -> void:
+	var p := _player()
+	if p:
+		p.end_music_aftermath()
+
+func _restore_music() -> void:
+	var p := _player()
+	if p:
+		p.restore_music()
+
 func play(reason : int, final_score : int, quota : int) -> void:
 	_calm = Settings.photosensitive()
 	var cfg := _config(reason)
@@ -245,6 +273,7 @@ func play(reason : int, final_score : int, quota : int) -> void:
 
 	_kill_tweens()
 	position = Vector2.ZERO
+	_music_begin(reason)
 	show()
 
 	overlay.tint = color
@@ -296,6 +325,7 @@ func _build_death(reason : int) -> void:
 
 func _build_reveal(final_score : int, quota : int) -> void:
 	var fade := calm_flash_fade if _calm else reveal_flash_fade
+	_tween.tween_callback(_music_aftermath)
 	_tween.tween_property(flash, "color:a", 0.0, fade)
 	_tween.parallel().tween_property(overlow, "modulate:a", backdrop_text_alpha, backdrop_fade_time)
 	_tween.parallel().tween_property(overlay, "intensity", backdrop_intensity, backdrop_fade_time)
@@ -315,6 +345,7 @@ func _build_reveal(final_score : int, quota : int) -> void:
 	_tween.tween_callback(_finish)
 
 func _spew(t : float) -> void:
+	_music_progress(t)
 	overlow.visible_ratio = t
 	position = _jitter(_shake_strength * spew_shake_mult * t)
 	_set_intensity(intro_intensity + randf() * spew_intensity_range * t)
@@ -326,6 +357,7 @@ func _spew(t : float) -> void:
 		_set_flash(Color(0, 0, 0, 0))
 
 func _sputter(t : float) -> void:
+	_music_progress(t)
 	overlow.visible_ratio = t
 	var on := sin(t * sputter_frequency) > sputter_threshold_base + t * sputter_threshold_slope
 	_set_intensity(sputter_on_intensity if on else sputter_off_intensity)
@@ -334,6 +366,7 @@ func _sputter(t : float) -> void:
 	_set_flash(Color(0, 0, 0, 0.0 if on else sputter_off_blackout))
 
 func _tick(t : float) -> void:
+	_music_progress(t)
 	overlow.visible_ratio = floorf(t * tick_steps) / tick_steps
 	var glitch := randf() < tick_glitch_chance
 	position = Vector2(randf_range(-tick_glitch_offset, tick_glitch_offset) if glitch else 0.0, 0.0)
@@ -341,10 +374,12 @@ func _tick(t : float) -> void:
 	_set_flash(Color(1, 1, 1, tick_glitch_flash_alpha) if glitch else Color(0, 0, 0, 0))
 
 func _calm_spew(t : float) -> void:
+	_music_progress(t)
 	overlow.visible_ratio = t
 	_set_intensity(calm_intensity_start + calm_intensity_gain * t)
 
 func _death() -> void:
+	_music_death()
 	position = Vector2.ZERO
 	_set_flash(Color(0, 0, 0, 1))
 	_set_intensity(0.0)
@@ -377,6 +412,7 @@ func _finish() -> void:
 func stop() -> void:
 	_kill_tweens()
 	position = Vector2.ZERO
+	_restore_music()
 	hide()
 
 func _kill_tweens() -> void:
@@ -393,20 +429,29 @@ func _set_intensity(v : float) -> void:
 	overlay.intensity = v
 
 func _format_summary() -> String:
-	var p := DataCollector.player
+	var p := DataCollector.player as Player
 	if p == null or not is_instance_valid(p):
 		return ""
+
 	var s : Dictionary = p.get_summary()
-	var t : float = s["time"]
+	var t : float = float(s.get("time", 0.0))
+
 	var lines : PackedStringArray = [
-		"DEBRIS COLLECTED  %d  (DELIVERED %d)" % [s["debris_collected"], s["debris_delivered"]],
+		"DEBRIS COLLECTED  %d  (DELIVERED %d)" % [
+			int(s.get("debris_collected", 0)),
+			int(s.get("debris_delivered", 0))
+		],
 		"TIME  %d:%02d" % [int(t) / 60, int(t) % 60],
-		"DISTANCE  %d" % roundi(s["distance"]),
-		"TOP SPEED  %d   AVG  %d" % [roundi(s["top_speed"]), roundi(s["avg_speed"])],
-		"CRASHES  %d" % s["crashes"],
-		"PEAK LOAD  %.1f" % s["peak_load"],
-		"FUEL BURNED  %d" % roundi(s["fuel_burned"]),
-		"PEAK HEAT  %d%%" % roundi(s["peak_heat_pct"]),
-		"BOOST TIME  %.1fs" % s["boost_time"],
+		"DISTANCE  %d" % roundi(float(s.get("distance", 0.0))),
+		"TOP SPEED  %d   AVG  %d" % [
+			roundi(float(s.get("top_speed", 0.0))),
+			roundi(float(s.get("avg_speed", 0.0)))
+		],
+		"CRASHES  %d" % int(s.get("crashes", 0)),
+		"PEAK LOAD  %.1f" % float(s.get("peak_load", 0.0)),
+		"FUEL BURNED  %d" % roundi(float(s.get("fuel_burned", 0.0))),
+		"PEAK HEAT  %d%%" % roundi(float(s.get("peak_heat_pct", 0.0))),
+		"BOOST TIME  %.1fs" % float(s.get("boost_time", 0.0)),
 	]
+
 	return "\n".join(lines)

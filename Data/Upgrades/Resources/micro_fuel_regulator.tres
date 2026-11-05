@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://co5cga1hl3js7"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_syu2a"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_7qunt"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_djmi8"]
+
+[sub_resource type="Resource" id="Resource_syu2a"]
+script = ExtResource("2_7qunt")
+stats = Array[int]([11])
+amount = -0.07
+
+[resource]
+resource_name = "Micro Fuel Regulator"
+script = ExtResource("3_djmi8")
+title = "Micro Fuel Regulator"
+description = "[color=#D7E7F5]This unit was designed during the fuel ration years, when every wasted burn meant one less return trip.[/color]
+
+[color=#9AA9B8]A pressure regulator reduces fuel waste.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#FF7777]-7%[/color] [color=#C8D5E0]Fuel Consumption[/color]"
+effects = Array[ExtResource("1_syu2a")]([SubResource("Resource_syu2a")])

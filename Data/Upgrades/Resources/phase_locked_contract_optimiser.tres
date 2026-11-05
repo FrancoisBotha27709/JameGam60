@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://ciq8x541sxt6y"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_5bldw"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_m5qsd"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_l2o4o"]
+
+[sub_resource type="Resource" id="Resource_5bldw"]
+script = ExtResource("2_m5qsd")
+stats = Array[int]([5])
+amount = 0.06
+
+[resource]
+resource_name = "Phase-Lock Ledger"
+script = ExtResource("3_l2o4o")
+title = "Phase-Lock Ledger"
+description = "[color=#D7E7F5]Its service record lists three reactor replacements and one unexplained return from beyond the mapped lanes.[/color]
+
+[color=#9AA9B8]A scheduling routine adds a little more time.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]+6%[/color] [color=#C8D5E0]Run Time[/color]"
+effects = Array[ExtResource("1_5bldw")]([SubResource("Resource_5bldw")])

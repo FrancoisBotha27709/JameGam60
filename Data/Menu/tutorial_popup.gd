@@ -7,7 +7,6 @@ const TAG_TEXT := "// FIELD MANUAL //"
 const TITLE_TEXT := "GARBAGE COLLECTOR"
 const SUB_TEXT := "COLLECT DEBRIS - DELIVER IT - MEET THE QUOTA"
 
-# [lb] / [rb] print literal brackets, so "[ W ]" is never parsed as a tag.
 const BODY_TEXT := """[color=#6ec6ff]// CONTROLS //[/color]
 [table=2]
 [cell padding=0,0,24,0][color=#ffd27f][lb] A / D [rb][/color][/cell][cell]Rotate the ship[/cell]

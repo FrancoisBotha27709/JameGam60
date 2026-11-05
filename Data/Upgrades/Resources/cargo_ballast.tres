@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://ce7r4fnh3d752"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_3rotb"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_63j8c"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_1ta2q"]
+
+[sub_resource type="Resource" id="Resource_3rotb"]
+script = ExtResource("2_63j8c")
+stats = Array[int]([4])
+amount = -0.18
+
+[resource]
+resource_name = "Cargo Ballast"
+script = ExtResource("3_1ta2q")
+title = "Cargo Ballast"
+description = "[color=#D7E7F5]A depot ledger records its first use during the Greyfall salvage rush, when fragments were worth more than fuel.[/color]
+
+[color=#9AA9B8]Counterweights reduce the handling penalty from collected debris.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#FF7777]-18%[/color] [color=#C8D5E0]Cargo Drag[/color]"
+effects = Array[ExtResource("1_3rotb")]([SubResource("Resource_3rotb")])

@@ -61,6 +61,7 @@ var _bounded := false
 var _world_min := Vector2.ZERO
 var _world_max := Vector2.ZERO
 
+@export var audio_player : AudioStreamPlayer2D
 
 func _init() -> void:
 	rope_system = DebrisRope.new(self)
@@ -91,7 +92,6 @@ func setup(debris : Debris, home_pos : Vector2 = Vector2.ZERO, leash_radius : fl
 
 func _ready() -> void:
 	if data == null:
-		push_error("DebrisObject: setup() was not called with a Debris resource")
 		set_physics_process(false)
 		return
 	add_to_group("Debris")

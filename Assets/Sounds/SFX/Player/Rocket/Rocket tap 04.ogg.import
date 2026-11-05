@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cfl5cbmkq6jdd"
+path="res://.godot/imported/Rocket tap 04.ogg-e4d3ea89e52ccfd8474cefa59734891d.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Sounds/SFX/Player/Rocket/Rocket tap 04.ogg"
+dest_files=["res://.godot/imported/Rocket tap 04.ogg-e4d3ea89e52ccfd8474cefa59734891d.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

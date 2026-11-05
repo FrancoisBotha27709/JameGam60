@@ -23,7 +23,7 @@ const BOOT_LOG : String = "[color=green][  OK  ] [/color] Power rails stable
 
 @export_group("Nodes")
 @export var overlay : DitherVignette
-@export var backpanel : Panel
+@export var backpanel : PanelContainer
 @export var tag : Label
 @export var title : Label
 @export var sub : Label
@@ -190,10 +190,16 @@ func _set_intensity(v : float) -> void:
 
 func _format_summary() -> String:
 	var lines : PackedStringArray = []
+
 	if DataCollector.uses_timer():
 		var t := int(DataCollector.time_limit)
 		lines.append("TIME LIMIT  %d:%02d" % [t / 60, t % 60])
-	if DataCollector.uses_fuel() and is_instance_valid(DataCollector.player):
-		lines.append("FUEL  %d" % roundi(DataCollector.player.fuel_max))
+
+	if DataCollector.uses_fuel():
+		var p := DataCollector.player as Player
+		if p != null and is_instance_valid(p):
+			lines.append("FUEL  %d" % roundi(p.stat_f(&"fuel_max")))
+
 	lines.append("UPGRADES  %d" % DataCollector.upgrades_taken)
+
 	return "\n".join(lines)

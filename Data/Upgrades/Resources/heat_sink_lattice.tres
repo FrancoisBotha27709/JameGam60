@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://b6o2502hgpck0"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_g7r7k"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_vmad6"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_56nh8"]
+
+[sub_resource type="Resource" id="Resource_g7r7k"]
+script = ExtResource("2_vmad6")
+stats = Array[int]([15])
+amount = 0.12
+
+[resource]
+resource_name = "Heat-Sink Lattice Mk II"
+script = ExtResource("3_56nh8")
+title = "Heat-Sink Lattice Mk II"
+description = "[color=#D7E7F5]The old fleet used hardware like this to stretch a single tank across routes no modern pilot would attempt.[/color]
+
+[color=#9AA9B8]A dense lattice absorbs repeated thrust spikes.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]+12%[/color] [color=#C8D5E0]Heat Capacity[/color]"
+effects = Array[ExtResource("1_g7r7k")]([SubResource("Resource_g7r7k")])

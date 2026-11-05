@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://dk0su4rt6ohlm"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_hskeh"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_ejs0j"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_pvinr"]
+
+[sub_resource type="Resource" id="Resource_hskeh"]
+script = ExtResource("2_ejs0j")
+stats = Array[int]([7])
+amount = 0.08
+
+[resource]
+resource_name = "Salvage Drive Coupler"
+script = ExtResource("3_pvinr")
+title = "Salvage Drive Coupler"
+description = "[color=#D7E7F5]Its casing is pitted by micrometeorites; the serial number belongs to a patrol ship lost beyond the relay line.[/color]
+
+[color=#9AA9B8]A more efficient coupler transfers power to the main drive.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Thrust Acceleration[/color]"
+effects = Array[ExtResource("1_hskeh")]([SubResource("Resource_hskeh")])

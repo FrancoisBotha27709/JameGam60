@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://migyy78rcjjw"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_mfpfb"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_klslh"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_sfvqn"]
+
+[sub_resource type="Resource" id="Resource_mfpfb"]
+script = ExtResource("2_klslh")
+stats = Array[int]([19, 9])
+amount = 0.12
+
+[resource]
+resource_name = "Magnetic Afterburner Mk II"
+script = ExtResource("3_sfvqn")
+title = "Magnetic Afterburner Mk II"
+description = "[color=#D7E7F5]A retired pilot recognised it immediately and refused to explain why they wanted it thrown back into space.[/color]
+
+[color=#9AA9B8]A larger collection field pairs with more powerful boost.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]+12%[/color] [color=#C8D5E0]Magnet Reach[/color]
+[color=#7CFF9B]+12%[/color] [color=#C8D5E0]Boost Speed[/color]"
+max_stacks = 2
+effects = Array[ExtResource("1_mfpfb")]([SubResource("Resource_mfpfb")])

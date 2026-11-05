@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://3gup542f0hm5"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_x8b7x"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_mxfl5"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_38l0y"]
+
+[sub_resource type="Resource" id="Resource_x8b7x"]
+script = ExtResource("2_mxfl5")
+stats = Array[int]([1])
+amount = 0.18
+
+[resource]
+resource_name = "Vector Rudder Mk II"
+script = ExtResource("3_38l0y")
+title = "Vector Rudder Mk II"
+description = "[color=#D7E7F5]Stamped with a defunct shipyard seal, this hardware outlived the fleet that first tested it in the debris lanes.[/color]
+
+[color=#9AA9B8]Recalibrated attitude thrusters turn the collector faster.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]+18%[/color] [color=#C8D5E0]Rotation Speed[/color]"
+effects = Array[ExtResource("1_x8b7x")]([SubResource("Resource_x8b7x")])

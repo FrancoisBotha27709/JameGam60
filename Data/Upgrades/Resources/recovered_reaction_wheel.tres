@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://xtu1l85p8ygc"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_2yjej"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_w6re0"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_bftbe"]
+
+[sub_resource type="Resource" id="Resource_2yjej"]
+script = ExtResource("2_w6re0")
+stats = Array[int]([14])
+amount = 0.08
+
+[resource]
+resource_name = "Recovered Reaction Wheel"
+script = ExtResource("3_bftbe")
+title = "Recovered Reaction Wheel"
+description = "[color=#D7E7F5]A salvage pilot swore this component saved their crew when a dead freighter spun across their route.[/color]
+
+[color=#9AA9B8]The wheel stabilises the craft during directional changes.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Handling Grip[/color]"
+effects = Array[ExtResource("1_2yjej")]([SubResource("Resource_2yjej")])

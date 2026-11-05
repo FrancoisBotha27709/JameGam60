@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://dupa81lme0ys6"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_1veml"]
+[ext_resource type="Script" uid="uid://rod2qe4jn568" path="res://Data/Upgrades/Effects/tick_effect.gd" id="2_p0oom"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_68x8s"]
+
+[sub_resource type="Resource" id="Resource_1veml"]
+script = ExtResource("2_p0oom")
+fuel_per_sec = 0.2
+
+[resource]
+resource_name = "Momentum Dividend"
+script = ExtResource("3_68x8s")
+title = "Momentum Dividend"
+description = "[color=#D7E7F5]It was found in a sealed crate marked for a research crew that never checked in from the outer belt.[/color]
+
+[color=#9AA9B8]The drive trickle-charges fuel while the ship is moving through the void.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]+0.20/s[/color] [color=#C8D5E0]Fuel regeneration[/color]"
+max_stacks = 2
+effects = Array[ExtResource("1_1veml")]([SubResource("Resource_1veml")])

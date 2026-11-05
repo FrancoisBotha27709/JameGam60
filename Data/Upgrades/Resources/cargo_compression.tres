@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://pnwtpm2udqaj"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_iakjf"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_x83e7"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_qv378"]
+
+[sub_resource type="Resource" id="Resource_iakjf"]
+script = ExtResource("2_x83e7")
+stats = Array[int]([20])
+amount = -0.1
+
+[resource]
+resource_name = "Cargo Compression Mk II"
+script = ExtResource("3_qv378")
+title = "Cargo Compression Mk II"
+description = "[color=#D7E7F5]A depot ledger records its first use during the Greyfall salvage rush, when fragments were worth more than fuel.[/color]
+
+[color=#9AA9B8]Scrap is secured in a tighter, lower-drag formation.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#FF7777]-10%[/color] [color=#C8D5E0]Cargo Weight[/color]"
+effects = Array[ExtResource("1_iakjf")]([SubResource("Resource_iakjf")])

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://bbxwyu5co6bky"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_ch4nv"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_r8lej"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_ohhqt"]
+
+[sub_resource type="Resource" id="Resource_ch4nv"]
+script = ExtResource("2_r8lej")
+stats = Array[int]([4])
+amount = -0.12
+
+[resource]
+resource_name = "Tethered Cargo"
+script = ExtResource("3_ohhqt")
+title = "Tethered Cargo"
+description = "[color=#D7E7F5]It was built for the dangerous years when scrap storms could bury an entire depot in minutes.[/color]
+
+[color=#9AA9B8]Magnetic tethers keep attached debris closer to the ship.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#FF7777]-12%[/color] [color=#C8D5E0]Cargo Drag[/color]"
+effects = Array[ExtResource("1_ch4nv")]([SubResource("Resource_ch4nv")])

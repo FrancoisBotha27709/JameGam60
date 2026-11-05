@@ -1,25 +1,135 @@
 [gd_scene format=3 uid="uid://dpuo78p623q3o"]
 
-[ext_resource type="Theme" uid="uid://pq4bga7u0c3f" path="res://Assets/base_theme.tres" id="1_aerps"]
+[ext_resource type="Theme" uid="uid://dap6826f78p24" path="res://Assets/theme.tres" id="1_a1qbw"]
 [ext_resource type="Script" uid="uid://deslb1x1h7g58" path="res://Data/Menu/main_menu.gd" id="2_cvj8v"]
 [ext_resource type="PackedScene" uid="uid://cvkpk14dqnyt" path="res://Data/Menu/LoadingScreen.tscn" id="3_stymn"]
+[ext_resource type="PackedScene" uid="uid://italmpyxktyx" path="res://Data/Player/sprite_container.tscn" id="4_0gtve"]
 [ext_resource type="Script" uid="uid://yryxog222lnx" path="res://Data/Menu/QuickSettings.gd" id="4_gn7en"]
+[ext_resource type="Shader" uid="uid://camknpyslfl20" path="res://Assets/UI/Ship/ship_dissolve.gdshader" id="4_lb1c2"]
 [ext_resource type="Script" uid="uid://d0wyaxol5hj2n" path="res://Assets/lighting/LightEnvironment.gd" id="4_stymn"]
+[ext_resource type="Texture2D" uid="uid://epw7jv8k7lbw" path="res://Assets/UI/Assets Wenrexa UI Sci-Fi Minimalism #01/Elements/ArrowLeft.png" id="6_0gtve"]
+[ext_resource type="Texture2D" uid="uid://ckd4pnvxe8002" path="res://icon.svg" id="7_a1qbw"]
+[ext_resource type="Texture2D" uid="uid://6dw87451o7hj" path="res://Assets/UI/Assets Wenrexa UI Sci-Fi Minimalism #01/Elements/ArrowRight.png" id="7_sg42i"]
+[ext_resource type="Shader" uid="uid://debjqjv5642eb" path="res://Data/Menu/main_menu.gdshader" id="10_sg42i"]
 
-[node name="MainMenu" type="Control" unique_id=1796408136 node_paths=PackedStringArray("play_btn", "options_btn", "quit_btn", "tutorial_btn")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jm3ld"]
+shader = ExtResource("10_sg42i")
+shader_parameter/sky_brightness = 1.0
+shader_parameter/palette = 2
+shader_parameter/camera_position = Vector2(0, 0)
+shader_parameter/view_height_world = 1080.0
+shader_parameter/camera_influence = 0.6
+shader_parameter/ambient_motion = 1.0
+shader_parameter/background_color = Color(0.01, 0.01, 0.05, 1)
+shader_parameter/cool_star_color = Color(0.7, 0.8, 1, 1)
+shader_parameter/warm_star_color = Color(1, 0.9, 0.7, 1)
+shader_parameter/line_color = Color(0.6, 0.75, 1, 1)
+shader_parameter/pixel_size = 2.0
+shader_parameter/star_levels = 8
+shader_parameter/layer_count = 4
+shader_parameter/far_cell_count = 30.0
+shader_parameter/near_cell_count = 8.0
+shader_parameter/far_drift_scale = 0.2
+shader_parameter/drift_velocity = Vector2(0.015, 0.006)
+shader_parameter/sway_amplitude = 0.03
+shader_parameter/sway_speed = 0.15
+shader_parameter/star_density = 0.2150000102125
+shader_parameter/min_star_radius = 0.03
+shader_parameter/max_star_radius = 0.12
+shader_parameter/star_wobble_amount = 0.05
+shader_parameter/star_wobble_speed = 0.6
+shader_parameter/twinkle_speed = 2.5
+shader_parameter/twinkle_speed_variation = 0.6
+shader_parameter/twinkle_depth = 0.5
+shader_parameter/constellation_period = 8.0
+shader_parameter/constellation_chance = 0.02000000095
+shader_parameter/constellation_glow_strength = 0.7
+shader_parameter/line_brightness = 0.5
+shader_parameter/line_half_width_pixels = 0.5
+shader_parameter/max_line_length = 2.0
+shader_parameter/flare_strength = 0.9
+shader_parameter/flare_size_threshold = 0.8
+shader_parameter/mist_color_a = Color(0.25, 0.1, 0.5, 1)
+shader_parameter/mist_color_b = Color(0.06, 0.3, 0.55, 1)
+shader_parameter/mist_highlight_color = Color(0.95, 0.42, 0.62, 1)
+shader_parameter/mist_highlight_amount = 0.7
+shader_parameter/mist_octaves = 5
+shader_parameter/mist_threshold = 0.42
+shader_parameter/mist_softness = 0.32
+shader_parameter/mist_warp_strength = 1.6
+shader_parameter/mist_flow_speed = 0.025
+shader_parameter/mist_breathing = 0.15
+shader_parameter/mist_levels = 5
+shader_parameter/far_mist_scale = 2.2
+shader_parameter/far_mist_parallax = 0.06
+shader_parameter/far_mist_intensity = 0.55
+shader_parameter/near_mist_scale = 3.4
+shader_parameter/near_mist_parallax = 0.35
+shader_parameter/near_mist_intensity = 0.4850000230375
+shader_parameter/dust_color = Color(0.55, 0.45, 0.75, 1)
+shader_parameter/dust_strength = 1.0
+shader_parameter/dust_haze_strength = 0.0370000017575
+shader_parameter/dust_star_density = 0.0150000007125
+shader_parameter/band_angle = 0.35640027258505036
+shader_parameter/band_center = Vector2(0.9, 0.5)
+shader_parameter/band_width = 0.08200000226506
+shader_parameter/band_ripple = 1.0
+shader_parameter/dust_parallax = 0.2910000138225
+shader_parameter/band_repeat_distance = 3.0
+shader_parameter/shooting_star_color = Color(0.85, 0.93, 1, 1)
+shader_parameter/shooting_star_slots = 4
+shader_parameter/shooting_star_period = 10.0
+shader_parameter/shooting_star_duration = 1.4
+shader_parameter/shooting_star_chance = 0.8
+shader_parameter/shooting_star_travel = 0.6
+shader_parameter/shooting_star_trail_length = 0.15
+shader_parameter/horizon_color = Color(0.1, 0.06, 0.24, 1)
+shader_parameter/horizon_strength = 0.5
+shader_parameter/horizon_falloff = 2.8
+shader_parameter/vignette_strength = 0.6
+shader_parameter/vignette_inner_radius = 0.3
+shader_parameter/vignette_outer_radius = 0.85
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a1qbw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_a1qbw"]
+font_size = 48
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 8
+shadow_color = Color(0, 0.9000001, 1, 1)
+shadow_offset = Vector2(2, 2)
+
+[node name="MainMenu" type="Control" unique_id=1796408136 node_paths=PackedStringArray("play_btn", "options_btn", "quit_btn", "tutorial_btn", "arrow_left", "arrow_right", "ship_sprite_container", "ship_name_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_aerps")
+theme = ExtResource("1_a1qbw")
 script = ExtResource("2_cvj8v")
 game_path = ExtResource("3_stymn")
-play_btn = NodePath("MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer/PlayBtn")
-options_btn = NodePath("MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer/OptionsBtn")
-quit_btn = NodePath("MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer/QuitBtn")
-tutorial_btn = NodePath("MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer2/Button")
+play_btn = NodePath("MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer/PlayBtn")
+options_btn = NodePath("MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer/OptionsBtn")
+quit_btn = NodePath("MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer/QuitBtn")
+tutorial_btn = NodePath("MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer2/Button")
+arrow_left = NodePath("MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/LeftArrowBtn")
+arrow_right = NodePath("MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/RightArrowBtn")
+ship_sprite = ExtResource("4_0gtve")
+ship_sprite_container = NodePath("MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Control")
+ship_name_label = NodePath("MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/NameLbl")
+dissolve_shader = ExtResource("4_lb1c2")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1905508903]
+material = SubResource("ShaderMaterial_jm3ld")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_a1qbw")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=518617267]
 layout_mode = 1
@@ -33,59 +143,132 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=1749020340]
-custom_minimum_size = Vector2(512, 192)
+custom_minimum_size = Vector2(512, 480)
 layout_mode = 2
 size_flags_horizontal = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_a1qbw")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PanelContainer" unique_id=1732399969]
 layout_mode = 2
+size_flags_vertical = 0
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer" unique_id=539494349]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer" unique_id=683670937]
+custom_minimum_size = Vector2(0, 480)
 layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer" unique_id=1854376227]
+layout_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer" unique_id=539494349]
+custom_minimum_size = Vector2(0, 556)
+layout_mode = 2
+size_flags_vertical = 0
 theme_override_constants/separation = 16
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer3" unique_id=716335953]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3" unique_id=716335953]
+custom_minimum_size = Vector2(0, 196)
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("4_gn7en")
 keys = Array[String](["game_mode", "difficulty", "controls"])
 
-[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer2" unique_id=205691828]
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer2" unique_id=205691828]
 layout_mode = 2
+size_flags_vertical = 3
 text = "Tutorial"
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer3" unique_id=659741903]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3" unique_id=659741903]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer3" unique_id=73604449]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3" unique_id=73604449]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=1837843260]
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=1837843260]
 layout_mode = 2
 size_flags_vertical = 1
 text = "Garbage Collector"
+label_settings = SubResource("LabelSettings_a1qbw")
 horizontal_alignment = 1
-vertical_alignment = 1
 uppercase = true
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=1032138852]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=1032138852]
 layout_mode = 2
 
-[node name="PlayBtn" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=781129125]
+[node name="PlayBtn" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=781129125]
 layout_mode = 2
+size_flags_vertical = 3
 text = "Play"
 
-[node name="OptionsBtn" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=712104015]
+[node name="OptionsBtn" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=712104015]
 layout_mode = 2
+size_flags_vertical = 3
 text = "Options"
 
-[node name="QuitBtn" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=476669105]
+[node name="QuitBtn" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=476669105]
 layout_mode = 2
+size_flags_vertical = 3
 text = "Quit"
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=1777881159]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_a1qbw")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PanelContainer2" unique_id=683248412]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer" unique_id=1132834904]
+layout_mode = 2
+
+[node name="LeftArrowBtn" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer" unique_id=909110077]
+z_index = 100
+custom_minimum_size = Vector2(64, 98)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("6_0gtve")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer" unique_id=669231276]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/MarginContainer" unique_id=1373495153]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" unique_id=1723210233]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=575296762]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer" unique_id=1147862040]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="NameLbl" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" unique_id=1687441209]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightArrowBtn" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer" unique_id=1791098221]
+z_index = 100
+custom_minimum_size = Vector2(64, 98)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("7_sg42i")
 
 [node name="LightEnvironment" type="Node" parent="." unique_id=1211713012]
 script = ExtResource("4_stymn")
-ambient = Color(1, 1, 1, 1)
-star_enabled = true
+ambient = Color(0.851769, 0.8517689, 0.85176885, 1)
+sun_shadows = false
 metadata/_custom_type_script = "uid://d0wyaxol5hj2n"

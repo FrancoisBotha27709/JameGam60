@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://cjrofawwv7ckm"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_dvn0i"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_xnrog"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_h5ip7"]
+
+[sub_resource type="Resource" id="Resource_dvn0i"]
+script = ExtResource("2_xnrog")
+stats = Array[int]([9, 15])
+
+[sub_resource type="Resource" id="Resource_xnrog"]
+script = ExtResource("2_xnrog")
+stats = Array[int]([16])
+amount = 0.08
+
+[resource]
+resource_name = "Hotwire Boost"
+script = ExtResource("3_h5ip7")
+title = "Hotwire Boost"
+description = "[color=#D7E7F5]The old fleet used hardware like this to stretch a single tank across routes no modern pilot would attempt.[/color]
+
+[color=#9AA9B8]A risky bypass improves boost speed and heat tolerance.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]+10%[/color] [color=#C8D5E0]Boost Speed[/color]
+[color=#7CFF9B]+10%[/color] [color=#C8D5E0]Heat Capacity[/color]
+[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Heat Generation[/color]"
+effects = Array[ExtResource("1_dvn0i")]([SubResource("Resource_dvn0i"), SubResource("Resource_xnrog")])

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://c8dda3g5rdick"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_rvykn"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_6104d"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_55hpi"]
+
+[sub_resource type="Resource" id="Resource_rvykn"]
+script = ExtResource("2_6104d")
+stats = Array[int]([11])
+amount = -0.07
+
+[resource]
+resource_name = "Ablative Fuel Regulator"
+script = ExtResource("3_55hpi")
+title = "Ablative Fuel Regulator"
+description = "[color=#D7E7F5]Its faded maintenance tag bears the initials of an engineer who kept the outer depots running through the long blackout.[/color]
+
+[color=#9AA9B8]A pressure regulator reduces fuel waste.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#FF7777]-7%[/color] [color=#C8D5E0]Fuel Consumption[/color]"
+effects = Array[ExtResource("1_rvykn")]([SubResource("Resource_rvykn")])

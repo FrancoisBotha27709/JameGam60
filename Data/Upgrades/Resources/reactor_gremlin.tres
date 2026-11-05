@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://bd0qd5xiwuwhn"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_gfsvb"]
+[ext_resource type="Script" uid="uid://dhaarjynvf8y2" path="res://Data/Upgrades/Effects/flag_effect.gd" id="2_2rfkt"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_d4c1i"]
+
+[sub_resource type="Resource" id="Resource_gfsvb"]
+script = ExtResource("2_2rfkt")
+flag = &"reactor_gremlin"
+
+[resource]
+resource_name = "Reactor Gremlin"
+script = ExtResource("3_d4c1i")
+title = "Reactor Gremlin"
+description = "[color=#D7E7F5]No department claims responsibility for this prototype; its approval stamp was issued by a station that no longer exists.[/color]
+
+[color=#9AA9B8]A questionable reactor patch improves output at a cost to stability.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#E8C7FF]Enabled[/color] [color=#C8D5E0]Reactor Gremlin protocol[/color]"
+max_stacks = 2
+effects = Array[ExtResource("1_gfsvb")]([SubResource("Resource_gfsvb")])

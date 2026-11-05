@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://d18rbnn72v0b7"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_w1ms0"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_gexr1"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_2i8vj"]
+
+[sub_resource type="Resource" id="Resource_w1ms0"]
+script = ExtResource("2_gexr1")
+stats = Array[int]([1])
+amount = 0.07
+
+[resource]
+resource_name = "Recovered Steering Thrusters"
+script = ExtResource("3_2i8vj")
+title = "Recovered Steering Thrusters"
+description = "[color=#D7E7F5]Recovered from a wreck whose black box ends mid-manoeuvre, it still answers every control input.[/color]
+
+[color=#9AA9B8]Directional jets provide a modest steering improvement.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]+7%[/color] [color=#C8D5E0]Rotation Speed[/color]"
+effects = Array[ExtResource("1_w1ms0")]([SubResource("Resource_w1ms0")])

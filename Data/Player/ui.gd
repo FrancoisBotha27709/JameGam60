@@ -13,6 +13,7 @@ class_name UIContainer
 @export var debris_item_scene : PackedScene
 @export_subgroup("Upgrades")
 @export var node_continue_btn : Button
+@export var node_menu_btn : Button
 @export var upgrade_screen : UpgradeScreen
 
 var _quota_met : bool = false
@@ -27,6 +28,8 @@ func _ready() -> void:
 	SignalBus.update_heat.connect(_update_heat)
 	node_continue_btn.hide()
 	node_continue_btn.pressed.connect(_on_continue_pressed)
+	node_menu_btn.hide()
+	node_menu_btn.pressed.connect(_on_menu_pressed)
 	node_fuel_bar.visible = DataCollector.uses_fuel()
 	_update_score(0)
 	_on_setting(&"show_speed", Settings.get_value("show_speed"))
@@ -75,23 +78,23 @@ func _on_run_finished(final_score : int, breakdown : Dictionary, quota_met : boo
 	for tag_name in breakdown:
 		var entry : Dictionary = breakdown[tag_name]
 		if not entry.has("debris"):
-			push_error("Breakdown entry '%s' has no debris: %s" % [tag_name, entry])
 			continue
 		var debris : Debris = entry["debris"]
 		var item := debris_item_scene.instantiate() as DebrisUI
 		if item == null:
-			push_error("debris_item_scene root doesn't use the DebrisUI script")
 			continue
 		node_debris_container.add_child(item)
 		item.set_data(debris, tag_name.capitalize(), entry["count"], entry["points"])
 
 	if quota_met:
 		node_continue_btn.hide()
+		node_menu_btn.hide()
 		upgrade_screen.open()
 		return
 
 	# Failure: play the banner first, then reveal the breakdown and button
 	node_continue_btn.hide()
+	node_menu_btn.hide()
 	node_timer_lbl.hide()
 	node_score_lbl.hide()
 	node_debris_container.modulate.a = 0.0
@@ -100,7 +103,8 @@ func _on_run_finished(final_score : int, breakdown : Dictionary, quota_met : boo
 
 	node_continue_btn.text = "TRY AGAIN"
 	node_continue_btn.show()
-	node_continue_btn.grab_focus()
+	node_menu_btn.text = "MENU"
+	node_menu_btn.show()
 	create_tween().tween_property(node_debris_container, "modulate:a", 1.0, 0.4)
 
 func _on_continue_pressed() -> void:
@@ -109,6 +113,13 @@ func _on_continue_pressed() -> void:
 	Engine.time_scale = 1.0
 	DataCollector.reset_progress()
 	get_tree().reload_current_scene()
+
+func _on_menu_pressed() -> void:
+	run_end_banner.stop()
+	get_tree().paused = false
+	Engine.time_scale = 1.0
+	DataCollector.reset_progress()
+	get_tree().change_scene_to_file("res://Data/Menu/main_menu.tscn")
 
 func set_speed(pixels_per_sec : float) -> void:
 	node_speed_lbl.text = "%d m/s" % roundi(pixels_per_sec / pixels_per_meter)

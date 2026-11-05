@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://ctliejc80pejl"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_1qnyv"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_k75pq"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_exppx"]
+
+[sub_resource type="Resource" id="Resource_1qnyv"]
+script = ExtResource("2_k75pq")
+stats = Array[int]([10])
+amount = -0.15
+
+[resource]
+resource_name = "Boost Recovery Valve"
+script = ExtResource("3_exppx")
+title = "Boost Recovery Valve"
+description = "[color=#D7E7F5]The casing carries an obsolete emergency code from a station abandoned after its reactor went dark.[/color]
+
+[color=#9AA9B8]The boost circuit recovers more efficiently.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#FF7777]-15%[/color] [color=#C8D5E0]Boost Fuel Cost[/color]"
+effects = Array[ExtResource("1_1qnyv")]([SubResource("Resource_1qnyv")])

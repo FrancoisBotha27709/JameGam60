@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://c1i1hc7qb6u8e"]
+[gd_scene format=4 uid="uid://c1i1hc7qb6u8e"]
 
 [ext_resource type="PackedScene" uid="uid://tcujdfv68u1q" path="res://Data/Player/Player.tscn" id="1_ebypj"]
 [ext_resource type="Script" uid="uid://c02643syag532" path="res://Data/main.gd" id="1_y3l5h"]
@@ -12,26 +12,140 @@
 [ext_resource type="PackedScene" uid="uid://cxdh7ckhxuq3e" path="res://Data/Particles/Scenes/space_dust.tscn" id="6_csoh3"]
 [ext_resource type="PackedScene" uid="uid://qrddfut7w8e6" path="res://Data/Depot/depot.tscn" id="6_m7nvt"]
 [ext_resource type="PackedScene" uid="uid://lhb62bvlu1js" path="res://Data/Particles/Scenes/star_twinkle.tscn" id="7_ovwru"]
+[ext_resource type="Shader" uid="uid://7ll63v50m1me" path="res://Data/Mist.gdshader" id="11_a4nkv"]
 [ext_resource type="Script" uid="uid://d0wyaxol5hj2n" path="res://Assets/lighting/LightEnvironment.gd" id="11_j3rrk"]
+[ext_resource type="Script" uid="uid://dr0aotrdnswhj" path="res://Data/mist_field.gd" id="11_lqa73"]
+[ext_resource type="Theme" uid="uid://dap6826f78p24" path="res://Assets/theme.tres" id="11_ucuq0"]
 [ext_resource type="Resource" uid="uid://dm2v5kus4ucva" path="res://Assets/lighting/Presets/star.tres" id="12_csoh3"]
 [ext_resource type="Script" uid="uid://c1qhnv5gfhb82" path="res://Data/Menu/DitherVignette.gd" id="14_hgh0v"]
 [ext_resource type="PackedScene" uid="uid://d178jfvy1duwh" path="res://Data/Debris/Resource/Asteroid/asteroid.tscn" id="15_2agvk"]
 [ext_resource type="Script" uid="uid://iuh4bi5j3fe" path="res://Data/Debris/Resource/Asteroid/asteroidField.gd" id="15_cshp7"]
+[ext_resource type="Script" uid="uid://c41f1t5gbhndb" path="res://Data/background.gd" id="15_f4u5s"]
 [ext_resource type="Script" uid="uid://drl42lhnl0xd3" path="res://Data/Debris/DebrisField.gd" id="16_frmus"]
 [ext_resource type="Script" uid="uid://cpoj2ilwrmakf" path="res://Data/minimap.gd" id="16_ubbbe"]
 [ext_resource type="PackedScene" uid="uid://btjdy0jl7l7fv" path="res://Data/Menu/RunStartBanner.tscn" id="19_l7apa"]
+[ext_resource type="Shader" uid="uid://debjqjv5642eb" path="res://Data/Menu/main_menu.gdshader" id="20_82ve4"]
 [ext_resource type="PackedScene" uid="uid://37d4ekvjsc1u" path="res://Data/Menu/pause_menu.tscn" id="21_xdmp3"]
+[ext_resource type="PackedScene" uid="uid://blpwn3qpi6avr" path="res://Data/Player/touch_controls.tscn" id="27_lso6g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lqa73"]
+shader = ExtResource("11_a4nkv")
+shader_parameter/view_origin = Vector2(0, 0)
+shader_parameter/view_size = Vector2(1920, 1080)
+shader_parameter/seed_offset = Vector2(0, 0)
+shader_parameter/density_origin = Vector2(-8000, -8000)
+shader_parameter/density_size = Vector2(16000, 16000)
+shader_parameter/density_influence = 1.0
+shader_parameter/disturb_a = PackedVector4Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/disturb_b = PackedVector4Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/clear_amount = 0.25
+shader_parameter/pixel_size = 16.0
+shader_parameter/edge_pixel_size = 2.0
+shader_parameter/opacity = 0.5
+shader_parameter/levels = 4
+shader_parameter/mist_color_a = Color(0.4, 0.15, 0.3, 1)
+shader_parameter/mist_color_b = Color(0.55, 0.25, 0.15, 1)
+shader_parameter/mist_highlight_color = Color(1, 0.75, 0.35, 1)
+shader_parameter/highlight_amount = 0.0
+shader_parameter/shadow_tone = 0.4690000222775
+shader_parameter/light_strength = 0.65600003116
+shader_parameter/light_direction = Vector2(-0.6, -0.8)
+shader_parameter/cloud_scale = 0.0011
+shader_parameter/octaves = 5
+shader_parameter/threshold = 0.58
+shader_parameter/softness = 0.22
+shader_parameter/clump_strength = 0.9
+shader_parameter/warp_strength = 0.8
+shader_parameter/evolve_speed = 0.12
+shader_parameter/warp_travel = 0.65
+shader_parameter/shape_travel = 0.45
+shader_parameter/region_travel = 0.7
+shader_parameter/drift = Vector2(0.12, -0.08)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_82ve4"]
+shader = ExtResource("20_82ve4")
+shader_parameter/sky_brightness = 0.400000019
+shader_parameter/palette = 2
+shader_parameter/camera_position = Vector2(0, 0)
+shader_parameter/view_height_world = 1080.0
+shader_parameter/camera_influence = 0.6
+shader_parameter/ambient_motion = 1.0
+shader_parameter/background_color = Color(0.01, 0.01, 0.05, 1)
+shader_parameter/cool_star_color = Color(0.7, 0.8, 1, 1)
+shader_parameter/warm_star_color = Color(1, 0.9, 0.7, 1)
+shader_parameter/line_color = Color(0.6, 0.75, 1, 1)
+shader_parameter/pixel_size = 2.0
+shader_parameter/star_levels = 8
+shader_parameter/layer_count = 4
+shader_parameter/far_cell_count = 30.0
+shader_parameter/near_cell_count = 8.0
+shader_parameter/far_drift_scale = 0.2
+shader_parameter/drift_velocity = Vector2(0.015, 0.006)
+shader_parameter/sway_amplitude = 0.03
+shader_parameter/sway_speed = 0.15
+shader_parameter/star_density = 0.2150000102125
+shader_parameter/min_star_radius = 0.03
+shader_parameter/max_star_radius = 0.12
+shader_parameter/star_wobble_amount = 0.05
+shader_parameter/star_wobble_speed = 0.6
+shader_parameter/twinkle_speed = 2.5
+shader_parameter/twinkle_speed_variation = 0.6
+shader_parameter/twinkle_depth = 0.5
+shader_parameter/constellation_period = 8.0
+shader_parameter/constellation_chance = 0.02000000095
+shader_parameter/constellation_glow_strength = 0.7
+shader_parameter/line_brightness = 0.5
+shader_parameter/line_half_width_pixels = 0.5
+shader_parameter/max_line_length = 2.0
+shader_parameter/flare_strength = 0.9
+shader_parameter/flare_size_threshold = 0.8
+shader_parameter/mist_color_a = Color(0.25, 0.1, 0.5, 1)
+shader_parameter/mist_color_b = Color(0.06, 0.3, 0.55, 1)
+shader_parameter/mist_highlight_color = Color(0.95, 0.42, 0.62, 1)
+shader_parameter/mist_highlight_amount = 0.7
+shader_parameter/mist_octaves = 5
+shader_parameter/mist_threshold = 0.42
+shader_parameter/mist_softness = 0.32
+shader_parameter/mist_warp_strength = 1.6
+shader_parameter/mist_flow_speed = 0.025
+shader_parameter/mist_breathing = 0.15
+shader_parameter/mist_levels = 5
+shader_parameter/far_mist_scale = 2.2
+shader_parameter/far_mist_parallax = 0.06
+shader_parameter/far_mist_intensity = 0.55
+shader_parameter/near_mist_scale = 3.4
+shader_parameter/near_mist_parallax = 0.35
+shader_parameter/near_mist_intensity = 0.4850000230375
+shader_parameter/dust_color = Color(0.55, 0.45, 0.75, 1)
+shader_parameter/dust_strength = 1.0
+shader_parameter/dust_haze_strength = 0.0370000017575
+shader_parameter/dust_star_density = 0.0150000007125
+shader_parameter/band_angle = 0.35640027258505036
+shader_parameter/band_center = Vector2(0.9, 0.5)
+shader_parameter/band_width = 0.08200000226506
+shader_parameter/band_ripple = 1.0
+shader_parameter/dust_parallax = 0.2910000138225
+shader_parameter/band_repeat_distance = 3.0
+shader_parameter/shooting_star_color = Color(0.85, 0.93, 1, 1)
+shader_parameter/shooting_star_slots = 4
+shader_parameter/shooting_star_period = 10.0
+shader_parameter/shooting_star_duration = 1.4
+shader_parameter/shooting_star_chance = 0.8
+shader_parameter/shooting_star_travel = 0.6
+shader_parameter/shooting_star_trail_length = 0.15
+shader_parameter/horizon_color = Color(0.1, 0.06, 0.24, 1)
+shader_parameter/horizon_strength = 0.5
+shader_parameter/horizon_falloff = 2.8
+shader_parameter/vignette_strength = 0.6
+shader_parameter/vignette_inner_radius = 0.3
+shader_parameter/vignette_outer_radius = 0.85
 
 [sub_resource type="Environment" id="Environment_csoh3"]
 glow_enabled = true
+glow_bloom = 0.4
 
-[node name="Main" type="Node2D" unique_id=1309701960 node_paths=PackedStringArray("background_sprite_container", "mist_container", "stars_container", "galaxy_container", "planets_container", "player", "cam", "minimap", "field", "debfield", "start_banner")]
+[node name="Main" type="Node2D" unique_id=1309701960 node_paths=PackedStringArray("player", "cam", "minimap", "field", "debfield", "start_banner")]
 script = ExtResource("1_y3l5h")
-background_sprite_container = NodePath("Background")
-mist_container = NodePath("Mist")
-stars_container = NodePath("Starts")
-galaxy_container = NodePath("Galaxies")
-planets_container = NodePath("Planets")
 debris_amount = 1
 debris_scenes = Array[ExtResource("2_yjl1i")]([ExtResource("3_m7nvt"), ExtResource("4_ovwru"), ExtResource("5_uuyxi")])
 light_colors = Array[Color]([Color(1, 0.55, 0.3, 1), Color(1, 0.75, 0.4, 1), Color(0.95, 0.45, 0.4, 1), Color(0.8980392, 0.93333334, 0.6, 1)])
@@ -48,7 +162,15 @@ leash_factor = 1.4
 asteroid_scene = ExtResource("15_2agvk")
 field = NodePath("AsteroidField")
 debfield = NodePath("DebrisField")
-start_banner = NodePath("CanvasLayer2/RunEndBanner")
+start_banner = NodePath("CanvasLayer2/RunStartBanner")
+
+[node name="MistLayer" type="CanvasLayer" parent="." unique_id=1288495155 node_paths=PackedStringArray("focus")]
+script = ExtResource("11_lqa73")
+mist_material = SubResource("ShaderMaterial_lqa73")
+focus = NodePath("../Player")
+palette_source_material = SubResource("ShaderMaterial_82ve4")
+mist_motion_multiplier = 1.0
+warp_motion_multiplier = 1.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=552402762]
 
@@ -58,6 +180,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("11_ucuq0")
 
 [node name="Minimap" type="Control" parent="CanvasLayer/Control" unique_id=1797736508 node_paths=PackedStringArray("player")]
 custom_minimum_size = Vector2(256, 256)
@@ -68,21 +191,6 @@ script = ExtResource("16_ubbbe")
 player = NodePath("../../../Player")
 follow_player = true
 view_range = 4000.0
-
-[node name="Background" type="Parallax2D" parent="." unique_id=1735351015]
-scroll_offset = Vector2(500, 250)
-
-[node name="Starts" type="Parallax2D" parent="." unique_id=1474301297]
-scroll_scale = Vector2(0.7, 0.7)
-scroll_offset = Vector2(256.095, 125)
-
-[node name="Galaxies" type="Parallax2D" parent="." unique_id=776562013]
-scroll_scale = Vector2(0.265, 0.265)
-scroll_offset = Vector2(600, 300)
-
-[node name="Planets" type="Parallax2D" parent="." unique_id=1118541363]
-scroll_scale = Vector2(0.83, 0.83)
-scroll_offset = Vector2(450, 135)
 
 [node name="Player" parent="." unique_id=1263876198 instance=ExtResource("1_ebypj")]
 position = Vector2(4, 746)
@@ -96,7 +204,8 @@ padding = Vector2(10, 10)
 dither = NodePath("CanvasLayer/DitherVignette")
 look_ahead_time = 0.6
 look_ahead_smoothing = 2.0
-velocity_stretch = 0.2
+speed_effect_start = 4096.0
+speed_effect_max = 4096.0
 speed_effect_min_intensity = 0.04
 speed_effect_max_intensity = 0.11
 
@@ -112,6 +221,20 @@ script = ExtResource("14_hgh0v")
 tint = Color(0.86700004, 0.79, 1, 1)
 metadata/_custom_type_script = "uid://c1qhnv5gfhb82"
 
+[node name="CanvasLayer2" type="CanvasLayer" parent="Camera2D" unique_id=481093441]
+layer = -50
+
+[node name="TextureRect" type="ColorRect" parent="Camera2D/CanvasLayer2" unique_id=1184944830 node_paths=PackedStringArray("target_camera")]
+z_index = -4096
+material = SubResource("ShaderMaterial_82ve4")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("15_f4u5s")
+target_camera = NodePath("../..")
+
 [node name="Depot" parent="." unique_id=2101250495 instance=ExtResource("6_m7nvt")]
 position = Vector2(820, 523)
 
@@ -123,10 +246,6 @@ position = Vector2(-1850, 3472)
 
 [node name="Depot4" parent="." unique_id=10067261 instance=ExtResource("6_m7nvt")]
 position = Vector2(4782, -453)
-
-[node name="Mist" type="Parallax2D" parent="." unique_id=2064931236]
-visible = false
-scroll_scale = Vector2(1.16, 1.16)
 
 [node name="AsteroidField" type="Node2D" parent="." unique_id=1019477162 node_paths=PackedStringArray("focus")]
 script = ExtResource("15_cshp7")
@@ -144,7 +263,7 @@ metadata/_custom_type_script = "uid://drl42lhnl0xd3"
 
 [node name="LightEnvironment" type="Node" parent="." unique_id=763232216]
 script = ExtResource("11_j3rrk")
-ambient = Color(0.1719608, 0.19750443, 0.28420988, 1)
+ambient = Color(0.29224595, 0.32668936, 0.45193565, 1)
 sun_enabled = true
 sun_color = Color(0.33880255, 0.27034003, 0, 1)
 sun_energy = 0.3
@@ -159,6 +278,14 @@ environment = SubResource("Environment_csoh3")
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1810851145]
 
-[node name="RunEndBanner" parent="CanvasLayer2" unique_id=711584712 instance=ExtResource("19_l7apa")]
+[node name="RunStartBanner" parent="CanvasLayer2" unique_id=711584712 instance=ExtResource("19_l7apa")]
 
 [node name="PauseMenu" parent="CanvasLayer2" unique_id=1786774158 instance=ExtResource("21_xdmp3")]
+
+[node name="Control" type="Control" parent="." unique_id=756124696]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Touch_controls" parent="Control" unique_id=395572264 instance=ExtResource("27_lso6g")]

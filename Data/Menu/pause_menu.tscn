@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://37d4ekvjsc1u"]
 
-[ext_resource type="Theme" uid="uid://pq4bga7u0c3f" path="res://Assets/base_theme.tres" id="1_7f14a"]
+[ext_resource type="Theme" uid="uid://dap6826f78p24" path="res://Assets/theme.tres" id="1_qbuqd"]
 [ext_resource type="Script" uid="uid://b11geif4s4pml" path="res://Data/Menu/pause_menu.gd" id="2_uo63q"]
 [ext_resource type="Script" uid="uid://c1qhnv5gfhb82" path="res://Data/Menu/DitherVignette.gd" id="3_qbuqd"]
 
@@ -18,7 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_7f14a")
+theme = ExtResource("1_qbuqd")
 script = ExtResource("2_uo63q")
 node_resume_btn = NodePath("PanelContainer/MarginContainer/Panel/VBoxContainer/ResumeBtn")
 node_option_btn = NodePath("PanelContainer/MarginContainer/Panel/VBoxContainer/OptionsBtn")

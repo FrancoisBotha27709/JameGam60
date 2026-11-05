@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bcbp1txr7i5rt"]
 
+[ext_resource type="Theme" uid="uid://dap6826f78p24" path="res://Assets/theme.tres" id="1_bkkiy"]
 [ext_resource type="Script" uid="uid://cht58hs2woi7k" path="res://Data/Menu/RunEndBanner.gd" id="1_script"]
 [ext_resource type="Shader" uid="uid://bd2ivxe3mx85y" path="res://Data/Menu/DitherVignette.gdshader" id="2_jjhxa"]
 [ext_resource type="Script" uid="uid://c1qhnv5gfhb82" path="res://Data/Menu/DitherVignette.gd" id="3_7fbf0"]
@@ -10,17 +11,17 @@ shader_parameter/tint = Color(1, 0.2, 0.2, 1)
 shader_parameter/intensity = 0.0
 shader_parameter/pixel_size = 4.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s6fcj"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bkkiy"]
 content_margin_left = 0.0
 content_margin_top = 0.0
 content_margin_right = 0.0
 content_margin_bottom = 0.0
-bg_color = Color(0.1, 0.1, 0.1, 0.6)
+bg_color = Color(0.1, 0.1, 0.1, 0.043137256)
+border_color = Color(0.3, 0.85, 1, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
-corner_detail = 5
 
 [node name="RunEndBanner" type="Control" unique_id=711584712 node_paths=PackedStringArray("overlay", "backpanel", "tag", "title", "sub", "score", "flash", "overlow", "summary_lbl")]
 process_mode = 3
@@ -31,16 +32,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("1_bkkiy")
 script = ExtResource("1_script")
 overlay = NodePath("Overlay")
-backpanel = NodePath("MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel")
-tag = NodePath("MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer/TagLbl")
-title = NodePath("MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer/TitleLbl")
-sub = NodePath("MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer/SubLbl")
-score = NodePath("MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer/ScoreLbl")
+backpanel = NodePath("PanelContainer2/VBoxContainer2/VBoxContainer2/Control/Panel")
+tag = NodePath("PanelContainer2/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer/TagLbl")
+title = NodePath("PanelContainer2/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer/TitleLbl")
+sub = NodePath("PanelContainer2/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer/SubLbl")
+score = NodePath("PanelContainer2/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer/ScoreLbl")
 flash = NodePath("Flash")
-overlow = NodePath("MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/OverflowLbl")
-summary_lbl = NodePath("MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer/SummaryLbl")
+overlow = NodePath("PanelContainer2/VBoxContainer2/VBoxContainer2/OverflowLbl")
+summary_lbl = NodePath("PanelContainer2/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer/SummaryLbl")
 sputter_time = 0.63
 
 [node name="Overlay" type="ColorRect" parent="." unique_id=806446686]
@@ -65,31 +67,23 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
 
-[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1945109676]
+[node name="PanelContainer2" type="PanelContainer" parent="." unique_id=341192802]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bkkiy")
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer2" unique_id=1037066405]
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer2" unique_id=227273413]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/PanelContainer" unique_id=1221937566]
-layout_mode = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer2/PanelContainer/MarginContainer" unique_id=341192802]
-layout_mode = 2
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer" unique_id=227273413]
-layout_mode = 2
-
-[node name="VBoxContainer2" type="HBoxContainer" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2" unique_id=1908241442]
+[node name="VBoxContainer2" type="HBoxContainer" parent="PanelContainer2/VBoxContainer2" unique_id=1908241442]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="OverflowLbl" type="RichTextLabel" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2" unique_id=214818911]
+[node name="OverflowLbl" type="RichTextLabel" parent="PanelContainer2/VBoxContainer2/VBoxContainer2" unique_id=214818911]
 custom_minimum_size = Vector2(885, 64)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -224,11 +218,11 @@ scroll_active = false
 scroll_following_visible_characters = true
 autowrap_mode = 2
 
-[node name="Control" type="Control" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2" unique_id=1675574607]
+[node name="Control" type="Control" parent="PanelContainer2/VBoxContainer2/VBoxContainer2" unique_id=1675574607]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Panel" type="Panel" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control" unique_id=929771653]
+[node name="Panel" type="PanelContainer" parent="PanelContainer2/VBoxContainer2/VBoxContainer2/Control" unique_id=1075782338]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -236,45 +230,39 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_s6fcj")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel" unique_id=1988266473]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer2/VBoxContainer2/VBoxContainer2/Control/Panel" unique_id=1988266473]
+layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer" unique_id=344973796]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer2/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer" unique_id=344973796]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TagLbl" type="Label" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer" unique_id=1447505334]
+[node name="TagLbl" type="Label" parent="PanelContainer2/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer" unique_id=1447505334]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = " // Hul //"
 
-[node name="TitleLbl" type="Label" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer" unique_id=1362498994]
+[node name="TitleLbl" type="Label" parent="PanelContainer2/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer" unique_id=1362498994]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "CRITICAL MELTDOWN"
 
-[node name="SubLbl" type="Label" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer" unique_id=1774224809]
+[node name="SubLbl" type="Label" parent="PanelContainer2/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer" unique_id=1774224809]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "REACTOR BREACHED - SHIP DESTROYED"
 
-[node name="ScoreLbl" type="Label" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer" unique_id=1328485966]
+[node name="ScoreLbl" type="Label" parent="PanelContainer2/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer" unique_id=1328485966]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "SCORE 0 / 5
 SHORT BY 5"
 
-[node name="SummaryLbl" type="Label" parent="MarginContainer2/PanelContainer/MarginContainer/PanelContainer/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer" unique_id=24649924]
+[node name="SummaryLbl" type="Label" parent="PanelContainer2/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer" unique_id=24649924]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32

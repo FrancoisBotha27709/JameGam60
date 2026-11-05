@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://4jn1056uag5x"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_tcw52"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_ebpiw"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_qf1dd"]
+
+[sub_resource type="Resource" id="Resource_tcw52"]
+script = ExtResource("2_ebpiw")
+stats = Array[int]([12])
+amount = -0.15
+
+[resource]
+resource_name = "Fuel Optimiser"
+script = ExtResource("3_qf1dd")
+title = "Fuel Optimiser"
+description = "[color=#D7E7F5]A former depot mechanic claimed this design came from a prototype tug that never officially existed.[/color]
+
+[color=#9AA9B8]The ship compensates better for fuel mass.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#FF7777]-15%[/color] [color=#C8D5E0]Cargo Fuel Penalty[/color]"
+effects = Array[ExtResource("1_tcw52")]([SubResource("Resource_tcw52")])

@@ -16,16 +16,16 @@ func get_thrust_ratio() -> float:
 
 # Carried debris slows the ship, never below the minimum speed factor.
 func get_weight_factor() -> float:
-	return maxf(1.0 / (1.0 + player.total_weight * player.weight_drag), player.min_speed_factor)
+	return maxf(1.0 / (1.0 + player.total_weight * player.stat_f(&"weight_drag")), player.stat_f(&"min_speed_factor"))
 
 func get_speed_multiplier(boosting : bool) -> float:
-	return player.boost_speed_mult if boosting else 1.0
+	return player.stat_f(&"boost_speed_mult") if boosting else 1.0
 
 func get_speed_cap(boosting : bool) -> float:
-	return player.max_speed * get_weight_factor() * get_speed_multiplier(boosting)
+	return player.stat_f(&"max_speed") * get_weight_factor() * get_speed_multiplier(boosting)
 
 func get_fuel_multiplier(boosting : bool) -> float:
-	return (1.0 + player.total_weight * player.weight_fuel_factor) * (player.boost_fuel_mult if boosting else 1.0)
+	return (1.0 + player.total_weight * player.stat_f(&"weight_fuel_factor")) * (player.stat_f(&"boost_fuel_mult") if boosting else 1.0)
 
 func get_forward() -> Vector2:
 	return Vector2.UP.rotated(player.rotation)
@@ -33,10 +33,13 @@ func get_forward() -> Vector2:
 # Instant impulse along the heading, capped by the current speed limit.
 func apply_tap(boosting : bool) -> void:
 	var previous_speed := player.velocity.length()
-	var impulse := get_forward() * player.tap_impulse * get_weight_factor() * get_speed_multiplier(boosting)
+	var impulse := get_forward() * player.stat_f(&"tap_impulse") * get_weight_factor() * get_speed_multiplier(boosting)
 	player.velocity = (player.velocity + impulse).limit_length(maxf(get_speed_cap(boosting), previous_speed))
-	burn_fuel(player.tap_fuel_cost * get_fuel_multiplier(boosting))
-	player.fx.burst(TAP_BURST_STRENGTH)
+	burn_fuel(player.stat_f(&"tap_fuel_cost") * get_fuel_multiplier(boosting))
+	player.player_audio.play_tap()
+	for effect: ShipFX in player.fx:
+		if is_instance_valid(effect):
+			effect.burst(TAP_BURST_STRENGTH)
 	player.thrust_tapped.emit(boosting)
 
 # Throttle accelerates the ship and grip bends its velocity toward the heading.
@@ -46,12 +49,12 @@ func apply_engine(delta : float, boosting : bool) -> void:
 	var throttle_ratio := get_thrust_ratio()
 	var speed_cap := get_speed_cap(boosting)
 	if player.velocity.length() < speed_cap:
-		var acceleration := player.thrust_accel * throttle_ratio * get_weight_factor() * get_speed_multiplier(boosting)
+		var acceleration := player.stat_f(&"thrust_accel") * throttle_ratio * get_weight_factor() * get_speed_multiplier(boosting)
 		player.velocity = (player.velocity + get_forward() * acceleration * delta).limit_length(speed_cap)
 	var speed := player.velocity.length()
-	if speed > 0.0 and player.grip > 0.0:
-		player.velocity = player.velocity.normalized().slerp(get_forward(), minf(player.grip * delta, 1.0)) * speed
-	burn_fuel(player.fuel_depletion_rate * throttle_ratio * get_fuel_multiplier(boosting) * delta)
+	if speed > 0.0 and player.stat_f(&"grip") > 0.0:
+		player.velocity = player.velocity.normalized().slerp(get_forward(), minf(player.stat_f(&"grip") * delta, 1.0)) * speed
+	burn_fuel(player.stat_f(&"fuel_depletion_rate") * throttle_ratio * get_fuel_multiplier(boosting) * delta)
 
 # Slows the ship toward a standstill at a constant rate.
 func apply_drag(drag_rate : float, delta : float) -> void:
@@ -61,7 +64,7 @@ func apply_drag(drag_rate : float, delta : float) -> void:
 func apply_overspeed_drag(boosting : bool, delta : float) -> void:
 	var speed_cap := get_speed_cap(boosting)
 	if player.velocity.length() > speed_cap:
-		player.velocity = player.velocity.move_toward(player.velocity.normalized() * speed_cap, player.overspeed_drag * delta)
+		player.velocity = player.velocity.move_toward(player.velocity.normalized() * speed_cap, player.stat_f(&"overspeed_drag") * delta)
 
 # A slow Lissajous sway so a coasting ship never feels perfectly still.
 func apply_ambient_drift(delta : float) -> void:

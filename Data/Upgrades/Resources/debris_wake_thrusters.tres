@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://c102dh2okxb8u"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_47ekl"]
+[ext_resource type="Script" uid="uid://bq57rhsvpty50" path="res://Data/Upgrades/Effects/random_kick_effect.gd" id="2_1onj3"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_dhpfk"]
+
+[sub_resource type="Resource" id="Resource_47ekl"]
+script = ExtResource("2_1onj3")
+strength = 42.0
+
+[resource]
+resource_name = "Debris Wake Thrusters"
+script = ExtResource("3_dhpfk")
+title = "Debris Wake Thrusters"
+description = "[color=#D7E7F5]It was found in a sealed crate marked for a research crew that never checked in from the outer belt.[/color]
+
+[color=#9AA9B8]A brief uncontrolled kick mimics a slingshot manoeuvre.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#FFCC78]42[/color] [color=#C8D5E0]Random impulse strength[/color]"
+max_stacks = 2
+effects = Array[ExtResource("1_47ekl")]([SubResource("Resource_47ekl")])

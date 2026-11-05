@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://ci347l5gd771b"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_lhhuj"]
+[ext_resource type="Script" uid="uid://rod2qe4jn568" path="res://Data/Upgrades/Effects/tick_effect.gd" id="2_qdr8v"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_k7iqg"]
+
+[sub_resource type="Resource" id="Resource_lhhuj"]
+script = ExtResource("2_qdr8v")
+heat_per_sec = -0.8
+spin = 0.05
+
+[resource]
+resource_name = "Radiator Spin-Up"
+script = ExtResource("3_k7iqg")
+title = "Radiator Spin-Up"
+description = "[color=#D7E7F5]Its service record lists three reactor replacements and one unexplained return from beyond the mapped lanes.[/color]
+
+[color=#9AA9B8]The radiator keeps spinning, trading stability for cooling.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]-0.80/s[/color] [color=#C8D5E0]Heat removal[/color]
+[color=#E8C7FF]+0.050/s[/color] [color=#C8D5E0]Passive rotation[/color]"
+effects = Array[ExtResource("1_lhhuj")]([SubResource("Resource_lhhuj")])

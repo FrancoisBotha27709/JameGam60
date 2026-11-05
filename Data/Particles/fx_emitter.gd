@@ -3,7 +3,7 @@ class_name FXEmitter
 extends GPUParticles2D
 
 const PRESET_DIR := "res://Data/Particles/Preset Particles/"
-const SIM := preload("res://Data/Particles/shader/fx_particles_draw.gdshader")
+const SIM := preload("res://Data/Particles/shader/fx_particles.gdshader")
 const DRAW := preload("res://Data/Particles/shader/fx_particles_draw.gdshader")
 const NODE_PROPS := ["amount", "lifetime", "one_shot", "explosiveness", "randomness", "preprocess",
 		"speed_scale", "amount_ratio", "local_coords", "fixed_fps", "quad_px"]

@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://cs7cp1mgi0bco"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_brrix"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_1lv0x"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_rhkiu"]
+
+[sub_resource type="Resource" id="Resource_brrix"]
+script = ExtResource("2_1lv0x")
+stats = Array[int]([3, 17])
+amount = 0.12
+
+[resource]
+resource_name = "Failsafe Capacitor Mk II"
+script = ExtResource("3_rhkiu")
+title = "Failsafe Capacitor Mk II"
+description = "[color=#D7E7F5]The component's design contradicts three standard engineering rules, yet the test rig recorded a clean result.[/color]
+
+[color=#9AA9B8]An emergency reserve improves fuel capacity and cooling.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]+12%[/color] [color=#C8D5E0]Fuel Capacity[/color]
+[color=#7CFF9B]+12%[/color] [color=#C8D5E0]Cooling Rate[/color]"
+max_stacks = 2
+effects = Array[ExtResource("1_brrix")]([SubResource("Resource_brrix")])

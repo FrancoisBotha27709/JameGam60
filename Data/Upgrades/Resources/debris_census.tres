@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://b7rerodyoi2f4"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_c01qy"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_aybiw"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_m1g7k"]
+
+[sub_resource type="Resource" id="Resource_c01qy"]
+script = ExtResource("2_aybiw")
+stats = Array[int]([22])
+amount = -0.1
+
+[resource]
+resource_name = "Debris Census"
+script = ExtResource("3_m1g7k")
+title = "Debris Census"
+description = "[color=#D7E7F5]Its serial number matches an old survey report describing a field of metal that should not have been there.[/color]
+
+[color=#9AA9B8]Mapping the field makes the next quota easier to meet.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#FF7777]-10%[/color] [color=#C8D5E0]Quota Requirement[/color]"
+effects = Array[ExtResource("1_c01qy")]([SubResource("Resource_c01qy")])

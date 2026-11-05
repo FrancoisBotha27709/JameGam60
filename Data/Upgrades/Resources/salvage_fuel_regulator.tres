@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://ci27kvx7321ox"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_0erqu"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_nhjsc"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_um8n2"]
+
+[sub_resource type="Resource" id="Resource_0erqu"]
+script = ExtResource("2_nhjsc")
+stats = Array[int]([11])
+amount = -0.07
+
+[resource]
+resource_name = "Salvage Fuel Regulator"
+script = ExtResource("3_um8n2")
+title = "Salvage Fuel Regulator"
+description = "[color=#D7E7F5]The old fleet used hardware like this to stretch a single tank across routes no modern pilot would attempt.[/color]
+
+[color=#9AA9B8]A pressure regulator reduces fuel waste.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#FF7777]-7%[/color] [color=#C8D5E0]Fuel Consumption[/color]"
+effects = Array[ExtResource("1_0erqu")]([SubResource("Resource_0erqu")])

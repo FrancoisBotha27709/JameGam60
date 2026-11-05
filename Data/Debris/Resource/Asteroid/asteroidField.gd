@@ -53,7 +53,6 @@ func push_out(world_pos : Vector2, margin : float) -> Vector2:
 func build(rect : Rect2, rng : RandomNumberGenerator, clear_points : Array[Vector2] = []) -> void:
 	_rect = rect
 	if asteroid_scene == null:
-		push_error("AsteroidField: asteroid_scene is not assigned")
 		return
 
 	_depots.clear()

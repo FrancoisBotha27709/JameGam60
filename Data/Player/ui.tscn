@@ -1,18 +1,20 @@
 [gd_scene format=3 uid="uid://carf6gmsridye"]
 
 [ext_resource type="PackedScene" uid="uid://2ldixl4hfc68" path="res://Data/Debris/Resource/Debris/UI/debris_object_ui.tscn" id="1_bfcyi"]
+[ext_resource type="Theme" uid="uid://dap6826f78p24" path="res://Assets/theme.tres" id="1_lp6sp"]
 [ext_resource type="Script" uid="uid://cfr6ei68wvjvu" path="res://Data/Player/ui.gd" id="1_yk0yh"]
 [ext_resource type="PackedScene" uid="uid://blvdksbtdj3uy" path="res://Assets/Nodes/progress_bar.tscn" id="2_bl2fu"]
 [ext_resource type="PackedScene" uid="uid://dnauxc4tcis2n" path="res://Data/Upgrades/UpgradeScreen.tscn" id="4_ug852"]
 [ext_resource type="PackedScene" uid="uid://bcbp1txr7i5rt" path="res://Data/Menu/RunEndBanner.tscn" id="5_ejbcy"]
 
-[node name="UI" type="Control" unique_id=1598766862 node_paths=PackedStringArray("node_debris_container", "node_score_lbl", "node_timer_lbl", "node_fuel_bar", "node_heat_bar", "node_speed_lbl", "run_end_banner", "node_continue_btn", "upgrade_screen")]
+[node name="UI" type="Control" unique_id=1598766862 node_paths=PackedStringArray("node_debris_container", "node_score_lbl", "node_timer_lbl", "node_fuel_bar", "node_heat_bar", "node_speed_lbl", "run_end_banner", "node_continue_btn", "node_menu_btn", "upgrade_screen")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_lp6sp")
 script = ExtResource("1_yk0yh")
 node_debris_container = NodePath("MarginContainer2/MarginContainer/PanelContainer/MarginContainer/PanelContainer/HBoxContainer/DebrisContainer")
 node_score_lbl = NodePath("MarginContainer2/MarginContainer/PanelContainer/MarginContainer/PanelContainer/HBoxContainer/Bars/HBoxContainer/ScoreLbl")
@@ -22,7 +24,8 @@ node_heat_bar = NodePath("MarginContainer2/MarginContainer/PanelContainer/Margin
 node_speed_lbl = NodePath("SpeedLbl")
 run_end_banner = NodePath("RunEndBanner")
 debris_item_scene = ExtResource("1_bfcyi")
-node_continue_btn = NodePath("Button")
+node_continue_btn = NodePath("HBoxContainer/Button")
+node_menu_btn = NodePath("HBoxContainer/Button2")
 upgrade_screen = NodePath("UpgradeScreen")
 
 [node name="MarginContainer2" type="MarginContainer" parent="." unique_id=2086985880]
@@ -123,13 +126,24 @@ text = "Speed"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="." unique_id=13425141]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1543414757]
 layout_mode = 0
-offset_left = 1345.0
-offset_top = 939.0
-offset_right = 1564.0
-offset_bottom = 1014.0
+offset_left = 1282.0
+offset_top = 940.0
+offset_right = 1674.0
+offset_bottom = 1015.0
+theme_override_constants/separation = 32
+
+[node name="Button" type="Button" parent="HBoxContainer" unique_id=13425141]
+layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 48
 text = "Continue"
+
+[node name="Button2" type="Button" parent="HBoxContainer" unique_id=341152906]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 48
+text = "MENU"

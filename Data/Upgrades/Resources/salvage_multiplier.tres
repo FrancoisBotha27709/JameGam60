@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://bf1itic1iaosa"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_ggfmp"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_mhr6a"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_qnod6"]
+
+[sub_resource type="Resource" id="Resource_ggfmp"]
+script = ExtResource("2_mhr6a")
+stats = Array[int]([6])
+amount = 0.14
+
+[resource]
+resource_name = "Salvage Multiplier"
+script = ExtResource("3_qnod6")
+title = "Salvage Multiplier"
+description = "[color=#D7E7F5]A scratched motto on the casing reads: 'Nothing lost stays lost if someone can tow it home.'[/color]
+
+[color=#9AA9B8]A black-box appraisal routine raises scrap value.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]+14%[/color] [color=#C8D5E0]Score Multiplier[/color]"
+effects = Array[ExtResource("1_ggfmp")]([SubResource("Resource_ggfmp")])

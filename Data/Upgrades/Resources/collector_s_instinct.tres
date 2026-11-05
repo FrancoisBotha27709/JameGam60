@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://dkmto0wb1v5mw"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_s02fr"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_lfjpa"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_dw7rm"]
+
+[sub_resource type="Resource" id="Resource_s02fr"]
+script = ExtResource("2_lfjpa")
+stats = Array[int]([6])
+amount = 0.2
+
+[resource]
+resource_name = "Collector's Instinct"
+script = ExtResource("3_dw7rm")
+title = "Collector's Instinct"
+description = "[color=#D7E7F5]The black-box note attached to it reads: 'Test once, log everything, and do not let it near the main reactor.'[/color]
+
+[color=#9AA9B8]A tuned scoring model rewards every successful delivery.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]+20%[/color] [color=#C8D5E0]Score Multiplier[/color]"
+max_stacks = 2
+effects = Array[ExtResource("1_s02fr")]([SubResource("Resource_s02fr")])

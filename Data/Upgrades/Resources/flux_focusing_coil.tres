@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://caoi0gbxl7c4"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_07c07"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_w282v"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_nelxb"]
+
+[sub_resource type="Resource" id="Resource_07c07"]
+script = ExtResource("2_w282v")
+stats = Array[int]([19])
+amount = 0.22
+
+[resource]
+resource_name = "Flux Coil Mk II"
+script = ExtResource("3_nelxb")
+title = "Flux Coil Mk II"
+description = "[color=#D7E7F5]This component carries a handwritten warning: 'Never trust a clean vector in a dirty field.'[/color]
+
+[color=#9AA9B8]A focused magnetic field catches nearby fragments.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]+22%[/color] [color=#C8D5E0]Magnet Reach[/color]"
+effects = Array[ExtResource("1_07c07")]([SubResource("Resource_07c07")])

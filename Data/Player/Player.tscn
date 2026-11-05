@@ -2,33 +2,33 @@
 
 [ext_resource type="Script" uid="uid://cnvpiky6dxbty" path="res://Data/Player/player.gd" id="1_o0p0d"]
 [ext_resource type="PackedScene" uid="uid://carf6gmsridye" path="res://Data/Player/ui.tscn" id="4_x8ab7"]
-[ext_resource type="PackedScene" uid="uid://chcul5oawyipr" path="res://Data/Particles/shader/ship_fx.tscn" id="5_d7hhy"]
-[ext_resource type="Theme" uid="uid://pq4bga7u0c3f" path="res://Assets/base_theme.tres" id="5_ipw5p"]
+[ext_resource type="PackedScene" uid="uid://byqlfywo2eb5g" path="res://Data/Menu/meltdown_screen.tscn" id="5_3nxmj"]
 [ext_resource type="PackedScene" uid="uid://c0rwf35b0kfeb" path="res://Data/Particles/fx_emitter.tscn" id="6_e4jm7"]
 [ext_resource type="Shader" uid="uid://c71v6lan6717q" path="res://Data/Particles/shader/fx_particles_draw.gdshader" id="7_e5wor"]
+[ext_resource type="Shader" uid="uid://bvpaf34vwgl3o" path="res://Data/Particles/shader/fx_particles.gdshader" id="8_ul456"]
 [ext_resource type="PackedScene" uid="uid://wbm18bsvunt7" path="res://Assets/lighting/light_rig.tscn" id="9_e5wor"]
 [ext_resource type="Resource" uid="uid://fhaxfu5ae136" path="res://Assets/lighting/Presets/headlight.tres" id="10_tuul6"]
 [ext_resource type="PackedScene" uid="uid://italmpyxktyx" path="res://Data/Player/sprite_container.tscn" id="11_8mrtr"]
 [ext_resource type="Resource" uid="uid://dn52070tg4msa" path="res://Assets/lighting/Presets/engine_fire.tres" id="11_tuul6"]
 [ext_resource type="Script" uid="uid://321jkmqngl84" path="res://Assets/lighting/SpaceLight.gd" id="12_8mrtr"]
+[ext_resource type="Resource" uid="uid://brxoiitlvwsvl" path="res://Assets/lighting/Presets/nav_green.tres" id="13_8mrtr"]
+[ext_resource type="Resource" uid="uid://c7dcarqg3oltk" path="res://Assets/lighting/Presets/cockpit.tres" id="14_b3cwg"]
 [ext_resource type="PackedScene" uid="uid://b05dh03r3iqn" path="res://Assets/Nodes/circle_bar.tscn" id="15_dk4bn"]
+[ext_resource type="Script" uid="uid://bbowxnhpj0p0w" path="res://Data/Player/audio_players.gd" id="15_ullya"]
+[ext_resource type="AudioStream" uid="uid://d0pqvsx23b4rb" path="res://Assets/Sounds/SFX/Player/Rocket/Rocket tap 01.ogg" id="16_n06tp"]
+[ext_resource type="AudioStream" uid="uid://b640syonocvwv" path="res://Assets/Sounds/SFX/Player/Rocket/Rocket tap 02.ogg" id="17_adayg"]
+[ext_resource type="AudioStream" uid="uid://cgrm4luyhyqtx" path="res://Assets/Sounds/SFX/Player/Rocket/Rocket tap 03.ogg" id="18_5u1ax"]
+[ext_resource type="AudioStream" uid="uid://cfl5cbmkq6jdd" path="res://Assets/Sounds/SFX/Player/Rocket/Rocket tap 04.ogg" id="19_18174"]
+[ext_resource type="AudioStream" uid="uid://biea1537mgca8" path="res://Assets/Sounds/SFX/Player/Rocket/Rocket tap 05.ogg" id="20_fugdc"]
+[ext_resource type="AudioStream" uid="uid://31j1y320ff6p" path="res://Assets/Sounds/SFX/Player/Rocket/Rocket tap 06.ogg" id="21_v0w8h"]
+[ext_resource type="AudioStream" uid="uid://dnmt6bh3up125" path="res://Assets/Sounds/SFX/Player/Rocket/Rocket Trhust.ogg" id="22_382t5"]
+[ext_resource type="AudioStream" uid="uid://dk8mvki8bsnpi" path="res://Assets/Sounds/SFX/Space Ambience.ogg" id="23_n06tp"]
+[ext_resource type="AudioStream" uid="uid://dtvgs480e2p5f" path="res://Assets/Sounds/Music/loop_temp.ogg" id="24_adayg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sw308"]
 size = Vector2(98, 128)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2es7p"]
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
-bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.3137255)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tuul6"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5u1ax"]
 resource_local_to_scene = true
 shader = ExtResource("7_e5wor")
 shader_parameter/col_core = Color(1, 1, 1, 1)
@@ -61,114 +61,69 @@ shader_parameter/flicker_freq = 12.0
 
 [sub_resource type="Gradient" id="Gradient_tuul6"]
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_8mrtr"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_18174"]
 resource_local_to_scene = true
 gradient = SubResource("Gradient_tuul6")
 width = 24
 height = 24
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_b3cwg"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fugdc"]
 resource_local_to_scene = true
-shader = ExtResource("7_e5wor")
-shader_parameter/col_core = Color(1, 0.96, 0.75, 1)
-shader_parameter/col_hot = Color(1, 0.75, 0.2, 1)
-shader_parameter/col_mid = Color(0.95, 0.3, 0.1, 1)
-shader_parameter/col_cool = Color(0.35, 0.12, 0.15, 1)
-shader_parameter/col_outline = Color(0.12, 0.03, 0.05, 1)
-shader_parameter/thresholds = Vector3(0.2, 0.45, 0.75)
-shader_parameter/core_bias = 0.6
-shader_parameter/life_heat = 1.0
-shader_parameter/heat_jitter = 0.2
-shader_parameter/hue_shift = 0.0
-shader_parameter/additive = 0.0
-shader_parameter/glow = 1.0
-shader_parameter/shape = 0.0
-shader_parameter/aspect = Vector2(1, 1)
-shader_parameter/thickness = 0.3
-shader_parameter/ring = 0.0
-shader_parameter/pixel_res = 4.0
-shader_parameter/softness = 0.0
-shader_parameter/erode = 0.4
-shader_parameter/outline = 0.0
-shader_parameter/edge_noise = 0.0
-shader_parameter/grain = 0.0
-shader_parameter/fade_in = 0.0
-shader_parameter/fade_start = 0.5
-shader_parameter/dither = 1.0
-shader_parameter/flicker = 0.0
-shader_parameter/flicker_freq = 12.0
+shader = ExtResource("8_ul456")
+shader_parameter/emit_offset = Vector2(0, 0)
+shader_parameter/emit_box = Vector2(0, 0)
+shader_parameter/emit_ring = Vector2(0, 0)
+shader_parameter/direction_deg = 90.0
+shader_parameter/spread_deg = 180.0
+shader_parameter/spread_bias = 1.0
+shader_parameter/outward = 0.0
+shader_parameter/speed = Vector2(40, 360)
+shader_parameter/speed_bias = 0.5
+shader_parameter/bolt_length = 0.0
+shader_parameter/bolt_amp = 16.0
+shader_parameter/bolt_freq = 6.0
+shader_parameter/bolt_width = 1.2
+shader_parameter/bolt_branch = 0.25
+shader_parameter/bolt_branches = 3
+shader_parameter/bolt_branch_len = 0.4
+shader_parameter/bolt_seed = -1
+shader_parameter/bolt_fps = 30.0
+shader_parameter/drag = 2.5
+shader_parameter/accel = Vector2(0, 0)
+shader_parameter/propel = 0.0
+shader_parameter/curl = 0.0
+shader_parameter/curl_random = 0.0
+shader_parameter/turb_amp = 30.0
+shader_parameter/turb_freq = 3.0
+shader_parameter/turb_chaos = 0.4
+shader_parameter/attract = 0.0
+shader_parameter/swirl = 0.0
+shader_parameter/orbit_k = 0.0
+shader_parameter/orbit_radius = 0.0
+shader_parameter/flow_amp = 0.0
+shader_parameter/flow_scale = 0.01
+shader_parameter/flow_speed = 0.3
+shader_parameter/jitter = 0.0
+shader_parameter/jitter_hz = 20.0
+shader_parameter/size_start = 1.1
+shader_parameter/size_end = 0.0
+shader_parameter/size_bulge = 0.0
+shader_parameter/size_curve = 1.3
+shader_parameter/size_random = 0.3
+shader_parameter/pulse_amp = 0.0
+shader_parameter/pulse_freq = 4.0
+shader_parameter/grow_in = 0.0
+shader_parameter/align_to_velocity = 0.0
+shader_parameter/stretch = 0.0
+shader_parameter/spin_deg = 0.0
+shader_parameter/rot_random = 0.0
+shader_parameter/rot_steps = 0
+shader_parameter/life_random = 0.5
+shader_parameter/tint_jitter = 0.2
+shader_parameter/alpha_jitter = 0.0
+shader_parameter/power = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dk4bn"]
-resource_local_to_scene = true
-shader = ExtResource("7_e5wor")
-shader_parameter/col_core = Color(1, 1, 1, 1)
-shader_parameter/col_hot = Color(0.8784314, 0.9411765, 1, 1)
-shader_parameter/col_mid = Color(0.627451, 0.72156864, 0.8156863, 1)
-shader_parameter/col_cool = Color(0.3137255, 0.3764706, 0.5019608, 1)
-shader_parameter/col_outline = Color(0.12, 0.03, 0.05, 1)
-shader_parameter/thresholds = Vector3(0.2, 0.45, 0.75)
-shader_parameter/core_bias = 0.6
-shader_parameter/life_heat = 1.0
-shader_parameter/heat_jitter = 0.2
-shader_parameter/hue_shift = 0.0
-shader_parameter/additive = 0.0
-shader_parameter/glow = 1.0
-shader_parameter/shape = 0.0
-shader_parameter/aspect = Vector2(1, 1)
-shader_parameter/thickness = 0.3
-shader_parameter/ring = 0.0
-shader_parameter/pixel_res = 4.0
-shader_parameter/softness = 0.0
-shader_parameter/erode = 0.6
-shader_parameter/outline = 0.0
-shader_parameter/edge_noise = 0.0
-shader_parameter/grain = 0.0
-shader_parameter/fade_in = 0.0
-shader_parameter/fade_start = 0.3
-shader_parameter/dither = 1.0
-shader_parameter/flicker = 0.0
-shader_parameter/flicker_freq = 12.0
-
-[sub_resource type="Gradient" id="Gradient_kpgwr"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_3nxmj"]
-resource_local_to_scene = true
-gradient = SubResource("Gradient_kpgwr")
-width = 12
-height = 12
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ul456"]
-resource_local_to_scene = true
-shader = ExtResource("7_e5wor")
-shader_parameter/col_core = Color(1, 0.96, 0.75, 1)
-shader_parameter/col_hot = Color(1, 0.75, 0.2, 1)
-shader_parameter/col_mid = Color(0.95, 0.3, 0.1, 1)
-shader_parameter/col_cool = Color(0.35, 0.12, 0.15, 1)
-shader_parameter/col_outline = Color(0.12, 0.03, 0.05, 1)
-shader_parameter/thresholds = Vector3(0.2, 0.45, 0.75)
-shader_parameter/core_bias = 0.6
-shader_parameter/life_heat = 1.0
-shader_parameter/heat_jitter = 0.2
-shader_parameter/hue_shift = 0.0
-shader_parameter/additive = 0.0
-shader_parameter/glow = 1.0
-shader_parameter/shape = 0.0
-shader_parameter/aspect = Vector2(1, 1)
-shader_parameter/thickness = 0.3
-shader_parameter/ring = 0.0
-shader_parameter/pixel_res = 4.0
-shader_parameter/softness = 0.0
-shader_parameter/erode = 0.4
-shader_parameter/outline = 0.0
-shader_parameter/edge_noise = 0.0
-shader_parameter/grain = 0.0
-shader_parameter/fade_in = 0.0
-shader_parameter/fade_start = 0.5
-shader_parameter/dither = 1.0
-shader_parameter/flicker = 0.0
-shader_parameter/flicker_freq = 12.0
-
-[node name="Player" type="CharacterBody2D" unique_id=1263876198 node_paths=PackedStringArray("node_sprite", "ui_root", "fx", "fx_explosion", "rig", "collision_shape", "circle_fuel_prog_bar", "circle_heat_prog_bar") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1263876198 node_paths=PackedStringArray("node_sprite", "ui_root", "melt_screen", "collision_shape", "circle_fuel_prog_bar", "circle_heat_prog_bar", "fx_explosion", "rig", "player_audio") groups=["Player"]]
 script = ExtResource("1_o0p0d")
 node_sprite = NodePath("Sprite2D")
 tap_punch_strength = 0.01
@@ -180,12 +135,15 @@ thrust_stretch = 0.01
 bank_per_angular_velocity = 0.01
 ship_color = Color(0.12156863, 0.72156864, 0.15686275, 1)
 ui_root = NodePath("CanvasLayer/UI")
-fx = NodePath("RCSContainer/ShipFX")
-fx_explosion = NodePath("ship_explosion")
-rig = NodePath("LightRig")
+melt_screen = NodePath("CanvasLayer/MeltdownScreen")
 collision_shape = NodePath("CollisionShape2D")
 circle_fuel_prog_bar = NodePath("FuelBar")
 circle_heat_prog_bar = NodePath("HeatBar")
+fx_explosion = NodePath("ship_explosion")
+rig = NodePath("LightRig")
+player_audio = NodePath("AudioPlayers")
+
+[node name="Sprite2D" parent="." unique_id=1358334316 instance=ExtResource("11_8mrtr")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1317612103]
 position = Vector2(0, 1)
@@ -196,27 +154,19 @@ position = Vector2(0, -188)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2081751151]
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer" unique_id=1017884342]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_2es7p")
+[node name="MeltdownScreen" parent="CanvasLayer" unique_id=919328823 instance=ExtResource("5_3nxmj")]
 
 [node name="UI" parent="CanvasLayer" unique_id=1598766862 instance=ExtResource("4_x8ab7")]
-theme = ExtResource("5_ipw5p")
 
 [node name="ship_explosion" parent="." unique_id=492080604 instance=ExtResource("6_e4jm7")]
-material = SubResource("ShaderMaterial_tuul6")
+material = SubResource("ShaderMaterial_5u1ax")
 emitting = false
 amount = 80
-texture = SubResource("GradientTexture2D_8mrtr")
-preprocess = 0.0
-local_coords = false
-process_material = SubResource("ShaderMaterial_b3cwg")
+texture = SubResource("GradientTexture2D_18174")
+lifetime = 1.2
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ShaderMaterial_fugdc")
 preset = "ship_explosion"
 quad_px = 24
 autoplay = false
@@ -227,13 +177,13 @@ engine_preset = ExtResource("11_tuul6")
 boost_color = Color(0.96862745, 0.45882353, 0.28235295, 1)
 
 [node name="engine_marker_fire" type="Marker2D" parent="." unique_id=1236441446]
-position = Vector2(0, 20)
+position = Vector2(0, 42)
 rotation = -1.5707964
 
 [node name="SpaceLight" type="PointLight2D" parent="." unique_id=385959413]
 texture_filter = 1
-position = Vector2(-13, 0)
-rotation = -1.8703746
+position = Vector2(2.2737368e-13, -36)
+rotation = -1.5707964
 color = Color(0.9, 0.95, 1, 1)
 energy = 1.4
 range_z_min = -4096
@@ -252,32 +202,6 @@ cast_shadows = true
 preset = ExtResource("10_tuul6")
 shadow_dither = 0.4
 metadata/_custom_type_script = "uid://321jkmqngl84"
-
-[node name="SpaceLight2" type="PointLight2D" parent="." unique_id=1593108049]
-texture_filter = 1
-position = Vector2(16, 0)
-rotation = -1.0471976
-scale = Vector2(0.99999994, 0.99999994)
-color = Color(0.9, 0.95, 1, 1)
-energy = 1.4
-range_z_min = -4096
-range_z_max = 4096
-range_layer_min = -128
-range_layer_max = 128
-shadow_enabled = true
-texture_scale = 6.5625
-script = ExtResource("12_8mrtr")
-intensity = 1.4
-radius = 420.0
-falloff = 1.3
-shape = 1
-cone_angle = 50.0
-cast_shadows = true
-preset = ExtResource("10_tuul6")
-shadow_dither = 0.4
-metadata/_custom_type_script = "uid://321jkmqngl84"
-
-[node name="Sprite2D" parent="." unique_id=1358334316 instance=ExtResource("11_8mrtr")]
 
 [node name="FuelBar" parent="." unique_id=470699223 instance=ExtResource("15_dk4bn")]
 bar_scale = Vector2(1.3, 1.3)
@@ -285,19 +209,74 @@ bar_scale = Vector2(1.3, 1.3)
 [node name="HeatBar" parent="." unique_id=657834111 instance=ExtResource("15_dk4bn")]
 reverse_color_progression = true
 
-[node name="RCSContainer" type="Node2D" parent="." unique_id=1851737646]
+[node name="Lights" type="Node2D" parent="." unique_id=390024918]
 
-[node name="ShipFX" parent="RCSContainer" unique_id=1987884942 instance=ExtResource("5_d7hhy")]
-position = Vector2(0, 52)
+[node name="SpaceLight" type="PointLight2D" parent="Lights" unique_id=168421076]
+texture_filter = 1
+position = Vector2(0, 30)
+color = Color(0.15, 1, 0.3, 1)
+energy = 0.9964538
+range_z_min = -4096
+range_z_max = 4096
+range_layer_min = -128
+range_layer_max = 128
+texture_scale = 0.78125
+script = ExtResource("12_8mrtr")
+radius = 50.0
+preset = ExtResource("13_8mrtr")
+pulse = 1.0
+pulse_speed = 0.7
+metadata/_custom_type_script = "uid://321jkmqngl84"
 
-[node name="rcs_puff" parent="RCSContainer" unique_id=761577883 instance=ExtResource("6_e4jm7")]
-material = SubResource("ShaderMaterial_dk4bn")
-position = Vector2(19, 41)
-amount = 10
-texture = SubResource("GradientTexture2D_3nxmj")
-lifetime = 0.3
-one_shot = false
-preprocess = 0.0
-local_coords = false
-process_material = SubResource("ShaderMaterial_ul456")
-preset = "rcs_puff"
+[node name="SpaceLight2" type="PointLight2D" parent="Lights" unique_id=113032964]
+texture_filter = 1
+position = Vector2(0, -24)
+color = Color(0.7, 0.85, 1, 1)
+energy = 0.6
+range_z_min = -4096
+range_z_max = 4096
+range_layer_min = -128
+range_layer_max = 128
+shadow_enabled = true
+texture_scale = 1.09375
+script = ExtResource("12_8mrtr")
+intensity = 0.6
+radius = 70.0
+falloff = 1.5
+cast_shadows = true
+preset = ExtResource("14_b3cwg")
+metadata/_custom_type_script = "uid://321jkmqngl84"
+
+[node name="AudioPlayers" type="Node2D" parent="." unique_id=1387303548 node_paths=PackedStringArray("tap_player", "thrust_player", "music_player")]
+script = ExtResource("15_ullya")
+tap_audios = Array[AudioStream]([ExtResource("16_n06tp"), ExtResource("17_adayg"), ExtResource("18_5u1ax"), ExtResource("19_18174"), ExtResource("20_fugdc"), ExtResource("21_v0w8h")])
+thrust_audios = Array[AudioStream]([ExtResource("22_382t5")])
+tap_player = NodePath("TapAudio")
+thrust_player = NodePath("ThrustAudio")
+music_player = NodePath("MusicPlayerAudio")
+muffle_volume_drop_db = 2.0
+
+[node name="TapAudio" type="AudioStreamPlayer2D" parent="AudioPlayers" unique_id=2113200303]
+process_mode = 3
+volume_db = -8.0
+bus = &"Thrust"
+
+[node name="ThrustAudio" type="AudioStreamPlayer2D" parent="AudioPlayers" unique_id=424537542]
+process_mode = 3
+volume_db = -14.0
+bus = &"Thrust"
+
+[node name="AmbienceAudio" type="AudioStreamPlayer2D" parent="AudioPlayers" unique_id=43435007]
+process_mode = 3
+stream = ExtResource("23_n06tp")
+volume_db = -1.0
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[node name="MusicPlayerAudio" type="AudioStreamPlayer2D" parent="AudioPlayers" unique_id=1487599940]
+process_mode = 3
+stream = ExtResource("24_adayg")
+autoplay = true
+bus = &"Music"
+parameters/looping = true

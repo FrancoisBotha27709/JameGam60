@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://c6je2s5cpxdep"]
+
+[ext_resource type="Script" uid="uid://bxq2wpxyj834c" path="res://Data/Particles/shader/New FX/fx_gallery.gd" id="1_qwh2t"]
+[ext_resource type="Script" uid="uid://d0wyaxol5hj2n" path="res://Assets/lighting/LightEnvironment.gd" id="2_hm65p"]
+
+[node name="FXGallery" type="Node2D" unique_id=1927508938]
+script = ExtResource("1_qwh2t")
+
+[node name="LightEnvironment" type="Node" parent="." unique_id=2080477823]
+script = ExtResource("2_hm65p")
+ambient = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://d0wyaxol5hj2n"

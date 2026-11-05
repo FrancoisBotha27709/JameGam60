@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://bv64nagypdxth"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_mybst"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_3vjm6"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_75ty7"]
+
+[sub_resource type="Resource" id="Resource_mybst"]
+script = ExtResource("2_3vjm6")
+stats = Array[int]([11])
+amount = -0.1
+
+[resource]
+resource_name = "Fuel-Line Insulation"
+script = ExtResource("3_75ty7")
+title = "Fuel-Line Insulation"
+description = "[color=#D7E7F5]The part was found sealed inside a rescue pod, carefully labelled for whoever might need it next.[/color]
+
+[color=#9AA9B8]Less fuel is lost to inefficient delivery.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#FF7777]-10%[/color] [color=#C8D5E0]Fuel Consumption[/color]"
+effects = Array[ExtResource("1_mybst")]([SubResource("Resource_mybst")])

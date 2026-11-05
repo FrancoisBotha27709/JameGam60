@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://benna40r0o8gp"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_hkfcg"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_sghyu"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_kft8v"]
+
+[sub_resource type="Resource" id="Resource_hkfcg"]
+script = ExtResource("2_sghyu")
+stats = Array[int]([7, 0])
+amount = 0.12
+
+[sub_resource type="Resource" id="Resource_sghyu"]
+script = ExtResource("2_sghyu")
+stats = Array[int]([4])
+amount = 0.15
+
+[resource]
+resource_name = "Mass Driver Mk II"
+script = ExtResource("3_kft8v")
+title = "Mass Driver Mk II"
+description = "[color=#D7E7F5]It was found in a sealed crate marked for a research crew that never checked in from the outer belt.[/color]
+
+[color=#9AA9B8]The ship accelerates hard, but cargo weight hurts more.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]+12%[/color] [color=#C8D5E0]Thrust Acceleration[/color]
+[color=#7CFF9B]+12%[/color] [color=#C8D5E0]Maximum Speed[/color]
+[color=#7CFF9B]+15%[/color] [color=#C8D5E0]Cargo Drag[/color]"
+max_stacks = 2
+effects = Array[ExtResource("1_hkfcg")]([SubResource("Resource_hkfcg"), SubResource("Resource_sghyu")])

@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://byqlfywo2eb5g"]
+
+[ext_resource type="Script" uid="uid://d1ohk30op6g16" path="res://Data/Menu/meltdown_screen.gd" id="1_1ga1s"]
+[ext_resource type="Theme" uid="uid://dap6826f78p24" path="res://Assets/theme.tres" id="1_x0awv"]
+[ext_resource type="Script" uid="uid://c1qhnv5gfhb82" path="res://Data/Menu/DitherVignette.gd" id="2_3mb6b"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_x0awv"]
+font_size = 48
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+stacked_outline_count = 1
+stacked_outline_0/size = 8
+stacked_outline_0/color = Color(1, 0, 0, 1)
+
+[node name="MeltdownScreen" type="Control" unique_id=919328823 node_paths=PackedStringArray("meltdown_timer_lbl", "warning_background")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_x0awv")
+script = ExtResource("1_1ga1s")
+meltdown_timer_lbl = NodePath("MarginContainer/TimerLbl")
+warning_background = NodePath("DitherVignette")
+alarm_pulse_time = 0.2
+
+[node name="DitherVignette" type="ColorRect" parent="." unique_id=1797916483]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_3mb6b")
+metadata/_custom_type_script = "uid://c1qhnv5gfhb82"
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1535565]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TimerLbl" type="Label" parent="MarginContainer" unique_id=886790356]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "4.0"
+label_settings = SubResource("LabelSettings_x0awv")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true

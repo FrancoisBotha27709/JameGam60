@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://douuqmxg74len"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_scmox"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_kmgt4"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_3y3r0"]
+
+[sub_resource type="Resource" id="Resource_scmox"]
+script = ExtResource("2_kmgt4")
+stats = Array[int]([1])
+amount = -0.08
+
+[resource]
+resource_name = "Counterspin Flywheel"
+script = ExtResource("3_3y3r0")
+title = "Counterspin Flywheel"
+description = "[color=#D7E7F5]A salvage pilot swore this component saved their crew when a dead freighter spun across their route.[/color]
+
+[color=#9AA9B8]A heavier flywheel steadies the ship's rotation.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#FF7777]-8%[/color] [color=#C8D5E0]Rotation Speed[/color]"
+effects = Array[ExtResource("1_scmox")]([SubResource("Resource_scmox")])

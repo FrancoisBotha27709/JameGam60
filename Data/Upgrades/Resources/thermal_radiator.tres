@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://cmk6mhophr75t"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_4vlaq"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_ubwut"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_su5yu"]
+
+[sub_resource type="Resource" id="Resource_4vlaq"]
+script = ExtResource("2_ubwut")
+stats = Array[int]([17])
+amount = 0.22
+
+[resource]
+resource_name = "Radiator Mk II"
+script = ExtResource("3_su5yu")
+title = "Radiator Mk II"
+description = "[color=#D7E7F5]The part was found sealed inside a rescue pod, carefully labelled for whoever might need it next.[/color]
+
+[color=#9AA9B8]Fold-out radiators dump heat into the void.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]+22%[/color] [color=#C8D5E0]Cooling Rate[/color]"
+max_stacks = 2
+effects = Array[ExtResource("1_4vlaq")]([SubResource("Resource_4vlaq")])

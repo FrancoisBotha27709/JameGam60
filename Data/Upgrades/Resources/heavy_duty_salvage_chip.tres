@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://bowhxvwpn0h3a"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_lg7ui"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_nhkkh"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_4pjul"]
+
+[sub_resource type="Resource" id="Resource_ygt8j"]
+script = ExtResource("2_nhkkh")
+stats = Array[int]([21])
+amount = 0.08
+
+[resource]
+resource_name = "Heavy-Duty Salvage Chip"
+script = ExtResource("3_4pjul")
+title = "Heavy-Duty Salvage Chip"
+description = "[color=#D7E7F5]It was built for the dangerous years when scrap storms could bury an entire depot in minutes.[/color]
+
+[color=#9AA9B8]A new valuation chip identifies useful scrap.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Scrap Value[/color]"
+effects = Array[ExtResource("1_lg7ui")]([SubResource("Resource_ygt8j")])

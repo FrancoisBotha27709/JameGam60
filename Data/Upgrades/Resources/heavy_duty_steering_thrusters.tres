@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://pjgbsqxpkkey"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_0uvpl"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_6h74l"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_p6eqp"]
+
+[sub_resource type="Resource" id="Resource_0uvpl"]
+script = ExtResource("2_6h74l")
+stats = Array[int]([1])
+amount = 0.07
+
+[resource]
+resource_name = "Heavy Thrusters"
+script = ExtResource("3_p6eqp")
+title = "Heavy Thrusters"
+description = "[color=#D7E7F5]This component carries a handwritten warning: 'Never trust a clean vector in a dirty field.'[/color]
+
+[color=#9AA9B8]Directional jets provide a modest steering improvement.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]+7%[/color] [color=#C8D5E0]Rotation Speed[/color]"
+effects = Array[ExtResource("1_0uvpl")]([SubResource("Resource_0uvpl")])

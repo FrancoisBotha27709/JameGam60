@@ -33,7 +33,7 @@ func update_depot_sprite() -> void:
 		return
 	
 	# Determine how full it should be
-	var progress : float = clampf(DataCollector.score / quota, 0.0, 1.0)
+	var progress : float = DataCollector.get_quota_percentage()
 
 	# Convert progrss to index
 	var stage_count : int = images.size()

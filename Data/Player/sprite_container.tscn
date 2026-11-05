@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://italmpyxktyx"]
 
 [ext_resource type="Shader" uid="uid://011mmfm5oy0x" path="res://Data/Player/png_glow.gdshader" id="1_uc8k4"]
-[ext_resource type="Texture2D" uid="uid://c8nh4wlehq6in" path="res://Assets/UI/Ship/Designs/ship_624831_04/ship_624831_04.png" id="2_uc8k4"]
-[ext_resource type="Texture2D" uid="uid://c8nh4wlehq6in" path="res://Assets/UI/Ship/Designs/ship_624831_04/ship_624831_04.png" id="3_h7era"]
+[ext_resource type="Texture2D" uid="uid://dmv5g0cp1jetn" path="res://Assets/UI/Ship/Designs/ship_34934_05/ship_34934_05.png" id="2_h7era"]
+[ext_resource type="Texture2D" uid="uid://b24farpm78q3e" path="res://Assets/UI/Ship/Designs/ship_34934_05/ship_34934_05_n.png" id="3_ffr34"]
 [ext_resource type="Script" uid="uid://e8u1tvxx6cku" path="res://Data/Player/sprite_container.gd" id="4_a1j1v"]
+[ext_resource type="PackedScene" uid="uid://o2ogxcqexi7m" path="res://Assets/UI/Ship/Designs/ship_data_line.tscn" id="4_uc8k4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ul456"]
 shader = ExtResource("1_uc8k4")
@@ -15,11 +16,43 @@ shader_parameter/opacity = 0.13
 shader_parameter/glow_color = Color(0.50158626, 0.86458075, 0.9442951, 1)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_ffr34"]
-diffuse_texture = ExtResource("2_uc8k4")
-normal_texture = ExtResource("3_h7era")
+diffuse_texture = ExtResource("2_h7era")
+normal_texture = ExtResource("3_ffr34")
 
-[node name="Sprite2D" type="Sprite2D" unique_id=1358334316]
+[node name="Sprite2D" type="Sprite2D" unique_id=1358334316 node_paths=PackedStringArray("thrust_marker", "wing_marker", "tip_marker", "exhaust_marker", "fx_markers")]
 material = SubResource("ShaderMaterial_ul456")
 rotation = -1.5707964
 texture = SubResource("CanvasTexture_ffr34")
 script = ExtResource("4_a1j1v")
+thrust_marker = NodePath("ThrustMarker")
+wing_marker = NodePath("WingMarker")
+tip_marker = NodePath("TipMarker")
+exhaust_marker = NodePath("ExhaustMarker")
+fx_markers = [NodePath("FireMarkers/FXMarker"), NodePath("FireMarkers/FXMarker2"), NodePath("FireMarkers/FXMarker3"), NodePath("FireMarkers/FXMarker4")]
+info_scene = ExtResource("4_uc8k4")
+
+[node name="ThrustMarker" type="Marker2D" parent="." unique_id=1190892381]
+position = Vector2(-37, -3.0000038)
+
+[node name="WingMarker" type="Marker2D" parent="." unique_id=1921749177]
+position = Vector2(-17.000002, 15.999999)
+
+[node name="TipMarker" type="Marker2D" parent="." unique_id=1108904509]
+position = Vector2(36, 1.0000017)
+
+[node name="ExhaustMarker" type="Marker2D" parent="." unique_id=2105701816]
+position = Vector2(23, -0.99999905)
+
+[node name="FireMarkers" type="Node2D" parent="." unique_id=1103212650]
+
+[node name="FXMarker" type="Marker2D" parent="FireMarkers" unique_id=631505578]
+position = Vector2(-49, -12.000004)
+
+[node name="FXMarker2" type="Marker2D" parent="FireMarkers" unique_id=2118586364]
+position = Vector2(1, 41)
+
+[node name="FXMarker3" type="Marker2D" parent="FireMarkers" unique_id=499759043]
+position = Vector2(1, -42)
+
+[node name="FXMarker4" type="Marker2D" parent="FireMarkers" unique_id=762182529]
+position = Vector2(-48, 10.999998)

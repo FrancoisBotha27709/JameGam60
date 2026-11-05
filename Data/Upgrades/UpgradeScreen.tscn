@@ -73,11 +73,9 @@ theme_override_font_sizes/font_size = 48
 text = "CHOOSE AN UPGRADE"
 horizontal_alignment = 1
 
-[node name="SubLbl" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1494910461]
+[node name="SubLbl" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=413826839]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "SELECT ONE TO CONTINUE"
-horizontal_alignment = 1
+bbcode_enabled = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=811414458]
 layout_mode = 2

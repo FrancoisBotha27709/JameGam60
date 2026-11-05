@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://5v24fpxbe6wv"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_nno2u"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_jo0jy"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_kl04l"]
+
+[sub_resource type="Resource" id="Resource_nno2u"]
+script = ExtResource("2_jo0jy")
+stats = Array[int]([14])
+amount = 0.2
+
+[resource]
+resource_name = "Attitude Dampers"
+script = ExtResource("3_kl04l")
+title = "Attitude Dampers"
+description = "[color=#D7E7F5]This component carries a handwritten warning: 'Never trust a clean vector in a dirty field.'[/color]
+
+[color=#9AA9B8]Active damping makes the craft easier to line up.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]+20%[/color] [color=#C8D5E0]Handling Grip[/color]"
+effects = Array[ExtResource("1_nno2u")]([SubResource("Resource_nno2u")])

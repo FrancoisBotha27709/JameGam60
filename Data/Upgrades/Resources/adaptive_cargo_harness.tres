@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://bxijg0d4fx3ou"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_lhgoe"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_xx8l8"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_mvw3l"]
+
+[sub_resource type="Resource" id="Resource_lhgoe"]
+script = ExtResource("2_xx8l8")
+stats = Array[int]([4])
+amount = -0.07
+
+[resource]
+resource_name = "Adaptive Cargo Harness"
+script = ExtResource("3_mvw3l")
+title = "Adaptive Cargo Harness"
+description = "[color=#D7E7F5]Its serial number matches an old survey report describing a field of metal that should not have been there.[/color]
+
+[color=#9AA9B8]Cargo is held closer to the centre of mass.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#FF7777]-7%[/color] [color=#C8D5E0]Cargo Drag[/color]"
+effects = Array[ExtResource("1_lhgoe")]([SubResource("Resource_lhgoe")])

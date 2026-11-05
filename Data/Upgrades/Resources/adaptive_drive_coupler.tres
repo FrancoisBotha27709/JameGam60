@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://maxo52o8xxv1"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_g22na"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_hcdkq"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_m74kk"]
+
+[sub_resource type="Resource" id="Resource_g22na"]
+script = ExtResource("2_hcdkq")
+stats = Array[int]([7])
+amount = 0.08
+
+[resource]
+resource_name = "Adaptive Drive Coupler"
+script = ExtResource("3_m74kk")
+title = "Adaptive Drive Coupler"
+description = "[color=#D7E7F5]Stamped with a defunct shipyard seal, this hardware outlived the fleet that first tested it in the debris lanes.[/color]
+
+[color=#9AA9B8]A more efficient coupler transfers power to the main drive.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Thrust Acceleration[/color]"
+effects = Array[ExtResource("1_g22na")]([SubResource("Resource_g22na")])

@@ -3,7 +3,6 @@
 [ext_resource type="FontFile" uid="uid://du8rlolpc7be0" path="res://Assets/UI/Font/Corelog_v1.000/TTF/Corelog-Regular.ttf" id="1_g3wb6"]
 [ext_resource type="Texture2D" uid="uid://p1ag6ygb2nex" path="res://Assets/UI/Assets Wenrexa UI Sci-Fi Minimalism #01/Main Game(Example)/Btn03.png" id="2_3ryld"]
 [ext_resource type="Texture2D" uid="uid://cncrqagj03vkf" path="res://Assets/UI/Assets Wenrexa UI Sci-Fi Minimalism #01/СommonElement/TopMenu.png" id="2_qeert"]
-[ext_resource type="Texture2D" uid="uid://dte4hpg3wjhr0" path="res://Assets/UI/Assets Wenrexa UI Sci-Fi Minimalism #01/СommonElement/TopMenu2.png" id="3_3ryld"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7ncrq"]
 texture = ExtResource("2_3ryld")
@@ -25,12 +24,12 @@ modulate_color = Color(0.88235295, 0.88235295, 0.88235295, 1)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hfj7b"]
 texture = ExtResource("2_qeert")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3ryld"]
-texture = ExtResource("3_3ryld")
-texture_margin_left = 16.0
-texture_margin_top = 16.0
-texture_margin_right = 16.0
-texture_margin_bottom = 16.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ryld"]
+bg_color = Color(0.11764706, 0.11764706, 0.2, 0.7137255)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [resource]
 Button/font_sizes/font_size = 24
@@ -47,7 +46,7 @@ MarginContainer/constants/margin_top = 8
 OptionButton/font_sizes/font_size = 24
 OptionButton/fonts/font = ExtResource("1_g3wb6")
 Panel/styles/panel = SubResource("StyleBoxTexture_hfj7b")
-PanelContainer/styles/panel = SubResource("StyleBoxTexture_3ryld")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_3ryld")
 RichTextLabel/font_sizes/normal_font_size = 24
 RichTextLabel/fonts/mono_font = ExtResource("1_g3wb6")
 RichTextLabel/fonts/normal_font = ExtResource("1_g3wb6")

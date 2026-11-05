@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://dob7i0cro00rq"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_k3uru"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_6ouoc"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_71acg"]
+
+[sub_resource type="Resource" id="Resource_8x2t6"]
+script = ExtResource("2_6ouoc")
+stats = Array[int]([19])
+amount = 0.08
+
+[resource]
+resource_name = "Phase-Lock Flux Ring Mk II"
+script = ExtResource("3_71acg")
+title = "Phase-Lock Flux Ring Mk II"
+description = "[color=#D7E7F5]A scratched motto on the casing reads: 'Nothing lost stays lost if someone can tow it home.'[/color]
+
+[color=#9AA9B8]A focusing ring extends the salvage field.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Magnet Reach[/color]"
+effects = Array[ExtResource("1_k3uru")]([SubResource("Resource_8x2t6")])

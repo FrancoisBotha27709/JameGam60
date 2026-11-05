@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://c50q5nynxii2n"]
+
+[node name="OpeningScene" type="Control" unique_id=445813029]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1655510640]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Logo1" type="Control" parent="PanelContainer" unique_id=284440952]
+layout_mode = 2
+
+[node name="Logo2" type="Control" parent="PanelContainer" unique_id=1235450031]
+layout_mode = 2

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://52fs2su0v4y4"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_r4g6p"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_8af7i"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_6gb2a"]
+
+[sub_resource type="Resource" id="Resource_r4g6p"]
+script = ExtResource("2_8af7i")
+stats = Array[int]([2])
+amount = 0.18
+
+[resource]
+resource_name = "Pulse Injector"
+script = ExtResource("3_6gb2a")
+title = "Pulse Injector"
+description = "[color=#D7E7F5]Recovered from a wreck whose black box ends mid-manoeuvre, it still answers every control input.[/color]
+
+[color=#9AA9B8]Short throttle bursts deliver more acceleration.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]+18%[/color] [color=#C8D5E0]Throttle Acceleration[/color]"
+effects = Array[ExtResource("1_r4g6p")]([SubResource("Resource_r4g6p")])

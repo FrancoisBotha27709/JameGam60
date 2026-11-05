@@ -8,28 +8,6 @@ class_name Main
 @export var planets_container : Node2D
 @export var debris_amount : int = 10
 @export var debris_scenes : Array[Debris]
-@export_group("Background")
-@export_dir var background_folder : String = "res://Assets/UI/SpaceBackground/*/background/"
-@export var background_tile_size : int = 1024
-@export_enum("Crimson", "Deep_Blue") var space_name : String = "Crimson"
-
-@export_subgroup("Mist")
-@export_dir var mist_folder : String = "res://Assets/UI/SpaceBackground/*/mist/"
-@export var mist_staggered : bool = true
-@export var mist_movement_amount : float = 15.0
-@export var mist_movement_duration : float = 4.0
-
-var _mist_tween : Tween
-var _mist_origin : Vector2
-@export_subgroup("Galaxy")
-@export_dir var galaxy_folder : String = "res://Assets/UI/SpaceBackground/*/galaxies/"
-@export var galaxy_staggered : bool = true
-@export_subgroup("Planet")
-@export_dir var planet_folder : String = "res://Assets/UI/SpaceBackground/*/planets/"
-@export var planet_staggered : bool = true
-@export_subgroup("Stars")
-@export_dir var stars_folder : String = "res://Assets/UI/SpaceBackground/*/stars/"
-@export var stars_staggered : bool = true
 
 @export_group("Lights")
 @export var light_container : Node2D
@@ -113,177 +91,12 @@ func _ready() -> void:
 	_rng.randomize()
 	var rng := _rng
 
-	_spawn_background(rng)
-	_spawn_mist(rng)
-	_spawn_galaxies(rng)
-	_spawn_planets(rng)
-	_spawn_stars(rng)
 	_spawn_lights(rng)
 	_spawn_asteroids(rng)
 	_spawn_debris(rng)
 	_spawn_particles(rng)
 
-	if mist_container != null:
-		_mist_origin = mist_container.position
-		_animate_mist(rng)
 	_play_start_banner()
-
-func _animate_mist(rng : RandomNumberGenerator) -> void:
-	var target := _mist_origin + Vector2(
-		rng.randf_range(-mist_movement_amount, mist_movement_amount),
-		rng.randf_range(-mist_movement_amount, mist_movement_amount))
-
-	_mist_tween = create_tween()
-	_mist_tween.tween_property(mist_container, "position", target, mist_movement_duration
-	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-
-	_mist_tween.tween_callback(_animate_mist.bind(rng))
-
-func _spawn_background(rng : RandomNumberGenerator) -> void:
-	var path : String = background_folder.replace("*", str(space_name).to_lower())
-	var textures := _load_tile_textures(path)
-	if textures.is_empty():
-		push_warning("Main: no background tiles found in '%s'" % background_folder)
-		return
-
-	var container : Node2D = background_sprite_container
-	if container == null:
-		container = Node2D.new()
-		container.name = "Background"
-		add_child(container)
-		move_child(container, 0)
-
-	_fill_world_with_tiles(container, textures, rng, false)
-
-func _spawn_mist(rng : RandomNumberGenerator) -> void:
-	if mist_folder.is_empty():
-		return # no mist folder chosen, skip quietly
-	var path : String = mist_folder.replace("*", str(space_name).to_lower())
-	var textures := _load_tile_textures(path)
-	if textures.is_empty():
-		push_warning("Main: no mist tiles found in '%s'" % mist_folder)
-		return
-
-	var container : Node2D = mist_container
-	if container == null:
-		container = Node2D.new()
-		container.name = "Mist"
-		add_child(container)
-
-	_fill_world_with_tiles(container, textures, rng, mist_staggered)
-
-func _spawn_galaxies(rng : RandomNumberGenerator) -> void:
-	if galaxy_folder.is_empty():
-		return # no mist folder chosen, skip quietly
-	var path : String = galaxy_folder.replace("*", str(space_name).to_lower())
-	var textures := _load_tile_textures(path)
-	if textures.is_empty():
-		push_warning("Main: no mist tiles found in '%s'" % galaxy_folder)
-		return
-
-	var container : Node2D = galaxy_container
-	if container == null:
-		container = Node2D.new()
-		container.name = "Galaxy"
-		add_child(container)
-
-	_fill_world_with_tiles(container, textures, rng, galaxy_staggered)
-
-func _spawn_planets(rng : RandomNumberGenerator) -> void:
-	if planet_folder.is_empty():
-		return # no mist folder chosen, skip quietly
-	var path : String = planet_folder.replace("*", str(space_name).to_lower())
-	var textures := _load_tile_textures(path)
-	if textures.is_empty():
-		push_warning("Main: no mist tiles found in '%s'" % planet_folder)
-		return
-
-	var container : Node2D = planets_container
-	if container == null:
-		container = Node2D.new()
-		container.name = "Planet"
-		add_child(container)
-
-	_fill_world_with_tiles(container, textures, rng, planet_staggered)
-
-func _spawn_stars(rng : RandomNumberGenerator) -> void:
-	if stars_folder.is_empty():
-		return # no mist folder chosen, skip quietly
-	var path : String = stars_folder.replace("*", str(space_name).to_lower())
-	var textures := _load_tile_textures(path)
-	if textures.is_empty():
-		push_warning("Main: no mist tiles found in '%s'" % stars_folder)
-		return
-
-	var container : Node2D = stars_container
-	if container == null:
-		container = Node2D.new()
-		container.name = "Stars"
-		add_child(container)
-
-	_fill_world_with_tiles(container, textures, rng, stars_staggered)
-
-func _fill_world_with_tiles(container : Node2D, textures : Array[Texture2D], rng : RandomNumberGenerator, stagger : bool) -> void:
-	var step := float(background_tile_size)
-	var cols := ceili(world_rect.size.x / step)
-	var rows := ceili(world_rect.size.y / step)
-	var origin := world_rect.get_center() - Vector2(cols, rows) * step * 0.5
-
-	if stagger:
-		cols += 1
-		rows += 1
-		origin -= Vector2(step, step) * 0.5
-
-	var grid := PackedInt32Array()
-	grid.resize(cols * rows)
-	grid.fill(-1)
-
-	for row in rows:
-		for col in cols:
-			var left := grid[row * cols + col - 1] if col > 0 else -1
-			var up := grid[(row - 1) * cols + col] if row > 0 else -1
-			var idx := _pick_tile(rng, textures.size(), left, up)
-			grid[row * cols + col] = idx
-
-			var tex := textures[idx]
-			var sprite := Sprite2D.new()
-			sprite.texture = tex
-			sprite.centered = false
-			sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-			sprite.scale = Vector2(step / tex.get_width(), step / tex.get_height())
-			sprite.position = origin + Vector2(col, row) * step
-			container.add_child(sprite)
-
-func _pick_tile(rng : RandomNumberGenerator, count : int, left : int, up : int) -> int:
-	if count == 1:
-		return 0
-	for attempt in 12:
-		var idx := rng.randi_range(0, count - 1)
-		if idx != left and idx != up:
-			return idx
-	return rng.randi_range(0, count - 1)
-
-func _load_tile_textures(folder : String) -> Array[Texture2D]:
-	var result : Array[Texture2D] = []
-	var dir := DirAccess.open(folder)
-	if dir == null:
-		push_error("Main: cannot open tile folder '%s'" % folder)
-		return result
-
-	var names : Array[String] = []
-	for file in dir.get_files():
-		var f := file.trim_suffix(".import")
-		if f.get_extension().to_lower() != "png":
-			continue
-		if not names.has(f):
-			names.append(f)
-	names.sort()
-
-	for f in names:
-		var tex := load(folder.path_join(f)) as Texture2D
-		if tex != null:
-			result.append(tex)
-	return result
 
 func _spawn_lights(rng : RandomNumberGenerator) -> void:
 	if light_count <= 0:
@@ -391,7 +204,6 @@ func respawn_debris() -> void:
 
 func _spawn_debris(rng : RandomNumberGenerator) -> void:
 	if debris_scenes.is_empty():
-		push_error("Main: No Debris resources assigned")
 		DataCollector.finish_spawn_job()
 		return
 

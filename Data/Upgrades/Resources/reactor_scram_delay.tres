@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://bswofnxt1kpxh"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_4c5tr"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_okaax"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_g7ye4"]
+
+[sub_resource type="Resource" id="Resource_4c5tr"]
+script = ExtResource("2_okaax")
+stats = Array[int]([18])
+amount = 0.18
+
+[resource]
+resource_name = "Reactor Scram Delay"
+script = ExtResource("3_g7ye4")
+title = "Reactor Scram Delay"
+description = "[color=#D7E7F5]The casing carries an obsolete emergency code from a station abandoned after its reactor went dark.[/color]
+
+[color=#9AA9B8]Safety interlocks buy time before thermal shutdown.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]+18%[/color] [color=#C8D5E0]Meltdown Delay[/color]"
+max_stacks = 2
+effects = Array[ExtResource("1_4c5tr")]([SubResource("Resource_4c5tr")])

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://4rs33esnbns8"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_75jy4"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_cm7p1"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_ttv8k"]
+
+[sub_resource type="Resource" id="Resource_75jy4"]
+script = ExtResource("2_cm7p1")
+stats = Array[int]([11])
+amount = -0.07
+
+[resource]
+resource_name = "Heavy-Duty Fuel Regulator"
+script = ExtResource("3_ttv8k")
+title = "Heavy-Duty Fuel Regulator"
+description = "[color=#D7E7F5]The casing carries an obsolete emergency code from a station abandoned after its reactor went dark.[/color]
+
+[color=#9AA9B8]A pressure regulator reduces fuel waste.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#FF7777]-7%[/color] [color=#C8D5E0]Fuel Consumption[/color]"
+effects = Array[ExtResource("1_75jy4")]([SubResource("Resource_75jy4")])

@@ -31,7 +31,9 @@ func _init(owning_player : Player) -> void:
 	player.debris_delivered.connect(func(_count : int) -> void: punch(player.delivery_punch_strength))
 	player.exploded.connect(_on_exploded)
 	player.fuel_empty_tapped.connect(_on_fuel_empty_tapped)
-	player.fx.cough.connect(_on_cough)
+	for effect: ShipFX in player.fx:
+		if is_instance_valid(effect) and effect.has_signal("cough"):
+			effect.cough.connect(_on_cough)
 
 # Eases one of this object's float properties from a start value down to zero on a fresh tween.
 func _animate(previous_tween : Tween, property : StringName, start_value : float, duration : float, transition : Tween.TransitionType) -> Tween:
@@ -62,7 +64,7 @@ func _on_thrust_tapped(boosting : bool) -> void:
 	player.shake_requested.emit(player.boost_shake_strength if boosting else player.tap_shake_strength)
 
 func _on_crashed(impact_speed : float) -> void:
-	var impact_ratio := clampf(impact_speed / player.max_speed, 0.0, 1.0)
+	var impact_ratio := clampf(impact_speed / player.stat_f(&"max_speed"), 0.0, 1.0)
 	punch(player.crash_punch_strength * impact_ratio)
 	player.shake_requested.emit(player.crash_shake_strength * impact_ratio)
 	if impact_ratio >= player.hit_stop_min_impact:
@@ -86,7 +88,7 @@ func _resolve_tint(delta : float) -> Dictionary:
 		return {color = player.meltdown_color, amount = HALF - HALF * cos(meltdown_phase)}
 	if empty_progress > 0.0:
 		return {color = player.empty_color, amount = absf(sin(empty_progress * TAU))}
-	return {color = player.heat_color, amount = player.heat / player.heat_max * player.heat_tint_max}
+	return {color = player.heat_color, amount = player.heat / player.stat_f(&"heat_max") * player.heat_tint_max}
 
 # Layers tint, idle bob, shake, banking, and stretch onto the sprite every frame.
 func update(delta : float) -> void:

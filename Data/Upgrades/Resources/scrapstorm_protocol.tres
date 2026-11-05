@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://cqny6fiacl4wq"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_qt3tg"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_ow3st"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_mpsv3"]
+
+[sub_resource type="Resource" id="Resource_qt3tg"]
+script = ExtResource("2_ow3st")
+stats = Array[int]([0, 7])
+amount = 0.18
+
+[sub_resource type="Resource" id="Resource_ow3st"]
+script = ExtResource("2_ow3st")
+stats = Array[int]([14])
+amount = -0.12
+
+[resource]
+resource_name = "Scrapstorm Protocol"
+script = ExtResource("3_mpsv3")
+title = "Scrapstorm Protocol"
+description = "[color=#D7E7F5]Its diagnostic memory contains one repeated message: 'The field is moving. The field is always moving.'[/color]
+
+[color=#9AA9B8]An aggressive control profile boosts speed but makes handling less forgiving.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]+18%[/color] [color=#C8D5E0]Maximum Speed[/color]
+[color=#7CFF9B]+18%[/color] [color=#C8D5E0]Thrust Acceleration[/color]
+[color=#FF7777]-12%[/color] [color=#C8D5E0]Handling Grip[/color]"
+max_stacks = 2
+effects = Array[ExtResource("1_qt3tg")]([SubResource("Resource_qt3tg"), SubResource("Resource_ow3st")])

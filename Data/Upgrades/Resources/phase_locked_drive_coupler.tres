@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://cmmrh566trg6f"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_eu46t"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_sp4jv"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_68ppu"]
+
+[sub_resource type="Resource" id="Resource_eu46t"]
+script = ExtResource("2_sp4jv")
+stats = Array[int]([7])
+amount = 0.08
+
+[resource]
+resource_name = "Phase-Locked Drive Coupler"
+script = ExtResource("3_68ppu")
+title = "Phase-Locked Drive Coupler"
+description = "[color=#D7E7F5]A salvage pilot swore this component saved their crew when a dead freighter spun across their route.[/color]
+
+[color=#9AA9B8]A more efficient coupler transfers power to the main drive.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Thrust Acceleration[/color]"
+effects = Array[ExtResource("1_eu46t")]([SubResource("Resource_eu46t")])

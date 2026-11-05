@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://cha4univnpdye"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_b66dc"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_mxhgs"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_q6m6a"]
+
+[sub_resource type="Resource" id="Resource_b66dc"]
+script = ExtResource("2_mxhgs")
+stats = Array[int]([6])
+amount = 0.08
+
+[resource]
+resource_name = "Precision Docking"
+script = ExtResource("3_q6m6a")
+title = "Precision Docking"
+description = "[color=#D7E7F5]Its calibration notes were written by a collector who mapped debris fields by hand and never missed a shift.[/color]
+
+[color=#9AA9B8]Cleaner depot approaches improve delivery scoring.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Score Multiplier[/color]"
+effects = Array[ExtResource("1_b66dc")]([SubResource("Resource_b66dc")])

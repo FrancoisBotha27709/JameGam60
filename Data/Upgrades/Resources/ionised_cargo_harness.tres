@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://b3rt74tdmplkp"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_orq2r"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_0wmkd"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_dr1ob"]
+
+[sub_resource type="Resource" id="Resource_orq2r"]
+script = ExtResource("2_0wmkd")
+stats = Array[int]([4])
+amount = -0.07
+
+[resource]
+resource_name = "Ionised Cargo Harness"
+script = ExtResource("3_dr1ob")
+title = "Ionised Cargo Harness"
+description = "[color=#D7E7F5]Its calibration notes were written by a collector who mapped debris fields by hand and never missed a shift.[/color]
+
+[color=#9AA9B8]Cargo is held closer to the centre of mass.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#FF7777]-7%[/color] [color=#C8D5E0]Cargo Drag[/color]"
+effects = Array[ExtResource("1_orq2r")]([SubResource("Resource_orq2r")])

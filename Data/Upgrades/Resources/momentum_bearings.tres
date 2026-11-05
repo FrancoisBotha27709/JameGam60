@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://cslnrg1h2spa3"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_q3m5e"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_ylqmo"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_57gei"]
+
+[sub_resource type="Resource" id="Resource_q3m5e"]
+script = ExtResource("2_ylqmo")
+stats = Array[int]([13])
+amount = -0.12
+
+[resource]
+resource_name = "Momentum Bearings"
+script = ExtResource("3_57gei")
+title = "Momentum Bearings"
+description = "[color=#D7E7F5]Its casing is pitted by micrometeorites; the serial number belongs to a patrol ship lost beyond the relay line.[/color]
+
+[color=#9AA9B8]Low-friction joints preserve drift between thrusts.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#FF7777]-12%[/color] [color=#C8D5E0]Coast Drag[/color]"
+effects = Array[ExtResource("1_q3m5e")]([SubResource("Resource_q3m5e")])

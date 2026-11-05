@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://ckcek6xgfyf7u"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_1fjup"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_7xp2o"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_04r3e"]
+
+[sub_resource type="Resource" id="Resource_1fjup"]
+script = ExtResource("2_7xp2o")
+stats = Array[int]([17])
+amount = 0.08
+
+[resource]
+resource_name = "Heavy-Duty Radiator Shroud"
+script = ExtResource("3_04r3e")
+title = "Heavy-Duty Radiator Shroud"
+description = "[color=#D7E7F5]A former depot mechanic claimed this design came from a prototype tug that never officially existed.[/color]
+
+[color=#9AA9B8]A revised shroud improves thermal rejection.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Cooling Rate[/color]"
+effects = Array[ExtResource("1_1fjup")]([SubResource("Resource_1fjup")])

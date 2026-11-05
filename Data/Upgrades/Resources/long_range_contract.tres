@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://dhfcj21sfohar"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_k5vsc"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_u6qg8"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_4i6f2"]
+
+[sub_resource type="Resource" id="Resource_k5vsc"]
+script = ExtResource("2_u6qg8")
+stats = Array[int]([5])
+amount = 0.15
+
+[resource]
+resource_name = "Long-Range Contract"
+script = ExtResource("3_4i6f2")
+title = "Long-Range Contract"
+description = "[color=#D7E7F5]No department claims responsibility for this prototype; its approval stamp was issued by a station that no longer exists.[/color]
+
+[color=#9AA9B8]The depot extends the deadline for this salvage shift.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]+15%[/color] [color=#C8D5E0]Run Time[/color]"
+max_stacks = 2
+effects = Array[ExtResource("1_k5vsc")]([SubResource("Resource_k5vsc")])

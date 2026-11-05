@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://kwhimgqbmf4r"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_bav0j"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_o2bau"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_6vcwf"]
+
+[sub_resource type="Resource" id="Resource_bav0j"]
+script = ExtResource("2_o2bau")
+stats = Array[int]([3])
+amount = 0.18
+
+[resource]
+resource_name = "Aux Fuel Cell"
+script = ExtResource("3_6vcwf")
+title = "Aux Fuel Cell"
+description = "[color=#D7E7F5]The old fleet used hardware like this to stretch a single tank across routes no modern pilot would attempt.[/color]
+
+[color=#9AA9B8]A compact reserve tank extends operating time.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]+18%[/color] [color=#C8D5E0]Fuel Capacity[/color]"
+max_stacks = 2
+effects = Array[ExtResource("1_bav0j")]([SubResource("Resource_bav0j")])

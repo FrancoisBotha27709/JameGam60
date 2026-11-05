@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://cb20toebtj7ta"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_2crkg"]
+[ext_resource type="Script" uid="uid://c3kb1ruhogfjt" path="res://Data/Upgrades/Effects/random_stat_effect.gd" id="2_no036"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_7037a"]
+
+[sub_resource type="Resource" id="Resource_2crkg"]
+script = ExtResource("2_no036")
+pool = Array[int]([0, 1, 7, 8, 14, 13])
+min_amount = -0.12
+max_amount = 0.18
+
+[resource]
+resource_name = "Junkyard Lottery"
+script = ExtResource("3_7037a")
+title = "Junkyard Lottery"
+description = "[color=#D7E7F5]Its diagnostic memory contains one repeated message: 'The field is moving. The field is always moving.'[/color]
+
+[color=#9AA9B8]A salvaged control board alters several systems unpredictably.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#E8C7FF]3 random[/color] [color=#C8D5E0]stats tuned[/color]
+[color=#9AA9B8]Range: -12% to +18% · Maximum Speed, Rotation Speed, Thrust Acceleration, Tap Impulse, Handling Grip, Coast Drag[/color]"
+max_stacks = 1
+effects = Array[ExtResource("1_2crkg")]([SubResource("Resource_2crkg")])

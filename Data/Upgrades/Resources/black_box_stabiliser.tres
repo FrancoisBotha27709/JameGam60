@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://2vwrrkyqso6"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_53gfq"]
+[ext_resource type="Script" uid="uid://c3kb1ruhogfjt" path="res://Data/Upgrades/Effects/random_stat_effect.gd" id="2_jrbvf"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_7qjse"]
+
+[sub_resource type="Resource" id="Resource_53gfq"]
+script = ExtResource("2_jrbvf")
+pool = Array[int]([0, 1, 2, 7, 8, 14, 13])
+min_amount = 0.05
+max_amount = 0.12
+
+[resource]
+resource_name = "Black-Box Stabiliser"
+script = ExtResource("3_7qjse")
+title = "Black-Box Stabiliser"
+description = "[color=#D7E7F5]The black-box note attached to it reads: 'Test once, log everything, and do not let it near the main reactor.'[/color]
+
+[color=#9AA9B8]Randomly tunes three flight systems within safe limits.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#E8C7FF]3 random[/color] [color=#C8D5E0]stats tuned[/color]
+[color=#9AA9B8]Range: +5% to +12% · Maximum Speed, Rotation Speed, Throttle Acceleration, Thrust Acceleration, Tap Impulse, Handling Grip, Coast Drag[/color]"
+max_stacks = 1
+effects = Array[ExtResource("1_53gfq")]([SubResource("Resource_53gfq")])

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://bdi71wv5nedm8"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_bdw6u"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_k4ct0"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_6ojeh"]
+
+[sub_resource type="Resource" id="Resource_bdw6u"]
+script = ExtResource("2_k4ct0")
+stats = Array[int]([5])
+amount = 0.06
+
+[resource]
+resource_name = "Ablative Ledger"
+script = ExtResource("3_6ojeh")
+title = "Ablative Ledger"
+description = "[color=#D7E7F5]Its faded maintenance tag bears the initials of an engineer who kept the outer depots running through the long blackout.[/color]
+
+[color=#9AA9B8]A scheduling routine adds a little more time.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]+6%[/color] [color=#C8D5E0]Run Time[/color]"
+effects = Array[ExtResource("1_bdw6u")]([SubResource("Resource_bdw6u")])

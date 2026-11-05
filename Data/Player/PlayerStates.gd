@@ -21,14 +21,17 @@ class Coast extends PlayerState:
 		is_braking = braking
 
 	func update(delta : float) -> void:
-		player.throttle = move_toward(player.throttle, 0.0, player.throttle_decel * delta)
+		player.throttle = move_toward(player.throttle, 0.0, player.stat_f(&"throttle_decel") * delta)
 		player.flight.apply_engine(delta, false)
+
 		if is_braking:
-			player.flight.apply_drag(player.brake_drag, delta)
+			player.flight.apply_drag(player.stat_f(&"brake_drag"), delta)
 		elif player.throttle <= 0.0:
-			player.flight.apply_drag(player.coast_drag, delta)
+			player.flight.apply_drag(player.stat_f(&"coast_drag"), delta)
 			player.flight.apply_ambient_drift(delta)
+
 		player.flight.apply_overspeed_drag(false, delta)
+
 
 # Thrusting or boosting: a tap impulse on entry, then throttle spools up after the hold delay.
 class Thrust extends PlayerState:
@@ -40,21 +43,33 @@ class Thrust extends PlayerState:
 
 	func enter(previous_state_name : StringName) -> void:
 		var was_thrusting := previous_state_name in Player.THRUST_STATES
+
 		if not was_thrusting:
 			player.thrust_hold_time = 0.0
+
 		if is_boosting or not was_thrusting:
 			player.flight.apply_tap(is_boosting)
+
 		if is_boosting:
 			player.boost_started.emit()
 
 	func update(delta : float) -> void:
 		player.thrust_hold_time += delta
-		if player.thrust_hold_time >= player.hold_delay:
-			player.throttle = move_toward(player.throttle, PlayerFlight.THROTTLE_MAX, player.throttle_accel * delta)
+
+		if player.thrust_hold_time >= player.stat_f(&"hold_delay"):
+			player.throttle = move_toward(
+				player.throttle,
+				PlayerFlight.THROTTLE_MAX,
+				player.stat_f(&"throttle_accel") * delta
+			)
+
 		player.flight.apply_engine(delta, is_boosting)
+
 		if player.throttle <= 0.0:
-			player.flight.apply_drag(player.coast_drag, delta)
+			player.flight.apply_drag(player.stat_f(&"coast_drag"), delta)
+
 		player.flight.apply_overspeed_drag(is_boosting, delta)
+
 
 # Out of fuel: the engine sputters, drag is heavy, and tapping thrust only flashes a warning.
 class Empty extends PlayerState:
@@ -62,13 +77,20 @@ class Empty extends PlayerState:
 		player.throttle = 0.0
 		player.thrust_hold_time = 0.0
 		SignalBus.fuel_depleted.emit()
-		player.fx.start_sputter()
+		for effect: ShipFX in player.fx:
+			if is_instance_valid(effect):
+				effect.start_sputter()
 		player.fuel_empty_tapped.emit()
 
 	func update(delta : float) -> void:
-		player.flight.apply_drag(player.coast_drag * PlayerStates.EMPTY_DRAG_MULTIPLIER, delta)
+		player.flight.apply_drag(
+			player.stat_f(&"coast_drag") * PlayerStates.EMPTY_DRAG_MULTIPLIER,
+			delta
+		)
+
 		if player.player_input.thrust_tapped():
 			player.fuel_empty_tapped.emit()
+
 
 # After a crash: controls lock, the ship tumbles and drifts until the lock time runs out.
 class Tumble extends PlayerState:
@@ -80,14 +102,20 @@ class Tumble extends PlayerState:
 
 	func update(delta : float) -> void:
 		seconds_left -= delta
-		player.throttle = move_toward(player.throttle, 0.0, player.throttle_decel * delta)
-		player.flight.apply_drag(player.coast_drag, delta)
+		player.throttle = move_toward(
+			player.throttle,
+			0.0,
+			player.stat_f(&"throttle_decel") * delta
+		)
+		player.flight.apply_drag(player.stat_f(&"coast_drag"), delta)
 		player.flight.apply_ambient_drift(delta)
 
 	func physics_update(delta : float) -> void:
 		update(delta)
+
 		if seconds_left <= 0.0:
 			transition_requested.emit(player.desired_state_name())
+
 
 # Destroyed: sheds cargo, shoves nearby debris, plays the explosion, then ends the run.
 class Exploded extends PlayerState:
@@ -96,12 +124,20 @@ class Exploded extends PlayerState:
 		player.release_debris()
 		_shove_nearby_debris()
 		player.velocity = Vector2.ZERO
+
 		if player.fx_explosion == null:
 			DataCollector.destroy_run()
 			return
+
 		_play_explosion()
-		var burst_seconds := player.fx_explosion.lifetime / maxf(player.fx_explosion.speed_scale, PlayerStates.MINIMUM_SPEED_SCALE)
-		await player.get_tree().create_timer(burst_seconds).timeout   # a timer, so destroy_run() always fires
+
+		var burst_seconds := player.fx_explosion.lifetime / maxf(
+			player.fx_explosion.speed_scale,
+			PlayerStates.MINIMUM_SPEED_SCALE
+		)
+
+		await player.get_tree().create_timer(burst_seconds).timeout
+
 		if player.is_exploded():
 			DataCollector.destroy_run()
 
@@ -111,14 +147,25 @@ class Exploded extends PlayerState:
 	func _shove_nearby_debris() -> void:
 		for node in player.get_tree().get_nodes_in_group(PlayerStates.DEBRIS_GROUP):
 			if node is DebrisObject:
-				node.apply_blast(player.global_position, player.blast_radius, player.blast_force)
+				node.apply_blast(
+					player.global_position,
+					player.blast_radius,
+					player.blast_force
+				)
 
 	func _play_explosion() -> void:
 		player.rig.set_lights_visible(false)
-		LightManager.flash(player.global_position, PlayerStates.EXPLOSION_FLASH_COLOR, PlayerStates.EXPLOSION_FLASH_RADIUS,
-				PlayerStates.EXPLOSION_FLASH_DURATION, PlayerStates.EXPLOSION_FLASH_INTENSITY)
+
+		LightManager.flash(
+			player.global_position,
+			PlayerStates.EXPLOSION_FLASH_COLOR,
+			PlayerStates.EXPLOSION_FLASH_RADIUS,
+			PlayerStates.EXPLOSION_FLASH_DURATION,
+			PlayerStates.EXPLOSION_FLASH_INTENSITY
+		)
+
 		var burst := player.fx_explosion
-		burst.preprocess = 0.0   # otherwise the burst is simulated before the first frame
+		burst.preprocess = 0.0
 		burst.one_shot = true
 		burst.explosiveness = 1.0
 		burst.visibility_rect = PlayerStates.EXPLOSION_CULL_RECT
@@ -126,9 +173,12 @@ class Exploded extends PlayerState:
 		burst.emitting = false
 		burst.restart()
 		burst.emitting = true
+
 		if player.node_sprite:
 			player.node_sprite.hide()
+
 		for light_name in PlayerStates.LIGHT_NODE_NAMES:
 			var light := player.get_node_or_null(NodePath(light_name))
+
 			if light:
 				light.queue_free()

@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="ShipDesign" format=3 uid="uid://bs1151k3tekw1"]
+
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="1_mb0lf"]
+[ext_resource type="Script" uid="uid://ca62057uoi4ir" path="res://Assets/UI/Ship/Designs/ShipDesign.gd" id="2_8rs5a"]
+[ext_resource type="Texture2D" uid="uid://chymfd4bvauai" path="res://Assets/UI/Ship/Designs/ship_705108_05/ship_705108_05.png" id="2_dkb7d"]
+[ext_resource type="Resource" uid="uid://crno1iq0bdr3d" path="res://Data/Upgrades/Resources/calibrated_flux_ring.tres" id="2_uvyp4"]
+[ext_resource type="Resource" uid="uid://bnabprck2iaok" path="res://Data/Upgrades/Resources/calibrated_boost_injector.tres" id="3_gqpph"]
+[ext_resource type="Texture2D" uid="uid://dmpkbdj0wg8ca" path="res://Assets/UI/Ship/Designs/ship_705108_05/ship_705108_05_large.png" id="3_vv2if"]
+[ext_resource type="Texture2D" uid="uid://b8xoexqp505e6" path="res://Assets/UI/Ship/Designs/ship_705108_05/ship_705108_05_n_large.png" id="4_ahv7p"]
+[ext_resource type="Resource" uid="uid://7tu7exylxmyg" path="res://Data/Upgrades/Resources/cargo_trim_servo.tres" id="4_f7ukq"]
+[ext_resource type="Texture2D" uid="uid://b8xqjfnpao05k" path="res://Assets/UI/Ship/Designs/ship_705108_05/ship_705108_05_n.png" id="5_61umj"]
+[ext_resource type="PackedScene" uid="uid://chcul5oawyipr" path="res://Data/Particles/shader/Ship FX/ship_fx.tscn" id="8_uvyp4"]
+
+[resource]
+script = ExtResource("2_8rs5a")
+ship_name = "Potato Beetle"
+description = "HE BIG BOI"
+diffuse_texture = ExtResource("2_dkb7d")
+normal_texture = ExtResource("5_61umj")
+en_diffuse_texture = ExtResource("3_vv2if")
+en_normal_texture = ExtResource("4_ahv7p")
+thrust_marker_position = Vector2(-50, -7)
+wing_marker_position = Vector2(-30, 8)
+tip_marker_position = Vector2(47, 4)
+exhaust_marker_position = Vector2(27, -43)
+fx_scenes = Array[PackedScene]([ExtResource("8_uvyp4"), ExtResource("8_uvyp4"), ExtResource("8_uvyp4"), ExtResource("8_uvyp4")])
+fx_marker_positions = Array[Vector2]([Vector2(-49, -12), Vector2(1, 41), Vector2(1, -42), Vector2(-48, 11)])
+abilities = Array[ExtResource("1_mb0lf")]([ExtResource("2_uvyp4"), ExtResource("3_gqpph"), ExtResource("4_f7ukq")])
+max_speed = 420.0
+collision_shape_scale = 1.05
+rotation_speed = 2.65
+angular_acceleration = 8.5
+thrust_accel = 325.0
+throttle_accel = 68.0
+throttle_decel = 260.0
+hold_delay = 0.16
+grip = 2.3
+coast_drag = 19.0
+brake_drag = 225.0
+overspeed_drag = 330.0
+boost_speed_mult = 1.55
+boost_fuel_mult = 1.85
+fuel_max = 125.0
+fuel_depletion_rate = 5.0
+tap_fuel_cost = 0.45
+weight_fuel_factor = 0.065
+heat_max = 110.0
+tap_heat = 12.0
+hold_heat_rate = 5.5
+cool_rate = 14.0
+meltdown_time = 5.5
+weight_drag = 0.055
+min_speed_factor = 0.32
+metadata/_custom_type_script = "uid://ca62057uoi4ir"

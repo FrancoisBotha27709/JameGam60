@@ -1,0 +1,3651 @@
+{
+  "schema_version": 1,
+  "description": "Data-driven upgrade catalogue for a space-debris collection game. Each upgrade description is BBCode for a RichTextLabel: short in-world lore, a technical summary, then a SYSTEMS PROFILE. StatEffect MULTIPLY amounts are fractional modifiers: 0.10 means +10%, -0.10 means -10%.",
+  "effect_types": [
+    "StatEffect",
+    "TickEffect",
+    "RandomStatEffect",
+    "RandomKickEffect",
+    "FlagEffect"
+  ],
+  "upgrades": [
+    {
+      "id": "gyro_bearings",
+      "title": "Gyro Bearings Mk II",
+      "description": "[color=#D7E7F5]The flight log says this unit was recovered from a courier that threaded the Kestrel Belt during the evacuation.[/color]\n\n[color=#9AA9B8]A precision-balanced reaction wheel reduces steering lag.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+12%[/color] [color=#C8D5E0]Rotation Speed[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "ROTATION_SPEED"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "vector_rudder",
+      "title": "Vector Rudder Mk II",
+      "description": "[color=#D7E7F5]Stamped with a defunct shipyard seal, this hardware outlived the fleet that first tested it in the debris lanes.[/color]\n\n[color=#9AA9B8]Recalibrated attitude thrusters turn the collector faster.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+18%[/color] [color=#C8D5E0]Rotation Speed[/color]",
+      "category": "movement",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "ROTATION_SPEED"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.18
+        }
+      ]
+    },
+    {
+      "id": "counterspin_flywheel",
+      "title": "Counterspin Flywheel",
+      "description": "[color=#D7E7F5]A salvage pilot swore this component saved their crew when a dead freighter spun across their route.[/color]\n\n[color=#9AA9B8]A heavier flywheel steadies the ship's rotation.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-8%[/color] [color=#C8D5E0]Rotation Speed[/color]",
+      "category": "movement",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "ROTATION_SPEED"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.08
+        }
+      ]
+    },
+    {
+      "id": "cold_gas_rcs",
+      "title": "Cold-Gas RCS",
+      "description": "[color=#D7E7F5]Its casing is pitted by micrometeorites; the serial number belongs to a patrol ship lost beyond the relay line.[/color]\n\n[color=#9AA9B8]Auxiliary jets provide sharper directional corrections.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+10%[/color] [color=#C8D5E0]Rotation Speed[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "ROTATION_SPEED"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "inertial_gyroscope",
+      "title": "Inertial Gyroscope",
+      "description": "[color=#D7E7F5]Old depot crews used to trade parts like this for extra oxygen rations. Nobody remembers who built the first one.[/color]\n\n[color=#9AA9B8]The flight computer predicts rotation before it happens.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+14%[/color] [color=#C8D5E0]Rotation Speed[/color]",
+      "category": "movement",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "ROTATION_SPEED"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.14
+        }
+      ]
+    },
+    {
+      "id": "thruster_gimbals",
+      "title": "Thruster Gimbals",
+      "description": "[color=#D7E7F5]This component carries a handwritten warning: 'Never trust a clean vector in a dirty field.'[/color]\n\n[color=#9AA9B8]Engine bells pivot farther, improving manoeuvrability.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+15%[/color] [color=#C8D5E0]Thrust Acceleration[/color]",
+      "category": "movement",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "THRUST_ACCEL"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "pulse_injector",
+      "title": "Pulse Injector",
+      "description": "[color=#D7E7F5]Recovered from a wreck whose black box ends mid-manoeuvre, it still answers every control input.[/color]\n\n[color=#9AA9B8]Short throttle bursts deliver more acceleration.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+18%[/color] [color=#C8D5E0]Throttle Acceleration[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "THROTTLE_ACCEL"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.18
+        }
+      ]
+    },
+    {
+      "id": "impulse_capacitor",
+      "title": "Impulse Capacitor Mk II",
+      "description": "[color=#D7E7F5]The flight log says this unit was recovered from a courier that threaded the Kestrel Belt during the evacuation.[/color]\n\n[color=#9AA9B8]A charged capacitor makes tap-thrusts more forceful.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+20%[/color] [color=#C8D5E0]Tap Impulse[/color]",
+      "category": "movement",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "TAP_IMPULSE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "vector_kickstart",
+      "title": "Vector Kickstart",
+      "description": "[color=#D7E7F5]Stamped with a defunct shipyard seal, this hardware outlived the fleet that first tested it in the debris lanes.[/color]\n\n[color=#9AA9B8]The main drive reaches useful thrust more quickly.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+20%[/color] [color=#C8D5E0]Thrust Acceleration[/color]",
+      "category": "movement",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "THRUST_ACCEL"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "vacuum_slick_hull",
+      "title": "Vacuum-Slick Hull",
+      "description": "[color=#D7E7F5]A salvage pilot swore this component saved their crew when a dead freighter spun across their route.[/color]\n\n[color=#9AA9B8]A low-profile hull sheds drag while coasting.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-18%[/color] [color=#C8D5E0]Coast Drag[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "COAST_DRAG"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.18
+        }
+      ]
+    },
+    {
+      "id": "momentum_bearings",
+      "title": "Momentum Bearings",
+      "description": "[color=#D7E7F5]Its casing is pitted by micrometeorites; the serial number belongs to a patrol ship lost beyond the relay line.[/color]\n\n[color=#9AA9B8]Low-friction joints preserve drift between thrusts.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-12%[/color] [color=#C8D5E0]Coast Drag[/color]",
+      "category": "movement",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "COAST_DRAG"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.12
+        }
+      ]
+    },
+    {
+      "id": "mag_brake_fins",
+      "title": "Mag-Brake Fins",
+      "description": "[color=#D7E7F5]Old depot crews used to trade parts like this for extra oxygen rations. Nobody remembers who built the first one.[/color]\n\n[color=#9AA9B8]Deployable fins improve control when braking.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+18%[/color] [color=#C8D5E0]Handling Grip[/color]",
+      "category": "movement",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "GRIP"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.18
+        }
+      ]
+    },
+    {
+      "id": "attitude_dampers",
+      "title": "Attitude Dampers",
+      "description": "[color=#D7E7F5]This component carries a handwritten warning: 'Never trust a clean vector in a dirty field.'[/color]\n\n[color=#9AA9B8]Active damping makes the craft easier to line up.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+20%[/color] [color=#C8D5E0]Handling Grip[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "GRIP"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "overspeed_governor",
+      "title": "Overspeed Governor",
+      "description": "[color=#D7E7F5]Recovered from a wreck whose black box ends mid-manoeuvre, it still answers every control input.[/color]\n\n[color=#9AA9B8]A smarter governor keeps high-speed flight manageable.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+10%[/color] [color=#C8D5E0]Maximum Speed[/color]",
+      "category": "movement",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "MAX_SPEED"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "long_burn_nozzle",
+      "title": "Long-Burn Nozzle",
+      "description": "[color=#D7E7F5]The flight log says this unit was recovered from a courier that threaded the Kestrel Belt during the evacuation.[/color]\n\n[color=#9AA9B8]A tuned exhaust increases sustainable top speed.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+15%[/color] [color=#C8D5E0]Maximum Speed[/color]",
+      "category": "movement",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "MAX_SPEED"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "slipstream_mapping",
+      "title": "Slipstream Mapping",
+      "description": "[color=#D7E7F5]Stamped with a defunct shipyard seal, this hardware outlived the fleet that first tested it in the debris lanes.[/color]\n\n[color=#9AA9B8]Navigation predicts debris fields and clean flight paths.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Maximum Speed[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "MAX_SPEED"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "cargo_trim_servo",
+      "title": "Cargo Trim Servo",
+      "description": "[color=#D7E7F5]A salvage pilot swore this component saved their crew when a dead freighter spun across their route.[/color]\n\n[color=#9AA9B8]Auto-trim compensates for awkwardly attached scrap.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-15%[/color] [color=#C8D5E0]Cargo Drag[/color]",
+      "category": "movement",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "WEIGHT_DRAG"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.15
+        }
+      ]
+    },
+    {
+      "id": "load_bearing_struts",
+      "title": "Load-Bearing Struts",
+      "description": "[color=#D7E7F5]Its casing is pitted by micrometeorites; the serial number belongs to a patrol ship lost beyond the relay line.[/color]\n\n[color=#9AA9B8]Reinforced mounts make attached debris less disruptive.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-12%[/color] [color=#C8D5E0]Cargo Weight[/color]",
+      "category": "movement",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "DEBRIS_WEIGHT"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.12
+        }
+      ]
+    },
+    {
+      "id": "wide_angle_magnet",
+      "title": "Wide-Angle Magnet",
+      "description": "[color=#D7E7F5]Old depot crews used to trade parts like this for extra oxygen rations. Nobody remembers who built the first one.[/color]\n\n[color=#9AA9B8]The collection field reaches farther from the hull.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+18%[/color] [color=#C8D5E0]Magnet Reach[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "MAGNET_SIZE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.18
+        }
+      ]
+    },
+    {
+      "id": "flux_focusing_coil",
+      "title": "Flux Coil Mk II",
+      "description": "[color=#D7E7F5]This component carries a handwritten warning: 'Never trust a clean vector in a dirty field.'[/color]\n\n[color=#9AA9B8]A focused magnetic field catches nearby fragments.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+22%[/color] [color=#C8D5E0]Magnet Reach[/color]",
+      "category": "movement",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "MAGNET_SIZE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.22
+        }
+      ]
+    },
+    {
+      "id": "auxiliary_fuel_bladder",
+      "title": "Aux Fuel Cell",
+      "description": "[color=#D7E7F5]The old fleet used hardware like this to stretch a single tank across routes no modern pilot would attempt.[/color]\n\n[color=#9AA9B8]A compact reserve tank extends operating time.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+18%[/color] [color=#C8D5E0]Fuel Capacity[/color]",
+      "category": "systems",
+      "rarity": "rare",
+      "max_stacks": 2,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "FUEL_MAX"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.18
+        }
+      ]
+    },
+    {
+      "id": "cryogenic_fuel_lines",
+      "title": "Cryogenic Fuel Lines",
+      "description": "[color=#D7E7F5]Its faded maintenance tag bears the initials of an engineer who kept the outer depots running through the long blackout.[/color]\n\n[color=#9AA9B8]Cooler fuel lines reduce wasted propellant.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-12%[/color] [color=#C8D5E0]Fuel Consumption[/color]",
+      "category": "systems",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "FUEL_BURN"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.12
+        }
+      ]
+    },
+    {
+      "id": "pulse_economy_firmware",
+      "title": "Pulse Economy Firmware",
+      "description": "[color=#D7E7F5]This unit was designed during the fuel ration years, when every wasted burn meant one less return trip.[/color]\n\n[color=#9AA9B8]Thrust pulses are tuned to use less fuel.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-15%[/color] [color=#C8D5E0]Fuel Consumption[/color]",
+      "category": "systems",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "FUEL_BURN"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.15
+        }
+      ]
+    },
+    {
+      "id": "boost_recovery_valve",
+      "title": "Boost Recovery Valve",
+      "description": "[color=#D7E7F5]The casing carries an obsolete emergency code from a station abandoned after its reactor went dark.[/color]\n\n[color=#9AA9B8]The boost circuit recovers more efficiently.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-15%[/color] [color=#C8D5E0]Boost Fuel Cost[/color]",
+      "category": "systems",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "BOOST_FUEL"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.15
+        }
+      ]
+    },
+    {
+      "id": "overdrive_nozzle",
+      "title": "Overdrive Nozzle",
+      "description": "[color=#D7E7F5]A former depot mechanic claimed this design came from a prototype tug that never officially existed.[/color]\n\n[color=#9AA9B8]Boost burns hotter but pushes the ship harder.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+18%[/color] [color=#C8D5E0]Boost Speed[/color]",
+      "category": "systems",
+      "rarity": "rare",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "BOOST_SPEED"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.18
+        }
+      ]
+    },
+    {
+      "id": "thermal_radiator",
+      "title": "Radiator Mk II",
+      "description": "[color=#D7E7F5]The part was found sealed inside a rescue pod, carefully labelled for whoever might need it next.[/color]\n\n[color=#9AA9B8]Fold-out radiators dump heat into the void.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+22%[/color] [color=#C8D5E0]Cooling Rate[/color]",
+      "category": "systems",
+      "rarity": "common",
+      "max_stacks": 2,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "COOL_RATE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.22
+        }
+      ]
+    },
+    {
+      "id": "ceramic_heat_shield",
+      "title": "Ceramic Heat Shield",
+      "description": "[color=#D7E7F5]Its service record lists three reactor replacements and one unexplained return from beyond the mapped lanes.[/color]\n\n[color=#9AA9B8]Thermal insulation increases heat capacity.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+18%[/color] [color=#C8D5E0]Heat Capacity[/color]",
+      "category": "systems",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "HEAT_MAX"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.18
+        }
+      ]
+    },
+    {
+      "id": "heat_sink_lattice",
+      "title": "Heat-Sink Lattice Mk II",
+      "description": "[color=#D7E7F5]The old fleet used hardware like this to stretch a single tank across routes no modern pilot would attempt.[/color]\n\n[color=#9AA9B8]A dense lattice absorbs repeated thrust spikes.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+12%[/color] [color=#C8D5E0]Heat Capacity[/color]",
+      "category": "systems",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "HEAT_MAX"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "low_resistance_igniter",
+      "title": "Low-Resistance Igniter",
+      "description": "[color=#D7E7F5]Its faded maintenance tag bears the initials of an engineer who kept the outer depots running through the long blackout.[/color]\n\n[color=#9AA9B8]Engine ignition generates less excess heat.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-14%[/color] [color=#C8D5E0]Heat Generation[/color]",
+      "category": "systems",
+      "rarity": "rare",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "HEAT_GAIN"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.14
+        }
+      ]
+    },
+    {
+      "id": "emergency_coolant_loop",
+      "title": "Emergency Coolant",
+      "description": "[color=#D7E7F5]This unit was designed during the fuel ration years, when every wasted burn meant one less return trip.[/color]\n\n[color=#9AA9B8]A dedicated coolant loop rapidly removes heat.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+16%[/color] [color=#C8D5E0]Cooling Rate[/color]",
+      "category": "systems",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "COOL_RATE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.16
+        }
+      ]
+    },
+    {
+      "id": "reactor_scram_delay",
+      "title": "Reactor Scram Delay",
+      "description": "[color=#D7E7F5]The casing carries an obsolete emergency code from a station abandoned after its reactor went dark.[/color]\n\n[color=#9AA9B8]Safety interlocks buy time before thermal shutdown.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+18%[/color] [color=#C8D5E0]Meltdown Delay[/color]",
+      "category": "systems",
+      "rarity": "common",
+      "max_stacks": 2,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "MELTDOWN_TIME"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.18
+        }
+      ]
+    },
+    {
+      "id": "fuel_weight_optimiser",
+      "title": "Fuel Optimiser",
+      "description": "[color=#D7E7F5]A former depot mechanic claimed this design came from a prototype tug that never officially existed.[/color]\n\n[color=#9AA9B8]The ship compensates better for fuel mass.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-15%[/color] [color=#C8D5E0]Cargo Fuel Penalty[/color]",
+      "category": "systems",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "WEIGHT_FUEL"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.15
+        }
+      ]
+    },
+    {
+      "id": "kinetic_reclaimer",
+      "title": "Kinetic Reclaimer",
+      "description": "[color=#D7E7F5]The part was found sealed inside a rescue pod, carefully labelled for whoever might need it next.[/color]\n\n[color=#9AA9B8]Coasting recovers a small amount of fuel over time.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+0.45/s[/color] [color=#C8D5E0]Fuel regeneration[/color]",
+      "category": "systems",
+      "rarity": "rare",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "TickEffect",
+          "fuel_per_sec": 0.45,
+          "heat_per_sec": 0.0,
+          "spin": 0.0
+        }
+      ]
+    },
+    {
+      "id": "radiator_spin_up",
+      "title": "Radiator Spin-Up",
+      "description": "[color=#D7E7F5]Its service record lists three reactor replacements and one unexplained return from beyond the mapped lanes.[/color]\n\n[color=#9AA9B8]The radiator keeps spinning, trading stability for cooling.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]-0.80/s[/color] [color=#C8D5E0]Heat removal[/color]\n[color=#E8C7FF]+0.050/s[/color] [color=#C8D5E0]Passive rotation[/color]",
+      "category": "systems",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "TickEffect",
+          "fuel_per_sec": 0.0,
+          "heat_per_sec": -0.8,
+          "spin": 0.05
+        }
+      ]
+    },
+    {
+      "id": "hotwire_boost",
+      "title": "Hotwire Boost",
+      "description": "[color=#D7E7F5]The old fleet used hardware like this to stretch a single tank across routes no modern pilot would attempt.[/color]\n\n[color=#9AA9B8]A risky bypass improves boost speed and heat tolerance.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+10%[/color] [color=#C8D5E0]Boost Speed[/color]\n[color=#7CFF9B]+10%[/color] [color=#C8D5E0]Heat Capacity[/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Heat Generation[/color]",
+      "category": "systems",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "BOOST_SPEED",
+            "HEAT_MAX"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.1
+        },
+        {
+          "type": "StatEffect",
+          "stats": [
+            "HEAT_GAIN"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "reserve_canisters",
+      "title": "Reserve Canisters",
+      "description": "[color=#D7E7F5]Its faded maintenance tag bears the initials of an engineer who kept the outer depots running through the long blackout.[/color]\n\n[color=#9AA9B8]Emergency canisters add a large fuel reserve.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+25%[/color] [color=#C8D5E0]Fuel Capacity[/color]",
+      "category": "systems",
+      "rarity": "common",
+      "max_stacks": 2,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "FUEL_MAX"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.25
+        }
+      ]
+    },
+    {
+      "id": "microcombustion_chamber",
+      "title": "Microcombustion Chamber",
+      "description": "[color=#D7E7F5]This unit was designed during the fuel ration years, when every wasted burn meant one less return trip.[/color]\n\n[color=#9AA9B8]More complete combustion improves thrust output.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+12%[/color] [color=#C8D5E0]Thrust Acceleration[/color]",
+      "category": "systems",
+      "rarity": "rare",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "THRUST_ACCEL"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "low_heat_ignition",
+      "title": "Low-Heat Ignition",
+      "description": "[color=#D7E7F5]The casing carries an obsolete emergency code from a station abandoned after its reactor went dark.[/color]\n\n[color=#9AA9B8]A softer ignition profile reduces heat generation.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-18%[/color] [color=#C8D5E0]Heat Generation[/color]",
+      "category": "systems",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "HEAT_GAIN"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.18
+        }
+      ]
+    },
+    {
+      "id": "thermal_buffer_gel",
+      "title": "Thermal Buffer Gel",
+      "description": "[color=#D7E7F5]A former depot mechanic claimed this design came from a prototype tug that never officially existed.[/color]\n\n[color=#9AA9B8]Heat spikes are spread across a larger thermal mass.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+15%[/color] [color=#C8D5E0]Heat Capacity[/color]",
+      "category": "systems",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "HEAT_MAX"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "fuel_line_insulation",
+      "title": "Fuel-Line Insulation",
+      "description": "[color=#D7E7F5]The part was found sealed inside a rescue pod, carefully labelled for whoever might need it next.[/color]\n\n[color=#9AA9B8]Less fuel is lost to inefficient delivery.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-10%[/color] [color=#C8D5E0]Fuel Consumption[/color]",
+      "category": "systems",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "FUEL_BURN"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.1
+        }
+      ]
+    },
+    {
+      "id": "scrap_appraiser",
+      "title": "Scrap Appraisal",
+      "description": "[color=#D7E7F5]It was built for the dangerous years when scrap storms could bury an entire depot in minutes.[/color]\n\n[color=#9AA9B8]Better valuation software extracts more worth from each delivery.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+18%[/color] [color=#C8D5E0]Scrap Value[/color]",
+      "category": "collection",
+      "rarity": "rare",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "DEBRIS_VALUE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.18
+        }
+      ]
+    },
+    {
+      "id": "magnetic_netting",
+      "title": "Magnetic Net Mk II",
+      "description": "[color=#D7E7F5]Its serial number matches an old survey report describing a field of metal that should not have been there.[/color]\n\n[color=#9AA9B8]A broader capture envelope makes collections more reliable.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+12%[/color] [color=#C8D5E0]Magnet Reach[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "MAGNET_SIZE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "cargo_compression",
+      "title": "Cargo Compression Mk II",
+      "description": "[color=#D7E7F5]A depot ledger records its first use during the Greyfall salvage rush, when fragments were worth more than fuel.[/color]\n\n[color=#9AA9B8]Scrap is secured in a tighter, lower-drag formation.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-10%[/color] [color=#C8D5E0]Cargo Weight[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "DEBRIS_WEIGHT"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.1
+        }
+      ]
+    },
+    {
+      "id": "alloy_recognition",
+      "title": "Alloy Recognition",
+      "description": "[color=#D7E7F5]The maker's mark belongs to a reclamation guild that vanished after the orbital yards were stripped bare.[/color]\n\n[color=#9AA9B8]Metal signatures are identified and sorted more accurately.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+12%[/color] [color=#C8D5E0]Score Multiplier[/color]",
+      "category": "collection",
+      "rarity": "rare",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "SCORE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "clean_delivery_bonus",
+      "title": "Clean Delivery Bonus",
+      "description": "[color=#D7E7F5]Its calibration notes were written by a collector who mapped debris fields by hand and never missed a shift.[/color]\n\n[color=#9AA9B8]A refined depot manifest improves overall score yield.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+15%[/color] [color=#C8D5E0]Scrap Value[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "DEBRIS_VALUE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "quota_forecasting",
+      "title": "Quota Forecasting",
+      "description": "[color=#D7E7F5]This device was recovered from a cargo barge that drifted home with no crew and a full manifest.[/color]\n\n[color=#9AA9B8]Route planning improves quota efficiency.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-8%[/color] [color=#C8D5E0]Quota Requirement[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "QUOTA"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.08
+        }
+      ]
+    },
+    {
+      "id": "salvage_ledger",
+      "title": "Salvage Ledger",
+      "description": "[color=#D7E7F5]A scratched motto on the casing reads: 'Nothing lost stays lost if someone can tow it home.'[/color]\n\n[color=#9AA9B8]Every delivered fragment is logged for a scoring bonus.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+10%[/color] [color=#C8D5E0]Score Multiplier[/color]",
+      "category": "collection",
+      "rarity": "rare",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "SCORE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "tethered_cargo",
+      "title": "Tethered Cargo",
+      "description": "[color=#D7E7F5]It was built for the dangerous years when scrap storms could bury an entire depot in minutes.[/color]\n\n[color=#9AA9B8]Magnetic tethers keep attached debris closer to the ship.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-12%[/color] [color=#C8D5E0]Cargo Drag[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "WEIGHT_DRAG"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.12
+        }
+      ]
+    },
+    {
+      "id": "reinforced_cargo_clamps",
+      "title": "Cargo Clamps Mk II",
+      "description": "[color=#D7E7F5]Its serial number matches an old survey report describing a field of metal that should not have been there.[/color]\n\n[color=#9AA9B8]Cargo stays secure during rapid manoeuvres.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-8%[/color] [color=#C8D5E0]Cargo Weight[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "DEBRIS_WEIGHT"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.08
+        }
+      ]
+    },
+    {
+      "id": "rare_metal_scanner",
+      "title": "Rare-Metal Radar",
+      "description": "[color=#D7E7F5]A depot ledger records its first use during the Greyfall salvage rush, when fragments were worth more than fuel.[/color]\n\n[color=#9AA9B8]The scanner prioritises valuable metallic debris.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+16%[/color] [color=#C8D5E0]Score Multiplier[/color]",
+      "category": "collection",
+      "rarity": "rare",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "SCORE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.16
+        }
+      ]
+    },
+    {
+      "id": "depot_negotiator",
+      "title": "Depot Negotiator",
+      "description": "[color=#D7E7F5]The maker's mark belongs to a reclamation guild that vanished after the orbital yards were stripped bare.[/color]\n\n[color=#9AA9B8]Automated sorting increases the value of recovered scrap.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+20%[/color] [color=#C8D5E0]Scrap Value[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "DEBRIS_VALUE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "precision_docking",
+      "title": "Precision Docking",
+      "description": "[color=#D7E7F5]Its calibration notes were written by a collector who mapped debris fields by hand and never missed a shift.[/color]\n\n[color=#9AA9B8]Cleaner depot approaches improve delivery scoring.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Score Multiplier[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "SCORE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "mass_spectrometer",
+      "title": "Mass Spectrometer Mk II",
+      "description": "[color=#D7E7F5]This device was recovered from a cargo barge that drifted home with no crew and a full manifest.[/color]\n\n[color=#9AA9B8]Unknown debris is identified before it reaches the depot.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+12%[/color] [color=#C8D5E0]Scrap Value[/color]",
+      "category": "collection",
+      "rarity": "rare",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "DEBRIS_VALUE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "salvage_multiplier",
+      "title": "Salvage Multiplier",
+      "description": "[color=#D7E7F5]A scratched motto on the casing reads: 'Nothing lost stays lost if someone can tow it home.'[/color]\n\n[color=#9AA9B8]A black-box appraisal routine raises scrap value.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+14%[/color] [color=#C8D5E0]Score Multiplier[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "SCORE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.14
+        }
+      ]
+    },
+    {
+      "id": "magnet_array",
+      "title": "Magnet Array Mk I",
+      "description": "[color=#D7E7F5]It was built for the dangerous years when scrap storms could bury an entire depot in minutes.[/color]\n\n[color=#9AA9B8]A stronger array captures debris from farther away.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+20%[/color] [color=#C8D5E0]Magnet Reach[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 2,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "MAGNET_SIZE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "debris_census",
+      "title": "Debris Census",
+      "description": "[color=#D7E7F5]Its serial number matches an old survey report describing a field of metal that should not have been there.[/color]\n\n[color=#9AA9B8]Mapping the field makes the next quota easier to meet.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-10%[/color] [color=#C8D5E0]Quota Requirement[/color]",
+      "category": "collection",
+      "rarity": "rare",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "QUOTA"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.1
+        }
+      ]
+    },
+    {
+      "id": "cargo_ballast",
+      "title": "Cargo Ballast",
+      "description": "[color=#D7E7F5]A depot ledger records its first use during the Greyfall salvage rush, when fragments were worth more than fuel.[/color]\n\n[color=#9AA9B8]Counterweights reduce the handling penalty from collected debris.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-18%[/color] [color=#C8D5E0]Cargo Drag[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "WEIGHT_DRAG"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.18
+        }
+      ]
+    },
+    {
+      "id": "smart_tethering",
+      "title": "Smart Tether Mk II",
+      "description": "[color=#D7E7F5]The maker's mark belongs to a reclamation guild that vanished after the orbital yards were stripped bare.[/color]\n\n[color=#9AA9B8]The tether system limits the sway of attached cargo.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+10%[/color] [color=#C8D5E0]Handling Grip[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "GRIP"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "rapid_unloader",
+      "title": "Rapid Unloader Mk II",
+      "description": "[color=#D7E7F5]Its calibration notes were written by a collector who mapped debris fields by hand and never missed a shift.[/color]\n\n[color=#9AA9B8]Depot transfer systems make each run more productive.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+10%[/color] [color=#C8D5E0]Scrap Value[/color]",
+      "category": "collection",
+      "rarity": "rare",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "DEBRIS_VALUE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "industrial_magnet_core",
+      "title": "Industrial Magnet",
+      "description": "[color=#D7E7F5]This device was recovered from a cargo barge that drifted home with no crew and a full manifest.[/color]\n\n[color=#9AA9B8]An oversized core greatly expands the collection radius.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+30%[/color] [color=#C8D5E0]Magnet Reach[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 2,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "MAGNET_SIZE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.3
+        }
+      ]
+    },
+    {
+      "id": "prototype_vector_core",
+      "title": "Vector Core Mk I",
+      "description": "[color=#D7E7F5]A retired pilot recognised it immediately and refused to explain why they wanted it thrown back into space.[/color]\n\n[color=#9AA9B8]Experimental firmware trades predictable handling for a random stat tune.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#E8C7FF]3 random[/color] [color=#C8D5E0]stats tuned[/color]\n[color=#9AA9B8]Range: -12% to +18% · Maximum Speed, Rotation Speed, Thrust Acceleration, Tap Impulse, Handling Grip, Coast Drag[/color]",
+      "category": "experimental",
+      "rarity": "epic",
+      "max_stacks": 1,
+      "effects": [
+        {
+          "type": "RandomStatEffect",
+          "pool": [
+            "MAX_SPEED",
+            "ROTATION_SPEED",
+            "THRUST_ACCEL",
+            "TAP_IMPULSE",
+            "GRIP",
+            "COAST_DRAG"
+          ],
+          "count": 3,
+          "min_amount": -0.12,
+          "max_amount": 0.18
+        }
+      ]
+    },
+    {
+      "id": "junkyard_lottery",
+      "title": "Junkyard Lottery",
+      "description": "[color=#D7E7F5]Its diagnostic memory contains one repeated message: 'The field is moving. The field is always moving.'[/color]\n\n[color=#9AA9B8]A salvaged control board alters several systems unpredictably.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#E8C7FF]3 random[/color] [color=#C8D5E0]stats tuned[/color]\n[color=#9AA9B8]Range: -12% to +18% · Maximum Speed, Rotation Speed, Thrust Acceleration, Tap Impulse, Handling Grip, Coast Drag[/color]",
+      "category": "experimental",
+      "rarity": "rare",
+      "max_stacks": 1,
+      "effects": [
+        {
+          "type": "RandomStatEffect",
+          "pool": [
+            "MAX_SPEED",
+            "ROTATION_SPEED",
+            "THRUST_ACCEL",
+            "TAP_IMPULSE",
+            "GRIP",
+            "COAST_DRAG"
+          ],
+          "count": 3,
+          "min_amount": -0.12,
+          "max_amount": 0.18
+        }
+      ]
+    },
+    {
+      "id": "emergency_thruster_kick",
+      "title": "Emergency Thruster Kick",
+      "description": "[color=#D7E7F5]This prototype bears a hand-painted depot insignia from a settlement erased from current navigation charts.[/color]\n\n[color=#9AA9B8]A damaged auxiliary thruster occasionally kicks the ship off-axis.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FFCC78]24[/color] [color=#C8D5E0]Random impulse strength[/color]",
+      "category": "experimental",
+      "rarity": "rare",
+      "max_stacks": 2,
+      "effects": [
+        {
+          "type": "RandomKickEffect",
+          "strength": 24.0
+        }
+      ]
+    },
+    {
+      "id": "reactor_gremlin",
+      "title": "Reactor Gremlin",
+      "description": "[color=#D7E7F5]No department claims responsibility for this prototype; its approval stamp was issued by a station that no longer exists.[/color]\n\n[color=#9AA9B8]A questionable reactor patch improves output at a cost to stability.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#E8C7FF]Enabled[/color] [color=#C8D5E0]Reactor Gremlin protocol[/color]",
+      "category": "experimental",
+      "rarity": "epic",
+      "max_stacks": 2,
+      "effects": [
+        {
+          "type": "FlagEffect",
+          "flag": "reactor_gremlin"
+        }
+      ]
+    },
+    {
+      "id": "ghost_drift_routine",
+      "title": "Ghost Drift Routine",
+      "description": "[color=#D7E7F5]The black-box note attached to it reads: 'Test once, log everything, and do not let it near the main reactor.'[/color]\n\n[color=#9AA9B8]The ship receives a small, constant correction from an unreliable autopilot.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#E8C7FF]+0.035/s[/color] [color=#C8D5E0]Passive rotation[/color]",
+      "category": "experimental",
+      "rarity": "rare",
+      "max_stacks": 2,
+      "effects": [
+        {
+          "type": "TickEffect",
+          "fuel_per_sec": 0.0,
+          "heat_per_sec": 0.0,
+          "spin": 0.035
+        }
+      ]
+    },
+    {
+      "id": "momentum_dividend",
+      "title": "Momentum Dividend",
+      "description": "[color=#D7E7F5]It was found in a sealed crate marked for a research crew that never checked in from the outer belt.[/color]\n\n[color=#9AA9B8]The drive trickle-charges fuel while the ship is moving through the void.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+0.20/s[/color] [color=#C8D5E0]Fuel regeneration[/color]",
+      "category": "experimental",
+      "rarity": "rare",
+      "max_stacks": 2,
+      "effects": [
+        {
+          "type": "TickEffect",
+          "fuel_per_sec": 0.2,
+          "heat_per_sec": 0.0,
+          "spin": 0.0
+        }
+      ]
+    },
+    {
+      "id": "thermal_reversal",
+      "title": "Thermal Reversal",
+      "description": "[color=#D7E7F5]The component's design contradicts three standard engineering rules, yet the test rig recorded a clean result.[/color]\n\n[color=#9AA9B8]A strange coolant fault removes heat but causes a slow spin.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]-0.55/s[/color] [color=#C8D5E0]Heat removal[/color]\n[color=#E8C7FF]+0.025/s[/color] [color=#C8D5E0]Passive rotation[/color]",
+      "category": "experimental",
+      "rarity": "epic",
+      "max_stacks": 2,
+      "effects": [
+        {
+          "type": "TickEffect",
+          "fuel_per_sec": 0.0,
+          "heat_per_sec": -0.55,
+          "spin": 0.025
+        }
+      ]
+    },
+    {
+      "id": "scrap_magnet_surge",
+      "title": "Scrap Magnet Surge",
+      "description": "[color=#D7E7F5]A retired pilot recognised it immediately and refused to explain why they wanted it thrown back into space.[/color]\n\n[color=#9AA9B8]A one-time field calibration increases collection reach.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+25%[/color] [color=#C8D5E0]Magnet Reach[/color]",
+      "category": "experimental",
+      "rarity": "rare",
+      "max_stacks": 2,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "MAGNET_SIZE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.25
+        }
+      ]
+    },
+    {
+      "id": "pilot_reflex_package",
+      "title": "Reflex Matrix",
+      "description": "[color=#D7E7F5]Its diagnostic memory contains one repeated message: 'The field is moving. The field is always moving.'[/color]\n\n[color=#9AA9B8]Steering and impulse response are both improved.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+10%[/color] [color=#C8D5E0]Rotation Speed[/color]\n[color=#7CFF9B]+10%[/color] [color=#C8D5E0]Tap Impulse[/color]\n[color=#7CFF9B]+10%[/color] [color=#C8D5E0]Handling Grip[/color]",
+      "category": "experimental",
+      "rarity": "rare",
+      "max_stacks": 2,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "ROTATION_SPEED",
+            "TAP_IMPULSE",
+            "GRIP"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "courier_s_contract",
+      "title": "Courier's Contract",
+      "description": "[color=#D7E7F5]This prototype bears a hand-painted depot insignia from a settlement erased from current navigation charts.[/color]\n\n[color=#9AA9B8]The scoring system improves, but the quota target also rises.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+12%[/color] [color=#C8D5E0]Score Multiplier[/color]\n[color=#7CFF9B]+12%[/color] [color=#C8D5E0]Quota Requirement[/color]",
+      "category": "experimental",
+      "rarity": "epic",
+      "max_stacks": 2,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "SCORE",
+            "QUOTA"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "overclocked_flight_computer",
+      "title": "Overclock Core",
+      "description": "[color=#D7E7F5]No department claims responsibility for this prototype; its approval stamp was issued by a station that no longer exists.[/color]\n\n[color=#9AA9B8]Speed and acceleration improve, at the cost of higher heat generation.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+14%[/color] [color=#C8D5E0]Maximum Speed[/color]\n[color=#7CFF9B]+14%[/color] [color=#C8D5E0]Thrust Acceleration[/color]\n[color=#7CFF9B]+10%[/color] [color=#C8D5E0]Heat Generation[/color]",
+      "category": "experimental",
+      "rarity": "rare",
+      "max_stacks": 2,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "MAX_SPEED",
+            "THRUST_ACCEL"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.14
+        },
+        {
+          "type": "StatEffect",
+          "stats": [
+            "HEAT_GAIN"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.1
+        }
+      ]
+    },
+    {
+      "id": "black_box_stabiliser",
+      "title": "Black-Box Stabiliser",
+      "description": "[color=#D7E7F5]The black-box note attached to it reads: 'Test once, log everything, and do not let it near the main reactor.'[/color]\n\n[color=#9AA9B8]Randomly tunes three flight systems within safe limits.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#E8C7FF]3 random[/color] [color=#C8D5E0]stats tuned[/color]\n[color=#9AA9B8]Range: +5% to +12% · Maximum Speed, Rotation Speed, Throttle Acceleration, Thrust Acceleration, Tap Impulse, Handling Grip, Coast Drag[/color]",
+      "category": "experimental",
+      "rarity": "rare",
+      "max_stacks": 1,
+      "effects": [
+        {
+          "type": "RandomStatEffect",
+          "pool": [
+            "MAX_SPEED",
+            "ROTATION_SPEED",
+            "THROTTLE_ACCEL",
+            "THRUST_ACCEL",
+            "TAP_IMPULSE",
+            "GRIP",
+            "COAST_DRAG"
+          ],
+          "count": 3,
+          "min_amount": 0.05,
+          "max_amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "debris_wake_thrusters",
+      "title": "Debris Wake Thrusters",
+      "description": "[color=#D7E7F5]It was found in a sealed crate marked for a research crew that never checked in from the outer belt.[/color]\n\n[color=#9AA9B8]A brief uncontrolled kick mimics a slingshot manoeuvre.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FFCC78]42[/color] [color=#C8D5E0]Random impulse strength[/color]",
+      "category": "experimental",
+      "rarity": "epic",
+      "max_stacks": 2,
+      "effects": [
+        {
+          "type": "RandomKickEffect",
+          "strength": 42.0
+        }
+      ]
+    },
+    {
+      "id": "failsafe_capacitor",
+      "title": "Failsafe Capacitor Mk II",
+      "description": "[color=#D7E7F5]The component's design contradicts three standard engineering rules, yet the test rig recorded a clean result.[/color]\n\n[color=#9AA9B8]An emergency reserve improves fuel capacity and cooling.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+12%[/color] [color=#C8D5E0]Fuel Capacity[/color]\n[color=#7CFF9B]+12%[/color] [color=#C8D5E0]Cooling Rate[/color]",
+      "category": "experimental",
+      "rarity": "rare",
+      "max_stacks": 2,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "FUEL_MAX",
+            "COOL_RATE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "magnetic_afterburner",
+      "title": "Magnetic Afterburner Mk II",
+      "description": "[color=#D7E7F5]A retired pilot recognised it immediately and refused to explain why they wanted it thrown back into space.[/color]\n\n[color=#9AA9B8]A larger collection field pairs with more powerful boost.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+12%[/color] [color=#C8D5E0]Magnet Reach[/color]\n[color=#7CFF9B]+12%[/color] [color=#C8D5E0]Boost Speed[/color]",
+      "category": "experimental",
+      "rarity": "rare",
+      "max_stacks": 2,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "MAGNET_SIZE",
+            "BOOST_SPEED"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "scrapstorm_protocol",
+      "title": "Scrapstorm Protocol",
+      "description": "[color=#D7E7F5]Its diagnostic memory contains one repeated message: 'The field is moving. The field is always moving.'[/color]\n\n[color=#9AA9B8]An aggressive control profile boosts speed but makes handling less forgiving.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+18%[/color] [color=#C8D5E0]Maximum Speed[/color]\n[color=#7CFF9B]+18%[/color] [color=#C8D5E0]Thrust Acceleration[/color]\n[color=#FF7777]-12%[/color] [color=#C8D5E0]Handling Grip[/color]",
+      "category": "experimental",
+      "rarity": "epic",
+      "max_stacks": 2,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "MAX_SPEED",
+            "THRUST_ACCEL"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.18
+        },
+        {
+          "type": "StatEffect",
+          "stats": [
+            "GRIP"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.12
+        }
+      ]
+    },
+    {
+      "id": "orbital_survey_suite",
+      "title": "Survey Array",
+      "description": "[color=#D7E7F5]This prototype bears a hand-painted depot insignia from a settlement erased from current navigation charts.[/color]\n\n[color=#9AA9B8]Additional scan time helps plan a more efficient run.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+12%[/color] [color=#C8D5E0]Run Time[/color]",
+      "category": "experimental",
+      "rarity": "rare",
+      "max_stacks": 2,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "TIME_LIMIT"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.12
+        }
+      ]
+    },
+    {
+      "id": "long_range_contract",
+      "title": "Long-Range Contract",
+      "description": "[color=#D7E7F5]No department claims responsibility for this prototype; its approval stamp was issued by a station that no longer exists.[/color]\n\n[color=#9AA9B8]The depot extends the deadline for this salvage shift.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+15%[/color] [color=#C8D5E0]Run Time[/color]",
+      "category": "experimental",
+      "rarity": "rare",
+      "max_stacks": 2,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "TIME_LIMIT"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "collector_s_instinct",
+      "title": "Collector's Instinct",
+      "description": "[color=#D7E7F5]The black-box note attached to it reads: 'Test once, log everything, and do not let it near the main reactor.'[/color]\n\n[color=#9AA9B8]A tuned scoring model rewards every successful delivery.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+20%[/color] [color=#C8D5E0]Score Multiplier[/color]",
+      "category": "experimental",
+      "rarity": "epic",
+      "max_stacks": 2,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "SCORE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.2
+        }
+      ]
+    },
+    {
+      "id": "mass_driver_thrusters",
+      "title": "Mass Driver Mk II",
+      "description": "[color=#D7E7F5]It was found in a sealed crate marked for a research crew that never checked in from the outer belt.[/color]\n\n[color=#9AA9B8]The ship accelerates hard, but cargo weight hurts more.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+12%[/color] [color=#C8D5E0]Thrust Acceleration[/color]\n[color=#7CFF9B]+12%[/color] [color=#C8D5E0]Maximum Speed[/color]\n[color=#7CFF9B]+15%[/color] [color=#C8D5E0]Cargo Drag[/color]",
+      "category": "experimental",
+      "rarity": "rare",
+      "max_stacks": 2,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "THRUST_ACCEL",
+            "MAX_SPEED"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.12
+        },
+        {
+          "type": "StatEffect",
+          "stats": [
+            "WEIGHT_DRAG"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.15
+        }
+      ]
+    },
+    {
+      "id": "ablative_steering_thrusters",
+      "title": "Ablative Thrusters",
+      "description": "[color=#D7E7F5]Its casing is pitted by micrometeorites; the serial number belongs to a patrol ship lost beyond the relay line.[/color]\n\n[color=#9AA9B8]Directional jets provide a modest steering improvement.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+7%[/color] [color=#C8D5E0]Rotation Speed[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "ROTATION_SPEED"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.07
+        }
+      ]
+    },
+    {
+      "id": "ablative_drive_coupler",
+      "title": "Ablative Drive Coupler",
+      "description": "[color=#D7E7F5]Old depot crews used to trade parts like this for extra oxygen rations. Nobody remembers who built the first one.[/color]\n\n[color=#9AA9B8]A more efficient coupler transfers power to the main drive.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Thrust Acceleration[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "THRUST_ACCEL"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "ablative_coast_governor",
+      "title": "Ablative Coast Governor",
+      "description": "[color=#D7E7F5]This component carries a handwritten warning: 'Never trust a clean vector in a dirty field.'[/color]\n\n[color=#9AA9B8]The flight computer preserves momentum for longer.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-7%[/color] [color=#C8D5E0]Coast Drag[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "COAST_DRAG"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.07
+        }
+      ]
+    },
+    {
+      "id": "ablative_flux_ring",
+      "title": "Ablative Flux Ring Mk II",
+      "description": "[color=#D7E7F5]Its serial number matches an old survey report describing a field of metal that should not have been there.[/color]\n\n[color=#9AA9B8]A focusing ring extends the salvage field.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Magnet Reach[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "MAGNET_SIZE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "ablative_fuel_regulator",
+      "title": "Ablative Fuel Regulator",
+      "description": "[color=#D7E7F5]Its faded maintenance tag bears the initials of an engineer who kept the outer depots running through the long blackout.[/color]\n\n[color=#9AA9B8]A pressure regulator reduces fuel waste.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-7%[/color] [color=#C8D5E0]Fuel Consumption[/color]",
+      "category": "systems",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "FUEL_BURN"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.07
+        }
+      ]
+    },
+    {
+      "id": "ablative_radiator_shroud",
+      "title": "Ablative Radiator Shroud",
+      "description": "[color=#D7E7F5]This unit was designed during the fuel ration years, when every wasted burn meant one less return trip.[/color]\n\n[color=#9AA9B8]A revised shroud improves thermal rejection.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Cooling Rate[/color]",
+      "category": "systems",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "COOL_RATE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "ablative_cargo_harness",
+      "title": "Ablative Cargo Harness",
+      "description": "[color=#D7E7F5]Its calibration notes were written by a collector who mapped debris fields by hand and never missed a shift.[/color]\n\n[color=#9AA9B8]Cargo is held closer to the centre of mass.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-7%[/color] [color=#C8D5E0]Cargo Drag[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "WEIGHT_DRAG"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.07
+        }
+      ]
+    },
+    {
+      "id": "ablative_salvage_chip",
+      "title": "Ablative Salvage Chip",
+      "description": "[color=#D7E7F5]This device was recovered from a cargo barge that drifted home with no crew and a full manifest.[/color]\n\n[color=#9AA9B8]A new valuation chip identifies useful scrap.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Scrap Value[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "DEBRIS_VALUE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "ablative_thermal_capacitor",
+      "title": "Ablative Thermal Core",
+      "description": "[color=#D7E7F5]The part was found sealed inside a rescue pod, carefully labelled for whoever might need it next.[/color]\n\n[color=#9AA9B8]A capacitor absorbs short thermal spikes.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Heat Capacity[/color]",
+      "category": "systems",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "HEAT_MAX"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "ablative_boost_injector",
+      "title": "Ablative Boost Injector",
+      "description": "[color=#D7E7F5]This component carries a handwritten warning: 'Never trust a clean vector in a dirty field.'[/color]\n\n[color=#9AA9B8]A tuned injector improves boost output.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Boost Speed[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "BOOST_SPEED"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "ablative_reaction_wheel",
+      "title": "Ablative Reaction Wheel",
+      "description": "[color=#D7E7F5]Recovered from a wreck whose black box ends mid-manoeuvre, it still answers every control input.[/color]\n\n[color=#9AA9B8]The wheel stabilises the craft during directional changes.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Handling Grip[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "GRIP"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "ablative_contract_optimiser",
+      "title": "Ablative Ledger",
+      "description": "[color=#D7E7F5]Its faded maintenance tag bears the initials of an engineer who kept the outer depots running through the long blackout.[/color]\n\n[color=#9AA9B8]A scheduling routine adds a little more time.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+6%[/color] [color=#C8D5E0]Run Time[/color]",
+      "category": "systems",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "TIME_LIMIT"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "calibrated_steering_thrusters",
+      "title": "Calibrated Thrusters",
+      "description": "[color=#D7E7F5]Stamped with a defunct shipyard seal, this hardware outlived the fleet that first tested it in the debris lanes.[/color]\n\n[color=#9AA9B8]Directional jets provide a modest steering improvement.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+7%[/color] [color=#C8D5E0]Rotation Speed[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "ROTATION_SPEED"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.07
+        }
+      ]
+    },
+    {
+      "id": "calibrated_drive_coupler",
+      "title": "Calibrated Drive Coupler",
+      "description": "[color=#D7E7F5]A salvage pilot swore this component saved their crew when a dead freighter spun across their route.[/color]\n\n[color=#9AA9B8]A more efficient coupler transfers power to the main drive.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Thrust Acceleration[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "THRUST_ACCEL"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "calibrated_coast_governor",
+      "title": "Calibrated Coast Governor",
+      "description": "[color=#D7E7F5]Its casing is pitted by micrometeorites; the serial number belongs to a patrol ship lost beyond the relay line.[/color]\n\n[color=#9AA9B8]The flight computer preserves momentum for longer.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-7%[/color] [color=#C8D5E0]Coast Drag[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "COAST_DRAG"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.07
+        }
+      ]
+    },
+    {
+      "id": "calibrated_flux_ring",
+      "title": "Calibrated Flux Ring Mk II",
+      "description": "[color=#D7E7F5]A scratched motto on the casing reads: 'Nothing lost stays lost if someone can tow it home.'[/color]\n\n[color=#9AA9B8]A focusing ring extends the salvage field.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Magnet Reach[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "MAGNET_SIZE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "calibrated_fuel_regulator",
+      "title": "Calibrated Fuel Regulator",
+      "description": "[color=#D7E7F5]Its service record lists three reactor replacements and one unexplained return from beyond the mapped lanes.[/color]\n\n[color=#9AA9B8]A pressure regulator reduces fuel waste.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-7%[/color] [color=#C8D5E0]Fuel Consumption[/color]",
+      "category": "systems",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "FUEL_BURN"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.07
+        }
+      ]
+    },
+    {
+      "id": "calibrated_radiator_shroud",
+      "title": "Calibrated Radiator Shroud",
+      "description": "[color=#D7E7F5]The old fleet used hardware like this to stretch a single tank across routes no modern pilot would attempt.[/color]\n\n[color=#9AA9B8]A revised shroud improves thermal rejection.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Cooling Rate[/color]",
+      "category": "systems",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "COOL_RATE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "calibrated_cargo_harness",
+      "title": "Calibrated Cargo Harness",
+      "description": "[color=#D7E7F5]A depot ledger records its first use during the Greyfall salvage rush, when fragments were worth more than fuel.[/color]\n\n[color=#9AA9B8]Cargo is held closer to the centre of mass.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-7%[/color] [color=#C8D5E0]Cargo Drag[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "WEIGHT_DRAG"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.07
+        }
+      ]
+    },
+    {
+      "id": "calibrated_salvage_chip",
+      "title": "Calibrated Salvage Chip",
+      "description": "[color=#D7E7F5]The maker's mark belongs to a reclamation guild that vanished after the orbital yards were stripped bare.[/color]\n\n[color=#9AA9B8]A new valuation chip identifies useful scrap.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Scrap Value[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "DEBRIS_VALUE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "calibrated_thermal_capacitor",
+      "title": "Calibrated Thermal Core",
+      "description": "[color=#D7E7F5]The casing carries an obsolete emergency code from a station abandoned after its reactor went dark.[/color]\n\n[color=#9AA9B8]A capacitor absorbs short thermal spikes.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Heat Capacity[/color]",
+      "category": "systems",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "HEAT_MAX"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "calibrated_boost_injector",
+      "title": "Calibrated Boost Injector",
+      "description": "[color=#D7E7F5]Its casing is pitted by micrometeorites; the serial number belongs to a patrol ship lost beyond the relay line.[/color]\n\n[color=#9AA9B8]A tuned injector improves boost output.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Boost Speed[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "BOOST_SPEED"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "calibrated_reaction_wheel",
+      "title": "Calibrated Reaction Wheel",
+      "description": "[color=#D7E7F5]Old depot crews used to trade parts like this for extra oxygen rations. Nobody remembers who built the first one.[/color]\n\n[color=#9AA9B8]The wheel stabilises the craft during directional changes.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Handling Grip[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "GRIP"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "calibrated_contract_optimiser",
+      "title": "Calibrated Ledger",
+      "description": "[color=#D7E7F5]Its service record lists three reactor replacements and one unexplained return from beyond the mapped lanes.[/color]\n\n[color=#9AA9B8]A scheduling routine adds a little more time.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+6%[/color] [color=#C8D5E0]Run Time[/color]",
+      "category": "systems",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "TIME_LIMIT"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "deep_space_steering_thrusters",
+      "title": "Deep-Space Thrusters",
+      "description": "[color=#D7E7F5]Recovered from a wreck whose black box ends mid-manoeuvre, it still answers every control input.[/color]\n\n[color=#9AA9B8]Directional jets provide a modest steering improvement.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+7%[/color] [color=#C8D5E0]Rotation Speed[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "ROTATION_SPEED"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.07
+        }
+      ]
+    },
+    {
+      "id": "deep_space_drive_coupler",
+      "title": "Deep-Space Drive Coupler",
+      "description": "[color=#D7E7F5]The flight log says this unit was recovered from a courier that threaded the Kestrel Belt during the evacuation.[/color]\n\n[color=#9AA9B8]A more efficient coupler transfers power to the main drive.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Thrust Acceleration[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "THRUST_ACCEL"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "deep_space_coast_governor",
+      "title": "Deep-Space Coast Governor",
+      "description": "[color=#D7E7F5]Stamped with a defunct shipyard seal, this hardware outlived the fleet that first tested it in the debris lanes.[/color]\n\n[color=#9AA9B8]The flight computer preserves momentum for longer.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-7%[/color] [color=#C8D5E0]Coast Drag[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "COAST_DRAG"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.07
+        }
+      ]
+    },
+    {
+      "id": "deep_space_flux_ring",
+      "title": "Deep-Space Flux Ring Mk II",
+      "description": "[color=#D7E7F5]Its calibration notes were written by a collector who mapped debris fields by hand and never missed a shift.[/color]\n\n[color=#9AA9B8]A focusing ring extends the salvage field.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Magnet Reach[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "MAGNET_SIZE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "deep_space_fuel_regulator",
+      "title": "Deep-Space Fuel Regulator",
+      "description": "[color=#D7E7F5]A former depot mechanic claimed this design came from a prototype tug that never officially existed.[/color]\n\n[color=#9AA9B8]A pressure regulator reduces fuel waste.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-7%[/color] [color=#C8D5E0]Fuel Consumption[/color]",
+      "category": "systems",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "FUEL_BURN"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.07
+        }
+      ]
+    },
+    {
+      "id": "deep_space_radiator_shroud",
+      "title": "Deep-Space Radiator Shroud",
+      "description": "[color=#D7E7F5]The part was found sealed inside a rescue pod, carefully labelled for whoever might need it next.[/color]\n\n[color=#9AA9B8]A revised shroud improves thermal rejection.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Cooling Rate[/color]",
+      "category": "systems",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "COOL_RATE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "deep_space_cargo_harness",
+      "title": "Deep-Space Cargo Harness",
+      "description": "[color=#D7E7F5]It was built for the dangerous years when scrap storms could bury an entire depot in minutes.[/color]\n\n[color=#9AA9B8]Cargo is held closer to the centre of mass.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-7%[/color] [color=#C8D5E0]Cargo Drag[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "WEIGHT_DRAG"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.07
+        }
+      ]
+    },
+    {
+      "id": "deep_space_salvage_chip",
+      "title": "Deep-Space Salvage Chip",
+      "description": "[color=#D7E7F5]Its serial number matches an old survey report describing a field of metal that should not have been there.[/color]\n\n[color=#9AA9B8]A new valuation chip identifies useful scrap.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Scrap Value[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "DEBRIS_VALUE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "deep_space_thermal_capacitor",
+      "title": "Deep-Space Thermal Core",
+      "description": "[color=#D7E7F5]Its faded maintenance tag bears the initials of an engineer who kept the outer depots running through the long blackout.[/color]\n\n[color=#9AA9B8]A capacitor absorbs short thermal spikes.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Heat Capacity[/color]",
+      "category": "systems",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "HEAT_MAX"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "deep_space_boost_injector",
+      "title": "Deep-Space Boost Injector",
+      "description": "[color=#D7E7F5]Stamped with a defunct shipyard seal, this hardware outlived the fleet that first tested it in the debris lanes.[/color]\n\n[color=#9AA9B8]A tuned injector improves boost output.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Boost Speed[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "BOOST_SPEED"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "deep_space_reaction_wheel",
+      "title": "Deep-Space Reaction Wheel",
+      "description": "[color=#D7E7F5]A salvage pilot swore this component saved their crew when a dead freighter spun across their route.[/color]\n\n[color=#9AA9B8]The wheel stabilises the craft during directional changes.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Handling Grip[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "GRIP"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "deep_space_contract_optimiser",
+      "title": "Deep-Space Ledger",
+      "description": "[color=#D7E7F5]A former depot mechanic claimed this design came from a prototype tug that never officially existed.[/color]\n\n[color=#9AA9B8]A scheduling routine adds a little more time.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+6%[/color] [color=#C8D5E0]Run Time[/color]",
+      "category": "systems",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "TIME_LIMIT"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "micro_steering_thrusters",
+      "title": "Micro Steering Thrusters",
+      "description": "[color=#D7E7F5]Old depot crews used to trade parts like this for extra oxygen rations. Nobody remembers who built the first one.[/color]\n\n[color=#9AA9B8]Directional jets provide a modest steering improvement.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+7%[/color] [color=#C8D5E0]Rotation Speed[/color]",
+      "category": "movement",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "ROTATION_SPEED"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.07
+        }
+      ]
+    },
+    {
+      "id": "micro_drive_coupler",
+      "title": "Micro Drive Coupler",
+      "description": "[color=#D7E7F5]This component carries a handwritten warning: 'Never trust a clean vector in a dirty field.'[/color]\n\n[color=#9AA9B8]A more efficient coupler transfers power to the main drive.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Thrust Acceleration[/color]",
+      "category": "movement",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "THRUST_ACCEL"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "micro_coast_governor",
+      "title": "Micro Coast Governor",
+      "description": "[color=#D7E7F5]Recovered from a wreck whose black box ends mid-manoeuvre, it still answers every control input.[/color]\n\n[color=#9AA9B8]The flight computer preserves momentum for longer.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-7%[/color] [color=#C8D5E0]Coast Drag[/color]",
+      "category": "movement",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "COAST_DRAG"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.07
+        }
+      ]
+    },
+    {
+      "id": "micro_flux_ring",
+      "title": "Micro Flux Ring Mk II",
+      "description": "[color=#D7E7F5]A depot ledger records its first use during the Greyfall salvage rush, when fragments were worth more than fuel.[/color]\n\n[color=#9AA9B8]A focusing ring extends the salvage field.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Magnet Reach[/color]",
+      "category": "collection",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "MAGNET_SIZE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "micro_fuel_regulator",
+      "title": "Micro Fuel Regulator",
+      "description": "[color=#D7E7F5]This unit was designed during the fuel ration years, when every wasted burn meant one less return trip.[/color]\n\n[color=#9AA9B8]A pressure regulator reduces fuel waste.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-7%[/color] [color=#C8D5E0]Fuel Consumption[/color]",
+      "category": "systems",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "FUEL_BURN"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.07
+        }
+      ]
+    },
+    {
+      "id": "micro_radiator_shroud",
+      "title": "Micro Radiator Shroud",
+      "description": "[color=#D7E7F5]The casing carries an obsolete emergency code from a station abandoned after its reactor went dark.[/color]\n\n[color=#9AA9B8]A revised shroud improves thermal rejection.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Cooling Rate[/color]",
+      "category": "systems",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "COOL_RATE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "micro_cargo_harness",
+      "title": "Micro Cargo Harness",
+      "description": "[color=#D7E7F5]This device was recovered from a cargo barge that drifted home with no crew and a full manifest.[/color]\n\n[color=#9AA9B8]Cargo is held closer to the centre of mass.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-7%[/color] [color=#C8D5E0]Cargo Drag[/color]",
+      "category": "collection",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "WEIGHT_DRAG"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.07
+        }
+      ]
+    },
+    {
+      "id": "micro_salvage_chip",
+      "title": "Micro Salvage Chip",
+      "description": "[color=#D7E7F5]A scratched motto on the casing reads: 'Nothing lost stays lost if someone can tow it home.'[/color]\n\n[color=#9AA9B8]A new valuation chip identifies useful scrap.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Scrap Value[/color]",
+      "category": "collection",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "DEBRIS_VALUE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "micro_thermal_capacitor",
+      "title": "Micro Thermal Core",
+      "description": "[color=#D7E7F5]Its service record lists three reactor replacements and one unexplained return from beyond the mapped lanes.[/color]\n\n[color=#9AA9B8]A capacitor absorbs short thermal spikes.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Heat Capacity[/color]",
+      "category": "systems",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "HEAT_MAX"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "micro_boost_injector",
+      "title": "Micro Boost Injector",
+      "description": "[color=#D7E7F5]Recovered from a wreck whose black box ends mid-manoeuvre, it still answers every control input.[/color]\n\n[color=#9AA9B8]A tuned injector improves boost output.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Boost Speed[/color]",
+      "category": "movement",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "BOOST_SPEED"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "micro_reaction_wheel",
+      "title": "Micro Reaction Wheel",
+      "description": "[color=#D7E7F5]The flight log says this unit was recovered from a courier that threaded the Kestrel Belt during the evacuation.[/color]\n\n[color=#9AA9B8]The wheel stabilises the craft during directional changes.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Handling Grip[/color]",
+      "category": "movement",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "GRIP"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "micro_contract_optimiser",
+      "title": "Micro Ledger",
+      "description": "[color=#D7E7F5]This unit was designed during the fuel ration years, when every wasted burn meant one less return trip.[/color]\n\n[color=#9AA9B8]A scheduling routine adds a little more time.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+6%[/color] [color=#C8D5E0]Run Time[/color]",
+      "category": "systems",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "TIME_LIMIT"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "salvage_steering_thrusters",
+      "title": "Salvage Steering Thrusters",
+      "description": "[color=#D7E7F5]A salvage pilot swore this component saved their crew when a dead freighter spun across their route.[/color]\n\n[color=#9AA9B8]Directional jets provide a modest steering improvement.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+7%[/color] [color=#C8D5E0]Rotation Speed[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "ROTATION_SPEED"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.07
+        }
+      ]
+    },
+    {
+      "id": "salvage_drive_coupler",
+      "title": "Salvage Drive Coupler",
+      "description": "[color=#D7E7F5]Its casing is pitted by micrometeorites; the serial number belongs to a patrol ship lost beyond the relay line.[/color]\n\n[color=#9AA9B8]A more efficient coupler transfers power to the main drive.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Thrust Acceleration[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "THRUST_ACCEL"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "salvage_coast_governor",
+      "title": "Salvage Coast Governor",
+      "description": "[color=#D7E7F5]Old depot crews used to trade parts like this for extra oxygen rations. Nobody remembers who built the first one.[/color]\n\n[color=#9AA9B8]The flight computer preserves momentum for longer.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-7%[/color] [color=#C8D5E0]Coast Drag[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "COAST_DRAG"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.07
+        }
+      ]
+    },
+    {
+      "id": "salvage_flux_ring",
+      "title": "Salvage Flux Ring Mk II",
+      "description": "[color=#D7E7F5]It was built for the dangerous years when scrap storms could bury an entire depot in minutes.[/color]\n\n[color=#9AA9B8]A focusing ring extends the salvage field.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Magnet Reach[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "MAGNET_SIZE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "salvage_fuel_regulator",
+      "title": "Salvage Fuel Regulator",
+      "description": "[color=#D7E7F5]The old fleet used hardware like this to stretch a single tank across routes no modern pilot would attempt.[/color]\n\n[color=#9AA9B8]A pressure regulator reduces fuel waste.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-7%[/color] [color=#C8D5E0]Fuel Consumption[/color]",
+      "category": "systems",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "FUEL_BURN"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.07
+        }
+      ]
+    },
+    {
+      "id": "salvage_radiator_shroud",
+      "title": "Salvage Radiator Shroud",
+      "description": "[color=#D7E7F5]Its faded maintenance tag bears the initials of an engineer who kept the outer depots running through the long blackout.[/color]\n\n[color=#9AA9B8]A revised shroud improves thermal rejection.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Cooling Rate[/color]",
+      "category": "systems",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "COOL_RATE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "salvage_cargo_harness",
+      "title": "Salvage Cargo Harness",
+      "description": "[color=#D7E7F5]The maker's mark belongs to a reclamation guild that vanished after the orbital yards were stripped bare.[/color]\n\n[color=#9AA9B8]Cargo is held closer to the centre of mass.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-7%[/color] [color=#C8D5E0]Cargo Drag[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "WEIGHT_DRAG"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.07
+        }
+      ]
+    },
+    {
+      "id": "salvage_salvage_chip",
+      "title": "Salvage Salvage Chip",
+      "description": "[color=#D7E7F5]Its calibration notes were written by a collector who mapped debris fields by hand and never missed a shift.[/color]\n\n[color=#9AA9B8]A new valuation chip identifies useful scrap.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Scrap Value[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "DEBRIS_VALUE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "salvage_thermal_capacitor",
+      "title": "Salvage Thermal Capacitor",
+      "description": "[color=#D7E7F5]A former depot mechanic claimed this design came from a prototype tug that never officially existed.[/color]\n\n[color=#9AA9B8]A capacitor absorbs short thermal spikes.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Heat Capacity[/color]",
+      "category": "systems",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "HEAT_MAX"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "salvage_boost_injector",
+      "title": "Salvage Boost Injector",
+      "description": "[color=#D7E7F5]Old depot crews used to trade parts like this for extra oxygen rations. Nobody remembers who built the first one.[/color]\n\n[color=#9AA9B8]A tuned injector improves boost output.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Boost Speed[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "BOOST_SPEED"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "salvage_reaction_wheel",
+      "title": "Salvage Reaction Wheel",
+      "description": "[color=#D7E7F5]This component carries a handwritten warning: 'Never trust a clean vector in a dirty field.'[/color]\n\n[color=#9AA9B8]The wheel stabilises the craft during directional changes.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Handling Grip[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "GRIP"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "salvage_contract_optimiser",
+      "title": "Salvage Ledger Mk II",
+      "description": "[color=#D7E7F5]The old fleet used hardware like this to stretch a single tank across routes no modern pilot would attempt.[/color]\n\n[color=#9AA9B8]A scheduling routine adds a little more time.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+6%[/color] [color=#C8D5E0]Run Time[/color]",
+      "category": "systems",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "TIME_LIMIT"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "adaptive_steering_thrusters",
+      "title": "Adaptive Steering Thrusters",
+      "description": "[color=#D7E7F5]The flight log says this unit was recovered from a courier that threaded the Kestrel Belt during the evacuation.[/color]\n\n[color=#9AA9B8]Directional jets provide a modest steering improvement.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+7%[/color] [color=#C8D5E0]Rotation Speed[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "ROTATION_SPEED"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.07
+        }
+      ]
+    },
+    {
+      "id": "adaptive_drive_coupler",
+      "title": "Adaptive Drive Coupler",
+      "description": "[color=#D7E7F5]Stamped with a defunct shipyard seal, this hardware outlived the fleet that first tested it in the debris lanes.[/color]\n\n[color=#9AA9B8]A more efficient coupler transfers power to the main drive.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Thrust Acceleration[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "THRUST_ACCEL"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "adaptive_coast_governor",
+      "title": "Adaptive Coast Governor",
+      "description": "[color=#D7E7F5]A salvage pilot swore this component saved their crew when a dead freighter spun across their route.[/color]\n\n[color=#9AA9B8]The flight computer preserves momentum for longer.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-7%[/color] [color=#C8D5E0]Coast Drag[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "COAST_DRAG"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.07
+        }
+      ]
+    },
+    {
+      "id": "adaptive_flux_ring",
+      "title": "Adaptive Flux Ring Mk II",
+      "description": "[color=#D7E7F5]This device was recovered from a cargo barge that drifted home with no crew and a full manifest.[/color]\n\n[color=#9AA9B8]A focusing ring extends the salvage field.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Magnet Reach[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "MAGNET_SIZE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "adaptive_fuel_regulator",
+      "title": "Adaptive Fuel Regulator",
+      "description": "[color=#D7E7F5]The part was found sealed inside a rescue pod, carefully labelled for whoever might need it next.[/color]\n\n[color=#9AA9B8]A pressure regulator reduces fuel waste.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-7%[/color] [color=#C8D5E0]Fuel Consumption[/color]",
+      "category": "systems",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "FUEL_BURN"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.07
+        }
+      ]
+    },
+    {
+      "id": "adaptive_radiator_shroud",
+      "title": "Adaptive Radiator Shroud",
+      "description": "[color=#D7E7F5]Its service record lists three reactor replacements and one unexplained return from beyond the mapped lanes.[/color]\n\n[color=#9AA9B8]A revised shroud improves thermal rejection.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Cooling Rate[/color]",
+      "category": "systems",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "COOL_RATE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "adaptive_cargo_harness",
+      "title": "Adaptive Cargo Harness",
+      "description": "[color=#D7E7F5]Its serial number matches an old survey report describing a field of metal that should not have been there.[/color]\n\n[color=#9AA9B8]Cargo is held closer to the centre of mass.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-7%[/color] [color=#C8D5E0]Cargo Drag[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "WEIGHT_DRAG"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.07
+        }
+      ]
+    },
+    {
+      "id": "adaptive_salvage_chip",
+      "title": "Adaptive Salvage Chip",
+      "description": "[color=#D7E7F5]A depot ledger records its first use during the Greyfall salvage rush, when fragments were worth more than fuel.[/color]\n\n[color=#9AA9B8]A new valuation chip identifies useful scrap.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Scrap Value[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "DEBRIS_VALUE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "adaptive_thermal_capacitor",
+      "title": "Adaptive Thermal Core",
+      "description": "[color=#D7E7F5]This unit was designed during the fuel ration years, when every wasted burn meant one less return trip.[/color]\n\n[color=#9AA9B8]A capacitor absorbs short thermal spikes.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Heat Capacity[/color]",
+      "category": "systems",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "HEAT_MAX"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "adaptive_boost_injector",
+      "title": "Adaptive Boost Injector",
+      "description": "[color=#D7E7F5]A salvage pilot swore this component saved their crew when a dead freighter spun across their route.[/color]\n\n[color=#9AA9B8]A tuned injector improves boost output.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Boost Speed[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "BOOST_SPEED"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "adaptive_reaction_wheel",
+      "title": "Adaptive Reaction Wheel",
+      "description": "[color=#D7E7F5]Its casing is pitted by micrometeorites; the serial number belongs to a patrol ship lost beyond the relay line.[/color]\n\n[color=#9AA9B8]The wheel stabilises the craft during directional changes.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Handling Grip[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "GRIP"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "adaptive_contract_optimiser",
+      "title": "Adaptive Ledger",
+      "description": "[color=#D7E7F5]The part was found sealed inside a rescue pod, carefully labelled for whoever might need it next.[/color]\n\n[color=#9AA9B8]A scheduling routine adds a little more time.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+6%[/color] [color=#C8D5E0]Run Time[/color]",
+      "category": "systems",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "TIME_LIMIT"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "heavy_duty_steering_thrusters",
+      "title": "Heavy Thrusters",
+      "description": "[color=#D7E7F5]This component carries a handwritten warning: 'Never trust a clean vector in a dirty field.'[/color]\n\n[color=#9AA9B8]Directional jets provide a modest steering improvement.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+7%[/color] [color=#C8D5E0]Rotation Speed[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "ROTATION_SPEED"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.07
+        }
+      ]
+    },
+    {
+      "id": "heavy_duty_drive_coupler",
+      "title": "Heavy-Duty Drive Coupler",
+      "description": "[color=#D7E7F5]Recovered from a wreck whose black box ends mid-manoeuvre, it still answers every control input.[/color]\n\n[color=#9AA9B8]A more efficient coupler transfers power to the main drive.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Thrust Acceleration[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "THRUST_ACCEL"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "heavy_duty_coast_governor",
+      "title": "Heavy-Duty Coast Governor",
+      "description": "[color=#D7E7F5]The flight log says this unit was recovered from a courier that threaded the Kestrel Belt during the evacuation.[/color]\n\n[color=#9AA9B8]The flight computer preserves momentum for longer.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-7%[/color] [color=#C8D5E0]Coast Drag[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "COAST_DRAG"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.07
+        }
+      ]
+    },
+    {
+      "id": "heavy_duty_flux_ring",
+      "title": "Heavy Flux Ring Mk II",
+      "description": "[color=#D7E7F5]The maker's mark belongs to a reclamation guild that vanished after the orbital yards were stripped bare.[/color]\n\n[color=#9AA9B8]A focusing ring extends the salvage field.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Magnet Reach[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "MAGNET_SIZE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "heavy_duty_fuel_regulator",
+      "title": "Heavy-Duty Fuel Regulator",
+      "description": "[color=#D7E7F5]The casing carries an obsolete emergency code from a station abandoned after its reactor went dark.[/color]\n\n[color=#9AA9B8]A pressure regulator reduces fuel waste.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-7%[/color] [color=#C8D5E0]Fuel Consumption[/color]",
+      "category": "systems",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "FUEL_BURN"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.07
+        }
+      ]
+    },
+    {
+      "id": "heavy_duty_radiator_shroud",
+      "title": "Heavy-Duty Radiator Shroud",
+      "description": "[color=#D7E7F5]A former depot mechanic claimed this design came from a prototype tug that never officially existed.[/color]\n\n[color=#9AA9B8]A revised shroud improves thermal rejection.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Cooling Rate[/color]",
+      "category": "systems",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "COOL_RATE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "heavy_duty_cargo_harness",
+      "title": "Heavy-Duty Cargo Harness",
+      "description": "[color=#D7E7F5]A scratched motto on the casing reads: 'Nothing lost stays lost if someone can tow it home.'[/color]\n\n[color=#9AA9B8]Cargo is held closer to the centre of mass.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-7%[/color] [color=#C8D5E0]Cargo Drag[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "WEIGHT_DRAG"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.07
+        }
+      ]
+    },
+    {
+      "id": "heavy_duty_salvage_chip",
+      "title": "Heavy-Duty Salvage Chip",
+      "description": "[color=#D7E7F5]It was built for the dangerous years when scrap storms could bury an entire depot in minutes.[/color]\n\n[color=#9AA9B8]A new valuation chip identifies useful scrap.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Scrap Value[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "DEBRIS_VALUE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "heavy_duty_thermal_capacitor",
+      "title": "Heavy-Duty Thermal Capacitor",
+      "description": "[color=#D7E7F5]The old fleet used hardware like this to stretch a single tank across routes no modern pilot would attempt.[/color]\n\n[color=#9AA9B8]A capacitor absorbs short thermal spikes.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Heat Capacity[/color]",
+      "category": "systems",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "HEAT_MAX"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "heavy_duty_boost_injector",
+      "title": "Heavy-Duty Boost Injector",
+      "description": "[color=#D7E7F5]The flight log says this unit was recovered from a courier that threaded the Kestrel Belt during the evacuation.[/color]\n\n[color=#9AA9B8]A tuned injector improves boost output.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Boost Speed[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "BOOST_SPEED"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "heavy_duty_reaction_wheel",
+      "title": "Heavy-Duty Reaction Wheel",
+      "description": "[color=#D7E7F5]Stamped with a defunct shipyard seal, this hardware outlived the fleet that first tested it in the debris lanes.[/color]\n\n[color=#9AA9B8]The wheel stabilises the craft during directional changes.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Handling Grip[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "GRIP"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "heavy_duty_contract_optimiser",
+      "title": "Heavy Ledger",
+      "description": "[color=#D7E7F5]The casing carries an obsolete emergency code from a station abandoned after its reactor went dark.[/color]\n\n[color=#9AA9B8]A scheduling routine adds a little more time.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+6%[/color] [color=#C8D5E0]Run Time[/color]",
+      "category": "systems",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "TIME_LIMIT"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "ionised_steering_thrusters",
+      "title": "Ionised Steering Thrusters",
+      "description": "[color=#D7E7F5]Its casing is pitted by micrometeorites; the serial number belongs to a patrol ship lost beyond the relay line.[/color]\n\n[color=#9AA9B8]Directional jets provide a modest steering improvement.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+7%[/color] [color=#C8D5E0]Rotation Speed[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "ROTATION_SPEED"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.07
+        }
+      ]
+    },
+    {
+      "id": "ionised_drive_coupler",
+      "title": "Ionised Drive Coupler",
+      "description": "[color=#D7E7F5]Old depot crews used to trade parts like this for extra oxygen rations. Nobody remembers who built the first one.[/color]\n\n[color=#9AA9B8]A more efficient coupler transfers power to the main drive.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Thrust Acceleration[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "THRUST_ACCEL"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "ionised_coast_governor",
+      "title": "Ionised Coast Governor",
+      "description": "[color=#D7E7F5]This component carries a handwritten warning: 'Never trust a clean vector in a dirty field.'[/color]\n\n[color=#9AA9B8]The flight computer preserves momentum for longer.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-7%[/color] [color=#C8D5E0]Coast Drag[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "COAST_DRAG"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.07
+        }
+      ]
+    },
+    {
+      "id": "ionised_flux_ring",
+      "title": "Ion Flux Ring Mk II",
+      "description": "[color=#D7E7F5]Its serial number matches an old survey report describing a field of metal that should not have been there.[/color]\n\n[color=#9AA9B8]A focusing ring extends the salvage field.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Magnet Reach[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "MAGNET_SIZE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "ionised_fuel_regulator",
+      "title": "Ionised Fuel Regulator",
+      "description": "[color=#D7E7F5]Its faded maintenance tag bears the initials of an engineer who kept the outer depots running through the long blackout.[/color]\n\n[color=#9AA9B8]A pressure regulator reduces fuel waste.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-7%[/color] [color=#C8D5E0]Fuel Consumption[/color]",
+      "category": "systems",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "FUEL_BURN"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.07
+        }
+      ]
+    },
+    {
+      "id": "ionised_radiator_shroud",
+      "title": "Ionised Radiator Shroud",
+      "description": "[color=#D7E7F5]This unit was designed during the fuel ration years, when every wasted burn meant one less return trip.[/color]\n\n[color=#9AA9B8]A revised shroud improves thermal rejection.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Cooling Rate[/color]",
+      "category": "systems",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "COOL_RATE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "ionised_cargo_harness",
+      "title": "Ionised Cargo Harness",
+      "description": "[color=#D7E7F5]Its calibration notes were written by a collector who mapped debris fields by hand and never missed a shift.[/color]\n\n[color=#9AA9B8]Cargo is held closer to the centre of mass.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-7%[/color] [color=#C8D5E0]Cargo Drag[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "WEIGHT_DRAG"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.07
+        }
+      ]
+    },
+    {
+      "id": "ionised_salvage_chip",
+      "title": "Ionised Salvage Chip",
+      "description": "[color=#D7E7F5]This device was recovered from a cargo barge that drifted home with no crew and a full manifest.[/color]\n\n[color=#9AA9B8]A new valuation chip identifies useful scrap.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Scrap Value[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "DEBRIS_VALUE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "ionised_thermal_capacitor",
+      "title": "Ion Thermal Core",
+      "description": "[color=#D7E7F5]The part was found sealed inside a rescue pod, carefully labelled for whoever might need it next.[/color]\n\n[color=#9AA9B8]A capacitor absorbs short thermal spikes.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Heat Capacity[/color]",
+      "category": "systems",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "HEAT_MAX"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "ionised_boost_injector",
+      "title": "Ionised Boost Injector",
+      "description": "[color=#D7E7F5]This component carries a handwritten warning: 'Never trust a clean vector in a dirty field.'[/color]\n\n[color=#9AA9B8]A tuned injector improves boost output.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Boost Speed[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "BOOST_SPEED"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "ionised_reaction_wheel",
+      "title": "Ionised Reaction Wheel",
+      "description": "[color=#D7E7F5]Recovered from a wreck whose black box ends mid-manoeuvre, it still answers every control input.[/color]\n\n[color=#9AA9B8]The wheel stabilises the craft during directional changes.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Handling Grip[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "GRIP"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "ionised_contract_optimiser",
+      "title": "Ion Ledger",
+      "description": "[color=#D7E7F5]Its faded maintenance tag bears the initials of an engineer who kept the outer depots running through the long blackout.[/color]\n\n[color=#9AA9B8]A scheduling routine adds a little more time.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+6%[/color] [color=#C8D5E0]Run Time[/color]",
+      "category": "systems",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "TIME_LIMIT"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "phase_locked_steering_thrusters",
+      "title": "Phase-Lock Thrusters",
+      "description": "[color=#D7E7F5]Stamped with a defunct shipyard seal, this hardware outlived the fleet that first tested it in the debris lanes.[/color]\n\n[color=#9AA9B8]Directional jets provide a modest steering improvement.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+7%[/color] [color=#C8D5E0]Rotation Speed[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "ROTATION_SPEED"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.07
+        }
+      ]
+    },
+    {
+      "id": "phase_locked_drive_coupler",
+      "title": "Phase-Locked Drive Coupler",
+      "description": "[color=#D7E7F5]A salvage pilot swore this component saved their crew when a dead freighter spun across their route.[/color]\n\n[color=#9AA9B8]A more efficient coupler transfers power to the main drive.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Thrust Acceleration[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "THRUST_ACCEL"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "phase_locked_coast_governor",
+      "title": "Phase-Locked Coast Governor",
+      "description": "[color=#D7E7F5]Its casing is pitted by micrometeorites; the serial number belongs to a patrol ship lost beyond the relay line.[/color]\n\n[color=#9AA9B8]The flight computer preserves momentum for longer.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-7%[/color] [color=#C8D5E0]Coast Drag[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "COAST_DRAG"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.07
+        }
+      ]
+    },
+    {
+      "id": "phase_locked_flux_ring",
+      "title": "Phase-Lock Flux Ring Mk II",
+      "description": "[color=#D7E7F5]A scratched motto on the casing reads: 'Nothing lost stays lost if someone can tow it home.'[/color]\n\n[color=#9AA9B8]A focusing ring extends the salvage field.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Magnet Reach[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "MAGNET_SIZE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "phase_locked_fuel_regulator",
+      "title": "Phase-Locked Fuel Regulator",
+      "description": "[color=#D7E7F5]Its service record lists three reactor replacements and one unexplained return from beyond the mapped lanes.[/color]\n\n[color=#9AA9B8]A pressure regulator reduces fuel waste.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-7%[/color] [color=#C8D5E0]Fuel Consumption[/color]",
+      "category": "systems",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "FUEL_BURN"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.07
+        }
+      ]
+    },
+    {
+      "id": "phase_locked_radiator_shroud",
+      "title": "Phase-Locked Radiator Shroud",
+      "description": "[color=#D7E7F5]The old fleet used hardware like this to stretch a single tank across routes no modern pilot would attempt.[/color]\n\n[color=#9AA9B8]A revised shroud improves thermal rejection.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Cooling Rate[/color]",
+      "category": "systems",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "COOL_RATE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "phase_locked_cargo_harness",
+      "title": "Phase-Locked Cargo Harness",
+      "description": "[color=#D7E7F5]A depot ledger records its first use during the Greyfall salvage rush, when fragments were worth more than fuel.[/color]\n\n[color=#9AA9B8]Cargo is held closer to the centre of mass.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-7%[/color] [color=#C8D5E0]Cargo Drag[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "WEIGHT_DRAG"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.07
+        }
+      ]
+    },
+    {
+      "id": "phase_locked_salvage_chip",
+      "title": "Phase-Locked Salvage Chip",
+      "description": "[color=#D7E7F5]The maker's mark belongs to a reclamation guild that vanished after the orbital yards were stripped bare.[/color]\n\n[color=#9AA9B8]A new valuation chip identifies useful scrap.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Scrap Value[/color]",
+      "category": "collection",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "DEBRIS_VALUE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "phase_locked_thermal_capacitor",
+      "title": "Phase-Lock Thermal Core",
+      "description": "[color=#D7E7F5]The casing carries an obsolete emergency code from a station abandoned after its reactor went dark.[/color]\n\n[color=#9AA9B8]A capacitor absorbs short thermal spikes.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Heat Capacity[/color]",
+      "category": "systems",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "HEAT_MAX"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "phase_locked_boost_injector",
+      "title": "Phase-Locked Boost Injector",
+      "description": "[color=#D7E7F5]Its casing is pitted by micrometeorites; the serial number belongs to a patrol ship lost beyond the relay line.[/color]\n\n[color=#9AA9B8]A tuned injector improves boost output.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Boost Speed[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "BOOST_SPEED"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "phase_locked_reaction_wheel",
+      "title": "Phase-Locked Reaction Wheel",
+      "description": "[color=#D7E7F5]Old depot crews used to trade parts like this for extra oxygen rations. Nobody remembers who built the first one.[/color]\n\n[color=#9AA9B8]The wheel stabilises the craft during directional changes.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Handling Grip[/color]",
+      "category": "movement",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "GRIP"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "phase_locked_contract_optimiser",
+      "title": "Phase-Lock Ledger",
+      "description": "[color=#D7E7F5]Its service record lists three reactor replacements and one unexplained return from beyond the mapped lanes.[/color]\n\n[color=#9AA9B8]A scheduling routine adds a little more time.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+6%[/color] [color=#C8D5E0]Run Time[/color]",
+      "category": "systems",
+      "rarity": "uncommon",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "TIME_LIMIT"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.06
+        }
+      ]
+    },
+    {
+      "id": "recovered_steering_thrusters",
+      "title": "Recovered Steering Thrusters",
+      "description": "[color=#D7E7F5]Recovered from a wreck whose black box ends mid-manoeuvre, it still answers every control input.[/color]\n\n[color=#9AA9B8]Directional jets provide a modest steering improvement.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+7%[/color] [color=#C8D5E0]Rotation Speed[/color]",
+      "category": "movement",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "ROTATION_SPEED"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.07
+        }
+      ]
+    },
+    {
+      "id": "recovered_drive_coupler",
+      "title": "Recovered Drive Coupler",
+      "description": "[color=#D7E7F5]The flight log says this unit was recovered from a courier that threaded the Kestrel Belt during the evacuation.[/color]\n\n[color=#9AA9B8]A more efficient coupler transfers power to the main drive.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Thrust Acceleration[/color]",
+      "category": "movement",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "THRUST_ACCEL"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "recovered_coast_governor",
+      "title": "Recovered Coast Governor",
+      "description": "[color=#D7E7F5]Stamped with a defunct shipyard seal, this hardware outlived the fleet that first tested it in the debris lanes.[/color]\n\n[color=#9AA9B8]The flight computer preserves momentum for longer.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-7%[/color] [color=#C8D5E0]Coast Drag[/color]",
+      "category": "movement",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "COAST_DRAG"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.07
+        }
+      ]
+    },
+    {
+      "id": "recovered_flux_ring",
+      "title": "Recovered Flux Ring Mk II",
+      "description": "[color=#D7E7F5]Its calibration notes were written by a collector who mapped debris fields by hand and never missed a shift.[/color]\n\n[color=#9AA9B8]A focusing ring extends the salvage field.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Magnet Reach[/color]",
+      "category": "collection",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "MAGNET_SIZE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "recovered_fuel_regulator",
+      "title": "Recovered Fuel Regulator",
+      "description": "[color=#D7E7F5]A former depot mechanic claimed this design came from a prototype tug that never officially existed.[/color]\n\n[color=#9AA9B8]A pressure regulator reduces fuel waste.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-7%[/color] [color=#C8D5E0]Fuel Consumption[/color]",
+      "category": "systems",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "FUEL_BURN"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.07
+        }
+      ]
+    },
+    {
+      "id": "recovered_radiator_shroud",
+      "title": "Recovered Radiator Shroud",
+      "description": "[color=#D7E7F5]The part was found sealed inside a rescue pod, carefully labelled for whoever might need it next.[/color]\n\n[color=#9AA9B8]A revised shroud improves thermal rejection.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Cooling Rate[/color]",
+      "category": "systems",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "COOL_RATE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "recovered_cargo_harness",
+      "title": "Recovered Cargo Harness",
+      "description": "[color=#D7E7F5]It was built for the dangerous years when scrap storms could bury an entire depot in minutes.[/color]\n\n[color=#9AA9B8]Cargo is held closer to the centre of mass.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#FF7777]-7%[/color] [color=#C8D5E0]Cargo Drag[/color]",
+      "category": "collection",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "WEIGHT_DRAG"
+          ],
+          "mode": "MULTIPLY",
+          "amount": -0.07
+        }
+      ]
+    },
+    {
+      "id": "recovered_salvage_chip",
+      "title": "Recovered Salvage Chip",
+      "description": "[color=#D7E7F5]Its serial number matches an old survey report describing a field of metal that should not have been there.[/color]\n\n[color=#9AA9B8]A new valuation chip identifies useful scrap.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Scrap Value[/color]",
+      "category": "collection",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "DEBRIS_VALUE"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "recovered_thermal_capacitor",
+      "title": "Recovered Thermal Core",
+      "description": "[color=#D7E7F5]Its faded maintenance tag bears the initials of an engineer who kept the outer depots running through the long blackout.[/color]\n\n[color=#9AA9B8]A capacitor absorbs short thermal spikes.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Heat Capacity[/color]",
+      "category": "systems",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "HEAT_MAX"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "recovered_boost_injector",
+      "title": "Recovered Boost Injector",
+      "description": "[color=#D7E7F5]Stamped with a defunct shipyard seal, this hardware outlived the fleet that first tested it in the debris lanes.[/color]\n\n[color=#9AA9B8]A tuned injector improves boost output.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Boost Speed[/color]",
+      "category": "movement",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "BOOST_SPEED"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "recovered_reaction_wheel",
+      "title": "Recovered Reaction Wheel",
+      "description": "[color=#D7E7F5]A salvage pilot swore this component saved their crew when a dead freighter spun across their route.[/color]\n\n[color=#9AA9B8]The wheel stabilises the craft during directional changes.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Handling Grip[/color]",
+      "category": "movement",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "GRIP"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.08
+        }
+      ]
+    },
+    {
+      "id": "recovered_contract_optimiser",
+      "title": "Recovered Ledger",
+      "description": "[color=#D7E7F5]A former depot mechanic claimed this design came from a prototype tug that never officially existed.[/color]\n\n[color=#9AA9B8]A scheduling routine adds a little more time.[/color]\n\n[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]\n[color=#7CFF9B]+6%[/color] [color=#C8D5E0]Run Time[/color]",
+      "category": "systems",
+      "rarity": "common",
+      "max_stacks": 3,
+      "effects": [
+        {
+          "type": "StatEffect",
+          "stats": [
+            "TIME_LIMIT"
+          ],
+          "mode": "MULTIPLY",
+          "amount": 0.06
+        }
+      ]
+    }
+  ]
+}

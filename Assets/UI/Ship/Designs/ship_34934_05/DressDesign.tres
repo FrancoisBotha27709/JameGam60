@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="ShipDesign" format=3 uid="uid://38sgr66k2snb"]
+
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="1_p6wdx"]
+[ext_resource type="Texture2D" uid="uid://dmv5g0cp1jetn" path="res://Assets/UI/Ship/Designs/ship_34934_05/ship_34934_05.png" id="2_efm16"]
+[ext_resource type="Script" uid="uid://ca62057uoi4ir" path="res://Assets/UI/Ship/Designs/ShipDesign.gd" id="2_hxnss"]
+[ext_resource type="Resource" uid="uid://bpy5jr7c0hsq8" path="res://Data/Upgrades/Resources/deep_space_contract_optimiser.tres" id="2_ygtvr"]
+[ext_resource type="Texture2D" uid="uid://bx8rh4pad2xea" path="res://Assets/UI/Ship/Designs/ship_34934_05/ship_34934_05_large.png" id="3_ts2r2"]
+[ext_resource type="Resource" uid="uid://cf36ge10mj7ym" path="res://Data/Upgrades/Resources/deep_space_steering_thrusters.tres" id="3_xn6ny"]
+[ext_resource type="Resource" uid="uid://c102dh2okxb8u" path="res://Data/Upgrades/Resources/debris_wake_thrusters.tres" id="4_7ek0b"]
+[ext_resource type="Texture2D" uid="uid://co65w5p2gxpdf" path="res://Assets/UI/Ship/Designs/ship_34934_05/ship_34934_05_n_large.png" id="4_dmygr"]
+[ext_resource type="Texture2D" uid="uid://b24farpm78q3e" path="res://Assets/UI/Ship/Designs/ship_34934_05/ship_34934_05_n.png" id="5_p6wdx"]
+[ext_resource type="PackedScene" uid="uid://chcul5oawyipr" path="res://Data/Particles/shader/Ship FX/ship_fx.tscn" id="8_ygtvr"]
+
+[resource]
+script = ExtResource("2_hxnss")
+ship_name = "Dress"
+description = "This is a space ship"
+diffuse_texture = ExtResource("2_efm16")
+normal_texture = ExtResource("5_p6wdx")
+en_diffuse_texture = ExtResource("3_ts2r2")
+en_normal_texture = ExtResource("4_dmygr")
+thrust_marker_position = Vector2(-42, -3)
+wing_marker_position = Vector2(-32, 8)
+tip_marker_position = Vector2(40, 1)
+exhaust_marker_position = Vector2(25, -2)
+fx_scenes = Array[PackedScene]([ExtResource("8_ygtvr")])
+fx_marker_positions = Array[Vector2]([Vector2(-40, 0)])
+abilities = Array[ExtResource("1_p6wdx")]([ExtResource("2_ygtvr"), ExtResource("3_xn6ny"), ExtResource("4_7ek0b")])
+max_speed = 560.0
+collision_shape_scale = 0.72
+rotation_speed = 4.2
+angular_acceleration = 16.0
+angular_drag = 7.5
+thrust_accel = 460.0
+throttle_accel = 110.0
+throttle_decel = 380.0
+hold_delay = 0.1
+tap_impulse = 125.0
+grip = 3.8
+coast_drag = 32.0
+brake_drag = 320.0
+overspeed_drag = 520.0
+boost_speed_mult = 1.75
+boost_fuel_mult = 2.4
+fuel_max = 75.0
+fuel_depletion_rate = 7.0
+tap_fuel_cost = 0.7
+weight_fuel_factor = 0.16
+heat_max = 80.0
+tap_heat = 16.0
+hold_heat_rate = 9.0
+cool_rate = 10.0
+meltdown_time = 3.5
+weight_drag = 0.11
+min_speed_factor = 0.18
+metadata/_custom_type_script = "uid://ca62057uoi4ir"

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://nvodfklhfw7j"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_4eoj4"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_so2bp"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_0svfp"]
+
+[sub_resource type="Resource" id="Resource_4eoj4"]
+script = ExtResource("2_so2bp")
+stats = Array[int]([9])
+amount = 0.08
+
+[resource]
+resource_name = "Deep-Space Boost Injector"
+script = ExtResource("3_0svfp")
+title = "Deep-Space Boost Injector"
+description = "[color=#D7E7F5]Stamped with a defunct shipyard seal, this hardware outlived the fleet that first tested it in the debris lanes.[/color]
+
+[color=#9AA9B8]A tuned injector improves boost output.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Boost Speed[/color]"
+effects = Array[ExtResource("1_4eoj4")]([SubResource("Resource_4eoj4")])

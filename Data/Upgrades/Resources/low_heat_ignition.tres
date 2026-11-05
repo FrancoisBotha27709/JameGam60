@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://dobpnrrtj18pm"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_ttctt"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_iu3fk"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_c0jgg"]
+
+[sub_resource type="Resource" id="Resource_ttctt"]
+script = ExtResource("2_iu3fk")
+stats = Array[int]([16])
+amount = -0.18
+
+[resource]
+resource_name = "Low-Heat Ignition"
+script = ExtResource("3_c0jgg")
+title = "Low-Heat Ignition"
+description = "[color=#D7E7F5]The casing carries an obsolete emergency code from a station abandoned after its reactor went dark.[/color]
+
+[color=#9AA9B8]A softer ignition profile reduces heat generation.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#FF7777]-18%[/color] [color=#C8D5E0]Heat Generation[/color]"
+effects = Array[ExtResource("1_ttctt")]([SubResource("Resource_ttctt")])

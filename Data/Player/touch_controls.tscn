@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://blpwn3qpi6avr"]
+
+[ext_resource type="Script" uid="uid://dlffwgdpf3b4d" path="res://Data/Player/touch_controls.gd" id="1_l5dnr"]
+[ext_resource type="PackedScene" uid="uid://c0kiv5eefdlwj" path="res://addons/mobile_joystick/systems/joystick/joystick.tscn" id="3_0klgh"]
+[ext_resource type="Texture2D" uid="uid://yiumtrepalmh" path="res://addons/mobile_joystick/systems/joystick/sprites/joystick_base_outline.png" id="3_bgpk3"]
+[ext_resource type="Texture2D" uid="uid://bh3meybm5lr1u" path="res://addons/mobile_joystick/systems/joystick/sprites/joystick_tip_arrows.png" id="4_fj8k2"]
+[ext_resource type="Texture2D" uid="uid://epw7jv8k7lbw" path="res://Assets/UI/Assets Wenrexa UI Sci-Fi Minimalism #01/Elements/ArrowLeft.png" id="5_ltp8o"]
+[ext_resource type="Texture2D" uid="uid://6dw87451o7hj" path="res://Assets/UI/Assets Wenrexa UI Sci-Fi Minimalism #01/Elements/ArrowRight.png" id="6_ltp8o"]
+
+[node name="Touch_controls" type="CanvasLayer" unique_id=395572264]
+script = ExtResource("1_l5dnr")
+visibility_mode = 1
+
+[node name="Joystick" parent="." unique_id=1885096105 instance=ExtResource("3_0klgh")]
+TextureBase = ExtResource("3_bgpk3")
+TextureTip = ExtResource("4_fj8k2")
+joystick_mode = 1
+visibility_mode = 1
+action_left = "keyboard_left"
+action_right = "keyboard_right"
+action_up = "keyboard_left"
+action_down = "keyboard_right"
+
+[node name="PauseMenu" type="TouchScreenButton" parent="." unique_id=718006354]
+scale = Vector2(2.7, 2.7)
+texture_normal = ExtResource("5_ltp8o")
+texture_pressed = ExtResource("5_ltp8o")
+action = "mobile_esc"
+
+[node name="Thrust" type="TouchScreenButton" parent="." unique_id=481516857]
+position = Vector2(1712, 804)
+rotation = -1.5707964
+scale = Vector2(4, 4)
+texture_normal = ExtResource("6_ltp8o")
+texture_pressed = ExtResource("6_ltp8o")
+action = "keyboard_forward"
+
+[node name="Thrust2" type="TouchScreenButton" parent="." unique_id=850934316]
+position = Vector2(1819, 922)
+rotation = 1.5707964
+scale = Vector2(4, 4)
+texture_normal = ExtResource("6_ltp8o")
+texture_pressed = ExtResource("6_ltp8o")
+action = "keyboard_backward"

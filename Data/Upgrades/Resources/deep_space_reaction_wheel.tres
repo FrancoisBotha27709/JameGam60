@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://bbbhojekhvl4r"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_dphvn"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_8fs6l"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_6728r"]
+
+[sub_resource type="Resource" id="Resource_dphvn"]
+script = ExtResource("2_8fs6l")
+stats = Array[int]([14])
+amount = 0.08
+
+[resource]
+resource_name = "Deep-Space Reaction Wheel"
+script = ExtResource("3_6728r")
+title = "Deep-Space Reaction Wheel"
+description = "[color=#D7E7F5]A salvage pilot swore this component saved their crew when a dead freighter spun across their route.[/color]
+
+[color=#9AA9B8]The wheel stabilises the craft during directional changes.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]+8%[/color] [color=#C8D5E0]Handling Grip[/color]"
+effects = Array[ExtResource("1_dphvn")]([SubResource("Resource_dphvn")])

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://7tu7exylxmyg"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_nxusy"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_57pj2"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_7w6p1"]
+
+[sub_resource type="Resource" id="Resource_nxusy"]
+script = ExtResource("2_57pj2")
+stats = Array[int]([4])
+amount = -0.15
+
+[resource]
+resource_name = "Cargo Trim Servo"
+script = ExtResource("3_7w6p1")
+title = "Cargo Trim Servo"
+description = "[color=#D7E7F5]A salvage pilot swore this component saved their crew when a dead freighter spun across their route.[/color]
+
+[color=#9AA9B8]Auto-trim compensates for awkwardly attached scrap.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#FF7777]-15%[/color] [color=#C8D5E0]Cargo Drag[/color]"
+effects = Array[ExtResource("1_nxusy")]([SubResource("Resource_nxusy")])

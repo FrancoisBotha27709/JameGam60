@@ -14,7 +14,7 @@ const FLAVOR : Array[String] = [
 
 @export_group("Nodes")
 @export var overlay : DitherVignette
-@export var backpanel : Panel
+@export var backpanel : PanelContainer
 @export var tag : Label
 @export var title : Label
 @export var sub : Label
@@ -22,7 +22,7 @@ const FLAVOR : Array[String] = [
 @export var flash : ColorRect
 @export var overlow : RichTextLabel
 @export var summary_lbl : Label
-@export var progress : Label
+@export var progress : ProgressBar
 
 @export_group("Loading")
 @export_file("*.tscn") var next_scene : String = "res://Data/main.gd"
@@ -43,9 +43,13 @@ const FLAVOR : Array[String] = [
 @export_range(0.0, 1.0) var intensity : float = 0.35
 
 @export_group("Progress Bar")
-@export var progress_character : String = ":"
-@export var progress_empty_character : String = " "
-@export var progress_padding : int = 2
+@export var bar_fill_speed : float = 8.0
+@export var bar_glow_speed : float = 2.5
+@export var bar_glow_strength : float = 0.15
+@export var bar_complete_punch : float = 1.08
+
+var _bar_tween : Tween
+var _bar_glow_t : float = 0.0
 
 var _paths : Array[String] = []
 var _done : Dictionary = {}
@@ -56,6 +60,7 @@ var _flavor_i : int = 0
 var _t : float = 0.0
 var _leaving : bool = false
 var _warm_done : bool = false
+var _completion_punched : bool = false
 
 func _ready() -> void:
 	set_process(false)
@@ -70,7 +75,11 @@ func _ready() -> void:
 		l.add_theme_color_override("font_color", accent)
 	backpanel.scale = Vector2.ZERO
 	overlow.text = ""
-
+	progress.min_value = 0.0
+	progress.max_value = 100.0
+	progress.value = 0.0
+	progress.show_percentage = false
+	progress.pivot_offset = progress.size / 2.0
 	_paths.assign(preload_paths)
 	_paths.append(next_scene)
 	var tex_count := 0
@@ -122,7 +131,6 @@ func _process(delta : float) -> void:
 			_:
 				_done[p] = true
 				total += 1.0
-				push_error("LoadingScreen: failed to load '%s'" % p)
 				_log("[color=red][ ERROR ] [/color] Failed %s" % p.get_file())
 
 	var res_frac := total / _paths.size()
@@ -141,31 +149,46 @@ func _process(delta : float) -> void:
 	score.text = "LOADING  %d%%" % roundi(_shown * 100.0)
 	_update_progress_bar()
 	if _shown >= 1.0 and _t >= min_show_time:
-		_finish()
+		if not _completion_punched:
+			_completion_punched = true
+			_progress_complete_punch()
+			_finish()
 
 func _update_progress_bar() -> void:
-	var available_width := progress.size.x
-	var font := progress.get_theme_font("font")
-	var font_size := progress.get_theme_font_size("font_size")
-	if font == null or available_width <= 0.0:
+	if progress == null:
 		return
 
-	var char_width := font.get_string_size(progress_character, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
-	if char_width <= 0.0:
-		return
+	if _bar_tween and _bar_tween.is_running():
+		_bar_tween.kill()
 
-	var max_chars := maxi(1, int(available_width / char_width) - progress_padding)
-	var filled_chars := clampi(roundi(_shown * max_chars), 0, max_chars)
-	progress.text = "〚" \
-		+ progress_character.repeat(filled_chars) \
-		+ progress_empty_character.repeat(max_chars - filled_chars) \
-		+ "〛"
+	_bar_tween = create_tween()
+	_bar_tween.tween_property(
+		progress,
+		"value",
+		_shown * 100.0,
+		1.0 / bar_fill_speed
+	).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+
+func _progress_complete_punch() -> void:
+	var tween := create_tween()
+	tween.tween_property(
+		progress,
+		"scale",
+		Vector2.ONE * bar_complete_punch,
+		0.12
+	).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+
+	tween.tween_property(
+		progress,
+		"scale",
+		Vector2.ONE,
+		0.25
+	).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 
 func _finish() -> void:
 	_leaving = true
 	var scene := ResourceLoader.load_threaded_get(next_scene) as PackedScene
 	if scene == null:
-		push_error("LoadingScreen: next_scene failed to load")
 		return
 	_log("[color=green][  OK  ] [/color] All systems nominal")
 	var t := create_tween().set_parallel(true)

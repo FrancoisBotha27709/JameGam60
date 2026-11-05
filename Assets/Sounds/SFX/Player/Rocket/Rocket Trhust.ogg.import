@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dnmt6bh3up125"
+path="res://.godot/imported/Rocket Trhust.ogg-3499e4330b2f0c325a0d95bb3bfb34e6.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Sounds/SFX/Player/Rocket/Rocket Trhust.ogg"
+dest_files=["res://.godot/imported/Rocket Trhust.ogg-3499e4330b2f0c325a0d95bb3bfb34e6.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

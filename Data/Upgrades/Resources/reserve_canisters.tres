@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://bsa6kpuv2lkm8"]
+
+[ext_resource type="Script" uid="uid://d3otaux6mkuqn" path="res://Data/Upgrades/Effects/upgrade_effect.gd" id="1_l241d"]
+[ext_resource type="Script" uid="uid://bsx6jk650wii2" path="res://Data/Upgrades/Effects/stat_effect.gd" id="2_sbidi"]
+[ext_resource type="Script" uid="uid://jc05jmnmy2r1" path="res://Data/Upgrades/Effects/upgrade.gd" id="3_70l4p"]
+
+[sub_resource type="Resource" id="Resource_l241d"]
+script = ExtResource("2_sbidi")
+stats = Array[int]([3])
+amount = 0.25
+
+[resource]
+resource_name = "Reserve Canisters"
+script = ExtResource("3_70l4p")
+title = "Reserve Canisters"
+description = "[color=#D7E7F5]Its faded maintenance tag bears the initials of an engineer who kept the outer depots running through the long blackout.[/color]
+
+[color=#9AA9B8]Emergency canisters add a large fuel reserve.[/color]
+
+[color=#65D8FF][b]SYSTEMS PROFILE[/b][/color]
+[color=#7CFF9B]+25%[/color] [color=#C8D5E0]Fuel Capacity[/color]"
+max_stacks = 2
+effects = Array[ExtResource("1_l241d")]([SubResource("Resource_l241d")])
