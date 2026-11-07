@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://btwxad7b8is7j"]
 
 [ext_resource type="Script" uid="uid://0jesrkqvuh82" path="res://Assets/Nodes/upgrade_card.gd" id="1_1ncmc"]
+[ext_resource type="Theme" uid="uid://dap6826f78p24" path="res://Assets/theme.tres" id="1_kwgwu"]
+[ext_resource type="PackedScene" uid="uid://225m7a2jyn8r" path="res://Assets/Nodes/better_button.tscn" id="2_ejs0x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ncmc"]
 content_margin_left = 4.0
@@ -60,25 +62,32 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_kwgwu")
 script = ExtResource("1_1ncmc")
 node_title_lbl = NodePath("MarginContainer/VBoxContainer/Title")
 node_desc_lbl = NodePath("MarginContainer/VBoxContainer/Desc")
 node_icon = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/TextureRect")
-node_button = NodePath("Button")
+node_button = NodePath("Button/HBoxContainer/Control/Button")
 
-[node name="Button" type="Button" parent="." unique_id=1152985206]
+[node name="Button" parent="." unique_id=668546363 instance=ExtResource("2_ejs0x")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+
+[node name="HBoxContainer" parent="Button" index="0" unique_id=1657227851]
+theme_override_constants/separation = 16
+
+[node name="Button" parent="Button/HBoxContainer/Control" parent_id_path=PackedInt32Array(668546363, 1028046267) index="0" unique_id=195598314]
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_1ncmc")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ejs0x")
 theme_override_styles/hover = SubResource("StyleBoxFlat_kwgwu")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_kll4a")
 theme_override_styles/focus = SubResource("StyleBoxFlat_ldcyo")
+
+[node name="RichTextLabel" parent="Button/HBoxContainer/Control" parent_id_path=PackedInt32Array(668546363, 1028046267) index="1" unique_id=24974045]
+theme_override_font_sizes/normal_font_size = 32
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1656523757]
 layout_mode = 1
@@ -108,6 +117,7 @@ autowrap_mode = 3
 uppercase = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=786494520]
+visible = false
 custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 mouse_filter = 2
@@ -128,3 +138,5 @@ mouse_filter = 2
 bbcode_enabled = true
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[editable path="Button"]

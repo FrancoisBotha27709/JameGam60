@@ -7,11 +7,13 @@ const PARTICLE_COUNT := 4
 const MIN_ALPHA := 0.15
 const HALF := 0.5
 const TAG := "quantum"
+const BLIP_WAVE_THRESHOLD := 0.0   # the flicker counts as "gone" while its sine wave is below this
 
 var debris : DebrisObject
 var focus : Node2D
 var time_left := 0.0
 var is_armed := false
+var is_blip_visible := true
 var phase := 0.0
 var radius_squared := 0.0
 
@@ -36,6 +38,7 @@ func reset() -> void:
 	debris.is_quantum = false
 	debris.quantum_caught = false
 	is_armed = false
+	is_blip_visible = true
 	phase = 0.0
 	focus = null
 	debris.runtime_tags.erase(TAG)
@@ -62,7 +65,17 @@ func tick(delta : float) -> void:
 		return
 	var elapsed_ratio := 1.0 - time_left / debris.data.quantum_lifetime
 	phase += TAU * lerpf(debris.flash_rate_start, debris.flash_rate_end, elapsed_ratio) * delta
-	debris.modulate = Color(debris.quantum_tint, lerpf(MIN_ALPHA, 1.0, HALF + HALF * sin(phase)))
+	var wave := sin(phase)
+	debris.modulate = Color(debris.quantum_tint, lerpf(MIN_ALPHA, 1.0, HALF + HALF * wave))
+	_update_blip(wave)
+
+# Reports each fade-out and fade-in of the flicker exactly once, so every change plays one blip sound.
+func _update_blip(wave : float) -> void:
+	var is_visible_now := wave > BLIP_WAVE_THRESHOLD
+	if is_visible_now == is_blip_visible:
+		return
+	is_blip_visible = is_visible_now
+	debris.quantum_blip(is_visible_now)
 
 # Bursts the particles where the debris expired, then notifies listeners.
 func _expire() -> void:

@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://225m7a2jyn8r"]
+
+[ext_resource type="Script" uid="uid://cv7juyxveycth" path="res://Assets/Nodes/better_button.gd" id="1_h2axk"]
+[ext_resource type="Theme" uid="uid://dap6826f78p24" path="res://Assets/theme.tres" id="1_ig6ew"]
+[ext_resource type="Script" uid="uid://cjs0m0kluqqk" path="res://Assets/Nodes/Audio/AudioTrigger.gd" id="3_oc414"]
+
+[node name="BetterButton" type="Control" unique_id=668546363 node_paths=PackedStringArray("node_button", "node_label", "node_left_texture", "node_right_texture")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ig6ew")
+script = ExtResource("1_h2axk")
+node_button = NodePath("HBoxContainer/Control/Button")
+node_label = NodePath("HBoxContainer/Control/RichTextLabel")
+node_left_texture = NodePath("HBoxContainer/LeftTexture")
+node_right_texture = NodePath("HBoxContainer/RightTexture")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1657227851]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftTexture" type="TextureRect" parent="HBoxContainer" unique_id=1050901166]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="Control" type="Control" parent="HBoxContainer" unique_id=1028046267]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="HBoxContainer/Control" unique_id=195598314]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/Control" unique_id=24974045]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+bbcode_enabled = true
+
+[node name="RightTexture" type="TextureRect" parent="HBoxContainer" unique_id=1478314421]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="ClickAudioTrigger" type="Node" parent="." unique_id=910107891]
+script = ExtResource("3_oc414")
+sound = "ui_click"
+bus = "UI"
+event = 1
+signal_name = "pressed"
+positional = false
+volume_db = -24.0
+metadata/_custom_type_script = "uid://cjs0m0kluqqk"

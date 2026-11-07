@@ -3,11 +3,14 @@ class_name DebrisObject
 
 signal delivered
 signal quantum_expired
+signal caught
 
 @export var fx_pickup : FXEmitter
 @export var quantum_container : Node2D
 @export var quantum_particle_scene : PackedScene
 @export var sprite : Sprite2D
+## Holds the quantum sounds: blip_out, blip_in, teleport and crackle. Leave empty for a silent debris.
+@export var audio_cues : AudioCueSet
 @export var blast_damping : float = 2.5   # higher = the shove fades faster
 @export var quantum_tint : Color = Color(0.55, 0.9, 1.0)
 @export var flash_rate_start : float = 3.0
@@ -32,6 +35,10 @@ const LIGHT_PULSE_RANGE := Vector2(0.4, 1.4)
 const LIGHT_INTENSITY_RANGE := Vector2(0.8, 1.4)
 const LIGHT_TINT_RANGE := Vector2(-0.15, 0.15)
 const LIGHT_HEIGHT := 0.5
+const CUE_BLIP_OUT := "blip_out"
+const CUE_BLIP_IN := "blip_in"
+const CUE_TELEPORT := "teleport"
+const CUE_CRACKLE := "crackle"
 
 var data : Debris
 var anchor : Node2D
@@ -61,7 +68,7 @@ var _bounded := false
 var _world_min := Vector2.ZERO
 var _world_max := Vector2.ZERO
 
-@export var audio_player : AudioStreamPlayer2D
+#region Initialization
 
 func _init() -> void:
 	rope_system = DebrisRope.new(self)
@@ -135,14 +142,32 @@ func set_quantum(enabled : bool, focus : Node2D) -> void:
 func quantum_spent() -> bool:
 	return quantum_system.is_spent()
 
-# After a quantum expiry the debris jumps opposite to its heading, then listeners are told.
+# Plays a cue on this debris's audio set, at a fixed spot when one is given; debris without a set stays silent.
+func _play_cue(cue_name : String, at : Variant = null) -> void:
+	if audio_cues == null:
+		return
+	if at is Vector2:
+		audio_cues.play_at(cue_name, at)
+	else:
+		audio_cues.play(cue_name)
+
+# Call whenever the quantum flicker hides (false) or shows (true) the debris, so the blip sounds match.
+func quantum_blip(is_visible_now : bool) -> void:
+	_play_cue(CUE_BLIP_IN if is_visible_now else CUE_BLIP_OUT)
+
+# After a quantum expiry the debris jumps opposite to its heading, with a crackle at both ends, then listeners are told.
 func _on_quantum_expired() -> void:
+	var departure := global_position
+	_play_cue(CUE_TELEPORT)
+	_play_cue(CUE_CRACKLE, departure)
 	var destination := position - drift_velocity.normalized() * randf_range(teleport_min, teleport_max)
 	position = destination.clamp(_world_min, _world_max) if _bounded else destination
+	_play_cue(CUE_CRACKLE, global_position)
 	quantum_expired.emit()
 
+#endregion
+#region rope
 
-# ---------------------------------------------------------------- rope
 func attach_to(target : Node2D) -> void:
 	anchor = target
 	set_deferred("monitoring", false)
@@ -150,6 +175,7 @@ func attach_to(target : Node2D) -> void:
 	if is_quantum and not quantum_caught:
 		quantum_caught = true
 		modulate = quantum_tint
+	caught.emit()
 
 func detach() -> void:
 	rope_system.release()
@@ -161,8 +187,9 @@ func detach_to(target : Node2D) -> void:
 	attach_to(target)
 	delivered.emit()
 
+#endregion
+#region motion
 
-# ---------------------------------------------------------------- motion
 func apply_blast(origin : Vector2, radius : float, force : float) -> void:
 	var offset := global_position - origin
 	var distance := offset.length()
@@ -250,3 +277,5 @@ func _apply_shape() -> void:
 		light.set("pulse_speed", DebrisShapes.random_in(LIGHT_PULSE_RANGE))
 		light.set("intensity", DebrisShapes.random_in(LIGHT_INTENSITY_RANGE))
 		light.height = LIGHT_HEIGHT
+
+#endregion

@@ -202,65 +202,9 @@ func _on_node_delivered(node : DebrisObject) -> void:
 
 	_retire(node)
 
-	_play_debris_audio(node)
-
 	get_tree().create_timer(
 		randf_range(delivered_lifetime_min, delivered_lifetime_max)
 	).timeout.connect(node.queue_free)
-
-
-func _play_debris_audio(node : DebrisObject) -> void:
-	# Randomly skip some debris sounds.
-	#if randf() > 0.25:
-	#	return
-
-	# Limit the number of sounds playing simultaneously.
-	if _active_debris_audio.size() >= max_debris_audio:
-		return
-
-	if not is_instance_valid(node.audio_player):
-		return
-
-	var source := node.audio_player
-
-	if source.stream == null:
-		return
-
-	var audio := AudioStreamPlayer2D.new()
-
-	# Copy the original audio configuration.
-	audio.stream = source.stream
-	audio.bus = source.bus
-	audio.volume_db = source.volume_db
-	audio.pitch_scale = source.pitch_scale * randf_range(0.9, 1.1)
-	audio.max_distance = source.max_distance
-	audio.attenuation = source.attenuation
-	audio.panning_strength = source.panning_strength
-	audio.area_mask = source.area_mask
-
-	# Make the audio independent of the game's pause state.
-	audio.process_mode = Node.PROCESS_MODE_ALWAYS
-
-	# Add it to the active game scene, not the debris object.
-	var scene := get_tree().current_scene
-	if scene == null:
-		scene = self
-
-	scene.add_child(audio)
-	audio.global_position = source.global_position
-
-	_active_debris_audio.append(audio)
-
-	audio.finished.connect(_on_debris_audio_finished.bind(audio), CONNECT_ONE_SHOT)
-
-	audio.play()
-
-
-func _on_debris_audio_finished(audio : AudioStreamPlayer2D) -> void:
-	_active_debris_audio.erase(audio)
-
-	if is_instance_valid(audio):
-		audio.queue_free()
 
 func _on_node_quantum_expired(node : DebrisObject) -> void:
 	if node.field_idx >= 0:

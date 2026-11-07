@@ -2,8 +2,27 @@
 
 [ext_resource type="Theme" uid="uid://dap6826f78p24" path="res://Assets/theme.tres" id="1_i1tbe"]
 [ext_resource type="Script" uid="uid://cteb5yqk3x28h" path="res://Data/Menu/tutorial_popup.gd" id="1_obbrf"]
+[ext_resource type="Script" uid="uid://cjs0m0kluqqk" path="res://Assets/Nodes/Audio/AudioTrigger.gd" id="3_se5vn"]
 
-[node name="TutorialPopup" type="Control" unique_id=1984458471]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+resource_local_to_scene = true
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.85)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3, 0.85, 1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="TutorialPopup" type="Control" unique_id=1984458471 node_paths=PackedStringArray("_flash", "_panel", "_tag", "_title", "_sub", "_body", "_hint", "_btn")]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,3 +31,154 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_i1tbe")
 script = ExtResource("1_obbrf")
+ui_theme = ExtResource("1_i1tbe")
+_flash = NodePath("Flash")
+_panel = NodePath("Center/Panel")
+_tag = NodePath("Center/Panel/Margin/Box/Tag")
+_title = NodePath("Center/Panel/Margin/Box/Title")
+_sub = NodePath("Center/Panel/Margin/Box/Sub")
+_body = NodePath("Center/Panel/Margin/Box/Body")
+_hint = NodePath("Center/Panel/Margin/Box/Footer/Hint")
+_btn = NodePath("Center/Panel/Margin/Box/Footer/AcknowledgeButton")
+
+[node name="OpenAudioTrigger" type="Node" parent="." unique_id=886890859]
+script = ExtResource("3_se5vn")
+sound = "ui_menu_open"
+bus = "UI"
+event = 1
+positional = false
+metadata/_custom_type_script = "uid://cjs0m0kluqqk"
+
+[node name="CloseAudioTrigger" type="Node" parent="." unique_id=354907842]
+script = ExtResource("3_se5vn")
+sound = "ui_menu_close"
+bus = "UI"
+event = 1
+signal_name = "closed"
+positional = false
+metadata/_custom_type_script = "uid://cjs0m0kluqqk"
+
+[node name="SlamAudioTrigger" type="Node" parent="." unique_id=1150498767]
+script = ExtResource("3_se5vn")
+sound = "ui_popup"
+bus = "UI"
+event = 1
+signal_name = "open"
+positional = false
+metadata/_custom_type_script = "uid://cjs0m0kluqqk"
+
+[node name="Dim" type="ColorRect" parent="." unique_id=76829099]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.55)
+
+[node name="Center" type="CenterContainer" parent="." unique_id=1224212072]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="Center" unique_id=732739937]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Margin" type="MarginContainer" parent="Center/Panel" unique_id=2043278047]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Box" type="VBoxContainer" parent="Center/Panel/Margin" unique_id=77785726]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Tag" type="Label" parent="Center/Panel/Margin/Box" unique_id=2098198378]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 28
+text = "// FIELD MANUAL //"
+
+[node name="Title" type="Label" parent="Center/Panel/Margin/Box" unique_id=859982766]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 48
+text = "GARBAGE COLLECTOR"
+
+[node name="Sub" type="Label" parent="Center/Panel/Margin/Box" unique_id=706898617]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "COLLECT DEBRIS - DELIVER IT - MEET THE QUOTA"
+
+[node name="Rule" type="ColorRect" parent="Center/Panel/Margin/Box" unique_id=1619731469]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(0.3, 0.85, 1, 0.5)
+
+[node name="Body" type="RichTextLabel" parent="Center/Panel/Margin/Box" unique_id=1401979486]
+custom_minimum_size = Vector2(0, 512)
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+bbcode_enabled = true
+text = "[color=#6ec6ff]// CONTROLS //[/color]
+[table=2]
+[cell padding=0,0,24,0][color=#ffd27f][lb] A / D [rb][/color][/cell][cell]Rotate the ship[/cell]
+[cell padding=0,0,24,0][color=#ffd27f][lb] W [rb][/color][/cell][cell]Thrust: tap for a quick impulse, hold to ramp up the throttle[/cell]
+[cell padding=0,0,24,0][color=#ffd27f][lb] SPACE [rb][/color][/cell][cell]Boost: faster, but burns [color=#ff8a65]2x fuel[/color][/cell]
+[cell padding=0,0,24,0][color=#ffd27f][lb] S [rb][/color][/cell][cell]Brake / cut throttle[/cell]
+[/table]
+
+[color=#6ec6ff]// OBJECTIVE //[/color]
+[color=#8be9ff][lb] 01 [rb][/color] Fly into [color=#ffd27f]debris[/color] to grab it. It trails behind you on a rope.
+[color=#8be9ff][lb] 02 [rb][/color] Fly into the [color=#7dffb0]Depot[/color] to deliver everything you carry.
+[color=#8be9ff][lb] 03 [rb][/color] Reach the [color=#ffd27f]quota[/color] before time or fuel runs out.
+
+[color=#6ec6ff]// DEBRIS VALUE //[/color]
+[table=2]
+[cell padding=0,0,24,0][color=#cfcfcf][lb] PLASTIC [rb][/color][/cell][cell]x1.0[/cell]
+[cell padding=0,0,24,0][color=#c0c8d0][lb] METAL [rb][/color][/cell][cell]x1.5[/cell]
+[cell padding=0,0,24,0][color=#d8b98a][lb] CEMENT [rb][/color][/cell][cell]x2.0[/cell]
+[/table]
+[color=#8be9ff][lb] ANOMALY [rb][/color] Blue flashing debris is quantum: worth [color=#8be9ff]x3[/color], but it teleports away if you get close and don't grab it fast.
+
+[color=#6ec6ff]// WARNINGS //[/color]
+[color=yellow][lb] WARN [rb][/color] Weight: every piece slows you down and burns more fuel. Deliver often.
+[color=yellow][lb] WARN [rb][/color] Asteroids: they bounce you away. Route around the big ones.
+[color=red][lb] ERROR [rb][/color] Heat: rapid-fire tapping and holding thrust build heat. At maximum the ship explodes.
+[color=red][lb] ERROR [rb][/color] Fuel: at zero your engine sputters and the run ends.
+
+[color=#7dffb0][lb] OK [rb][/color] Meet the quota to pick an upgrade and start the next, harder run."
+
+[node name="Footer" type="HBoxContainer" parent="Center/Panel/Margin/Box" unique_id=2078681827]
+layout_mode = 2
+
+[node name="Hint" type="Label" parent="Center/Panel/Margin/Box/Footer" unique_id=1237715930]
+modulate = Color(1, 1, 1, 0.5)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "[ ESC ] CLOSE"
+vertical_alignment = 1
+
+[node name="AcknowledgeButton" type="Button" parent="Center/Panel/Margin/Box/Footer" unique_id=1383896964]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+disabled = true
+text = "[ ACKNOWLEDGE ]"
+
+[node name="Flash" type="ColorRect" parent="." unique_id=628071183]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)

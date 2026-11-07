@@ -1,11 +1,9 @@
 [gd_scene format=3 uid="uid://tcujdfv68u1q"]
 
 [ext_resource type="Script" uid="uid://cnvpiky6dxbty" path="res://Data/Player/player.gd" id="1_o0p0d"]
+[ext_resource type="Script" uid="uid://vj71jr4yeyw7" path="res://Data/Particles/shader/New FX/fx_player.gd" id="2_b3cwg"]
 [ext_resource type="PackedScene" uid="uid://carf6gmsridye" path="res://Data/Player/ui.tscn" id="4_x8ab7"]
 [ext_resource type="PackedScene" uid="uid://byqlfywo2eb5g" path="res://Data/Menu/meltdown_screen.tscn" id="5_3nxmj"]
-[ext_resource type="PackedScene" uid="uid://c0rwf35b0kfeb" path="res://Data/Particles/fx_emitter.tscn" id="6_e4jm7"]
-[ext_resource type="Shader" uid="uid://c71v6lan6717q" path="res://Data/Particles/shader/fx_particles_draw.gdshader" id="7_e5wor"]
-[ext_resource type="Shader" uid="uid://bvpaf34vwgl3o" path="res://Data/Particles/shader/fx_particles.gdshader" id="8_ul456"]
 [ext_resource type="PackedScene" uid="uid://wbm18bsvunt7" path="res://Assets/lighting/light_rig.tscn" id="9_e5wor"]
 [ext_resource type="Resource" uid="uid://fhaxfu5ae136" path="res://Assets/lighting/Presets/headlight.tres" id="10_tuul6"]
 [ext_resource type="PackedScene" uid="uid://italmpyxktyx" path="res://Data/Player/sprite_container.tscn" id="11_8mrtr"]
@@ -15,115 +13,12 @@
 [ext_resource type="Resource" uid="uid://c7dcarqg3oltk" path="res://Assets/lighting/Presets/cockpit.tres" id="14_b3cwg"]
 [ext_resource type="PackedScene" uid="uid://b05dh03r3iqn" path="res://Assets/Nodes/circle_bar.tscn" id="15_dk4bn"]
 [ext_resource type="Script" uid="uid://bbowxnhpj0p0w" path="res://Data/Player/audio_players.gd" id="15_ullya"]
-[ext_resource type="AudioStream" uid="uid://d0pqvsx23b4rb" path="res://Assets/Sounds/SFX/Player/Rocket/Rocket tap 01.ogg" id="16_n06tp"]
-[ext_resource type="AudioStream" uid="uid://b640syonocvwv" path="res://Assets/Sounds/SFX/Player/Rocket/Rocket tap 02.ogg" id="17_adayg"]
-[ext_resource type="AudioStream" uid="uid://cgrm4luyhyqtx" path="res://Assets/Sounds/SFX/Player/Rocket/Rocket tap 03.ogg" id="18_5u1ax"]
-[ext_resource type="AudioStream" uid="uid://cfl5cbmkq6jdd" path="res://Assets/Sounds/SFX/Player/Rocket/Rocket tap 04.ogg" id="19_18174"]
-[ext_resource type="AudioStream" uid="uid://biea1537mgca8" path="res://Assets/Sounds/SFX/Player/Rocket/Rocket tap 05.ogg" id="20_fugdc"]
-[ext_resource type="AudioStream" uid="uid://31j1y320ff6p" path="res://Assets/Sounds/SFX/Player/Rocket/Rocket tap 06.ogg" id="21_v0w8h"]
-[ext_resource type="AudioStream" uid="uid://dnmt6bh3up125" path="res://Assets/Sounds/SFX/Player/Rocket/Rocket Trhust.ogg" id="22_382t5"]
-[ext_resource type="AudioStream" uid="uid://dk8mvki8bsnpi" path="res://Assets/Sounds/SFX/Space Ambience.ogg" id="23_n06tp"]
-[ext_resource type="AudioStream" uid="uid://dtvgs480e2p5f" path="res://Assets/Sounds/Music/loop_temp.ogg" id="24_adayg"]
+[ext_resource type="Script" uid="uid://cjs0m0kluqqk" path="res://Assets/Nodes/Audio/AudioTrigger.gd" id="18_d6dah"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sw308"]
 size = Vector2(98, 128)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5u1ax"]
-resource_local_to_scene = true
-shader = ExtResource("7_e5wor")
-shader_parameter/col_core = Color(1, 1, 1, 1)
-shader_parameter/col_hot = Color(1, 0.8235294, 0.22745098, 1)
-shader_parameter/col_mid = Color(1, 0.2901961, 0.101960786, 1)
-shader_parameter/col_cool = Color(0.22745098, 0.078431375, 0.09411765, 1)
-shader_parameter/col_outline = Color(0.07058824, 0.023529412, 0.039215688, 1)
-shader_parameter/thresholds = Vector3(0.2, 0.45, 0.75)
-shader_parameter/core_bias = 0.6
-shader_parameter/life_heat = 1.0
-shader_parameter/heat_jitter = 0.2
-shader_parameter/hue_shift = 0.0
-shader_parameter/additive = 0.0
-shader_parameter/glow = 1.2
-shader_parameter/shape = 0.0
-shader_parameter/aspect = Vector2(1, 1)
-shader_parameter/thickness = 0.3
-shader_parameter/ring = 0.0
-shader_parameter/pixel_res = 5.0
-shader_parameter/softness = 0.0
-shader_parameter/erode = 0.6
-shader_parameter/outline = 0.08
-shader_parameter/edge_noise = 0.5
-shader_parameter/grain = 0.0
-shader_parameter/fade_in = 0.0
-shader_parameter/fade_start = 0.4
-shader_parameter/dither = 1.0
-shader_parameter/flicker = 0.3
-shader_parameter/flicker_freq = 12.0
-
-[sub_resource type="Gradient" id="Gradient_tuul6"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_18174"]
-resource_local_to_scene = true
-gradient = SubResource("Gradient_tuul6")
-width = 24
-height = 24
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fugdc"]
-resource_local_to_scene = true
-shader = ExtResource("8_ul456")
-shader_parameter/emit_offset = Vector2(0, 0)
-shader_parameter/emit_box = Vector2(0, 0)
-shader_parameter/emit_ring = Vector2(0, 0)
-shader_parameter/direction_deg = 90.0
-shader_parameter/spread_deg = 180.0
-shader_parameter/spread_bias = 1.0
-shader_parameter/outward = 0.0
-shader_parameter/speed = Vector2(40, 360)
-shader_parameter/speed_bias = 0.5
-shader_parameter/bolt_length = 0.0
-shader_parameter/bolt_amp = 16.0
-shader_parameter/bolt_freq = 6.0
-shader_parameter/bolt_width = 1.2
-shader_parameter/bolt_branch = 0.25
-shader_parameter/bolt_branches = 3
-shader_parameter/bolt_branch_len = 0.4
-shader_parameter/bolt_seed = -1
-shader_parameter/bolt_fps = 30.0
-shader_parameter/drag = 2.5
-shader_parameter/accel = Vector2(0, 0)
-shader_parameter/propel = 0.0
-shader_parameter/curl = 0.0
-shader_parameter/curl_random = 0.0
-shader_parameter/turb_amp = 30.0
-shader_parameter/turb_freq = 3.0
-shader_parameter/turb_chaos = 0.4
-shader_parameter/attract = 0.0
-shader_parameter/swirl = 0.0
-shader_parameter/orbit_k = 0.0
-shader_parameter/orbit_radius = 0.0
-shader_parameter/flow_amp = 0.0
-shader_parameter/flow_scale = 0.01
-shader_parameter/flow_speed = 0.3
-shader_parameter/jitter = 0.0
-shader_parameter/jitter_hz = 20.0
-shader_parameter/size_start = 1.1
-shader_parameter/size_end = 0.0
-shader_parameter/size_bulge = 0.0
-shader_parameter/size_curve = 1.3
-shader_parameter/size_random = 0.3
-shader_parameter/pulse_amp = 0.0
-shader_parameter/pulse_freq = 4.0
-shader_parameter/grow_in = 0.0
-shader_parameter/align_to_velocity = 0.0
-shader_parameter/stretch = 0.0
-shader_parameter/spin_deg = 0.0
-shader_parameter/rot_random = 0.0
-shader_parameter/rot_steps = 0
-shader_parameter/life_random = 0.5
-shader_parameter/tint_jitter = 0.2
-shader_parameter/alpha_jitter = 0.0
-shader_parameter/power = 1.0
-
-[node name="Player" type="CharacterBody2D" unique_id=1263876198 node_paths=PackedStringArray("node_sprite", "ui_root", "melt_screen", "collision_shape", "circle_fuel_prog_bar", "circle_heat_prog_bar", "fx_explosion", "rig", "player_audio") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1263876198 node_paths=PackedStringArray("node_sprite", "ui_root", "melt_screen", "collision_shape", "circle_fuel_prog_bar", "circle_heat_prog_bar", "fx_explosion", "fx_heat", "rig", "player_audio") groups=["Player"]]
 script = ExtResource("1_o0p0d")
 node_sprite = NodePath("Sprite2D")
 tap_punch_strength = 0.01
@@ -139,11 +34,48 @@ melt_screen = NodePath("CanvasLayer/MeltdownScreen")
 collision_shape = NodePath("CollisionShape2D")
 circle_fuel_prog_bar = NodePath("FuelBar")
 circle_heat_prog_bar = NodePath("HeatBar")
-fx_explosion = NodePath("ship_explosion")
+fx_explosion = NodePath("Explosion")
+fx_heat = [NodePath("HeatParticles/Heat1"), NodePath("HeatParticles/Heat2"), NodePath("Heat3")]
 rig = NodePath("LightRig")
 player_audio = NodePath("AudioPlayers")
 
+[node name="HeatParticles" type="Node2D" parent="." unique_id=1570409216]
+
+[node name="Heat1" type="Node2D" parent="HeatParticles" unique_id=1234991631]
+position = Vector2(-1, -34)
+script = ExtResource("2_b3cwg")
+preset = "smoke"
+autoplay = false
+play_mode = 1
+power = 0.24
+density = 0.05
+time_scale = 3.0
+palette_layers = PackedStringArray()
+metadata/_custom_type_script = "uid://vj71jr4yeyw7"
+
+[node name="Heat2" type="Node2D" parent="HeatParticles" unique_id=702913813]
+position = Vector2(-17, 22)
+script = ExtResource("2_b3cwg")
+preset = "smoke"
+autoplay = false
+play_mode = 1
+power = 0.24
+time_scale = 3.0
+palette_layers = PackedStringArray()
+metadata/_custom_type_script = "uid://vj71jr4yeyw7"
+
 [node name="Sprite2D" parent="." unique_id=1358334316 instance=ExtResource("11_8mrtr")]
+
+[node name="Heat3" type="Node2D" parent="." unique_id=1177571645]
+position = Vector2(2, 25)
+script = ExtResource("2_b3cwg")
+preset = "smoke"
+autoplay = false
+play_mode = 1
+power = 0.24
+time_scale = 3.0
+palette_layers = PackedStringArray()
+metadata/_custom_type_script = "uid://vj71jr4yeyw7"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1317612103]
 position = Vector2(0, 1)
@@ -157,19 +89,6 @@ position = Vector2(0, -188)
 [node name="MeltdownScreen" parent="CanvasLayer" unique_id=919328823 instance=ExtResource("5_3nxmj")]
 
 [node name="UI" parent="CanvasLayer" unique_id=1598766862 instance=ExtResource("4_x8ab7")]
-
-[node name="ship_explosion" parent="." unique_id=492080604 instance=ExtResource("6_e4jm7")]
-material = SubResource("ShaderMaterial_5u1ax")
-emitting = false
-amount = 80
-texture = SubResource("GradientTexture2D_18174")
-lifetime = 1.2
-one_shot = true
-explosiveness = 1.0
-process_material = SubResource("ShaderMaterial_fugdc")
-preset = "ship_explosion"
-quad_px = 24
-autoplay = false
 
 [node name="LightRig" parent="." unique_id=623708359 instance=ExtResource("9_e5wor")]
 preset = ExtResource("10_tuul6")
@@ -215,7 +134,7 @@ reverse_color_progression = true
 texture_filter = 1
 position = Vector2(0, 30)
 color = Color(0.15, 1, 0.3, 1)
-energy = 0.9964538
+energy = 0.7158758
 range_z_min = -4096
 range_z_max = 4096
 range_layer_min = -128
@@ -247,36 +166,156 @@ cast_shadows = true
 preset = ExtResource("14_b3cwg")
 metadata/_custom_type_script = "uid://321jkmqngl84"
 
-[node name="AudioPlayers" type="Node2D" parent="." unique_id=1387303548 node_paths=PackedStringArray("tap_player", "thrust_player", "music_player")]
+[node name="AudioPlayers" type="Node2D" parent="." unique_id=1387303548]
 script = ExtResource("15_ullya")
-tap_audios = Array[AudioStream]([ExtResource("16_n06tp"), ExtResource("17_adayg"), ExtResource("18_5u1ax"), ExtResource("19_18174"), ExtResource("20_fugdc"), ExtResource("21_v0w8h")])
-thrust_audios = Array[AudioStream]([ExtResource("22_382t5")])
-tap_player = NodePath("TapAudio")
-thrust_player = NodePath("ThrustAudio")
-music_player = NodePath("MusicPlayerAudio")
 muffle_volume_drop_db = 2.0
 
-[node name="TapAudio" type="AudioStreamPlayer2D" parent="AudioPlayers" unique_id=2113200303]
-process_mode = 3
-volume_db = -8.0
-bus = &"Thrust"
+[node name="TapAudioTrigger" type="Node" parent="AudioPlayers" unique_id=191727181]
+script = ExtResource("18_d6dah")
+sound = "rocket_tap"
+event = 1
+signal_name = "thrust_tapped"
+source = NodePath("../..")
+positional = false
+volume_db = -4.0
+metadata/_custom_type_script = "uid://cjs0m0kluqqk"
 
-[node name="ThrustAudio" type="AudioStreamPlayer2D" parent="AudioPlayers" unique_id=424537542]
-process_mode = 3
-volume_db = -14.0
-bus = &"Thrust"
+[node name="ThrustAudioTrigger" type="Node" parent="AudioPlayers" unique_id=1574139240]
+script = ExtResource("18_d6dah")
+sound = "rocket_thrust"
+event = 4
+signal_name = "thrust_held"
+stop_signal_name = "thrust_stopped"
+source = NodePath("../..")
+positional = false
+volume_db = -6.0
+metadata/_custom_type_script = "uid://cjs0m0kluqqk"
 
-[node name="AmbienceAudio" type="AudioStreamPlayer2D" parent="AudioPlayers" unique_id=43435007]
-process_mode = 3
-stream = ExtResource("23_n06tp")
-volume_db = -1.0
-autoplay = true
-bus = &"Music"
-parameters/looping = true
+[node name="AmbienceAudioTrigger" type="Node" parent="AudioPlayers" unique_id=1348156564]
+script = ExtResource("18_d6dah")
+sound = "Space Ambience"
+event = 3
+positional = false
+volume_db = -2.0
+metadata/_custom_type_script = "uid://cjs0m0kluqqk"
 
-[node name="MusicPlayerAudio" type="AudioStreamPlayer2D" parent="AudioPlayers" unique_id=1487599940]
-process_mode = 3
-stream = ExtResource("24_adayg")
-autoplay = true
-bus = &"Music"
-parameters/looping = true
+[node name="MusicAudioTrigger" type="Node" parent="AudioPlayers" unique_id=1364041016]
+script = ExtResource("18_d6dah")
+sound = "loop_temp"
+bus = "Music"
+positional = false
+volume_db = -16.0
+metadata/_custom_type_script = "uid://cjs0m0kluqqk"
+
+[node name="CrashAudioTrigger" type="Node" parent="AudioPlayers" unique_id=181548317]
+script = ExtResource("18_d6dah")
+sound = "crash"
+bus = "SFX"
+event = 1
+signal_name = "crashed"
+source = NodePath("../..")
+positional = false
+volume_db = -12.0
+metadata/_custom_type_script = "uid://cjs0m0kluqqk"
+
+[node name="GearShiftAudioTrigger" type="Node" parent="AudioPlayers" unique_id=1252357968]
+script = ExtResource("18_d6dah")
+sound = "sample"
+bus = "SFX"
+event = 1
+signal_name = "state_changed"
+source = NodePath("../..")
+positional = false
+volume_db = -40.0
+metadata/_custom_type_script = "uid://cjs0m0kluqqk"
+
+[node name="FuelContainer" type="Node" parent="AudioPlayers" unique_id=2124022990]
+
+[node name="FuelEmptyAudioTrigger" type="Node" parent="AudioPlayers/FuelContainer" unique_id=668972301]
+script = ExtResource("18_d6dah")
+sound = "empty"
+bus = "SFX"
+event = 1
+signal_name = "fuel_empty_tapped"
+source = NodePath("../../..")
+positional = false
+volume_db = -30.0
+metadata/_custom_type_script = "uid://cjs0m0kluqqk"
+
+[node name="FuelTickAudioTrigger" type="Node" parent="AudioPlayers/FuelContainer" unique_id=1378405762]
+script = ExtResource("18_d6dah")
+sound = "fuel_tick"
+bus = "SFX"
+event = 1
+signal_name = "fuel_tick"
+source = NodePath("../../..")
+positional = false
+volume_db = -24.0
+metadata/_custom_type_script = "uid://cjs0m0kluqqk"
+
+[node name="FuelRefillAudioTrigger" type="Node" parent="AudioPlayers/FuelContainer" unique_id=1955898247]
+script = ExtResource("18_d6dah")
+sound = "fuel_refill"
+bus = "SFX"
+event = 1
+signal_name = "fuel_refilled"
+source = NodePath("../../..")
+positional = false
+volume_db = -30.0
+metadata/_custom_type_script = "uid://cjs0m0kluqqk"
+
+[node name="FuelLowAudioTrigger" type="Node" parent="AudioPlayers/FuelContainer" unique_id=774002077]
+script = ExtResource("18_d6dah")
+sound = "low_fuel_alarm"
+bus = "SFX"
+event = 4
+signal_name = "fuel_low_started"
+stop_signal_name = "fuel_low_stopped"
+source = NodePath("../../..")
+positional = false
+volume_db = -30.0
+metadata/_custom_type_script = "uid://cjs0m0kluqqk"
+
+[node name="MeltdownContainer" type="Node" parent="AudioPlayers" unique_id=454833964]
+
+[node name="MeltdownAlarmAudioTrigger" type="Node" parent="AudioPlayers/MeltdownContainer" unique_id=564933702]
+script = ExtResource("18_d6dah")
+sound = "warning_beep"
+bus = "SFX"
+event = 4
+signal_name = "meltdown_started"
+stop_signal_name = "meltdown_stopped"
+source = NodePath("../../..")
+positional = false
+volume_db = -24.0
+metadata/_custom_type_script = "uid://cjs0m0kluqqk"
+
+[node name="HeatHissAudioTrigger" type="Node" parent="AudioPlayers/MeltdownContainer" unique_id=434781064]
+script = ExtResource("18_d6dah")
+sound = "heat_hiss"
+bus = "SFX"
+event = 4
+signal_name = "heat_hiss_started"
+stop_signal_name = "heat_hiss_stopped"
+source = NodePath("../../..")
+positional = false
+volume_db = -24.0
+metadata/_custom_type_script = "uid://cjs0m0kluqqk"
+
+[node name="MeltdownExplosionAudioTrigger" type="Node" parent="AudioPlayers/MeltdownContainer" unique_id=2131738132]
+script = ExtResource("18_d6dah")
+sound = "explosion"
+bus = "SFX"
+event = 1
+signal_name = "exploded"
+source = NodePath("../../..")
+metadata/_custom_type_script = "uid://cjs0m0kluqqk"
+
+[node name="Explosion" type="Node2D" parent="." unique_id=328516083]
+script = ExtResource("2_b3cwg")
+preset = "explosion"
+autoplay = false
+power = 1.5
+pixel_scale = 2.0
+palette_layers = PackedStringArray()
+metadata/_custom_type_script = "uid://vj71jr4yeyw7"

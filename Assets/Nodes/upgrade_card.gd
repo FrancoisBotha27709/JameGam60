@@ -41,20 +41,17 @@ func _ready() -> void:
 	_setup_shader()
 	_setup_nodes()
 
-	if node_desc_lbl != null:
-		node_desc_lbl.bbcode_enabled = description_bbcode
-		node_desc_lbl.fit_content = false
+	node_desc_lbl.bbcode_enabled = description_bbcode
+	node_desc_lbl.fit_content = false
 
-	if node_button != null:
-		if not node_button.pressed.is_connected(_on_button_pressed):
-			node_button.pressed.connect(_on_button_pressed)
+	if not node_button.pressed.is_connected(_on_button_pressed):
+		node_button.pressed.connect(_on_button_pressed)
 
-		node_button.disabled = true
+	node_button.disabled = true
 
 	_ready_complete = true
 
 	_apply_shader_parameters()
-
 
 func _setup_shader() -> void:
 	if SHADER == null:
@@ -72,7 +69,6 @@ func _setup_shader() -> void:
 		if canvas_item != null:
 			canvas_item.use_parent_material = true
 
-
 func _setup_nodes() -> void:
 	if node_title_lbl == null:
 		push_error("UpgradeCard: node_title_lbl is not assigned.")
@@ -86,19 +82,16 @@ func _setup_nodes() -> void:
 	if node_button == null:
 		push_error("UpgradeCard: node_button is not assigned.")
 
-
 func _apply_shader_parameters() -> void:
 	_set_param(&"reveal", reveal)
 	_set_param(&"tint_color", tint_color)
 	_set_param(&"tint_mix", tint_mix)
-
 
 func _set_param(param : StringName, value : Variant) -> void:
 	if _mat == null:
 		return
 
 	_mat.set_shader_parameter(param, value)
-
 
 func set_data(data : Upgrade) -> void:
 	if data == null:
@@ -108,17 +101,14 @@ func set_data(data : Upgrade) -> void:
 
 	upgrade = data
 
-	if node_title_lbl != null:
-		node_title_lbl.text = data.title
+	node_title_lbl.text = data.title
 
-	if node_desc_lbl != null:
-		node_desc_lbl.bbcode_enabled = description_bbcode
-		node_desc_lbl.text = data.description
-		node_desc_lbl.scroll_to_line(0)
+	node_desc_lbl.bbcode_enabled = description_bbcode
+	node_desc_lbl.text = data.description
+	node_desc_lbl.scroll_to_line(0)
 
-	if node_icon != null:
-		node_icon.texture = data.icon
-		node_icon.visible = not hide_empty_icon or data.icon != null
+	node_icon.texture = data.icon
+	node_icon.visible = not hide_empty_icon or data.icon != null
 
 	# Reset card presentation when a card is reused.
 	reveal = 0.0
@@ -128,13 +118,10 @@ func set_data(data : Upgrade) -> void:
 	if _ready_complete:
 		_apply_shader_parameters()
 
-
 func lock() -> void:
 	_locked = true
 
-	if node_button != null:
-		node_button.disabled = true
-
+	node_button.disabled = true
 
 func unlock() -> void:
 	if upgrade == null:
@@ -142,9 +129,7 @@ func unlock() -> void:
 
 	_locked = false
 
-	if node_button != null:
-		node_button.disabled = false
-
+	node_button.disabled = false
 
 func _on_button_pressed() -> void:
 	if _locked or upgrade == null:

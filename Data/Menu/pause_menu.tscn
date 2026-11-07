@@ -3,15 +3,24 @@
 [ext_resource type="Theme" uid="uid://dap6826f78p24" path="res://Assets/theme.tres" id="1_qbuqd"]
 [ext_resource type="Script" uid="uid://b11geif4s4pml" path="res://Data/Menu/pause_menu.gd" id="2_uo63q"]
 [ext_resource type="Script" uid="uid://c1qhnv5gfhb82" path="res://Data/Menu/DitherVignette.gd" id="3_qbuqd"]
+[ext_resource type="PackedScene" uid="uid://225m7a2jyn8r" path="res://Assets/Nodes/better_button.tscn" id="4_ywsm6"]
+[ext_resource type="Script" uid="uid://cjs0m0kluqqk" path="res://Assets/Nodes/Audio/AudioTrigger.gd" id="5_3pd40"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qbuqd"]
-bg_color = Color(0.15127608, 0.15127608, 0.15127605, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.04, 0.06, 0.09, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3, 0.85, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(0.3, 0.85, 1, 0.25)
+shadow_size = 24
 
-[node name="PauseMenu" type="Control" unique_id=1786774158 node_paths=PackedStringArray("node_resume_btn", "node_option_btn", "node_quit_menu_btn", "node_quit_desk_btn", "node_dither")]
+[node name="PauseMenu" type="Control" unique_id=1786774158 node_paths=PackedStringArray("node_panel", "node_resume_btn", "node_option_btn", "node_quit_menu_btn", "node_quit_desk_btn", "node_dither")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,11 +29,22 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_qbuqd")
 script = ExtResource("2_uo63q")
-node_resume_btn = NodePath("PanelContainer/MarginContainer/Panel/VBoxContainer/ResumeBtn")
-node_option_btn = NodePath("PanelContainer/MarginContainer/Panel/VBoxContainer/OptionsBtn")
-node_quit_menu_btn = NodePath("PanelContainer/MarginContainer/Panel/VBoxContainer/QuitMenuBtn")
-node_quit_desk_btn = NodePath("PanelContainer/MarginContainer/Panel/VBoxContainer/QuitDeskBtn")
+node_panel = NodePath("Center/Panel")
+node_resume_btn = NodePath("Center/Panel/Margin/Box/Buttons/ResumeBtn")
+node_option_btn = NodePath("Center/Panel/Margin/Box/Buttons/OptionsBtn")
+node_quit_menu_btn = NodePath("Center/Panel/Margin/Box/Buttons/QuitMenuBtn")
+node_quit_desk_btn = NodePath("Center/Panel/Margin/Box/Buttons/QuitDeskBtn")
 node_dither = NodePath("DitherVignette")
+
+[node name="Dim" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.45)
 
 [node name="DitherVignette" type="ColorRect" parent="." unique_id=165186939]
 layout_mode = 1
@@ -33,53 +53,158 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("3_qbuqd")
-tint = Color(0.81632423, 0.45513362, 3.85046e-07, 1)
+tint = Color(0.3, 0.85, 1, 1)
 metadata/_custom_type_script = "uid://c1qhnv5gfhb82"
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=289071921]
-custom_minimum_size = Vector2(256, 192)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -128.0
-offset_top = -96.0
-offset_right = 128.0
-offset_bottom = 96.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_qbuqd")
-
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1233843755]
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="PanelContainer/MarginContainer" unique_id=2011198736]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/Panel" unique_id=151862763]
+[node name="Center" type="CenterContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
 
-[node name="ResumeBtn" type="Button" parent="PanelContainer/MarginContainer/Panel/VBoxContainer" unique_id=157152555]
+[node name="Panel" type="PanelContainer" parent="Center"]
+custom_minimum_size = Vector2(480, 0)
 layout_mode = 2
-text = "Resume"
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
-[node name="OptionsBtn" type="Button" parent="PanelContainer/MarginContainer/Panel/VBoxContainer" unique_id=1196005977]
+[node name="Margin" type="MarginContainer" parent="Center/Panel"]
 layout_mode = 2
-text = "Options"
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 24
 
-[node name="QuitMenuBtn" type="Button" parent="PanelContainer/MarginContainer/Panel/VBoxContainer" unique_id=390648044]
+[node name="Box" type="VBoxContainer" parent="Center/Panel/Margin"]
 layout_mode = 2
-text = "Quit to Main Menu"
+theme_override_constants/separation = 14
 
-[node name="QuitDeskBtn" type="Button" parent="PanelContainer/MarginContainer/Panel/VBoxContainer" unique_id=1103277741]
+[node name="Tag" type="Label" parent="Center/Panel/Margin/Box"]
 layout_mode = 2
-text = "Quit to Desktop"
+theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "// SYSTEM //"
+horizontal_alignment = 1
+
+[node name="Title" type="Label" parent="Center/Panel/Margin/Box"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 48
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="TopRule" type="ColorRect" parent="Center/Panel/Margin/Box"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(0.3, 0.85, 1, 0.6)
+
+[node name="Buttons" type="VBoxContainer" parent="Center/Panel/Margin/Box"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ResumeBtn" parent="Center/Panel/Margin/Box/Buttons" unique_id=668546363 instance=ExtResource("4_ywsm6")]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+text = "RESUME"
+
+[node name="LeftTexture" parent="Center/Panel/Margin/Box/Buttons/ResumeBtn/HBoxContainer" parent_id_path=PackedInt32Array(668546363, 1657227851) index="0" unique_id=1050901166]
+custom_minimum_size = Vector2(32, 0)
+
+[node name="RichTextLabel" parent="Center/Panel/Margin/Box/Buttons/ResumeBtn/HBoxContainer/Control" parent_id_path=PackedInt32Array(668546363, 1028046267) index="1" unique_id=24974045]
+text = "RESUME"
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightTexture" parent="Center/Panel/Margin/Box/Buttons/ResumeBtn/HBoxContainer" parent_id_path=PackedInt32Array(668546363, 1657227851) index="2" unique_id=1478314421]
+custom_minimum_size = Vector2(32, 0)
+
+[node name="OptionsBtn" parent="Center/Panel/Margin/Box/Buttons" unique_id=231520480 instance=ExtResource("4_ywsm6")]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+text = "OPTIONS"
+
+[node name="LeftTexture" parent="Center/Panel/Margin/Box/Buttons/OptionsBtn/HBoxContainer" parent_id_path=PackedInt32Array(231520480, 1657227851) index="0" unique_id=1050901166]
+custom_minimum_size = Vector2(32, 0)
+
+[node name="RichTextLabel" parent="Center/Panel/Margin/Box/Buttons/OptionsBtn/HBoxContainer/Control" parent_id_path=PackedInt32Array(231520480, 1028046267) index="1" unique_id=24974045]
+text = "OPTIONS"
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightTexture" parent="Center/Panel/Margin/Box/Buttons/OptionsBtn/HBoxContainer" parent_id_path=PackedInt32Array(231520480, 1657227851) index="2" unique_id=1478314421]
+custom_minimum_size = Vector2(32, 0)
+
+[node name="QuitMenuBtn" parent="Center/Panel/Margin/Box/Buttons" unique_id=1218624473 instance=ExtResource("4_ywsm6")]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+text = "QUIT TO MENU"
+
+[node name="LeftTexture" parent="Center/Panel/Margin/Box/Buttons/QuitMenuBtn/HBoxContainer" parent_id_path=PackedInt32Array(1218624473, 1657227851) index="0" unique_id=1050901166]
+custom_minimum_size = Vector2(32, 0)
+
+[node name="RichTextLabel" parent="Center/Panel/Margin/Box/Buttons/QuitMenuBtn/HBoxContainer/Control" parent_id_path=PackedInt32Array(1218624473, 1028046267) index="1" unique_id=24974045]
+text = "QUIT TO MENU"
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightTexture" parent="Center/Panel/Margin/Box/Buttons/QuitMenuBtn/HBoxContainer" parent_id_path=PackedInt32Array(1218624473, 1657227851) index="2" unique_id=1478314421]
+custom_minimum_size = Vector2(32, 0)
+
+[node name="QuitDeskBtn" parent="Center/Panel/Margin/Box/Buttons" unique_id=205455541 instance=ExtResource("4_ywsm6")]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+text = "QUIT TO DESKTOP"
+
+[node name="LeftTexture" parent="Center/Panel/Margin/Box/Buttons/QuitDeskBtn/HBoxContainer" parent_id_path=PackedInt32Array(205455541, 1657227851) index="0" unique_id=1050901166]
+custom_minimum_size = Vector2(32, 0)
+
+[node name="RichTextLabel" parent="Center/Panel/Margin/Box/Buttons/QuitDeskBtn/HBoxContainer/Control" parent_id_path=PackedInt32Array(205455541, 1028046267) index="1" unique_id=24974045]
+text = "QUIT TO DESKTOP"
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightTexture" parent="Center/Panel/Margin/Box/Buttons/QuitDeskBtn/HBoxContainer" parent_id_path=PackedInt32Array(205455541, 1657227851) index="2" unique_id=1478314421]
+custom_minimum_size = Vector2(32, 0)
+
+[node name="BottomRule" type="ColorRect" parent="Center/Panel/Margin/Box"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(0.3, 0.85, 1, 0.6)
+
+[node name="Hint" type="Label" parent="Center/Panel/Margin/Box"]
+modulate = Color(1, 1, 1, 0.5)
+layout_mode = 2
+text = "[ ESC ] RESUME"
+horizontal_alignment = 1
+
+[node name="OpenAudioTrigger" type="Node" parent="." unique_id=4967045]
+script = ExtResource("5_3pd40")
+sound = "ui_menu_open"
+bus = "UI"
+event = 1
+signal_name = "open"
+positional = false
+volume_db = -12.0
+metadata/_custom_type_script = "uid://cjs0m0kluqqk"
+
+[node name="CloseAudioTrigger" type="Node" parent="." unique_id=251681709]
+script = ExtResource("5_3pd40")
+sound = "ui_menu_close"
+bus = "UI"
+event = 1
+signal_name = "close"
+positional = false
+volume_db = -12.0
+metadata/_custom_type_script = "uid://cjs0m0kluqqk"
+
+[editable path="Center/Panel/Margin/Box/Buttons/ResumeBtn"]
+[editable path="Center/Panel/Margin/Box/Buttons/OptionsBtn"]
+[editable path="Center/Panel/Margin/Box/Buttons/QuitMenuBtn"]
+[editable path="Center/Panel/Margin/Box/Buttons/QuitDeskBtn"]

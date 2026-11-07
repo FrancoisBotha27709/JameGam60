@@ -10,10 +10,13 @@ config_version=5
 
 [application]
 
-config/name="Jame Gam 60"
+config/name="Garbage Collector"
+config/version="1.4"
 run/main_scene="uid://dpuo78p623q3o"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/image="uid://c31olonadup8d"
+config/icon="uid://x44hqq6ba4ov"
+config/windows_native_icon="res://gameIcon512.ico"
 
 [audio]
 
@@ -25,6 +28,7 @@ SignalBus="*uid://b2vf6mohq18nq"
 DataCollector="*uid://bo5qcp2t01e4l"
 LightManager="*uid://cnrvqenlvnpdv"
 Settings="*uid://fapeqseurl8o"
+Audio="*uid://bv455fa7ln0qc"
 
 [display]
 
@@ -33,6 +37,10 @@ window/size/viewport_height=1080
 window/size/mode=3
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_height"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/audio_picker/plugin.cfg")
 
 [global_group]
 
