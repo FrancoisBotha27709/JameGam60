@@ -3,14 +3,12 @@ class_name PlayerStates
 
 const HALF := 0.5
 const EMPTY_DRAG_MULTIPLIER := 3.0
-const MINIMUM_SPEED_SCALE := 0.01
 const DEBRIS_GROUP := &"Debris"
 const LIGHT_NODE_NAMES : Array[StringName] = [&"SpaceLight", &"SpaceLight2"]
 const EXPLOSION_FLASH_COLOR := Color(1.0, 0.6, 0.25)
 const EXPLOSION_FLASH_RADIUS := 450.0
 const EXPLOSION_FLASH_DURATION := 0.7
 const EXPLOSION_FLASH_INTENSITY := 3.0
-const EXPLOSION_CULL_RECT := Rect2(-600, -600, 1200, 1200)
 
 # Coasting or braking: the throttle spools down while drag and ambient sway carry the ship.
 class Coast extends PlayerState:
@@ -131,12 +129,8 @@ class Exploded extends PlayerState:
 
 		_play_explosion()
 
-		var burst_seconds := player.fx_explosion.lifetime / maxf(
-			player.fx_explosion.speed_scale,
-			PlayerStates.MINIMUM_SPEED_SCALE
-		)
-
-		await player.get_tree().create_timer(burst_seconds).timeout
+		# FXPlayer emits `finished` once every one-shot layer (flash, fireball, smoke...) is done.
+		await player.fx_explosion.finished
 
 		if player.is_exploded():
 			DataCollector.destroy_run()
@@ -165,14 +159,9 @@ class Exploded extends PlayerState:
 		)
 
 		var burst := player.fx_explosion
-		burst.preprocess = 0.0
-		burst.one_shot = true
-		burst.explosiveness = 1.0
-		burst.visibility_rect = PlayerStates.EXPLOSION_CULL_RECT
+		burst.play_mode = FXPlayer.PlayMode.ONCE
 		burst.visible = true
-		burst.emitting = false
-		burst.restart()
-		burst.emitting = true
+		burst.play()
 
 		if player.node_sprite:
 			player.node_sprite.hide()

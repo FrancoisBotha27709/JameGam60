@@ -2,19 +2,172 @@
 
 [ext_resource type="Script" uid="uid://dhffxyo6m72py" path="res://Data/Menu/options.gd" id="1_lnor8"]
 [ext_resource type="Theme" uid="uid://dap6826f78p24" path="res://Assets/theme.tres" id="1_vccv7"]
+[ext_resource type="PackedScene" uid="uid://225m7a2jyn8r" path="res://Assets/Nodes/better_button.tscn" id="3_btn"]
+[ext_resource type="PackedScene" path="res://Data/Menu/setting_row.tscn" id="4_row"]
 
-[node name="Options" type="PanelContainer" unique_id=1565028202 node_paths=PackedStringArray("node_tabs")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.03, 0.05, 0.08, 0.97)
+
+[node name="Options" type="PanelContainer" node_paths=PackedStringArray("node_tabs", "node_video_rows", "node_audio_rows", "node_graphics_rows", "node_gameplay_rows", "node_bus_rows", "node_reset_btn", "node_back_btn")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_vccv7")
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 script = ExtResource("1_lnor8")
-node_tabs = NodePath("MarginContainer/TabContainer")
+row_scene = ExtResource("4_row")
+node_tabs = NodePath("Margin/Box/Tabs")
+node_video_rows = NodePath("Margin/Box/Tabs/Video/Pad/Rows")
+node_audio_rows = NodePath("Margin/Box/Tabs/Audio/Pad/Content/Rows")
+node_graphics_rows = NodePath("Margin/Box/Tabs/Graphics/Pad/Rows")
+node_gameplay_rows = NodePath("Margin/Box/Tabs/Gameplay/Pad/Rows")
+node_bus_rows = NodePath("Margin/Box/Tabs/Audio/Pad/Content/BusRows")
+node_reset_btn = NodePath("Margin/Box/Footer/ResetButton")
+node_back_btn = NodePath("Margin/Box/Footer/BackButton")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1108551585]
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 48
+
+[node name="Box" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Header" type="HBoxContainer" parent="Margin/Box"]
 layout_mode = 2
 
-[node name="TabContainer" type="TabContainer" parent="MarginContainer" unique_id=800159608]
+[node name="Title" type="Label" parent="Margin/Box/Header"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 40
+text = "// OPTIONS //"
+
+[node name="Hint" type="Label" parent="Margin/Box/Header"]
+modulate = Color(1, 1, 1, 0.5)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "CHANGES SAVE AUTOMATICALLY    [ ESC ] BACK"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HeaderRule" type="ColorRect" parent="Margin/Box"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(0.3, 0.85, 1, 0.6)
+
+[node name="Tabs" type="TabContainer" parent="Margin/Box"]
+layout_mode = 2
+size_flags_vertical = 3
+tab_alignment = 1
+
+[node name="Video" type="ScrollContainer" parent="Margin/Box/Tabs"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="Pad" type="MarginContainer" parent="Margin/Box/Tabs/Video"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Rows" type="VBoxContainer" parent="Margin/Box/Tabs/Video/Pad"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="Audio" type="ScrollContainer" parent="Margin/Box/Tabs"]
+visible = false
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="Pad" type="MarginContainer" parent="Margin/Box/Tabs/Audio"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Content" type="VBoxContainer" parent="Margin/Box/Tabs/Audio/Pad"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="Rows" type="VBoxContainer" parent="Margin/Box/Tabs/Audio/Pad/Content"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="BusHeading" type="Label" parent="Margin/Box/Tabs/Audio/Pad/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "// AUDIO BUSES //"
+
+[node name="BusRows" type="VBoxContainer" parent="Margin/Box/Tabs/Audio/Pad/Content"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Graphics" type="ScrollContainer" parent="Margin/Box/Tabs"]
+visible = false
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="Pad" type="MarginContainer" parent="Margin/Box/Tabs/Graphics"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Rows" type="VBoxContainer" parent="Margin/Box/Tabs/Graphics/Pad"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="Gameplay" type="ScrollContainer" parent="Margin/Box/Tabs"]
+visible = false
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="Pad" type="MarginContainer" parent="Margin/Box/Tabs/Gameplay"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Rows" type="VBoxContainer" parent="Margin/Box/Tabs/Gameplay/Pad"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="FooterRule" type="ColorRect" parent="Margin/Box"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(0.3, 0.85, 1, 0.6)
+
+[node name="Footer" type="HBoxContainer" parent="Margin/Box"]
+layout_mode = 2
+
+[node name="ResetButton" parent="Margin/Box/Footer" instance=ExtResource("3_btn")]
+custom_minimum_size = Vector2(260, 52)
+layout_mode = 2
+text = "[center]RESET TAB[/center]"
+
+[node name="Spacer" type="Control" parent="Margin/Box/Footer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BackButton" parent="Margin/Box/Footer" instance=ExtResource("3_btn")]
+custom_minimum_size = Vector2(260, 52)
+layout_mode = 2
+text = "[center]BACK[/center]"

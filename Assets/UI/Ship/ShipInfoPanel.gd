@@ -1,6 +1,10 @@
 extends Control
 class_name ShipInfoPanel
 
+signal typing(value : bool)
+signal typing_started
+signal typing_stopped
+
 @export var node_title : Label
 @export var node_data : RichTextLabel
 
@@ -25,8 +29,17 @@ class_name ShipInfoPanel
 ## How many characters ahead of the reveal show random symbols.
 @export_range(0, 12) var scramble_window : int = 3
 @export var scramble_glyphs : String = "█▓▒░▚▞◆◇○●□■△▲▽▼◈⌬⎔≡∑∆∇Ω¤§¶ϟᚠᚢᚦᚨᚱ"
-@export var key_color : Color = Color("#aaaaaa")
-@export var value_color : Color = Color("#ffffff")
+@export var key_color : Color = Color("#aaaaaa"):
+	set(value):
+		key_color = value
+		_key_hex = value.to_html(false)
+@export var value_color : Color = Color("#ffffff"):
+	set(value):
+		value_color = value
+		_value_hex = value.to_html(false)
+
+var _key_hex : String = key_color.to_html(false)
+var _value_hex : String = value_color.to_html(false)
 
 var _title : String = ""
 var _data : Dictionary = {}
@@ -37,10 +50,10 @@ var _reveal : float = 0.0
 var _tween : Tween
 var _tag_regex := RegEx.new()
 
+var _is_typing : bool = false
 var _play_pending : bool = false
 var _pending_replace : bool = false
 var _pending_delay : float = 0.0
-
 
 func _ready() -> void:
 	_ensure_regex()
@@ -56,6 +69,8 @@ func _ready() -> void:
 	else:
 		_render()
 
+func _exit_tree() -> void:
+	_stop_tween()
 
 ## animate: play the typewriter. replace: use the fast speed (ship swap).
 ## delay: seconds to wait before typing starts.
@@ -72,8 +87,9 @@ func setup(title: String, data: Dictionary, animate: bool = true,
 
 	_layout()
 	_stop_tween()
+	_play_pending = false
 
-	if not animate:
+	if not animate or _total_chars <= 0:
 		_set_reveal(float(_total_chars))
 		return
 
@@ -87,27 +103,41 @@ func setup(title: String, data: Dictionary, animate: bool = true,
 		_pending_replace = replace
 		_pending_delay = delay
 
+## Halts the typewriter where it is and reports typing(false).
+func stop_typing() -> void:
+	_play_pending = false
+	_stop_tween()
+
+func is_typing() -> bool:
+	return _is_typing
 
 func get_title() -> String:
 	return _title
 
-
 func set_title(value: String) -> void:
 	setup(value, _data, false)
-
 
 func get_data() -> Dictionary:
 	return _data.duplicate(true)
 
-
 func set_data(value: Dictionary) -> void:
 	setup(_title, value, false)
-
 
 func _ensure_regex() -> void:
 	if not _tag_regex.is_valid():
 		_tag_regex.compile("\\[/?[a-zA-Z][^\\[\\]]*\\]")
 
+func _set_typing(value: bool) -> void:
+	if _is_typing == value:
+		return
+
+	_is_typing = value
+	typing.emit(value)
+
+	if value:
+		typing_started.emit()
+	else:
+		typing_stopped.emit()
 
 func _play(replace: bool, delay: float) -> void:
 	_stop_tween()
@@ -124,19 +154,20 @@ func _play(replace: bool, delay: float) -> void:
 	if delay > 0.0:
 		_tween.tween_interval(delay)
 
+	_tween.tween_callback(_set_typing.bind(true))
 	_tween.tween_method(_set_reveal, start, end, maxf((end - start) / cps, 0.001))
+	_tween.tween_callback(_set_typing.bind(false))
 
-
+## Killing the tween skips its final callback, so the state is reset here.
 func _stop_tween() -> void:
 	if _tween != null and _tween.is_valid():
 		_tween.kill()
 	_tween = null
-
+	_set_typing(false)
 
 func _set_reveal(value: float) -> void:
 	_reveal = value
 	_render()
-
 
 func _rebuild_entries() -> void:
 	_entries.clear()
@@ -164,21 +195,23 @@ func _rebuild_entries() -> void:
 
 	_total_chars = offset
 
-
 func _render() -> void:
 	var reveal := int(floor(_reveal))
 
+	# Only touch the controls when the text actually changed, since
+	# assigning text re-parses it.
 	if is_instance_valid(node_title):
-		node_title.text = _render_tokens(_title_parsed, 0, reveal, false)
+		var title_text := _render_tokens(_title_parsed, 0, reveal, false)
+		if node_title.text != title_text:
+			node_title.text = title_text
 
 	if is_instance_valid(node_data):
-		node_data.text = _build_bbcode(reveal)
-
+		var data_text := _build_bbcode(reveal)
+		if node_data.text != data_text:
+			node_data.text = data_text
 
 func _build_bbcode(reveal: int) -> String:
 	var lines := PackedStringArray()
-	var key_hex := key_color.to_html(false)
-	var value_hex := value_color.to_html(false)
 	var limit := reveal + scramble_window
 
 	for entry in _entries:
@@ -187,18 +220,17 @@ func _build_bbcode(reveal: int) -> String:
 			break
 
 		var key_text := _render_tokens(entry["key"], key_start, reveal, true)
-		var line := "[color=#%s]%s[/color]" % [key_hex, key_text]
+		var line := "[color=#%s]%s[/color]" % [_key_hex, key_text]
 
 		# Only add the gap and value once the key is fully on screen.
 		var value_start: int = entry["value_start"]
 		if limit - value_start > 0:
 			var value_text := _render_tokens(entry["value"], value_start, reveal, true)
-			line += "  [color=#%s]%s[/color]" % [value_hex, value_text]
+			line += "  [color=#%s]%s[/color]" % [_value_hex, value_text]
 
 		lines.append(line)
 
 	return "\n".join(lines)
-
 
 ## Splits text into BBCode tags and plain text. Tags don't count toward length.
 func _parse(text: String, parse_tags: bool) -> Dictionary:
@@ -226,7 +258,6 @@ func _parse(text: String, parse_tags: bool) -> Dictionary:
 		length += rest.length()
 
 	return {"tokens": tokens, "length": length}
-
 
 ## Tags pass through untouched. Visible characters before `reveal` are real,
 ## the next `scramble_window` are random glyphs, the rest are hidden.
@@ -270,35 +301,26 @@ func _render_tokens(parsed: Dictionary, start: int, reveal: int, escape: bool) -
 
 	return out
 
-
 func _random_glyph() -> String:
 	if scramble_glyphs.is_empty():
 		return "#"
 	return scramble_glyphs[randi() % scramble_glyphs.length()]
 
-
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_RESIZED:
 		_layout()
-
 
 func _layout() -> void:
 	if not is_inside_tree():
 		return
 
+	var inner_width := maxf(size.x - padding * 2.0, 0.0)
+
 	if is_instance_valid(node_title):
 		node_title.position = Vector2(padding, padding)
-		node_title.size = Vector2(
-			maxf(size.x - padding * 2.0, 0.0),
-			title_height
-		)
+		node_title.size = Vector2(inner_width, title_height)
 
 	if is_instance_valid(node_data):
-		node_data.position = Vector2(
-			padding,
-			padding + title_height + title_gap
-		)
-		node_data.size = Vector2(
-			maxf(size.x - padding * 2.0, 0.0),
-			maxf(size.y - padding * 2.0 - title_height - title_gap, 0.0)
-		)
+		var top := padding + title_height + title_gap
+		node_data.position = Vector2(padding, top)
+		node_data.size = Vector2(inner_width, maxf(size.y - padding - top, 0.0))

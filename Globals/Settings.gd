@@ -1,9 +1,23 @@
-
 extends Node
 
 signal changed(key: String, value: Variant)
 
 const PATH := "user://settings.cfg"
+const BUS_SECTION := "audio_buses"
+const BUS_KEY_PREFIX := "bus_volume:"
+const SAVE_DELAY_SECONDS := 0.5
+
+## Default volume percent for buses not listed in BUS_DEFAULTS (any new bus).
+const DEFAULT_BUS_PERCENT := 30.0
+const BUS_DEFAULTS := {
+	"Master": 100.0,
+	"SFX": 51.0,
+	"Music": 50.0,
+	"Thrust": 26.0,
+	"UI": 30.0,
+	"Voice": 60.0,
+}
+
 const RESOLUTIONS: Array[Vector2i] = [
 	Vector2i(1280, 720),
 	Vector2i(1600, 900),
@@ -52,7 +66,7 @@ const SCHEMA: Array[Dictionary] = [
 	{key = "show_speed", cat = "gameplay", label = "Show Speedometer", type = "toggle", def = true},
 	{key = "show_waypoint", cat = "gameplay", label = "Show Waypoint Marker", type = "toggle", def = true},
 	{key = "photosensitive", cat = "gameplay", label = "Photosensitive Mode", type = "toggle", def = false, tip = "Reduces motion, flashing and strobing"},
-	{key = "controls", cat = "gameplay", label = "Control Mode", type = "option", def = 0, opts = ["Mouse", "Keyboard"], tip = "Changes control scheme"}
+	{key = "controls", cat = "gameplay", label = "Control Mode", type = "option", def = 1, opts = ["Mouse", "Keyboard"], tip = "Changes control scheme"}
 ]
 
 var values: Dictionary = {}
@@ -65,7 +79,6 @@ var _fps_layer: CanvasLayer
 var _fps_label: Label
 var _options_layer: CanvasLayer
 
-
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	set_process(false)
@@ -77,24 +90,19 @@ func _ready() -> void:
 
 	_save_timer = Timer.new()
 	_save_timer.one_shot = true
-	_save_timer.wait_time = 0.5
+	_save_timer.wait_time = SAVE_DELAY_SECONDS
 	_save_timer.timeout.connect(save)
 	add_child(_save_timer)
 
 	_apply_all.call_deferred()
 
-
-# -------------------------------------------------------------------
-# General settings
-# -------------------------------------------------------------------
+#region General settings
 
 func get_value(key: String) -> Variant:
 	return values[key]
 
-
 func get_def(key: String) -> Dictionary:
 	return _defs[key]
-
 
 func set_value(key: String, v: Variant) -> void:
 	if not _defs.has(key):
@@ -112,177 +120,104 @@ func set_value(key: String, v: Variant) -> void:
 
 	_mark_dirty()
 
-
 func reset_category(cat: String) -> void:
 	for d in SCHEMA:
 		if d.cat == cat:
 			set_value(d.key, d.def)
 
 	if cat == "audio":
-		for i in range(AudioServer.get_bus_count()):
-			set_bus_volume(AudioServer.get_bus_name(i), 100.0)
-
+		reset_bus_volumes()
 
 func reset_all() -> void:
 	for d in SCHEMA:
 		set_value(d.key, d.def)
 
-	for i in range(AudioServer.get_bus_count()):
-		set_bus_volume(AudioServer.get_bus_name(i), 100.0)
-
+	reset_bus_volumes()
 
 func particle_scale() -> float:
 	return PARTICLE_SCALE[values.particle_quality]
 
-
 func photosensitive() -> bool:
 	return values.photosensitive
 
-
 func get_controls() -> CONTROLS:
 	return values.controls
-
 
 func shake_scale() -> float:
 	var s: float = values.screen_shake / 100.0
 	return s * 0.2 if values.photosensitive else s
 
+#endregion
+#region Dynamic audio bus settings
 
-# -------------------------------------------------------------------
-# Dynamic audio bus settings
-# -------------------------------------------------------------------
+# Default volume percent for a bus: its listed value, or 30% for any bus not in BUS_DEFAULTS.
+func default_bus_percent(bus_name: String) -> float:
+	return float(BUS_DEFAULTS.get(bus_name, DEFAULT_BUS_PERCENT))
 
 func get_bus_setting_key(bus_name: String) -> String:
-	return "bus_volume:" + bus_name
-
+	return BUS_KEY_PREFIX + bus_name
 
 func get_bus_volume(bus_name: String) -> float:
-	if bus_volumes.has(bus_name):
-		return float(bus_volumes[bus_name])
+	return float(bus_volumes.get(bus_name, AudioCatalog.default_bus_percent(bus_name)))
 
-	var bus_index := AudioServer.get_bus_index(bus_name)
-	if bus_index == -1:
-		return 100.0
-
-	var db: float = AudioServer.get_bus_volume_db(bus_index)
-
-	if db <= -80.0:
-		return 0.0
-
-	return clampf(db_to_linear(db) * 100.0, 0.0, 100.0)
-
-
+# Applies, stores and schedules saving of a bus volume percent; unknown buses are ignored.
 func set_bus_volume(bus_name: String, percent: float) -> void:
-	var bus_index := AudioServer.get_bus_index(bus_name)
-	if bus_index == -1:
+	if AudioServer.get_bus_index(bus_name) == -1:
 		return
 
-	percent = roundf(clampf(percent, 0.0, 100.0))
+	percent = roundf(clampf(percent, 0.0, AudioCatalog.PERCENT_SCALE))
+	_apply_bus_volume(bus_name, percent)
 
-	if bus_volumes.get(bus_name, -1.0) == percent:
-		_apply_bus_volume(bus_name, percent)
+	if bus_volumes.get(bus_name) == percent:
 		return
 
 	bus_volumes[bus_name] = percent
-	_apply_bus_volume(bus_name, percent)
-
 	changed.emit(get_bus_setting_key(bus_name), percent)
 	_mark_dirty()
 
+func is_options_open() -> bool:
+	return _options_layer != null
+
+# Puts every current bus back to its quiet default volume.
+func reset_bus_volumes() -> void:
+	for bus_index in AudioServer.bus_count:
+		var bus_name := AudioServer.get_bus_name(bus_index)
+		set_bus_volume(bus_name, AudioCatalog.default_bus_percent(bus_name))
 
 func _apply_bus_volume(bus_name: String, percent: float) -> void:
 	var bus_index := AudioServer.get_bus_index(bus_name)
 	if bus_index == -1:
 		return
 
-	if percent <= 0.0:
-		AudioServer.set_bus_volume_db(bus_index, -80.0)
-	else:
-		AudioServer.set_bus_volume_db(
-			bus_index,
-			linear_to_db(percent / 100.0)
-		)
+	AudioServer.set_bus_volume_db(bus_index, AudioCatalog.percent_to_db(percent))
 
-
+# Reads every saved bus volume, even for buses that do not exist yet, so buses created later
+# by other autoloads (such as Audio) still receive their saved value.
 func _load_bus_volumes(cfg: ConfigFile) -> void:
 	bus_volumes.clear()
 
-	for i in range(AudioServer.get_bus_count()):
-		var bus_name := AudioServer.get_bus_name(i)
-		var bus_index := AudioServer.get_bus_index(bus_name)
-		var default_volume := 100.0
+	if not cfg.has_section(BUS_SECTION):
+		return
 
-		if bus_index != -1:
-			var db: float = AudioServer.get_bus_volume_db(bus_index)
-			if db <= -80.0:
-				default_volume = 0.0
-			else:
-				default_volume = clampf(db_to_linear(db) * 100.0, 0.0, 100.0)
-
-		var stored: Variant = cfg.get_value(
-			"audio_buses",
-			bus_name,
-			default_volume
-		)
-
-		var volume := default_volume
+	for bus_name in cfg.get_section_keys(BUS_SECTION):
+		var stored: Variant = cfg.get_value(BUS_SECTION, bus_name)
 		if stored is int or stored is float:
-			volume = clampf(float(stored), 0.0, 100.0)
+			bus_volumes[bus_name] = clampf(float(stored), 0.0, AudioCatalog.PERCENT_SCALE)
 
-		bus_volumes[bus_name] = volume
-
-
-func _apply_bus_volumes() -> void:
-	# Discover buses each time, so the current project layout is authoritative.
-	for i in range(AudioServer.get_bus_count()):
-		var bus_name := AudioServer.get_bus_name(i)
-
-		if not bus_volumes.has(bus_name):
-			bus_volumes[bus_name] = _get_current_bus_volume(bus_name)
-
-		_apply_bus_volume(bus_name, float(bus_volumes[bus_name]))
-
-
-func _get_current_bus_volume(bus_name: String) -> float:
-	var bus_index := AudioServer.get_bus_index(bus_name)
-	if bus_index == -1:
-		return 100.0
-
-	var db: float = AudioServer.get_bus_volume_db(bus_index)
-	if db <= -80.0:
-		return 0.0
-
-	return clampf(db_to_linear(db) * 100.0, 0.0, 100.0)
-
-
+# Applies the saved or default volume to every bus that exists right now.
 func _sync_audio_buses() -> void:
-	var current_buses: Dictionary = {}
+	for bus_index in AudioServer.bus_count:
+		var bus_name := AudioServer.get_bus_name(bus_index)
+		_apply_bus_volume(bus_name, get_bus_volume(bus_name))
 
-	for i in range(AudioServer.get_bus_count()):
-		var bus_name := AudioServer.get_bus_name(i)
-		current_buses[bus_name] = true
-
-		if not bus_volumes.has(bus_name):
-			bus_volumes[bus_name] = _get_current_bus_volume(bus_name)
-
-	# Remove settings for buses that no longer exist in the project.
-	for bus_name in bus_volumes.keys():
-		if not current_buses.has(bus_name):
-			bus_volumes.erase(bus_name)
-
-	_apply_bus_volumes()
-
-
-# -------------------------------------------------------------------
-# Loading and saving
-# -------------------------------------------------------------------
+#endregion
+#region Loading and saving
 
 func _mark_dirty() -> void:
 	_dirty = true
 
 	if is_instance_valid(_save_timer):
 		_save_timer.start()
-
 
 func save() -> void:
 	var cfg := ConfigFile.new()
@@ -291,11 +226,7 @@ func save() -> void:
 		cfg.set_value(d.cat, d.key, values[d.key])
 
 	for bus_name in bus_volumes:
-		cfg.set_value(
-			"audio_buses",
-			bus_name,
-			bus_volumes[bus_name]
-		)
+		cfg.set_value(BUS_SECTION, bus_name, bus_volumes[bus_name])
 
 	var error := cfg.save(PATH)
 	if error != OK:
@@ -303,7 +234,6 @@ func save() -> void:
 		return
 
 	_dirty = false
-
 
 func _load() -> void:
 	var cfg := ConfigFile.new()
@@ -316,7 +246,6 @@ func _load() -> void:
 		)
 
 	_load_bus_volumes(cfg)
-
 
 func _sanitize(d: Dictionary, v: Variant) -> Variant:
 	if not (v is int or v is float or v is bool):
@@ -334,17 +263,14 @@ func _sanitize(d: Dictionary, v: Variant) -> Variant:
 
 	return bool(v)
 
-
-# -------------------------------------------------------------------
-# Applying settings
-# -------------------------------------------------------------------
+#endregion
+#region Applying settings
 
 func _apply_all() -> void:
 	for d in SCHEMA:
 		_apply(d.key)
 
 	_sync_audio_buses()
-
 
 func _apply(key: String) -> void:
 	var v: Variant = values[key]
@@ -377,7 +303,6 @@ func _apply(key: String) -> void:
 		"controls":
 			get_controls()
 
-
 func _apply_window() -> void:
 	match int(values.window_mode):
 		1:
@@ -408,10 +333,8 @@ func _apply_window() -> void:
 				rect.position + (rect.size - size) / 2
 			)
 
-
-# -------------------------------------------------------------------
-# FPS display
-# -------------------------------------------------------------------
+#endregion
+#region FPS display
 
 func _show_fps(on: bool) -> void:
 	if on and _fps_layer == null:
@@ -429,48 +352,38 @@ func _show_fps(on: bool) -> void:
 
 	set_process(on)
 
-
 func _process(_delta: float) -> void:
 	if is_instance_valid(_fps_label):
 		_fps_label.text = "%d FPS" % Engine.get_frames_per_second()
 
-
-# -------------------------------------------------------------------
-# Application focus
-# -------------------------------------------------------------------
+#endregion
+#region Application focus
 
 func _notification(what: int) -> void:
 	match what:
 		NOTIFICATION_APPLICATION_FOCUS_OUT:
 			if values.get("mute_unfocused", false):
-				for i in range(AudioServer.get_bus_count()):
-					AudioServer.set_bus_mute(i, true)
+				for bus_index in AudioServer.bus_count:
+					AudioServer.set_bus_mute(bus_index, true)
 
 		NOTIFICATION_APPLICATION_FOCUS_IN:
-			# Restore the user's bus volume settings without assuming
-			# any particular bus name or layout.
-			for i in range(AudioServer.get_bus_count()):
-				var bus_name := AudioServer.get_bus_name(i)
-				var volume := get_bus_volume(bus_name)
-
-				AudioServer.set_bus_mute(i, volume <= 0.0)
+			# Restore each bus mute state from the user's volume settings.
+			for bus_index in AudioServer.bus_count:
+				var volume := get_bus_volume(AudioServer.get_bus_name(bus_index))
+				AudioServer.set_bus_mute(bus_index, volume <= 0.0)
 
 		NOTIFICATION_WM_CLOSE_REQUEST:
 			_flush()
 
-
 func _exit_tree() -> void:
 	_flush()
-
 
 func _flush() -> void:
 	if _dirty:
 		save()
 
-
-# -------------------------------------------------------------------
-# Options menu
-# -------------------------------------------------------------------
+#endregion
+#region Options menu
 
 func show_options() -> void:
 	if _options_layer != null:
@@ -490,8 +403,12 @@ func show_options() -> void:
 	menu.close_requested.connect(hide_options)
 	_options_layer.add_child(menu)
 
-
+# Closes the menu and saves right away, so changes survive even if the game is killed afterwards.
 func hide_options() -> void:
+	_flush()
+
 	if _options_layer != null:
 		_options_layer.queue_free()
 		_options_layer = null
+
+#endregion

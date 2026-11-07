@@ -10,7 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://epw7jv8k7lbw" path="res://Assets/UI/Assets Wenrexa UI Sci-Fi Minimalism #01/Elements/ArrowLeft.png" id="6_0gtve"]
 [ext_resource type="Texture2D" uid="uid://ckd4pnvxe8002" path="res://icon.svg" id="7_a1qbw"]
 [ext_resource type="Texture2D" uid="uid://6dw87451o7hj" path="res://Assets/UI/Assets Wenrexa UI Sci-Fi Minimalism #01/Elements/ArrowRight.png" id="7_sg42i"]
+[ext_resource type="PackedScene" uid="uid://225m7a2jyn8r" path="res://Assets/Nodes/better_button.tscn" id="9_w1dse"]
 [ext_resource type="Shader" uid="uid://debjqjv5642eb" path="res://Data/Menu/main_menu.gdshader" id="10_sg42i"]
+[ext_resource type="PackedScene" uid="uid://dvknivganafji" path="res://Data/Menu/TutorialPopup.tscn" id="13_vdqna"]
+[ext_resource type="Script" uid="uid://cjs0m0kluqqk" path="res://Assets/Nodes/Audio/AudioTrigger.gd" id="14_vdqna"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jm3ld"]
 shader = ExtResource("10_sg42i")
@@ -33,7 +36,7 @@ shader_parameter/far_drift_scale = 0.2
 shader_parameter/drift_velocity = Vector2(0.015, 0.006)
 shader_parameter/sway_amplitude = 0.03
 shader_parameter/sway_speed = 0.15
-shader_parameter/star_density = 0.2150000102125
+shader_parameter/star_density = 0.2270000107825
 shader_parameter/min_star_radius = 0.03
 shader_parameter/max_star_radius = 0.12
 shader_parameter/star_wobble_amount = 0.05
@@ -100,7 +103,7 @@ shadow_size = 8
 shadow_color = Color(0, 0.9000001, 1, 1)
 shadow_offset = Vector2(2, 2)
 
-[node name="MainMenu" type="Control" unique_id=1796408136 node_paths=PackedStringArray("play_btn", "options_btn", "quit_btn", "tutorial_btn", "arrow_left", "arrow_right", "ship_sprite_container", "ship_name_label")]
+[node name="MainMenu" type="Control" unique_id=1796408136 node_paths=PackedStringArray("tut_popup", "play_btn", "options_btn", "quit_btn", "tutorial_btn", "arrow_left", "arrow_right", "ship_sprite_container", "ship_name_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -110,18 +113,20 @@ grow_vertical = 2
 theme = ExtResource("1_a1qbw")
 script = ExtResource("2_cvj8v")
 game_path = ExtResource("3_stymn")
-play_btn = NodePath("MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer/PlayBtn")
-options_btn = NodePath("MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer/OptionsBtn")
-quit_btn = NodePath("MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer/QuitBtn")
-tutorial_btn = NodePath("MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer2/Button")
-arrow_left = NodePath("MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/LeftArrowBtn")
-arrow_right = NodePath("MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/RightArrowBtn")
+tut_popup = NodePath("TutorialPopup")
+play_btn = NodePath("MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer/PlayBtn/HBoxContainer/Control/Button")
+options_btn = NodePath("MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer/OptionsBtn/HBoxContainer/Control/Button")
+quit_btn = NodePath("MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer/QuitBtn/HBoxContainer/Control/Button")
+tutorial_btn = NodePath("MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer2/Button/HBoxContainer/Control/Button")
+arrow_left = NodePath("MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/LeftArrowBtn/HBoxContainer/Control/Button")
+arrow_right = NodePath("MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/RightArrowBtn/HBoxContainer/Control/Button")
 ship_sprite = ExtResource("4_0gtve")
 ship_sprite_container = NodePath("MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Control")
 ship_name_label = NodePath("MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/NameLbl")
 dissolve_shader = ExtResource("4_lb1c2")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1905508903]
+z_index = -2
 material = SubResource("ShaderMaterial_jm3ld")
 layout_mode = 1
 anchors_preset = 15
@@ -173,10 +178,16 @@ size_flags_horizontal = 3
 script = ExtResource("4_gn7en")
 keys = Array[String](["game_mode", "difficulty", "controls"])
 
-[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer2" unique_id=205691828]
+[node name="Button" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer2" unique_id=668546363 instance=ExtResource("9_w1dse")]
+custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
-size_flags_vertical = 3
 text = "Tutorial"
+
+[node name="RichTextLabel" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer2/Button/HBoxContainer/Control" parent_id_path=PackedInt32Array(668546363, 1028046267) index="1" unique_id=24974045]
+text = "Tutorial"
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3" unique_id=659741903]
 layout_mode = 2
@@ -196,20 +207,38 @@ uppercase = true
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=1032138852]
 layout_mode = 2
 
-[node name="PlayBtn" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=781129125]
+[node name="PlayBtn" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=426134724 instance=ExtResource("9_w1dse")]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Play"
 
-[node name="OptionsBtn" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=712104015]
+[node name="RichTextLabel" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer/PlayBtn/HBoxContainer/Control" parent_id_path=PackedInt32Array(426134724, 1028046267) index="1" unique_id=24974045]
+text = "Play"
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OptionsBtn" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=1108780408 instance=ExtResource("9_w1dse")]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Options"
 
-[node name="QuitBtn" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=476669105]
+[node name="RichTextLabel" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer/OptionsBtn/HBoxContainer/Control" parent_id_path=PackedInt32Array(1108780408, 1028046267) index="1" unique_id=24974045]
+text = "Options"
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuitBtn" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=1642554697 instance=ExtResource("9_w1dse")]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Quit"
+
+[node name="RichTextLabel" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer/QuitBtn/HBoxContainer/Control" parent_id_path=PackedInt32Array(1642554697, 1028046267) index="1" unique_id=24974045]
+text = "Quit"
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=1777881159]
 layout_mode = 2
@@ -222,15 +251,22 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer" unique_id=1132834904]
 layout_mode = 2
 
-[node name="LeftArrowBtn" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer" unique_id=909110077]
-z_index = 100
+[node name="LeftArrowBtn" parent="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer" unique_id=1432130990 instance=ExtResource("9_w1dse")]
 custom_minimum_size = Vector2(64, 98)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="Button" parent="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/LeftArrowBtn/HBoxContainer/Control" parent_id_path=PackedInt32Array(1432130990, 1028046267) index="0" unique_id=195598314]
 icon = ExtResource("6_0gtve")
 
+[node name="RichTextLabel" parent="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/LeftArrowBtn/HBoxContainer/Control" parent_id_path=PackedInt32Array(1432130990, 1028046267) index="1" unique_id=24974045]
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer" unique_id=669231276]
+z_index = -2
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -259,16 +295,44 @@ layout_mode = 2
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RightArrowBtn" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer" unique_id=1791098221]
+[node name="RightArrowBtn" parent="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer" unique_id=1819931718 instance=ExtResource("9_w1dse")]
 z_index = 100
 custom_minimum_size = Vector2(64, 98)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="Button" parent="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/RightArrowBtn/HBoxContainer/Control" parent_id_path=PackedInt32Array(1819931718, 1028046267) index="0" unique_id=195598314]
 icon = ExtResource("7_sg42i")
+
+[node name="RichTextLabel" parent="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/RightArrowBtn/HBoxContainer/Control" parent_id_path=PackedInt32Array(1819931718, 1028046267) index="1" unique_id=24974045]
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TutorialPopup" parent="." unique_id=1984458471 instance=ExtResource("13_vdqna")]
+visible = false
+layout_mode = 1
 
 [node name="LightEnvironment" type="Node" parent="." unique_id=1211713012]
 script = ExtResource("4_stymn")
 ambient = Color(0.851769, 0.8517689, 0.85176885, 1)
 sun_shadows = false
 metadata/_custom_type_script = "uid://d0wyaxol5hj2n"
+
+[node name="ShipSwitchAudioTrigger" type="Node" parent="." unique_id=680614007]
+script = ExtResource("14_vdqna")
+sound = "hangar_swap"
+event = 1
+signal_name = "ship_switched"
+source = NodePath("..")
+positional = false
+volume_db = -24.0
+metadata/_custom_type_script = "uid://cjs0m0kluqqk"
+
+[editable path="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer2/Button"]
+[editable path="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer/PlayBtn"]
+[editable path="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer/OptionsBtn"]
+[editable path="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer/QuitBtn"]
+[editable path="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/LeftArrowBtn"]
+[editable path="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/RightArrowBtn"]

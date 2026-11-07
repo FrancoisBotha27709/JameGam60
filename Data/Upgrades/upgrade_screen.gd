@@ -1,8 +1,12 @@
 extends Control
 class_name UpgradeScreen
 
+signal opened
+signal close
+signal picked
+
 @export_group("Nodes", "node_")
-@export var node_card_container : HBoxContainer
+@export var node_card_container : GridContainer
 @export var node_overlay : DitherVignette
 @export var node_panel : Control
 @export var node_title : Label
@@ -115,7 +119,7 @@ func open() -> void:
 
 	_calm = Settings.photosensitive()
 	_shake = shake_strength * Settings.shake_scale()
-
+	opened.emit()
 	node_overlay.tint = vignette_tint
 	node_overlay.intensity = 0.0
 	node_flash.color = Color(1.0, 1.0, 1.0, 0.0)
@@ -269,7 +273,7 @@ func _on_picked(upgrade : Upgrade) -> void:
 
 	var close_tween := create_tween().set_parallel(true)
 	_tween = close_tween
-
+	picked.emit()
 	for child in node_card_container.get_children():
 		var card := child as UpgradeCard
 
@@ -297,6 +301,7 @@ func _on_picked(upgrade : Upgrade) -> void:
 			card_dissolve_time
 		).set_delay(delay)
 
+	close.emit()
 	close_tween.chain().tween_interval(
 		maxf(card_dissolve_time + chosen_delay, 0.0)
 	)

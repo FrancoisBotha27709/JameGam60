@@ -4,7 +4,14 @@ class_name PlayerHeat
 signal heat_changed(heat : float, heat_max : float)
 signal meltdown_countdown_changed(seconds_remaining : float)
 signal meltdown_expired
+signal meltdown_started
+signal meltdown_stopped
+signal hiss_started
+signal hiss_stopped
 
+const HISS_THRESHOLD := 0.5  # fraction of heat_max; tweak to taste
+
+var is_hissing := false
 var player : Player
 var seconds_since_tap := INF
 var meltdown_elapsed := 0.0
@@ -42,14 +49,13 @@ func update(delta : float) -> void:
 
 	if is_melting:
 		meltdown_elapsed += delta
-
-		var remaining := get_meltdown_remaining()
-		meltdown_countdown_changed.emit(remaining)
+		meltdown_countdown_changed.emit(get_meltdown_remaining())
 
 		if meltdown_elapsed >= player.stat_f(&"meltdown_time"):
 			player.set_stat(&"overheat_enabled", false)
+			meltdown_stopped.emit()
+			_update_hiss(false)
 			meltdown_expired.emit()
-
 		return
 
 	seconds_since_tap += delta
@@ -59,20 +65,35 @@ func update(delta : float) -> void:
 
 	player.heat = clampf(player.heat + heat_rate * delta, 0.0, player.stat_f(&"heat_max"))
 
-	heat_changed.emit(player.heat, player.stat_f(&"heat_max"))
+	var heat_max := player.stat_f(&"heat_max")
+	heat_changed.emit(player.heat, heat_max)
 
 	var was_melting := is_melting
-	is_melting = player.heat >= player.stat_f(&"heat_max")
+	is_melting = player.heat >= heat_max
 	meltdown_elapsed = 0.0
 
 	if is_melting and not was_melting:
 		player.melt_screen.show_screen()
+		meltdown_started.emit()
 
 	if is_melting:
 		meltdown_countdown_changed.emit(get_meltdown_remaining())
 
+	_update_hiss(player.heat / heat_max >= HISS_THRESHOLD and not is_melting)
+
+func _update_hiss(should_hiss : bool) -> void:
+	if should_hiss == is_hissing:
+		return
+	is_hissing = should_hiss
+	if is_hissing:
+		hiss_started.emit()
+	else:
+		hiss_stopped.emit()
 
 func reset() -> void:
+	if is_melting:
+		meltdown_stopped.emit()
+	_update_hiss(false)
 	is_melting = false
 	meltdown_elapsed = 0.0
 	seconds_since_tap = INF

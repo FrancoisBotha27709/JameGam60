@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://dnauxc4tcis2n"]
 
 [ext_resource type="Script" uid="uid://bk3ulr24rxaxg" path="res://Data/Upgrades/upgrade_screen.gd" id="1_5n08h"]
+[ext_resource type="Theme" uid="uid://dap6826f78p24" path="res://Assets/theme.tres" id="1_uvk8w"]
 [ext_resource type="PackedScene" uid="uid://btwxad7b8is7j" path="res://Assets/Nodes/upgrade_card.tscn" id="2_ws856"]
 [ext_resource type="Script" uid="uid://c1qhnv5gfhb82" path="res://Data/Menu/DitherVignette.gd" id="3_dither"]
+[ext_resource type="Script" uid="uid://cjs0m0kluqqk" path="res://Assets/Nodes/Audio/AudioTrigger.gd" id="5_j3m5l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5wk6t"]
 content_margin_left = 0.0
@@ -25,6 +27,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_uvk8w")
 script = ExtResource("1_5n08h")
 node_card_container = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer")
 node_overlay = NodePath("Overlay")
@@ -77,10 +80,10 @@ horizontal_alignment = 1
 layout_mode = 2
 bbcode_enabled = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=811414458]
+[node name="HBoxContainer" type="GridContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1914157399]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 24
+columns = 3
 
 [node name="Flash" type="ColorRect" parent="." unique_id=1509786090]
 layout_mode = 1
@@ -91,3 +94,44 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
+
+[node name="OpenAudioTrigger" type="Node" parent="." unique_id=1398797865]
+script = ExtResource("5_j3m5l")
+sound = "ui_menu_open"
+bus = "UI"
+event = 1
+signal_name = "opened"
+source = NodePath("..")
+positional = false
+volume_db = -12.0
+metadata/_custom_type_script = "uid://cjs0m0kluqqk"
+
+[node name="CloseAudioTrigger" type="Node" parent="." unique_id=894350209]
+script = ExtResource("5_j3m5l")
+sound = "ui_menu_close"
+bus = "UI"
+event = 1
+signal_name = "close"
+source = NodePath("..")
+positional = false
+volume_db = -12.0
+metadata/_custom_type_script = "uid://cjs0m0kluqqk"
+
+[node name="ChosenAudioTrigger" type="Node" parent="." unique_id=1555421578]
+script = ExtResource("5_j3m5l")
+sound = "pickup"
+bus = "UI"
+event = 1
+signal_name = "picked"
+source = NodePath("..")
+volume_db = -12.0
+metadata/_custom_type_script = "uid://cjs0m0kluqqk"
+
+[node name="LevelupAudioTrigger" type="Node" parent="." unique_id=1299984116]
+script = ExtResource("5_j3m5l")
+sound = "level_up_fanfare"
+bus = "Music"
+event = 1
+signal_name = "opened"
+volume_db = -12.0
+metadata/_custom_type_script = "uid://cjs0m0kluqqk"

@@ -21,57 +21,41 @@ func change_to_next_png(item_value : int) -> void:
 	total_value += item_value
 	update_depot_sprite()
 
-func update_depot_sprite() -> void:
-	if images.is_empty():
+func _show(i : int) -> void:
+	if i == current_image_index:
 		return
 	if sprite.texture is not CanvasTexture:
 		sprite.texture = CanvasTexture.new()
+	current_image_index = i
+	var t := sprite.texture as CanvasTexture
+	t.diffuse_texture = images[i].texture
+	t.normal_texture = images[i].normal_map
 
-	var quota : float = DataCollector.get_quota()
+func _show_f(v : float) -> void:
+	_show(roundi(v))
 
-	if quota <= 0.0:
+func update_depot_sprite() -> void:
+	if images.is_empty():
 		return
-	
-	# Determine how full it should be
-	var progress : float = DataCollector.get_quota_percentage()
-
-	# Convert progrss to index
-	var stage_count : int = images.size()
-	var new_index : int = mini(int(progress * stage_count), stage_count - 1)
-	if new_index == current_image_index:
-		return
-	
-	current_image_index = new_index
-
-	var depot_image : DepotImage = images[current_image_index]
-
-	sprite.texture.diffuse_texture = depot_image.texture
-	sprite.texture.normal_texture = depot_image.normal_map	
+	var n := images.size()
+	var i := mini(int(DataCollector.get_quota_percentage() * n), n - 1)
+	if current_image_index >= 0 and i > current_image_index:
+		Audio.play("depot_fill", global_position)
+	_show(i)
 
 func reset_depot() -> void:
-	if reset_tween and reset_tween.is_running():
+	if reset_tween:
 		reset_tween.kill()
-
+	if images.is_empty():
+		return
+	Audio.play("depot_reset", global_position)
 	reset_tween = create_tween()
-	reset_tween.set_trans(Tween.TRANS_QUAD)
-	reset_tween.set_ease(Tween.EASE_IN)
-
-	for i in range(current_image_index - 1, -1, -1):
-		reset_tween.tween_callback(func():
-			current_image_index = i
-			sprite.texture.diffuse_texture = images[i].texture
-			sprite.texture.normal_texture = images[i].normal_map
-		)
-		reset_tween.tween_interval(reset_duration / maxf(current_image_index, 1))
-
-	reset_tween.tween_callback(func():
-		current_image_index = 0
-		sprite.texture.diffuse_texture = images[0].texture
-		sprite.texture.normal_texture = images[0].normal_map
-		total_value = 0
-	)
+	reset_tween.tween_method(_show_f, float(maxi(current_image_index, 0)), 0.0, reset_duration).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	reset_tween.tween_callback(func(): total_value = 0)
 
 func _on_body_entered(body : Node2D) -> void:
 	if body.is_in_group("Player"):
+		if not body.attached_debris.is_empty():
+			Audio.play("depot_deliver", global_position)
 		body.deliver_to(self)
 		fx_attach.play()

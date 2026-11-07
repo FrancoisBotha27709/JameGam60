@@ -7,6 +7,7 @@ const MILLISECONDS_PER_SECOND := 1000.0
 const DRIFT_AXIS_FREQUENCY_RATIO := 1.618   # keeps the sway path from repeating quickly
 
 var player : Player
+var was_thrusting := false
 
 func _init(owning_player : Player) -> void:
 	player = owning_player
@@ -36,11 +37,22 @@ func apply_tap(boosting : bool) -> void:
 	var impulse := get_forward() * player.stat_f(&"tap_impulse") * get_weight_factor() * get_speed_multiplier(boosting)
 	player.velocity = (player.velocity + impulse).limit_length(maxf(get_speed_cap(boosting), previous_speed))
 	burn_fuel(player.stat_f(&"tap_fuel_cost") * get_fuel_multiplier(boosting))
-	player.player_audio.play_tap()
 	for effect: ShipFX in player.fx:
 		if is_instance_valid(effect):
 			effect.burst(TAP_BURST_STRENGTH)
 	player.thrust_tapped.emit(boosting)
+
+# Emits thrust_held every frame the engine is demanded, and thrust_stopped once when it ends.
+func update_thrust_signals(boosting : bool) -> void:
+	var input := player.player_input
+	var wants_engine := (input.wants_thrust() or input.wants_boost()) and not input.wants_brake()
+	var can_thrust := player.current_fuel > 0.0 and player.state_machine.current_state_name not in Player.NO_STEERING_STATES
+	var is_thrusting := wants_engine and can_thrust
+	if is_thrusting:
+		player.thrust_held.emit(boosting)
+	elif was_thrusting:
+		player.thrust_stopped.emit()
+	was_thrusting = is_thrusting
 
 # Throttle accelerates the ship and grip bends its velocity toward the heading.
 func apply_engine(delta : float, boosting : bool) -> void:

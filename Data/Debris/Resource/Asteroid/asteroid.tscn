@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dt3yfl0w0tj2b" path="res://Data/Debris/Resource/Asteroid/asteroidObject.gd" id="1_yp8ce"]
 [ext_resource type="PackedScene" uid="uid://dfqj0dmfn07yj" path="res://Data/Particles/Scenes/asteroid_dust.tscn" id="2_qi6bk"]
 [ext_resource type="Script" uid="uid://cgg4yga220lsk" path="res://Assets/lighting/light_rig.gd" id="3_bk3ga"]
+[ext_resource type="Script" uid="uid://cjs0m0kluqqk" path="res://Assets/Nodes/Audio/AudioTrigger.gd" id="4_bk3ga"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qi6bk"]
 
@@ -32,3 +33,11 @@ script = ExtResource("3_bk3ga")
 metadata/_custom_type_script = "uid://cgg4yga220lsk"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1003833866]
+
+[node name="ImpactAudioTrigger" type="Node" parent="." unique_id=1205567693]
+script = ExtResource("4_bk3ga")
+sound = "boss_hit"
+bus = "SFX"
+event = 1
+signal_name = "hit"
+metadata/_custom_type_script = "uid://cjs0m0kluqqk"

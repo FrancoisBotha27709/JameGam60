@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dwne7cv81s82c" path="res://Assets/UI/Ship/ShipInfoPanel.gd" id="1_pp8of"]
 [ext_resource type="Script" uid="uid://buksmsehvcj77" path="res://Assets/UI/Ship/ShipDataLine.gd" id="2_w25u6"]
 [ext_resource type="Theme" uid="uid://dap6826f78p24" path="res://Assets/theme.tres" id="3_80lg3"]
+[ext_resource type="Script" uid="uid://cjs0m0kluqqk" path="res://Assets/Nodes/Audio/AudioTrigger.gd" id="5_3egmt"]
 
 [node name="Node2D" type="Node2D" unique_id=1357579617 node_paths=PackedStringArray("node_line", "node_panel")]
 script = ExtResource("1_ooof4")
@@ -33,12 +34,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer" unique_id=312438090]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer/MarginContainer" unique_id=1192140307]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer" unique_id=2132042879]
 layout_mode = 2
@@ -46,6 +50,19 @@ text = "TEST"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control/PanelContainer/MarginContainer/VBoxContainer" unique_id=721085962]
 layout_mode = 2
+mouse_filter = 2
 bbcode_enabled = true
 text = "TEST"
 fit_content = true
+
+[node name="CharacterTypingAudioTrigger" type="Node" parent="." unique_id=1615748871]
+script = ExtResource("5_3egmt")
+sound = "dialog_chatter"
+bus = "UI"
+event = 4
+signal_name = "typing_started"
+stop_signal_name = "typing_stopped"
+source = NodePath("..")
+positional = false
+volume_db = -26.0
+metadata/_custom_type_script = "uid://cjs0m0kluqqk"
