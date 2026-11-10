@@ -1,12 +1,13 @@
 class_name DebrisShapes
 
 const VARIANTS := 6
+const RANDOM_VARIANT := -1
 const PX := 2
 const HALF := 0.5
-const EDGE_PADDING := 4   # extra texture pixels around the outline
+const EDGE_PADDING := 4
 const ANGLE_JITTER := 0.3
 const JAG_RANGE := Vector2(0.6, 1.2)
-const JAG_VERTEX_INTERVAL := 2   # every second vertex is pulled inward on jagged shapes
+const JAG_VERTEX_INTERVAL := 2
 const HUE_JITTER := 0.05
 const SATURATION_RANGE := Vector2(0.7, 1.2)
 const VALUE_RANGE := Vector2(0.75, 1.2)
@@ -17,7 +18,6 @@ const OUTLINE_DARKEN := 0.8
 const BAYER_SIZE := 4
 const BAYER := [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5]
 
-# Outline (sides/radius/jitter/jag/aspect), colors, and surface noise (noise/freq/levels/depth) per tag.
 const PROFILES := {
 	Debris.Tag.NULL: {sides = Vector2i(6, 7), radius = Vector2(14, 20), jitter = 0.2, jag = 0.0, aspect = Vector2(1.0, 1.2),
 		color = Color(0.5, 0.5, 0.5), light = Color(1, 1, 1),
@@ -31,21 +31,27 @@ const PROFILES := {
 	Debris.Tag.CEMENT: {sides = Vector2i(5, 7), radius = Vector2(18, 26), jitter = 0.28, jag = 0.0, aspect = Vector2(1.0, 1.25),
 		color = Color(0.55, 0.5, 0.42), light = Color(1.0, 0.4, 0.3),
 		noise = FastNoiseLite.TYPE_CELLULAR, freq = 0.22, levels = 3, depth = 0.22},
+	Debris.Tag.ASTEROID: {sides = Vector2i(5, 7), radius = Vector2(12, 20), jitter = 0.3, jag = 0.0, aspect = Vector2(1.0, 1.3),
+		color = Color(0.42, 0.38, 0.35), light = Color(1.0, 0.7, 0.4),
+		noise = FastNoiseLite.TYPE_CELLULAR, freq = 0.2, levels = 3, depth = 0.2},
 }
 const NEIGHBOR_OFFSETS : Array[Vector2i] = [Vector2i.LEFT, Vector2i.UP, Vector2i.RIGHT, Vector2i.DOWN]
 
-static var _cache := {}   # tag -> Array[Dictionary]
+static var _cache := {}
 
-
-# Returns a cached shape for the tag, building new variants until VARIANTS exist.
-static func make(tag : int) -> Dictionary:
+static func make(tag : int, variant : int = RANDOM_VARIANT) -> Dictionary:
 	if not _cache.has(tag):
 		_cache[tag] = []
 	var variants : Array = _cache[tag]
-	if variants.size() < VARIANTS:
+	if variant == RANDOM_VARIANT:
+		if variants.size() < VARIANTS:
+			variants.append(_build(tag))
+			return variants.back()
+		return variants.pick_random()
+	var index := mini(variant, VARIANTS - 1)
+	while variants.size() <= index:
 		variants.append(_build(tag))
-		return variants.back()
-	return variants.pick_random()
+	return variants[index]
 
 static func random_in(value_range : Vector2) -> float:
 	return randf_range(value_range.x, value_range.y)
@@ -54,7 +60,6 @@ static func shift_hue(color : Color, amount : float) -> Color:
 	color.h = fposmod(color.h + amount, 1.0)
 	return color
 
-# Builds one variant: jittered polygon outline, rasterized mask, dithered pixel texture.
 static func _build(tag : int) -> Dictionary:
 	var profile : Dictionary = PROFILES.get(tag, PROFILES[Debris.Tag.NULL])
 	var outline := _build_outline(profile)
@@ -72,7 +77,6 @@ static func _build(tag : int) -> Dictionary:
 	return {tex = ImageTexture.create_from_image(image), poly = occluder, size = bounds.size,
 			color = base_color, light = profile.light}
 
-# A rotated, stretched, jittered polygon; jagged profiles pull alternate vertices inward.
 static func _build_outline(profile : Dictionary) -> PackedVector2Array:
 	var side_count := randi_range(profile.sides.x, profile.sides.y)
 	var radius := random_in(profile.radius)
@@ -88,7 +92,6 @@ static func _build_outline(profile : Dictionary) -> PackedVector2Array:
 		outline.append(Vector2(cos(angle) * vertex_radius * aspect, sin(angle) * vertex_radius).rotated(tilt))
 	return outline
 
-# Flat byte mask: 1 where a pixel center lies inside the polygon.
 static func _rasterize(grid_size : Vector2i, polygon : PackedVector2Array) -> PackedByteArray:
 	var mask := PackedByteArray()
 	mask.resize(grid_size.x * grid_size.y)
@@ -107,7 +110,6 @@ static func _randomize_color(color : Color) -> Color:
 	color.v = clampf(color.v * random_in(VALUE_RANGE), 0.0, 1.0)
 	return color
 
-# Darkest-to-lightest tones used by the noise dither.
 static func _make_tones(base_color : Color, profile : Dictionary) -> Array[Color]:
 	var tones : Array[Color] = []
 	for level in profile.levels:
@@ -115,7 +117,6 @@ static func _make_tones(base_color : Color, profile : Dictionary) -> Array[Color
 		tones.append(base_color.darkened(profile.depth * TONE_DEPTH_SCALE * depth_ratio))
 	return tones
 
-# Noise remapped to 0..1 and ordered-dithered (Bayer) between the nearest two tones.
 static func _dithered_tone(noise : FastNoiseLite, cell : Vector2i, tones : Array[Color]) -> Color:
 	var top_level := tones.size() - 1
 	var scaled := clampf(noise.get_noise_2d(cell.x, cell.y) * HALF + HALF, 0.0, 1.0) * top_level
@@ -123,7 +124,6 @@ static func _dithered_tone(noise : FastNoiseLite, cell : Vector2i, tones : Array
 	var threshold = (BAYER[(cell.y % BAYER_SIZE) * BAYER_SIZE + cell.x % BAYER_SIZE] + HALF) / BAYER.size()
 	return tones[mini(int(level) + int(scaled - level > threshold), top_level)]
 
-# Paints highlight on top/left edges, shadow on bottom/right, dithered noise inside, and a dark outline.
 static func _paint(mask : PackedByteArray, grid_size : Vector2i, base_color : Color, profile : Dictionary) -> Image:
 	var tones := _make_tones(base_color, profile)
 	var highlight := base_color.lightened(HIGHLIGHT_LIGHTEN)

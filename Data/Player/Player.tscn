@@ -18,8 +18,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sw308"]
 size = Vector2(98, 128)
 
-[node name="Player" type="CharacterBody2D" unique_id=1263876198 node_paths=PackedStringArray("node_sprite", "ui_root", "melt_screen", "collision_shape", "circle_fuel_prog_bar", "circle_heat_prog_bar", "fx_explosion", "fx_heat", "rig", "player_audio") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1263876198 node_paths=PackedStringArray("shield_idle", "node_sprite", "ui_root", "melt_screen", "collision_shape", "circle_fuel_prog_bar", "circle_heat_prog_bar", "fx_explosion", "fx_heat", "rig", "player_audio") groups=["Player"]]
 script = ExtResource("1_o0p0d")
+shield_idle = NodePath("Shield")
+shield_idle_preset = "shield"
+shield_hit_preset = "shield_pulse"
 node_sprite = NodePath("Sprite2D")
 tap_punch_strength = 0.01
 boost_punch_strength = 0.01
@@ -134,7 +137,7 @@ reverse_color_progression = true
 texture_filter = 1
 position = Vector2(0, 30)
 color = Color(0.15, 1, 0.3, 1)
-energy = 0.7158758
+energy = 0.91888887
 range_z_min = -4096
 range_z_max = 4096
 range_layer_min = -128
@@ -317,5 +320,11 @@ preset = "explosion"
 autoplay = false
 power = 1.5
 pixel_scale = 2.0
+palette_layers = PackedStringArray()
+metadata/_custom_type_script = "uid://vj71jr4yeyw7"
+
+[node name="Shield" type="Node2D" parent="." unique_id=356367620]
+script = ExtResource("2_b3cwg")
+preset = "shield"
 palette_layers = PackedStringArray()
 metadata/_custom_type_script = "uid://vj71jr4yeyw7"

@@ -24,10 +24,14 @@ signal close
 var _tween : Tween
 var _closing : bool = false
 var _opening : bool = false
+var _locked : bool = false
+var _paused_before : bool = false
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	mouse_filter = Control.MOUSE_FILTER_STOP
+	process_priority = -1000
+	process_physics_priority = -1000
 
 	node_panel.resized.connect(_update_pivot)
 	node_resume_btn.pressed.connect(_close_menu)
@@ -37,6 +41,16 @@ func _ready() -> void:
 
 	node_dither.intensity = 0.0
 	hide()
+
+func _process(delta: float) -> void:
+	_enforce_pause()
+
+func _physics_process(_delta : float) -> void:
+	_enforce_pause()
+
+func _enforce_pause() -> void:
+	if _locked and not get_tree().paused:
+		get_tree().paused = true
 
 func _input(event : InputEvent) -> void:
 	if not event.is_action_pressed("ui_cancel") or event.is_echo():
@@ -65,6 +79,8 @@ func _open_menu() -> void:
 	_closing = false
 	open.emit()
 	show()
+	_paused_before = get_tree().paused
+	_locked = true
 	get_tree().paused = true
 
 	modulate.a = 0.0
@@ -99,17 +115,20 @@ func _close_menu() -> void:
 func _on_closed() -> void:
 	hide()
 	modulate.a = 1.0
-	get_tree().paused = false
+	_locked = false
+	get_tree().paused = _paused_before
 	_closing = false
 
 func _on_options_btn_pressed() -> void:
 	Settings.show_options()
 
 func _on_quit_menu_btn_pressed() -> void:
+	_locked = false
 	get_tree().paused = false
 	get_tree().change_scene_to_file(main_menu_path)
 
 func _on_quit_desk_btn_pressed() -> void:
+	_locked = false
 	get_tree().paused = false
 	get_tree().quit()
 

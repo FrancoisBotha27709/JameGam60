@@ -87,7 +87,7 @@ func _ready() -> void:
 		_defs[d.key] = d
 
 	_load()
-
+	
 	_save_timer = Timer.new()
 	_save_timer.one_shot = true
 	_save_timer.wait_time = SAVE_DELAY_SECONDS

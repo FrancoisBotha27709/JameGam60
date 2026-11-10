@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://cxdh7ckhxuq3e" path="res://Data/Particles/Scenes/space_dust.tscn" id="6_csoh3"]
 [ext_resource type="PackedScene" uid="uid://qrddfut7w8e6" path="res://Data/Depot/depot.tscn" id="6_m7nvt"]
 [ext_resource type="PackedScene" uid="uid://lhb62bvlu1js" path="res://Data/Particles/Scenes/star_twinkle.tscn" id="7_ovwru"]
+[ext_resource type="Script" uid="uid://c246g8oxb3qct" path="res://Data/Wrecksite/WreckReveal.gd" id="10_58m87"]
+[ext_resource type="Resource" uid="uid://dj0n7sj5yh5jf" path="res://Data/Wrecksite/Resources/Basic.tres" id="10_b1wom"]
 [ext_resource type="Shader" uid="uid://7ll63v50m1me" path="res://Data/Mist.gdshader" id="11_a4nkv"]
 [ext_resource type="Script" uid="uid://d0wyaxol5hj2n" path="res://Assets/lighting/LightEnvironment.gd" id="11_j3rrk"]
 [ext_resource type="Script" uid="uid://dr0aotrdnswhj" path="res://Data/mist_field.gd" id="11_lqa73"]
@@ -26,7 +28,14 @@
 [ext_resource type="PackedScene" uid="uid://btjdy0jl7l7fv" path="res://Data/Menu/RunStartBanner.tscn" id="19_l7apa"]
 [ext_resource type="Shader" uid="uid://debjqjv5642eb" path="res://Data/Menu/main_menu.gdshader" id="20_82ve4"]
 [ext_resource type="PackedScene" uid="uid://37d4ekvjsc1u" path="res://Data/Menu/pause_menu.tscn" id="21_xdmp3"]
+[ext_resource type="Resource" uid="uid://n848jlg70inl" path="res://Data/Debris/Resource/Debris/Asteroid/Asteroid.tres" id="24_s1jui"]
 [ext_resource type="PackedScene" uid="uid://blpwn3qpi6avr" path="res://Data/Player/touch_controls.tscn" id="27_lso6g"]
+
+[sub_resource type="Resource" id="Resource_s1jui"]
+script = ExtResource("10_58m87")
+max_explosions = 10
+explosion_radius = 300.0
+metadata/_custom_type_script = "uid://c246g8oxb3qct"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lqa73"]
 shader = ExtResource("11_a4nkv")
@@ -155,10 +164,9 @@ world_size = Vector2(20000, 20000)
 player = NodePath("Player")
 cam = NodePath("Camera2D")
 minimap = NodePath("CanvasLayer/Control/Minimap")
+reveal = SubResource("Resource_s1jui")
+wrecks = ExtResource("10_b1wom")
 quota_margin = 1.755
-spawn_max_distance = 1000.0
-spawn_growth_per_upgrade = 0.605
-leash_factor = 1.4
 asteroid_scene = ExtResource("15_2agvk")
 field = NodePath("AsteroidField")
 debfield = NodePath("DebrisField")
@@ -238,15 +246,6 @@ target_camera = NodePath("../..")
 [node name="Depot" parent="." unique_id=2101250495 instance=ExtResource("6_m7nvt")]
 position = Vector2(820, 523)
 
-[node name="Depot2" parent="." unique_id=945286397 instance=ExtResource("6_m7nvt")]
-position = Vector2(-3594, -1902)
-
-[node name="Depot3" parent="." unique_id=1973926978 instance=ExtResource("6_m7nvt")]
-position = Vector2(-1850, 3472)
-
-[node name="Depot4" parent="." unique_id=10067261 instance=ExtResource("6_m7nvt")]
-position = Vector2(4782, -453)
-
 [node name="AsteroidField" type="Node2D" parent="." unique_id=1019477162 node_paths=PackedStringArray("focus")]
 script = ExtResource("15_cshp7")
 focus = NodePath("../Player")
@@ -254,6 +253,7 @@ asteroid_scene = ExtResource("15_2agvk")
 small_density = 0.34
 medium_density = 0.28
 large_density = 0.1
+chunk_debris = ExtResource("24_s1jui")
 metadata/_custom_type_script = "uid://iuh4bi5j3fe"
 
 [node name="DebrisField" type="Node2D" parent="." unique_id=425128084 node_paths=PackedStringArray("focus")]

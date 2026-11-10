@@ -1,6 +1,8 @@
 extends Camera2D
 class_name Cam
 
+const IMPACT_PHOTOSENSITIVE_VIGNETTE_SCALE := 0.35
+
 @export var follow_target : Node2D
 @export var follow_speed : float = 5.0
 @export var max_history : int = 2
@@ -26,7 +28,7 @@ class_name Cam
 @export var speed_look_ahead_multiplier : float = 1.5
 @export var speed_zoom_out : float = 0.12
 @export var zoom_smoothing : float = 2.0
-@export var velocity_stretch : float = 0.0 # Optional; leave at 0
+@export var velocity_stretch : float = 0.0
 @export_subgroup("Speed Edge Effect")
 @export var speed_effect_start : float = 150.0
 @export var speed_effect_max : float = 600.0
@@ -34,8 +36,13 @@ class_name Cam
 @export_range(0.0, 1.0) var speed_effect_max_intensity : float = 0.35
 @export var speed_effect_smoothing : float = 4.0
 
+@export_group("Impact")
+@export var impact_vignette_decay : float = 1.5
+@export var impact_zoom_recover : float = 7.0
+
 var _speed_effect_intensity : float = 0.0
 var _base_zoom : Vector2
+var _smooth_zoom : Vector2
 
 var _look_ahead : Vector2 = Vector2.ZERO
 
@@ -45,21 +52,27 @@ var _history : Array[Node2D] = []
 var _shake_tween : Tween
 var _burst_strength : float = 0.0
 var _heat_strength : float = 0.0
+var _rumble_strength : float = 0.0
+var _impact_vignette : float = 0.0
+var _impact_zoom : float = 0.0
 
 func _ready() -> void:
 	_base_zoom = zoom
+	_smooth_zoom = zoom
 	if follow_target:
 		global_position = follow_target.global_position
 	SignalBus.fuel_depleted.connect(shake)
 	SignalBus.update_heat.connect(_on_update_heat)
 	dither.intensity = 0.0
 
-func _process(_delta: float) -> void:
-	var strength : float = maxf(_burst_strength, _heat_strength) * Settings.shake_scale()
+func _process(delta : float) -> void:
+	var strength : float = maxf(maxf(_burst_strength, _heat_strength), _rumble_strength) * Settings.shake_scale()
 	if strength > 0.01:
 		offset = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)) * strength
 	elif offset != Vector2.ZERO:
 		offset = Vector2.ZERO
+	_impact_vignette = maxf(_impact_vignette - impact_vignette_decay * delta, 0.0)
+	_impact_zoom *= exp(-impact_zoom_recover * delta)
 
 func _physics_process(delta : float) -> void:
 	var speed := 0.0
@@ -79,7 +92,8 @@ func _physics_process(delta : float) -> void:
 	global_position = global_position.lerp(goal + _look_ahead, 1.0 - exp(-follow_speed * delta))
 
 	var target_zoom := _base_zoom * (1.0 - speed_zoom_out * speed_ratio)
-	zoom = zoom.lerp(target_zoom, 1.0 - exp(-zoom_smoothing * delta))
+	_smooth_zoom = _smooth_zoom.lerp(target_zoom, 1.0 - exp(-zoom_smoothing * delta))
+	zoom = _smooth_zoom * (1.0 + _impact_zoom)
 	_update_speed_effect(speed, delta)
 
 func _get_velocity_lead() -> Vector2:
@@ -87,8 +101,8 @@ func _get_velocity_lead() -> Vector2:
 		return Vector2.ZERO
 	if not (follow_target is CharacterBody2D):
 		return Vector2.ZERO
-	var v : Vector2 = (follow_target as CharacterBody2D).velocity
-	return (v * look_ahead_time).limit_length(max_look_ahead)
+	var target_velocity : Vector2 = (follow_target as CharacterBody2D).velocity
+	return (target_velocity * look_ahead_time).limit_length(max_look_ahead)
 
 func shake(strength : float = shake_strength, duration : float = shake_duration) -> void:
 	if _shake_tween:
@@ -99,14 +113,31 @@ func shake(strength : float = shake_strength, duration : float = shake_duration)
 func _set_burst(value : float) -> void:
 	_burst_strength = value
 
+func impact(shake_amount : float, shake_time : float, vignette_amount : float, zoom_punch : float) -> void:
+	if shake_amount > 0.0 and shake_amount >= _burst_strength:
+		shake(shake_amount, shake_time)
+	var vignette_scale := IMPACT_PHOTOSENSITIVE_VIGNETTE_SCALE if Settings.photosensitive() else 1.0
+	_impact_vignette = maxf(_impact_vignette, vignette_amount * vignette_scale)
+	_impact_zoom = maxf(_impact_zoom, zoom_punch * Settings.shake_scale())
+
+func set_rumble(strength : float) -> void:
+	_rumble_strength = strength
+
+func clear_impact() -> void:
+	if _shake_tween:
+		_shake_tween.kill()
+	_burst_strength = 0.0
+	_rumble_strength = 0.0
+	_impact_vignette = 0.0
+	_impact_zoom = 0.0
+
 func _on_update_heat(value : float, max_value : float) -> void:
 	if max_value <= 0.0:
 		_heat_strength = 0.0
 		return
 	var ratio := value / max_value
-	# Remap threshold..1.0 to 0..1, so nothing happens below 60%
-	var t := clampf((ratio - heat_threshold) / (1.0 - heat_threshold), 0.0, 1.0)
-	_heat_strength = heat_max_strength * pow(t, heat_curve)
+	var heat_ratio := clampf((ratio - heat_threshold) / (1.0 - heat_threshold), 0.0, 1.0)
+	_heat_strength = heat_max_strength * pow(heat_ratio, heat_curve)
 
 func _get_goal() -> Vector2:
 	if _holding_position:
@@ -133,7 +164,7 @@ func go_to_previous() -> void:
 			_hold_position = previous
 			_holding_position = true
 			return
-		
+
 		if is_instance_valid(previous):
 			follow_target = previous
 			_holding_position = false
@@ -144,9 +175,22 @@ func _push_current_focus() -> void:
 		_history.append(_hold_position)
 	elif is_instance_valid(follow_target):
 		_history.append(follow_target)
-	
+
 	if _history.size() > max_history:
 		_history.pop_front()
+
+func focus_point(pos : Vector2) -> void:
+	_hold_position = pos
+	_holding_position = true
+
+func return_to_target() -> void:
+	_holding_position = false
+
+func snap_to_target() -> void:
+	_holding_position = false
+	_look_ahead = Vector2.ZERO
+	if is_instance_valid(follow_target):
+		global_position = follow_target.global_position + padding
 
 func set_world_bounds(rect : Rect2) -> void:
 	limit_left = int(rect.position.x)
@@ -159,8 +203,6 @@ func _update_speed_effect(speed : float, delta : float) -> void:
 		return
 
 	var speed_ratio := clampf((speed - speed_effect_start) / maxf(speed_effect_max - speed_effect_start, 1.0), 0.0, 1.0)
-
-	# Ease in the effect so it builds gradually.
 	speed_ratio = speed_ratio * speed_ratio
 
 	var target_intensity := lerpf(speed_effect_min_intensity, speed_effect_max_intensity, speed_ratio
@@ -168,4 +210,26 @@ func _update_speed_effect(speed : float, delta : float) -> void:
 
 	_speed_effect_intensity = lerpf(_speed_effect_intensity, target_intensity, 1.0 - exp(-speed_effect_smoothing * delta))
 
-	dither.intensity = _speed_effect_intensity
+	dither.intensity = maxf(_speed_effect_intensity, _impact_vignette)
+
+func take_screenshot() -> void:
+	var image := get_viewport().get_texture().get_image()
+
+	var directory := "user://screenshots"
+	DirAccess.make_dir_recursive_absolute(
+		ProjectSettings.globalize_path(directory)
+	)
+
+	var filename := "screenshot_%s.png" % Time.get_datetime_string_from_system().replace(":", "-")
+	var path := directory.path_join(filename)
+
+	var error := image.save_png(path)
+
+	if error == OK:
+		print("Screenshot saved: ", path)
+	else:
+		push_error("Failed to save screenshot!")
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("screenshot"):
+		take_screenshot()

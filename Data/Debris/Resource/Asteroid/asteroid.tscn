@@ -18,9 +18,10 @@ node_occluder = NodePath("LightOccluder2D")
 node_light_rig = NodePath("LightRig")
 weight = 500.0
 spin_speed = 1.0
-size = 2
+size = 0
 hit_particle = ExtResource("2_qi6bk")
 max_health = 400.0
+small_casts_shadow = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1001462704]
 shape = SubResource("RectangleShape2D_qi6bk")

@@ -67,6 +67,7 @@ var _max_speed := 0.0
 var _bounded := false
 var _world_min := Vector2.ZERO
 var _world_max := Vector2.ZERO
+var _shape_variant : int = DebrisShapes.RANDOM_VARIANT
 
 #region Initialization
 
@@ -76,10 +77,12 @@ func _init() -> void:
 	quantum_system.expired.connect(_on_quantum_expired)
 
 # Prepares a (possibly recycled) node for a new debris definition and world.
-func setup(debris : Debris, home_pos : Vector2 = Vector2.ZERO, leash_radius : float = 0.0, bounds : Rect2 = Rect2()) -> void:
+func setup(debris : Debris, home_pos : Vector2 = Vector2.ZERO, leash_radius : float = 0.0,
+		bounds : Rect2 = Rect2(), shape_variant : int = DebrisShapes.RANDOM_VARIANT) -> void:
 	data = debris
 	home = home_pos
 	leash = leash_radius
+	_shape_variant = shape_variant
 	quantum_system.reset()
 	_bounded = bounds.has_area()
 	if _bounded:
@@ -91,7 +94,7 @@ func setup(debris : Debris, home_pos : Vector2 = Vector2.ZERO, leash_radius : fl
 	_max_speed = data.drift_speed_max * speed_scale
 	drift_velocity = _random_heading() * randf_range(data.drift_speed_min, data.drift_speed_max)
 	spin = randf_range(-data.drift_spin_max, data.drift_spin_max)
-	blast_velocity = Vector2.ZERO   # recycled nodes shouldn't inherit an old shove
+	blast_velocity = Vector2.ZERO
 	_rope_len = data.rope_length * randf_range(1.0 - rope_length_variation, 1.0 + rope_length_variation)
 	_rig = _rig if _rig else get_node_or_null("LightRig") as LightRig
 	_apply_rig()
@@ -253,7 +256,7 @@ func _bounce_off_world() -> void:
 
 # Applies a cached procedural shape: texture, collision box, occluder, and a random point light.
 func _apply_shape() -> void:
-	var shape := DebrisShapes.make(data.tag)
+	var shape := DebrisShapes.make(data.tag, _shape_variant)
 	var outline : PackedVector2Array = shape.poly
 	base_color = shape.color
 	sprite.texture = shape.tex
@@ -278,4 +281,12 @@ func _apply_shape() -> void:
 		light.set("intensity", DebrisShapes.random_in(LIGHT_INTENSITY_RANGE))
 		light.height = LIGHT_HEIGHT
 
+# Knocked loose by a crash: shoved away and ignored by the ship for a moment.
+func shed(origin : Vector2, force : float, lockout : float) -> void:
+	detach()
+	apply_blast(origin, INF, force)
+	set_deferred("monitoring", false)
+	get_tree().create_timer(lockout).timeout.connect(func() -> void:
+		if is_instance_valid(self) and is_inside_tree() and anchor == null:
+			monitoring = true)
 #endregion

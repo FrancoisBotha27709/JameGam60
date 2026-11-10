@@ -472,12 +472,15 @@ func spawn_checkpoint() -> void:
 #region Delivery and quota
 
 
-func register_delivery(debris : Debris) -> void:
+func register_delivery(debris : Debris, value : int = -1) -> void:
 	if not is_running:
 		return
 
+	# value comes from DebrisObject.get_value(), which includes the quantum multiplier.
+	var base_value : int = value if value >= 0 else debris.stat_value
+
 	var points : float = (
-		debris.stat_value
+		base_value
 		* TAG_MULTIPLIERS.get(debris.tag, 1.0)
 		* get_stat(Upgrade.Stat.SCORE, 1.0)
 		* get_stat(Upgrade.Stat.DEBRIS_VALUE, 1.0)

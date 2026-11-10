@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Wrecks" format=3 uid="uid://dj0n7sj5yh5jf"]
+
+[ext_resource type="Script" uid="uid://xnklelsplrfm" path="res://Data/Wrecksite/Wrecks.gd" id="1_nbkjt"]
+
+[resource]
+script = ExtResource("1_nbkjt")
+metadata/_custom_type_script = "uid://xnklelsplrfm"

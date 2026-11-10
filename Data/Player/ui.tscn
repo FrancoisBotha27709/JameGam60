@@ -137,7 +137,7 @@ theme_override_constants/separation = 32
 
 [node name="Button" parent="HBoxContainer" unique_id=668546363 instance=ExtResource("7_dipik")]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 6
 size_flags_vertical = 8
 text = "Continue"
 
@@ -152,7 +152,7 @@ vertical_alignment = 1
 
 [node name="Button2" parent="HBoxContainer" unique_id=584169177 instance=ExtResource("7_dipik")]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 6
 size_flags_vertical = 8
 text = "MENU"
 
