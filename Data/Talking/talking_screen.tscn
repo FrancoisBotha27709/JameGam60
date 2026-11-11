@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://rgseei16qvjd"]
+
+[ext_resource type="Theme" uid="uid://dap6826f78p24" path="res://Assets/theme.tres" id="1_of656"]
+[ext_resource type="Script" uid="uid://dyt24gm04sbg0" path="res://Data/Talking/talking_screen.gd" id="2_44ff0"]
+[ext_resource type="Script" uid="uid://cd2m4ls5seipq" path="res://Assets/Nodes/Menu/hangar_plate.gd" id="2_v3abw"]
+
+[node name="TalkingScreen" type="Control" unique_id=777680014]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_of656")
+script = ExtResource("2_44ff0")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1170431505]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HangarPlate" type="Control" parent="MarginContainer" unique_id=253291271]
+custom_minimum_size = Vector2(0, 256)
+layout_mode = 2
+size_flags_vertical = 8
+script = ExtResource("2_v3abw")
+plate_style = 1
+metadata/_custom_type_script = "uid://cd2m4ls5seipq"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HangarPlate" unique_id=1095368042]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 1896.0
+offset_bottom = 248.0
+
+[node name="CharacterNameTag" type="Label" parent="MarginContainer/HangarPlate/VBoxContainer" unique_id=1883692427 groups=["menu_reveal"]]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "// CHARACTER NAME"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HangarPlate/VBoxContainer" unique_id=366849618]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Body" type="RichTextLabel" parent="MarginContainer/HangarPlate/VBoxContainer/MarginContainer" unique_id=199227487]
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.88, 0.96, 1, 1)
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+fit_content = true

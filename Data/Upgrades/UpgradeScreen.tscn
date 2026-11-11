@@ -4,21 +4,10 @@
 [ext_resource type="Theme" uid="uid://dap6826f78p24" path="res://Assets/theme.tres" id="1_uvk8w"]
 [ext_resource type="PackedScene" uid="uid://btwxad7b8is7j" path="res://Assets/Nodes/upgrade_card.tscn" id="2_ws856"]
 [ext_resource type="Script" uid="uid://c1qhnv5gfhb82" path="res://Data/Menu/DitherVignette.gd" id="3_dither"]
+[ext_resource type="Script" uid="uid://demtto3knvw5u" path="res://Assets/Nodes/Menu/hangar_backdrop.gd" id="4_backdrop"]
 [ext_resource type="Script" uid="uid://cjs0m0kluqqk" path="res://Assets/Nodes/Audio/AudioTrigger.gd" id="5_j3m5l"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5wk6t"]
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
-bg_color = Color(0.6, 0.6, 0.6, 0)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-
-[node name="UpgradeScreen" type="Control" unique_id=423598974 node_paths=PackedStringArray("node_card_container", "node_overlay", "node_panel", "node_title", "node_sub", "node_flash")]
+[node name="UpgradeScreen" type="Control" node_paths=PackedStringArray("node_card_container", "node_overlay", "node_panel", "node_title", "node_sub", "node_flash", "node_backdrop")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,15 +18,42 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("1_uvk8w")
 script = ExtResource("1_5n08h")
-node_card_container = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer")
+node_card_container = NodePath("Layout/Rows/Cards")
 node_overlay = NodePath("Overlay")
-node_panel = NodePath("MarginContainer/PanelContainer")
-node_title = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TitleLbl")
-node_sub = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/SubLbl")
+node_panel = NodePath("Layout")
+node_title = NodePath("Layout/Rows/TitleBlock/TitleLbl")
+node_sub = NodePath("Layout/Rows/TitleBlock/SubLbl")
 node_flash = NodePath("Flash")
+node_backdrop = NodePath("Backdrop")
 card_scene = ExtResource("2_ws856")
 
-[node name="Overlay" type="ColorRect" parent="." unique_id=1919362656]
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.01, 0.01, 0.05, 1)
+
+[node name="Backdrop" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_backdrop")
+opening_ratio = Vector2(0.755, 0.775)
+parallax_shift = Vector2(78.46, 26)
+rib_count = 6
+lane_count = 6
+pad_radius_ratio = 0.375
+pad_squash = 0.245
+
+[node name="Overlay" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -47,45 +63,60 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("3_dither")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=726078399]
+[node name="Layout" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 48
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=2050008574]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5wk6t")
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer" unique_id=313548100]
-layout_mode = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer" unique_id=1300000001]
+[node name="Rows" type="VBoxContainer" parent="Layout"]
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="TitleLbl" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1300000002]
+[node name="TitleBlock" type="VBoxContainer" parent="Layout/Rows"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
+mouse_filter = 2
+
+[node name="TagLbl" type="Label" parent="Layout/Rows/TitleBlock"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "// QUOTA MET //"
+
+[node name="TitleLbl" type="Label" parent="Layout/Rows/TitleBlock"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.96, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.9, 1, 0.55)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 56
 text = "CHOOSE AN UPGRADE"
-horizontal_alignment = 1
+uppercase = true
 
-[node name="SubLbl" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=413826839]
+[node name="SubLbl" type="RichTextLabel" parent="Layout/Rows/TitleBlock"]
 layout_mode = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.55, 0.7, 0.8, 1)
+theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
+fit_content = true
+scroll_active = false
 
-[node name="HBoxContainer" type="GridContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1914157399]
+[node name="Cards" type="GridContainer" parent="Layout/Rows"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/h_separation = 24
+theme_override_constants/v_separation = 24
 columns = 3
 
-[node name="Flash" type="ColorRect" parent="." unique_id=1509786090]
+[node name="Flash" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

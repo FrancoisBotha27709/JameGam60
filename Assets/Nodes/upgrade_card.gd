@@ -1,4 +1,3 @@
-
 extends Control
 class_name UpgradeCard
 
@@ -10,7 +9,7 @@ const SHADER : Shader = preload("res://Data/Menu/PixelDissolve.gdshader")
 @export var node_title_lbl : Label
 @export var node_desc_lbl : RichTextLabel
 @export var node_icon : TextureRect
-@export var node_button : Button
+@export var node_button : HangarButton
 
 @export_group("Display")
 @export var description_bbcode : bool = true

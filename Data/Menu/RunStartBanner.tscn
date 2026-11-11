@@ -1,29 +1,22 @@
 [gd_scene format=3 uid="uid://btjdy0jl7l7fv"]
 
-[ext_resource type="Theme" uid="uid://dap6826f78p24" path="res://Assets/theme.tres" id="1_nwtuq"]
-[ext_resource type="Script" uid="uid://23h8tdjob1ju" path="res://Data/Menu/RunStartBanner.gd" id="1_script"]
-[ext_resource type="Shader" uid="uid://bd2ivxe3mx85y" path="res://Data/Menu/DitherVignette.gdshader" id="2_jjhxa"]
-[ext_resource type="Script" uid="uid://c1qhnv5gfhb82" path="res://Data/Menu/DitherVignette.gd" id="3_7fbf0"]
+[ext_resource type="Theme" uid="uid://dap6826f78p24" path="res://Assets/theme.tres" id="1_theme"]
+[ext_resource type="Script" uid="uid://23h8tdjob1ju" path="res://Data/Menu/RunStartBanner.gd" id="2_script"]
+[ext_resource type="Shader" uid="uid://bd2ivxe3mx85y" path="res://Data/Menu/DitherVignette.gdshader" id="3_shader"]
+[ext_resource type="Script" uid="uid://c1qhnv5gfhb82" path="res://Data/Menu/DitherVignette.gd" id="4_vignette"]
+[ext_resource type="Script" uid="uid://demtto3knvw5u" path="res://Assets/Nodes/Menu/hangar_backdrop.gd" id="5_backdrop"]
+[ext_resource type="Script" uid="uid://cd2m4ls5seipq" path="res://Assets/Nodes/Menu/hangar_plate.gd" id="6_plate"]
+[ext_resource type="Script" uid="uid://dd02d5ef6xcpi" path="res://Assets/Nodes/Menu/hangar_progress_bar.gd" id="7_progress"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_r2qbd"]
-shader = ExtResource("2_jjhxa")
-shader_parameter/tint = Color(0.3, 1, 0.6, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vignette"]
+shader = ExtResource("3_shader")
+shader_parameter/tint = Color(0.3, 0.85, 1, 1)
 shader_parameter/intensity = 0.0
 shader_parameter/pixel_size = 4.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nwtuq"]
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
-bg_color = Color(0.1, 0.1, 0.1, 0)
-border_color = Color(0.3, 0.85, 1, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_panel"]
 
-[node name="RunStartBanner" type="Control" unique_id=863598694 node_paths=PackedStringArray("overlay", "backpanel", "tag", "title", "sub", "score", "flash", "overlow", "summary_lbl")]
+[node name="RunStartBanner" type="Control" unique_id=1631842574 node_paths=PackedStringArray("overlay", "backpanel", "tag", "title", "sub", "score", "flash", "overlow", "summary_lbl", "backdrop", "progress_bar")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -32,20 +25,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource("1_nwtuq")
-script = ExtResource("1_script")
+theme = ExtResource("1_theme")
+script = ExtResource("2_script")
 overlay = NodePath("Overlay")
-backpanel = NodePath("PanelContainer/VBoxContainer2/VBoxContainer2/Panel")
-tag = NodePath("PanelContainer/VBoxContainer2/VBoxContainer2/Panel/MarginContainer/VBoxContainer/TagLbl")
-title = NodePath("PanelContainer/VBoxContainer2/VBoxContainer2/Panel/MarginContainer/VBoxContainer/TitleLbl")
-sub = NodePath("PanelContainer/VBoxContainer2/VBoxContainer2/Panel/MarginContainer/VBoxContainer/SubLbl")
-score = NodePath("PanelContainer/VBoxContainer2/VBoxContainer2/Panel/MarginContainer/VBoxContainer/ScoreLbl")
+backpanel = NodePath("Layout/Rows/Body/SummaryPanel")
+tag = NodePath("Layout/Rows/TopBar/TitleBlock/TagLabel")
+title = NodePath("Layout/Rows/TopBar/TitleBlock/TitleLabel")
+sub = NodePath("Layout/Rows/TopBar/TitleBlock/SubtitleLabel")
+score = NodePath("Layout/Rows/TopBar/ScoreLabel")
 flash = NodePath("Flash")
-overlow = NodePath("PanelContainer/VBoxContainer2/VBoxContainer2/OverflowLbl")
-summary_lbl = NodePath("PanelContainer/VBoxContainer2/VBoxContainer2/Panel/MarginContainer/VBoxContainer/SummaryLbl")
+overlow = NodePath("Layout/Rows/Body/LogPanel/Margin/LogLabel")
+summary_lbl = NodePath("Layout/Rows/Body/SummaryPanel/Margin/SummaryLabel")
+backdrop = NodePath("Backdrop")
+progress_bar = NodePath("Layout/Rows/ProgressBar")
 
-[node name="Overlay" type="ColorRect" parent="." unique_id=852170689]
-material = SubResource("ShaderMaterial_r2qbd")
+[node name="Background" type="ColorRect" parent="." unique_id=303866810]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -53,10 +47,181 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("3_7fbf0")
+color = Color(0.01, 0.01, 0.05, 1)
+
+[node name="Backdrop" type="Control" parent="." unique_id=1242204237]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_backdrop")
+opening_ratio = Vector2(0.755, 0.775)
+parallax_shift = Vector2(78.46, 26)
+rib_count = 6
+lane_count = 6
+pad_radius_ratio = 0.375
+pad_squash = 0.245
+
+[node name="Overlay" type="ColorRect" parent="." unique_id=2050386387]
+material = SubResource("ShaderMaterial_vignette")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_vignette")
 metadata/_custom_type_script = "uid://c1qhnv5gfhb82"
 
-[node name="Flash" type="ColorRect" parent="." unique_id=1712057555]
+[node name="Layout" type="MarginContainer" parent="." unique_id=1877416353]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 48
+
+[node name="Rows" type="VBoxContainer" parent="Layout" unique_id=2046225643]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 24
+
+[node name="TopBar" type="HBoxContainer" parent="Layout/Rows" unique_id=445703407]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TitleBlock" type="VBoxContainer" parent="Layout/Rows/TopBar" unique_id=684965855]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TagLabel" type="Label" parent="Layout/Rows/TopBar/TitleBlock" unique_id=455859317]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "// RUN //"
+
+[node name="TitleLabel" type="Label" parent="Layout/Rows/TopBar/TitleBlock" unique_id=1719146292]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.96, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.9, 1, 0.55)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 56
+text = "SYSTEMS ONLINE"
+uppercase = true
+
+[node name="SubtitleLabel" type="Label" parent="Layout/Rows/TopBar/TitleBlock" unique_id=482593963]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.7, 0.8, 1)
+theme_override_font_sizes/font_size = 18
+
+[node name="TopSpacer" type="Control" parent="Layout/Rows/TopBar" unique_id=1679437780]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="ScoreLabel" type="Label" parent="Layout/Rows/TopBar" unique_id=1206918473]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 28
+text = "QUOTA"
+horizontal_alignment = 2
+
+[node name="Body" type="HBoxContainer" parent="Layout/Rows" unique_id=1013728468]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="LogPanel" type="Control" parent="Layout/Rows/Body" unique_id=286639989]
+custom_minimum_size = Vector2(760, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Plate" type="Control" parent="Layout/Rows/Body/LogPanel" unique_id=660716689]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("6_plate")
+slide_reserve = 0.0
+
+[node name="Margin" type="MarginContainer" parent="Layout/Rows/Body/LogPanel" unique_id=1424744093]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 44
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 44
+theme_override_constants/margin_bottom = 20
+
+[node name="LogLabel" type="RichTextLabel" parent="Layout/Rows/Body/LogPanel/Margin" unique_id=1054222009]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.88, 0.96, 1, 1)
+theme_override_font_sizes/normal_font_size = 22
+theme_override_font_sizes/bold_font_size = 22
+bbcode_enabled = true
+scroll_active = false
+scroll_following_visible_characters = true
+autowrap_mode = 2
+
+[node name="BodySpacer" type="Control" parent="Layout/Rows/Body" unique_id=2016717528]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="SummaryPanel" type="PanelContainer" parent="Layout/Rows/Body" unique_id=863382289]
+custom_minimum_size = Vector2(520, 0)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_panel")
+
+[node name="Plate" type="Control" parent="Layout/Rows/Body/SummaryPanel" unique_id=1443327711]
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("6_plate")
+slide_reserve = 0.0
+
+[node name="Margin" type="MarginContainer" parent="Layout/Rows/Body/SummaryPanel" unique_id=487282093]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 44
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 44
+theme_override_constants/margin_bottom = 20
+
+[node name="SummaryLabel" type="Label" parent="Layout/Rows/Body/SummaryPanel/Margin" unique_id=891025167]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.7, 0.8, 1)
+theme_override_font_sizes/font_size = 22
+
+[node name="ProgressBar" type="Control" parent="Layout/Rows" unique_id=945526398]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("7_progress")
+slide_reserve = 0.0
+
+[node name="Flash" type="ColorRect" parent="." unique_id=736733220]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -65,71 +230,3 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
-
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=292357951]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_nwtuq")
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer" unique_id=133489595]
-layout_mode = 2
-
-[node name="VBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer2" unique_id=196188155]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="OverflowLbl" type="RichTextLabel" parent="PanelContainer/VBoxContainer2/VBoxContainer2" unique_id=1867278152]
-custom_minimum_size = Vector2(885, 64)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 3
-bbcode_enabled = true
-text = "[color=green][  OK  ] [/color] Power rails stable"
-scroll_active = false
-scroll_following_visible_characters = true
-autowrap_mode = 2
-
-[node name="Panel" type="PanelContainer" parent="PanelContainer/VBoxContainer2/VBoxContainer2" unique_id=686492981]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer2/VBoxContainer2/Panel" unique_id=890609364]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer2/VBoxContainer2/Panel/MarginContainer" unique_id=1557420589]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="TagLbl" type="Label" parent="PanelContainer/VBoxContainer2/VBoxContainer2/Panel/MarginContainer/VBoxContainer" unique_id=1387217036]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.3, 1, 0.6, 1)
-theme_override_font_sizes/font_size = 40
-text = "// RUN 01 //"
-
-[node name="TitleLbl" type="Label" parent="PanelContainer/VBoxContainer2/VBoxContainer2/Panel/MarginContainer/VBoxContainer" unique_id=738310002]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.3, 1, 0.6, 1)
-theme_override_font_sizes/font_size = 48
-text = "SYSTEMS ONLINE"
-
-[node name="SubLbl" type="Label" parent="PanelContainer/VBoxContainer2/VBoxContainer2/Panel/MarginContainer/VBoxContainer" unique_id=1904045575]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "COLLECT DEBRIS - DELIVER TO THE DEPOT"
-
-[node name="ScoreLbl" type="Label" parent="PanelContainer/VBoxContainer2/VBoxContainer2/Panel/MarginContainer/VBoxContainer" unique_id=1813625781]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "QUOTA  5"
-
-[node name="SummaryLbl" type="Label" parent="PanelContainer/VBoxContainer2/VBoxContainer2/Panel/MarginContainer/VBoxContainer" unique_id=1694619822]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32

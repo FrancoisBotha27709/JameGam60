@@ -3,26 +3,26 @@ class_name RunStartBanner
 
 signal sequence_finished
 
-const BOOT_LOG : String = "[color=green][  OK  ] [/color] Power rails stable
-[color=green][  OK  ] [/color] Reactor core online
-[color=green][  OK  ] [/color] Coolant loop primed
-[color=yellow][ WARN ] [/color] Hull integrity: acceptable
-[color=green][  OK  ] [/color] Thruster array calibrated
-[color=green][  OK  ] [/color] Fuel lines pressurized
-[color=green][  OK  ] [/color] Magnet coil charged
-[color=green][  OK  ] [/color] Navigation uplink established
-[color=green][  OK  ] [/color] Debris scanner online
-[color=green][  OK  ] [/color] Depot beacon located
-[color=green][  OK  ] [/color] Life support nominal
-[color=green][  OK  ] [/color] Memory integrity verified
-[color=green][  OK  ] [/color] Kernel loaded
-[color=green][  OK  ] [/color] Flight systems armed
-[color=green][  OK  ] [/color] All systems nominal
-[color=green][  OK  ] [/color] Awaiting pilot
+const BOOT_LOG : String = "[color=#4dd9ff][  OK  ] [/color] Power rails stable
+[color=#4dd9ff][  OK  ] [/color] Reactor core online
+[color=#4dd9ff][  OK  ] [/color] Coolant loop primed
+[color=#ff8c33][ WARN ] [/color] Hull integrity: acceptable
+[color=#4dd9ff][  OK  ] [/color] Thruster array calibrated
+[color=#4dd9ff][  OK  ] [/color] Fuel lines pressurized
+[color=#4dd9ff][  OK  ] [/color] Magnet coil charged
+[color=#4dd9ff][  OK  ] [/color] Navigation uplink established
+[color=#4dd9ff][  OK  ] [/color] Debris scanner online
+[color=#4dd9ff][  OK  ] [/color] Depot beacon located
+[color=#4dd9ff][  OK  ] [/color] Life support nominal
+[color=#4dd9ff][  OK  ] [/color] Memory integrity verified
+[color=#4dd9ff][  OK  ] [/color] Kernel loaded
+[color=#4dd9ff][  OK  ] [/color] Flight systems armed
+[color=#4dd9ff][  OK  ] [/color] All systems nominal
+[color=#4dd9ff][  OK  ] [/color] Awaiting pilot
 "
 const TRANSPARENT := 0.0
 const OPAQUE := 1.0
-const TITLE_FADE_TIME := 0.05
+const TITLE_FADE_TIME := 0.3
 const SLAM_SHAKE_TIME := 0.3
 const OUTRO_PANEL_SCALE := 0.9
 const MSEC_PER_SECOND := 1000.0
@@ -38,10 +38,13 @@ const SECONDS_PER_MINUTE := 60
 @export var flash : ColorRect
 @export var overlow : RichTextLabel
 @export var summary_lbl : Label
+@export var backdrop : HangarBackdrop
+@export var progress_bar : HangarProgressBar
 
 @export_group("Look")
-@export var accent : Color = Color(0.3, 1.0, 0.6)
+@export var accent : Color = MenuStyle.ACCENT
 @export var shake_strength : float = 6.0
+@export var quick_fade_in : float = 0.3
 @export var allow_skip : bool = true
 @export var skip_grace_time : float = 0.2
 
@@ -60,14 +63,14 @@ const SECONDS_PER_MINUTE := 60
 @export var calm_boot_time : float = 0.7
 
 @export_group("Reveal")
-@export var power_on_fade : float = 0.25
+@export var power_on_fade : float = 0.7
 @export var backdrop_fade_time : float = 0.25
 @export_range(0.0, 1.0) var backdrop_text_alpha : float = 0.2
 @export_range(0.0, 1.0) var backdrop_intensity : float = 0.25
-@export var window_open_time : float = 0.25
+@export var window_open_time : float = 0.5
 @export var title_slam_time : float = 0.25
-@export var title_start_scale : float = 1.8
-@export var calm_title_start_scale : float = 1.1
+@export var title_start_scale : float = 1.15
+@export var calm_title_start_scale : float = 1.05
 @export var line_stagger : float = 0.1
 @export var tag_fade_time : float = 0.15
 @export var sub_type_time : float = 0.4
@@ -88,6 +91,18 @@ var _last_flicker_step : int = -1
 
 #region Playback
 
+func _ready() -> void:
+	resized.connect(_update_focal_point)
+	_update_focal_point()
+
+func _update_focal_point() -> void:
+	if backdrop:
+		backdrop.focal_point = size * 0.5
+
+func _tint(color : Color) -> void:
+	for node in find_children("*", "HangarPlate", true, false):
+		(node as HangarPlate).accent_color = color
+
 func play(run : int, quota : int) -> void:
 	_calm = Settings.photosensitive()
 	_quick = run > full_intro_runs
@@ -95,20 +110,22 @@ func play(run : int, quota : int) -> void:
 	_last_flicker_step = -1
 	_kill_tweens()
 	position = Vector2.ZERO
-	modulate.a = OPAQUE
+	modulate.a = TRANSPARENT if _quick else OPAQUE
 	show()
 	_started_msec = Time.get_ticks_msec()
 
 	overlay.tint = accent
-	_set_intensity(TRANSPARENT)
+	_set_intensity(boot_intensity_start if not _quick else TRANSPARENT)
 	flash.color = Color(0.0, 0.0, 0.0, TRANSPARENT if _quick else OPAQUE)
 
 	tag.text = "// RUN %02d //" % run
 	tag.add_theme_color_override("font_color", accent)
 	tag.modulate.a = TRANSPARENT
 	title.text = "SYSTEMS ONLINE"
-	title.add_theme_color_override("font_color", accent)
 	title.modulate.a = TRANSPARENT
+	title.add_theme_color_override("font_shadow_color", Color(accent, 0.55))
+	_tint(accent)
+	_update_focal_point()
 	title.scale = Vector2.ONE * (calm_title_start_scale if _calm else title_start_scale)
 	sub.text = "COLLECT DEBRIS - DELIVER TO THE DEPOT"
 	sub.visible_ratio = TRANSPARENT
@@ -118,33 +135,36 @@ func play(run : int, quota : int) -> void:
 	summary_lbl.visible_ratio = TRANSPARENT
 	overlow.text = BOOT_LOG
 	overlow.visible_ratio = TRANSPARENT
-	overlow.modulate.a = TRANSPARENT if _quick else OPAQUE
-	backpanel.scale = Vector2.ZERO
+	overlow.modulate.a = OPAQUE if not _quick else TRANSPARENT
+	backpanel.scale = Vector2.ONE
+	backpanel.modulate.a = TRANSPARENT
+	progress_bar.value = OPAQUE if _quick else TRANSPARENT
 
 	await get_tree().process_frame
-	title.pivot_offset = title.size / 2.0
+	title.pivot_offset = Vector2(0.0, title.size.y / 2.0)
 	backpanel.pivot_offset = backpanel.size / 2.0
 
 	_tween = create_tween()
 	if _quick:
 		_tween.set_speed_scale(quick_speed_scale)
+		_tween.tween_property(self, "modulate:a", OPAQUE, quick_fade_in)
 	else:
 		_tween.tween_interval(black_hold)
-		_tween.tween_method(_boot, 0.0, 1.0, calm_boot_time if _calm else boot_time) \
+		# Fade up out of black while the boot log types itself.
+		_tween.tween_property(flash, "color:a", TRANSPARENT, power_on_fade)
+		_tween.parallel().tween_method(_boot, 0.0, 1.0, calm_boot_time if _calm else boot_time) \
 			.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 		_tween.tween_callback(_boot_done)
 	_build_reveal()
 
 func _build_reveal() -> void:
-	_tween.tween_property(flash, "color:a", TRANSPARENT, power_on_fade)
-	_tween.parallel().tween_property(overlow, "modulate:a", backdrop_text_alpha, backdrop_fade_time)
+	_tween.tween_property(overlow, "modulate:a", backdrop_text_alpha, backdrop_fade_time)
 	_tween.parallel().tween_property(overlay, "intensity", backdrop_intensity, backdrop_fade_time)
-	_tween.parallel().tween_property(backpanel, "scale", Vector2.ONE, window_open_time) \
-		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	_tween.parallel().tween_property(backpanel, "modulate:a", OPAQUE, window_open_time)
 	_tween.tween_callback(_slam)
 	_tween.tween_property(title, "modulate:a", OPAQUE, TITLE_FADE_TIME)
 	_tween.parallel().tween_property(title, "scale", Vector2.ONE, title_slam_time) \
-		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	_tween.parallel().tween_property(tag, "modulate:a", OPAQUE, tag_fade_time).set_delay(line_stagger)
 	_tween.parallel().tween_property(sub, "visible_ratio", OPAQUE, sub_type_time).set_delay(line_stagger * 2.0)
 	_tween.parallel().tween_property(score, "modulate:a", OPAQUE, score_fade_time).set_delay(line_stagger * 3.0)
@@ -153,28 +173,17 @@ func _build_reveal() -> void:
 	_tween.tween_callback(_outro)
 
 func _boot(progress : float) -> void:
+	progress_bar.value = progress
 	overlow.visible_ratio = progress
 	_set_intensity(lerpf(boot_intensity_start, boot_intensity_end, progress))
-	if _calm:
-		return
-	var step := floori(progress * boot_time / boot_flicker_interval)
-	if step == _last_flicker_step:
-		return
-	_last_flicker_step = step
-	overlow.modulate.a = OPAQUE if randf() > (OPAQUE - progress) * boot_flicker_chance \
-		else randf_range(boot_flicker_alpha.x, boot_flicker_alpha.y)
 
 func _boot_done() -> void:
-	overlow.modulate.a = OPAQUE
+	progress_bar.value = OPAQUE
 	overlow.visible_ratio = OPAQUE
 
 func _slam() -> void:
-	if _calm:
-		return
-	if _shake_tween:
-		_shake_tween.kill()
-	_shake_tween = create_tween()
-	_shake_tween.tween_method(_shake, OPAQUE, TRANSPARENT, SLAM_SHAKE_TIME)
+	if not _calm:
+		backdrop.trigger_pulse()
 
 func _shake(strength_ratio : float) -> void:
 	var amount := shake_strength * Settings.shake_scale() * strength_ratio
@@ -221,7 +230,8 @@ func _unhandled_input(event : InputEvent) -> void:
 func _complete_text() -> void:
 	position = Vector2.ZERO
 	flash.color.a = TRANSPARENT
-	backpanel.scale = Vector2.ONE
+	backpanel.modulate.a = OPAQUE
+	progress_bar.value = OPAQUE
 	title.scale = Vector2.ONE
 	title.modulate.a = OPAQUE
 	tag.modulate.a = OPAQUE

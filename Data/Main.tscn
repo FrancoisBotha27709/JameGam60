@@ -25,6 +25,7 @@
 [ext_resource type="Script" uid="uid://c41f1t5gbhndb" path="res://Data/background.gd" id="15_f4u5s"]
 [ext_resource type="Script" uid="uid://drl42lhnl0xd3" path="res://Data/Debris/DebrisField.gd" id="16_frmus"]
 [ext_resource type="Script" uid="uid://cpoj2ilwrmakf" path="res://Data/minimap.gd" id="16_ubbbe"]
+[ext_resource type="Script" uid="uid://cd2m4ls5seipq" path="res://Assets/Nodes/Menu/hangar_plate.gd" id="18_ie3kg"]
 [ext_resource type="PackedScene" uid="uid://btjdy0jl7l7fv" path="res://Data/Menu/RunStartBanner.tscn" id="19_l7apa"]
 [ext_resource type="Shader" uid="uid://debjqjv5642eb" path="res://Data/Menu/main_menu.gdshader" id="20_82ve4"]
 [ext_resource type="PackedScene" uid="uid://37d4ekvjsc1u" path="res://Data/Menu/pause_menu.tscn" id="21_xdmp3"]
@@ -149,6 +150,8 @@ shader_parameter/vignette_strength = 0.6
 shader_parameter/vignette_inner_radius = 0.3
 shader_parameter/vignette_outer_radius = 0.85
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_map"]
+
 [sub_resource type="Environment" id="Environment_csoh3"]
 glow_enabled = true
 glow_bloom = 0.4
@@ -158,12 +161,14 @@ script = ExtResource("1_y3l5h")
 debris_amount = 1
 debris_scenes = Array[ExtResource("2_yjl1i")]([ExtResource("3_m7nvt"), ExtResource("4_ovwru"), ExtResource("5_uuyxi")])
 light_colors = Array[Color]([Color(1, 0.55, 0.3, 1), Color(1, 0.75, 0.4, 1), Color(0.95, 0.45, 0.4, 1), Color(0.8980392, 0.93333334, 0.6, 1)])
+depot_scene = ExtResource("6_m7nvt")
+depot_count = 6
 particle_pool = Array[PackedScene]([ExtResource("4_wblto"), ExtResource("5_j3rrk"), ExtResource("6_csoh3"), ExtResource("7_ovwru")])
 particle_count = 200
 world_size = Vector2(20000, 20000)
 player = NodePath("Player")
 cam = NodePath("Camera2D")
-minimap = NodePath("CanvasLayer/Control/Minimap")
+minimap = NodePath("CanvasLayer/Control/Panel/Margin/Minimap")
 reveal = SubResource("Resource_s1jui")
 wrecks = ExtResource("10_b1wom")
 quota_margin = 1.755
@@ -188,17 +193,43 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("11_ucuq0")
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
 
-[node name="Minimap" type="Control" parent="CanvasLayer/Control" unique_id=1797736508 node_paths=PackedStringArray("player")]
-custom_minimum_size = Vector2(256, 256)
+[node name="Panel" type="PanelContainer" parent="CanvasLayer/Control"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_map")
+
+[node name="Plate" type="Control" parent="CanvasLayer/Control/Panel"]
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("18_ie3kg")
+slide_reserve = 0.0
+metadata/_custom_type_script = "uid://cd2m4ls5seipq"
+
+[node name="Margin" type="MarginContainer" parent="CanvasLayer/Control/Panel"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 24
+
+[node name="Minimap" type="Control" parent="CanvasLayer/Control/Panel/Margin" unique_id=1797736508 node_paths=PackedStringArray("player")]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
 script = ExtResource("16_ubbbe")
-player = NodePath("../../../Player")
+player = NodePath("../../../../../Player")
 follow_player = true
 view_range = 4000.0
+background_color = Color(0.01, 0.02, 0.04, 0.55)
 
 [node name="Player" parent="." unique_id=1263876198 instance=ExtResource("1_ebypj")]
 position = Vector2(4, 746)

@@ -1,0 +1,77 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Assets/Nodes/Menu/hangar_tab_container.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://Assets/Nodes/Menu/hangar_tab_button.tscn" id="2_tab"]
+
+[node name="HangarTabContainer" type="Control" node_paths=PackedStringArray("tab_bar", "page_container", "indicator")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+tab_bar = NodePath("Layout/TabBar")
+page_container = NodePath("Layout/Pages")
+indicator = NodePath("Layout/IndicatorTrack/Indicator")
+
+[node name="Layout" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="TabBar" type="HBoxContainer" parent="Layout"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TabButton1" parent="Layout/TabBar" groups=["menu_reveal"] instance=ExtResource("2_tab")]
+layout_mode = 2
+
+[node name="TabButton2" parent="Layout/TabBar" groups=["menu_reveal"] instance=ExtResource("2_tab")]
+layout_mode = 2
+
+[node name="TabButton3" parent="Layout/TabBar" groups=["menu_reveal"] instance=ExtResource("2_tab")]
+layout_mode = 2
+
+[node name="TabButton4" parent="Layout/TabBar" groups=["menu_reveal"] instance=ExtResource("2_tab")]
+layout_mode = 2
+
+[node name="TabButton5" parent="Layout/TabBar" groups=["menu_reveal"] instance=ExtResource("2_tab")]
+layout_mode = 2
+
+[node name="TabButton6" parent="Layout/TabBar" groups=["menu_reveal"] instance=ExtResource("2_tab")]
+layout_mode = 2
+
+[node name="IndicatorTrack" type="Control" parent="Layout"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Rule" type="ColorRect" parent="Layout/IndicatorTrack"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+mouse_filter = 2
+color = Color(0.3, 0.85, 1, 0.3)
+
+[node name="Indicator" type="ColorRect" parent="Layout/IndicatorTrack"]
+layout_mode = 0
+offset_right = 220.0
+offset_bottom = 4.0
+mouse_filter = 2
+color = Color(0.3, 0.85, 1, 1)
+
+[node name="Pages" type="Control" parent="Layout" groups=["menu_reveal"]]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2

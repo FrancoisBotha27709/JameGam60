@@ -176,7 +176,7 @@ var fx: Array[ShipFX] = []
 @export var fx_heat_thresholds : Array[float] = [0.3, 0.6, 0.8]
 @export var fx_heat_hysteresis : float = 0.03
 @export var rig: LightRig
-
+@export var talking_screen : TalkingScreen
 @export_group("Audio")
 @export var player_audio : PlayerAudio
 
@@ -197,6 +197,7 @@ var feedback : PlayerFeedback
 var state_machine : PlayerStateMachine
 var last_impact_speed := 0.0
 var design : ShipDesign
+var is_talking : bool = false
 
 var _stats := {}
 var _is_bounded := false

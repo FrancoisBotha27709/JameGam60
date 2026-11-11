@@ -1,49 +1,22 @@
 [gd_scene format=3 uid="uid://6tep2uajxs5q"]
 
 [ext_resource type="Theme" uid="uid://dap6826f78p24" path="res://Assets/theme.tres" id="1_theme"]
+[ext_resource type="Shader" uid="uid://bd2ivxe3mx85y" path="res://Data/Menu/DitherVignette.gdshader" id="3_shader"]
+[ext_resource type="Script" uid="uid://c1qhnv5gfhb82" path="res://Data/Menu/DitherVignette.gd" id="4_vignette"]
+[ext_resource type="Script" uid="uid://demtto3knvw5u" path="res://Assets/Nodes/Menu/hangar_backdrop.gd" id="5_backdrop"]
+[ext_resource type="Script" uid="uid://cd2m4ls5seipq" path="res://Assets/Nodes/Menu/hangar_plate.gd" id="6_plate"]
+[ext_resource type="Script" uid="uid://dd02d5ef6xcpi" path="res://Assets/Nodes/Menu/hangar_progress_bar.gd" id="7_progress"]
 [ext_resource type="Script" uid="uid://c7qsui7faehom" path="res://bootup_screen.gd" id="2_script"]
 [ext_resource type="Script" uid="uid://cjs0m0kluqqk" path="res://Assets/Nodes/Audio/AudioTrigger.gd" id="3_audio"]
 [ext_resource type="Script" uid="uid://d0wyaxol5hj2n" path="res://Assets/lighting/LightEnvironment.gd" id="4_wak18"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
-resource_local_to_scene = true
-bg_color = Color(0.04, 0.06, 0.09, 0.95)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.3, 0.85, 1, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-shadow_color = Color(0.3, 0.85, 1, 0.18)
-shadow_size = 20
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vignette"]
+shader = ExtResource("3_shader")
+shader_parameter/tint = Color(0.3, 0.85, 1, 1)
+shader_parameter/intensity = 0.0
+shader_parameter/pixel_size = 4.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_progress_bg"]
-content_margin_left = 2.0
-content_margin_top = 2.0
-content_margin_right = 2.0
-content_margin_bottom = 2.0
-bg_color = Color(0.015, 0.025, 0.04, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.3, 0.85, 1, 0.45)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_progress_fill"]
-bg_color = Color(0.3, 0.85, 1, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-
-[node name="BootupScreen" type="Control" unique_id=382793557 node_paths=PackedStringArray("progress_bar", "information_label")]
+[node name="BootupScreen" type="Control" node_paths=PackedStringArray("progress_bar", "information_label", "percent_label", "overlay", "backdrop")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -52,8 +25,12 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_theme")
 script = ExtResource("2_script")
-progress_bar = NodePath("Center/Panel/Margin/Box/ProgressBar")
-information_label = NodePath("Center/Panel/Margin/Box/Body")
+progress_bar = NodePath("Layout/Rows/ProgressBar")
+percent_label = NodePath("Layout/Rows/TopBar/ScoreLabel")
+overlay = NodePath("Overlay")
+backdrop = NodePath("Backdrop")
+smooth_progress = false
+information_label = NodePath("Layout/Rows/Body/InfoPanel/Margin/Body")
 godot_intro_text = "[center][img=256x96]res://icon_mono.png[/img][/center]"
 credit_sections = Array[Dictionary]([{
 "duration": 2.5,
@@ -61,23 +38,23 @@ credit_sections = Array[Dictionary]([{
 Francois Botha"
 }])
 
-[node name="AudioContainer" type="Node" parent="." unique_id=1445232744]
+[node name="AudioContainer" type="Node" parent="."]
 
-[node name="BootupAudioTrigger" type="Node" parent="AudioContainer" unique_id=2088047797]
+[node name="BootupAudioTrigger" type="Node" parent="AudioContainer"]
 script = ExtResource("3_audio")
 sound = "console_boot_up"
 bus = "UI"
 positional = false
 metadata/_custom_type_script = "uid://cjs0m0kluqqk"
 
-[node name="BootWhirrAudioTrigger" type="Node" parent="AudioContainer" unique_id=517906274]
+[node name="BootWhirrAudioTrigger" type="Node" parent="AudioContainer"]
 script = ExtResource("3_audio")
 sound = "boot_whirr"
 bus = "SFX"
 positional = false
 metadata/_custom_type_script = "uid://cjs0m0kluqqk"
 
-[node name="Dim" type="ColorRect" parent="." unique_id=76829099]
+[node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -85,98 +62,162 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.005, 0.012, 0.025, 0.82)
+color = Color(0.01, 0.01, 0.05, 1)
 
-[node name="Center" type="CenterContainer" parent="." unique_id=1224212072]
+[node name="Backdrop" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_backdrop")
+opening_ratio = Vector2(0.755, 0.775)
+parallax_shift = Vector2(78.46, 26)
+rib_count = 6
+lane_count = 6
+pad_radius_ratio = 0.375
+pad_squash = 0.245
 
-[node name="Panel" type="PanelContainer" parent="Center" unique_id=732739937]
-custom_minimum_size = Vector2(760, 300)
+[node name="Overlay" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_vignette")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_vignette")
+metadata/_custom_type_script = "uid://c1qhnv5gfhb82"
+
+[node name="Layout" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 48
+
+[node name="Rows" type="VBoxContainer" parent="Layout"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+mouse_filter = 2
+theme_override_constants/separation = 24
 
-[node name="Margin" type="MarginContainer" parent="Center/Panel" unique_id=2043278047]
+[node name="TopBar" type="HBoxContainer" parent="Layout/Rows"]
 layout_mode = 2
-theme_override_constants/margin_left = 28
-theme_override_constants/margin_top = 26
-theme_override_constants/margin_right = 28
-theme_override_constants/margin_bottom = 24
+mouse_filter = 2
 
-[node name="Box" type="VBoxContainer" parent="Center/Panel/Margin" unique_id=77785726]
+[node name="TitleBlock" type="VBoxContainer" parent="Layout/Rows/TopBar"]
 layout_mode = 2
-theme_override_constants/separation = 12
+mouse_filter = 2
 
-[node name="Tag" type="Label" parent="Center/Panel/Margin/Box" unique_id=2098198378]
+[node name="TagLabel" type="Label" parent="Layout/Rows/TopBar/TitleBlock"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 18
 text = "// SYSTEM INITIALIZATION //"
 
-[node name="Title" type="Label" parent="Center/Panel/Margin/Box" unique_id=859982766]
+[node name="TitleLabel" type="Label" parent="Layout/Rows/TopBar/TitleBlock"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
-theme_override_font_sizes/font_size = 42
+theme_override_colors/font_color = Color(0.88, 0.96, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.9, 1, 0.55)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 56
 text = "GARBAGE COLLECTOR"
+uppercase = true
 
-[node name="Sub" type="Label" parent="Center/Panel/Margin/Box" unique_id=706898617]
+[node name="SubtitleLabel" type="Label" parent="Layout/Rows/TopBar/TitleBlock"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.72, 0.86, 0.94, 1)
+theme_override_colors/font_color = Color(0.55, 0.7, 0.8, 1)
 theme_override_font_sizes/font_size = 18
 text = "ESTABLISHING CONNECTION // PREPARING FLIGHT SYSTEMS"
 
-[node name="Body" type="RichTextLabel" parent="Center/Panel/Margin/Box" unique_id=977337573]
-visible = false
-custom_minimum_size = Vector2(0, 112)
+[node name="TopSpacer" type="Control" parent="Layout/Rows/TopBar"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="ScoreLabel" type="Label" parent="Layout/Rows/TopBar"]
+layout_mode = 2
 size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 28
+text = "LOADING  0%"
+horizontal_alignment = 2
+
+[node name="Body" type="HBoxContainer" parent="Layout/Rows"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="InfoPanel" type="Control" parent="Layout/Rows/Body"]
+custom_minimum_size = Vector2(760, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Plate" type="Control" parent="Layout/Rows/Body/InfoPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("6_plate")
+slide_reserve = 0.0
+
+[node name="Margin" type="MarginContainer" parent="Layout/Rows/Body/InfoPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 44
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 44
+theme_override_constants/margin_bottom = 20
+
+[node name="Body" type="RichTextLabel" parent="Layout/Rows/Body/InfoPanel/Margin"]
+visible = false
+layout_mode = 2
 focus_mode = 0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.88, 0.96, 1, 1)
+theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
-fit_content = true
 scroll_active = false
 
-[node name="Rule" type="ColorRect" parent="Center/Panel/Margin/Box" unique_id=1619731469]
-custom_minimum_size = Vector2(0, 2)
-layout_mode = 2
-color = Color(0.3, 0.85, 1, 0.6)
-
-[node name="LoadingLabel" type="Label" parent="Center/Panel/Margin/Box" unique_id=1207786659]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.54, 0.91, 1, 1)
-theme_override_font_sizes/font_size = 16
-text = "// LOADING MAIN MENU //"
-
-[node name="ProgressBar" type="ProgressBar" parent="Center/Panel/Margin/Box" unique_id=515379770]
-custom_minimum_size = Vector2(0, 22)
+[node name="BodySpacer" type="Control" parent="Layout/Rows/Body"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/background = SubResource("StyleBoxFlat_progress_bg")
-theme_override_styles/fill = SubResource("StyleBoxFlat_progress_fill")
-show_percentage = false
+mouse_filter = 2
 
-[node name="Footer" type="HBoxContainer" parent="Center/Panel/Margin/Box" unique_id=2078681827]
-layout_mode = 2
-
-[node name="Hint" type="Label" parent="Center/Panel/Margin/Box/Footer" unique_id=1237715930]
+[node name="Hint" type="Label" parent="Layout/Rows"]
 modulate = Color(1, 1, 1, 0.55)
 layout_mode = 2
-size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.55, 0.7, 0.8, 1)
 theme_override_font_sizes/font_size = 14
 text = "[ ANY KEY ] SKIP WHEN READY"
 
-[node name="Status" type="Label" parent="Center/Panel/Margin/Box/Footer" unique_id=174404158]
+[node name="ProgressBar" type="Control" parent="Layout/Rows"]
+custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
-theme_override_font_sizes/font_size = 14
-text = "BOOT SEQUENCE ACTIVE"
-horizontal_alignment = 2
+mouse_filter = 2
+script = ExtResource("7_progress")
+slide_reserve = 0.0
 
-[node name="LightEnvironment" type="Node" parent="." unique_id=1599809661]
+[node name="LightEnvironment" type="Node" parent="."]
 script = ExtResource("4_wak18")
 ambient = Color(1, 1, 1, 1)
 metadata/_custom_type_script = "uid://d0wyaxol5hj2n"

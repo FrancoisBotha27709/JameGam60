@@ -12,20 +12,21 @@ signal picked
 @export var node_title : Label
 @export var node_sub : RichTextLabel
 @export var node_flash : ColorRect
+@export var node_backdrop : HangarBackdrop
 
 @export var card_scene : PackedScene
 @export_range(1, 10) var card_count : int = 3
 
 @export_group("Vignette")
-@export var vignette_tint : Color = Color(0.3, 0.85, 1.0)
+@export var vignette_tint : Color = MenuStyle.ACCENT
 @export_range(0.0, 1.0) var vignette_intensity : float = 0.3
 @export var vignette_fade_time : float = 0.4
 
 @export_group("Intro")
 @export var window_open_time : float = 0.35
 @export var title_slam_time : float = 0.4
-@export var title_start_scale : float = 1.6
-@export var calm_title_start_scale : float = 1.2
+@export var title_start_scale : float = 1.15
+@export var calm_title_start_scale : float = 1.05
 @export var sub_type_time : float = 0.5
 
 @export_group("Slam")
@@ -39,8 +40,8 @@ signal picked
 @export var card_stagger : float = 0.25
 
 @export_group("Choice")
-@export var choice_color : Color = Color(0.3, 1.0, 0.5)
-@export var reject_color : Color = Color(1.0, 0.25, 0.2)
+@export var choice_color : Color = MenuStyle.ACCENT
+@export var reject_color : Color = MenuStyle.DANGER
 @export var card_dissolve_time : float = 0.5
 @export var chosen_delay : float = 0.2
 @export var close_sub_time : float = 0.25
@@ -55,6 +56,12 @@ var _session_id : int = 0
 func _ready() -> void:
 	hide()
 	position = Vector2.ZERO
+	resized.connect(_update_focal_point)
+	_update_focal_point()
+
+func _update_focal_point() -> void:
+	if node_backdrop:
+		node_backdrop.focal_point = size * 0.5
 
 func _muffle_music() -> void:
 	var player := DataCollector.player as Player
@@ -124,7 +131,10 @@ func open() -> void:
 	node_overlay.intensity = 0.0
 	node_flash.color = Color(1.0, 1.0, 1.0, 0.0)
 
-	node_panel.scale = Vector2.ZERO
+	# Everything fades in over the game; nothing pops.
+	modulate.a = 0.0
+	node_panel.modulate.a = 0.0
+	_update_focal_point()
 	node_title.modulate.a = 0.0
 	node_title.scale = Vector2.ONE * (
 		calm_title_start_scale if _calm else title_start_scale
@@ -139,8 +149,7 @@ func open() -> void:
 	if not _session_is_current(session_id):
 		return
 
-	node_title.pivot_offset = node_title.size / 2.0
-	node_panel.pivot_offset = node_panel.size / 2.0
+	node_title.pivot_offset = Vector2(0.0, node_title.size.y / 2.0)
 
 	_play_intro(cards, session_id)
 
@@ -154,12 +163,9 @@ func _play_intro(cards : Array[UpgradeCard], session_id : int) -> void:
 		vignette_fade_time
 	)
 
-	_tween.parallel().tween_property(
-		node_panel,
-		"scale",
-		Vector2.ONE,
-		window_open_time
-	).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	_tween.parallel().tween_property(self, "modulate:a", 1.0, vignette_fade_time)
+
+	_tween.parallel().tween_property(node_panel, "modulate:a", 1.0, window_open_time)
 
 	_tween.tween_callback(_slam)
 
@@ -167,7 +173,7 @@ func _play_intro(cards : Array[UpgradeCard], session_id : int) -> void:
 		node_title,
 		"modulate:a",
 		1.0,
-		0.05
+		0.3
 	)
 
 	_tween.parallel().tween_property(
@@ -175,7 +181,7 @@ func _play_intro(cards : Array[UpgradeCard], session_id : int) -> void:
 		"scale",
 		Vector2.ONE,
 		title_slam_time
-	).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 
 	_tween.tween_property(
 		node_sub,
@@ -216,26 +222,8 @@ func _reveal_cards(cards : Array[UpgradeCard], session_id : int) -> void:
 	_unlock_cards()
 
 func _slam() -> void:
-	if _calm or not is_instance_valid(node_flash):
-		return
-
-	node_flash.color = Color(1.0, 1.0, 1.0, slam_flash_alpha)
-
-	_slam_tween = create_tween().set_parallel(true)
-
-	_slam_tween.tween_property(
-		node_flash,
-		"color:a",
-		0.0,
-		slam_flash_fade
-	)
-
-	_slam_tween.tween_method(
-		_do_shake,
-		1.0,
-		0.0,
-		slam_shake_time
-	)
+	if not _calm and is_instance_valid(node_backdrop):
+		node_backdrop.trigger_pulse()
 
 func _do_shake(amount : float) -> void:
 	if _calm:
@@ -326,15 +314,10 @@ func _on_picked(upgrade : Upgrade) -> void:
 		node_title,
 		"modulate:a",
 		0.0,
-		0.05
+		0.2
 	)
 
-	close_tween.chain().tween_property(
-		node_panel,
-		"scale",
-		Vector2.ZERO,
-		window_open_time
-	).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	close_tween.chain().tween_property(self, "modulate:a", 0.0, vignette_fade_time)
 
 	close_tween.parallel().tween_property(
 		node_overlay,
@@ -350,6 +333,7 @@ func _close_done(session_id : int) -> void:
 		return
 
 	hide()
+	modulate.a = 1.0
 	position = Vector2.ZERO
 	DataCollector.start_next_run()
 

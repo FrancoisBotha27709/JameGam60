@@ -22,7 +22,9 @@ signal typing_stopped
 @export var line_duration: float = 0.35
 @export var quick_line_duration: float = 0.12
 @export var text_delay: float = 0.0
+@export var panel_fade_time: float = 0.2
 
+var _fade_tween: Tween
 var _title: String = ""
 var _data: Dictionary = {}
 var _place_right: bool = true
@@ -220,8 +222,20 @@ func _on_line_finished(quick: bool) -> void:
 	if not is_instance_valid(node_panel):
 		return
 
+	_kill_fade()
+	node_panel.modulate.a = 0.0
 	node_panel.visible = true
+	_fade_tween = create_tween()
+	_fade_tween.tween_property(
+		node_panel, "modulate:a", 1.0,
+		panel_fade_time * (0.5 if quick else 1.0)
+	)
 	_send_content(quick, 0.0 if quick else text_delay)
+
+func _kill_fade() -> void:
+	if _fade_tween != null and _fade_tween.is_valid():
+		_fade_tween.kill()
+	_fade_tween = null
 
 func _set_line_progress(value: float) -> void:
 	_line_progress = clampf(value, 0.0, 1.0)

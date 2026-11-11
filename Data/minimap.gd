@@ -19,6 +19,7 @@ const STATE_SLEEPING := 1
 @export var debris_color : Color = Color(0.45, 0.8, 1.0, 0.85)
 @export var depot_color : Color = Color(0.4, 1.0, 0.6, 1.0)
 @export var player_color : Color = Color(1.0, 1.0, 1.0, 1.0)
+@export var frame_color : Color = Color(0.3, 0.85, 1.0, 0.35)
 @export var line_px : float = 1.5
 @export var depot_px : float = 5.0
 @export var player_px : float = 5.0
@@ -305,5 +306,7 @@ func _draw() -> void:
 		for i in shape.size():
 			shape[i] = pxf * shape[i]
 		draw_colored_polygon(shape, player_color)
+
+	draw_rect(Rect2(Vector2.ZERO, size).grow(-0.5), frame_color, false, 1.0)
 
 #endregion

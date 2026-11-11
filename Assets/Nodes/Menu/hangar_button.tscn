@@ -1,0 +1,72 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" uid="uid://225m7a2jyn8r" path="res://Assets/Nodes/better_button.tscn" id="1_base"]
+[ext_resource type="Script" uid="uid://0ybqlbrtchy" path="res://Assets/Nodes/Menu/hangar_button.gd" id="2_script"]
+[ext_resource type="Script" uid="uid://cd2m4ls5seipq" path="res://Assets/Nodes/Menu/hangar_plate.gd" id="3_plate"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hidden"]
+
+[node name="HangarButton" node_paths=PackedStringArray("node_plate", "node_content", "node_index_label", "node_caption_label") instance=ExtResource("1_base")]
+script = ExtResource("2_script")
+node_plate = NodePath("Plate")
+node_content = NodePath("HBoxContainer")
+node_index_label = NodePath("HBoxContainer/Control/IndexLabel")
+node_caption_label = NodePath("HBoxContainer/Control/CaptionLabel")
+hover_scale = 1.02
+press_scale = 0.98
+punch_scale = 1.04
+hover_tint = Color(1.15, 1.15, 1.15, 1)
+slide_px = 0.0
+
+[node name="Plate" type="Control" parent="." index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_plate")
+
+[node name="LeftTexture" parent="HBoxContainer" index="0"]
+custom_minimum_size = Vector2(0, 0)
+
+[node name="RightTexture" parent="HBoxContainer" index="2"]
+custom_minimum_size = Vector2(0, 0)
+
+[node name="Button" parent="HBoxContainer/Control" index="0"]
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hidden")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hidden")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hidden")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hidden")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hidden")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_hidden")
+
+[node name="RichTextLabel" parent="HBoxContainer/Control" index="1"]
+offset_left = 78.0
+offset_top = 12.0
+theme_override_colors/default_color = Color(0.88, 0.96, 1, 1)
+theme_override_font_sizes/normal_font_size = 30
+autowrap_mode = 0
+
+[node name="IndexLabel" type="Label" parent="HBoxContainer/Control" index="2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 34.0
+offset_top = -10.0
+offset_right = 74.0
+offset_bottom = 10.0
+theme_override_font_sizes/font_size = 14
+
+[node name="CaptionLabel" type="Label" parent="HBoxContainer/Control" index="3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = 78.0
+offset_top = 46.0
+offset_bottom = 70.0
+theme_override_colors/font_color = Color(0.55, 0.7, 0.8, 1)
+theme_override_font_sizes/font_size = 14
+uppercase = true

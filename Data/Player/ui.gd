@@ -5,18 +5,20 @@ class_name UIContainer
 @export var node_debris_container : VBoxContainer
 @export var node_score_lbl : Label
 @export var node_timer_lbl : Label
-@export var node_fuel_bar : ProgressBar
-@export var node_heat_bar : ProgressBar
+@export var node_fuel_bar : HangarProgressBar
+@export var node_heat_bar : HangarProgressBar
 @export var node_speed_lbl : Label
 @export var run_end_banner : RunEndBanner
 @export var pixels_per_meter : float = 10.0
 @export var debris_item_scene : PackedScene
 @export_subgroup("Upgrades")
-@export var node_continue_btn : Button
-@export var node_menu_btn : Button
+@export var node_continue_btn : HangarButton
+@export var node_menu_btn : HangarButton
 @export var upgrade_screen : UpgradeScreen
 
 var _quota_met : bool = false
+var _fuel_max : float = 1.0
+var _heat_max : float = 1.0
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -40,15 +42,15 @@ func _on_setting(key : String, value : Variant) -> void:
 		node_speed_lbl.visible = value
 
 func setup_fuel(max_fuel : float, current : float) -> void:
-	node_fuel_bar.max_value = max_fuel
-	node_fuel_bar.value = current
+	_fuel_max = maxf(max_fuel, 0.001)
+	node_fuel_bar.value = current / _fuel_max
 
 func _update_fuel(value : float) -> void:
-	node_fuel_bar.value = value
+	node_fuel_bar.value = value / _fuel_max
 
 func _update_heat(value : float, max_value : float) -> void:
-	node_heat_bar.max_value = max_value
-	node_heat_bar.value = value
+	_heat_max = maxf(max_value, 0.001)
+	node_heat_bar.value = value / _heat_max
 
 func _update_timer(time_left : float) -> void:
 	if not DataCollector.uses_timer():
@@ -97,15 +99,23 @@ func _on_run_finished(final_score : int, breakdown : Dictionary, quota_met : boo
 	node_menu_btn.hide()
 	node_timer_lbl.hide()
 	node_score_lbl.hide()
+	node_speed_lbl.hide()
 	node_debris_container.modulate.a = 0.0
 	run_end_banner.play(DataCollector.end_reason, final_score, DataCollector.get_quota())
 	await run_end_banner.sequence_finished
 
 	node_continue_btn.text = "TRY AGAIN"
-	node_continue_btn.show()
 	node_menu_btn.text = "MENU"
-	node_menu_btn.show()
+	_reveal_button(node_continue_btn, 0.0)
+	_reveal_button(node_menu_btn, MenuStyle.REVEAL_STAGGER)
+	node_continue_btn.focus_button()
 	create_tween().tween_property(node_debris_container, "modulate:a", 1.0, 0.4)
+
+func _reveal_button(button : HangarButton, delay : float) -> void:
+	button.set_reveal(0.0)
+	button.show()
+	create_tween().tween_method(button.set_reveal, 0.0, 1.0, MenuStyle.REVEAL_DURATION) \
+		.set_delay(delay).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 
 func _on_continue_pressed() -> void:
 	run_end_banner.stop()

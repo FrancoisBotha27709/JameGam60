@@ -5,29 +5,40 @@
 [ext_resource type="Script" uid="uid://buksmsehvcj77" path="res://Assets/UI/Ship/ShipDataLine.gd" id="2_w25u6"]
 [ext_resource type="Theme" uid="uid://dap6826f78p24" path="res://Assets/theme.tres" id="3_80lg3"]
 [ext_resource type="Script" uid="uid://cjs0m0kluqqk" path="res://Assets/Nodes/Audio/AudioTrigger.gd" id="5_3egmt"]
+[ext_resource type="Script" path="res://Assets/Nodes/Menu/hangar_plate.gd" id="6_plate"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_plate"]
 
 [node name="Node2D" type="Node2D" unique_id=1357579617 node_paths=PackedStringArray("node_line", "node_panel")]
 script = ExtResource("1_ooof4")
 node_line = NodePath("Line2D")
 node_panel = NodePath("Control")
+panel_width = 300.0
+panel_height = 150.0
 
 [node name="Line2D" type="Line2D" parent="." unique_id=2100838694]
-width = 4.0
+width = 2.0
+default_color = Color(0.3, 0.85, 1, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
 script = ExtResource("2_w25u6")
 
 [node name="Control" type="Control" parent="." unique_id=1385605791 node_paths=PackedStringArray("node_title", "node_data")]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 226.085
-offset_bottom = 120.0
+offset_right = 300.0
+offset_bottom = 150.0
 mouse_filter = 2
 theme = ExtResource("3_80lg3")
 script = ExtResource("1_pp8of")
-node_title = NodePath("PanelContainer/MarginContainer/VBoxContainer/Label")
-node_data = NodePath("PanelContainer/MarginContainer/VBoxContainer/RichTextLabel")
+node_title = NodePath("Panel/Margin/Rows/Title")
+node_data = NodePath("Panel/Margin/Rows/Data")
 chars_per_second = 120.0
+key_color = Color(0.55, 0.7, 0.8, 1)
+value_color = Color(0.88, 0.96, 1, 1)
 
-[node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=292172171]
+[node name="Panel" type="PanelContainer" parent="Control" unique_id=292172171]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,25 +46,62 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_plate")
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer" unique_id=312438090]
+[node name="Plate" type="Control" parent="Control/Panel"]
 layout_mode = 2
 mouse_filter = 2
+script = ExtResource("6_plate")
+slide_reserve = 0.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer/MarginContainer" unique_id=1192140307]
+[node name="Margin" type="MarginContainer" parent="Control/Panel" unique_id=312438090]
 layout_mode = 2
 mouse_filter = 2
+theme_override_constants/margin_left = 36
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 14
 
-[node name="Label" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer" unique_id=2132042879]
+[node name="Rows" type="VBoxContainer" parent="Control/Panel/Margin" unique_id=1192140307]
 layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="Tag" type="Label" parent="Control/Panel/Margin/Rows"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "// VESSEL DATA"
+
+[node name="Title" type="Label" parent="Control/Panel/Margin/Rows" unique_id=2132042879]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.88, 0.96, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.9, 1, 0.55)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 6
+theme_override_font_sizes/font_size = 26
 text = "TEST"
+uppercase = true
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control/PanelContainer/MarginContainer/VBoxContainer" unique_id=721085962]
+[node name="Rule" type="ColorRect" parent="Control/Panel/Margin/Rows"]
+custom_minimum_size = Vector2(0, 1)
 layout_mode = 2
 mouse_filter = 2
+color = Color(0.3, 0.85, 1, 0.35)
+
+[node name="Data" type="RichTextLabel" parent="Control/Panel/Margin/Rows" unique_id=721085962]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.88, 0.96, 1, 1)
+theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/bold_font_size = 18
 bbcode_enabled = true
 text = "TEST"
 fit_content = true
+scroll_active = false
 
 [node name="CharacterTypingAudioTrigger" type="Node" parent="." unique_id=1615748871]
 script = ExtResource("5_3egmt")
@@ -64,5 +112,5 @@ signal_name = "typing_started"
 stop_signal_name = "typing_stopped"
 source = NodePath("..")
 positional = false
-volume_db = -26.0
+volume_db = -24.0
 metadata/_custom_type_script = "uid://cjs0m0kluqqk"

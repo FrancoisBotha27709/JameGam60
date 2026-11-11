@@ -2,11 +2,12 @@
 
 [ext_resource type="Script" uid="uid://dhffxyo6m72py" path="res://Data/Menu/options.gd" id="1_lnor8"]
 [ext_resource type="Theme" uid="uid://dap6826f78p24" path="res://Assets/theme.tres" id="1_vccv7"]
-[ext_resource type="PackedScene" uid="uid://225m7a2jyn8r" path="res://Assets/Nodes/better_button.tscn" id="3_btn"]
+[ext_resource type="PackedScene" path="res://Assets/Nodes/Menu/hangar_button.tscn" id="3_btn"]
+[ext_resource type="PackedScene" path="res://Assets/Nodes/Menu/hangar_tab_container.tscn" id="4_tabs"]
 [ext_resource type="PackedScene" path="res://Data/Menu/setting_row.tscn" id="4_row"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
-bg_color = Color(0.03, 0.05, 0.08, 0.97)
+bg_color = Color(0.008, 0.015, 0.03, 0.94)
 
 [node name="Options" type="PanelContainer" node_paths=PackedStringArray("node_tabs", "node_video_rows", "node_audio_rows", "node_graphics_rows", "node_gameplay_rows", "node_bus_rows", "node_reset_btn", "node_back_btn")]
 anchors_preset = 15
@@ -19,57 +20,70 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 script = ExtResource("1_lnor8")
 row_scene = ExtResource("4_row")
 node_tabs = NodePath("Margin/Box/Tabs")
-node_video_rows = NodePath("Margin/Box/Tabs/Video/Pad/Rows")
-node_audio_rows = NodePath("Margin/Box/Tabs/Audio/Pad/Content/Rows")
-node_graphics_rows = NodePath("Margin/Box/Tabs/Graphics/Pad/Rows")
-node_gameplay_rows = NodePath("Margin/Box/Tabs/Gameplay/Pad/Rows")
-node_bus_rows = NodePath("Margin/Box/Tabs/Audio/Pad/Content/BusRows")
+node_video_rows = NodePath("Margin/Box/Tabs/Layout/Pages/Video/Pad/Rows")
+node_audio_rows = NodePath("Margin/Box/Tabs/Layout/Pages/Audio/Pad/Content/Rows")
+node_graphics_rows = NodePath("Margin/Box/Tabs/Layout/Pages/Graphics/Pad/Rows")
+node_gameplay_rows = NodePath("Margin/Box/Tabs/Layout/Pages/Gameplay/Pad/Rows")
+node_bus_rows = NodePath("Margin/Box/Tabs/Layout/Pages/Audio/Pad/Content/BusRows")
 node_reset_btn = NodePath("Margin/Box/Footer/ResetButton")
 node_back_btn = NodePath("Margin/Box/Footer/BackButton")
 
 [node name="Margin" type="MarginContainer" parent="."]
 layout_mode = 2
-theme_override_constants/margin_left = 80
+theme_override_constants/margin_left = 64
 theme_override_constants/margin_top = 48
-theme_override_constants/margin_right = 80
+theme_override_constants/margin_right = 64
 theme_override_constants/margin_bottom = 48
 
 [node name="Box" type="VBoxContainer" parent="Margin"]
 layout_mode = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 24
 
 [node name="Header" type="HBoxContainer" parent="Margin/Box"]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="Margin/Box/Header"]
+[node name="TitleBlock" type="VBoxContainer" parent="Margin/Box/Header"]
+layout_mode = 2
+
+[node name="Tag" type="Label" parent="Margin/Box/Header/TitleBlock"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
-theme_override_font_sizes/font_size = 40
-text = "// OPTIONS //"
+theme_override_font_sizes/font_size = 18
+text = "// CONFIG //"
+
+[node name="Title" type="Label" parent="Margin/Box/Header/TitleBlock"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.96, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.9, 1, 0.55)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 56
+text = "OPTIONS"
 
 [node name="Hint" type="Label" parent="Margin/Box/Header"]
-modulate = Color(1, 1, 1, 0.5)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "CHANGES SAVE AUTOMATICALLY    [ ESC ] BACK"
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.55, 0.7, 0.8, 1)
+theme_override_font_sizes/font_size = 18
+text = "CHANGES SAVE AUTOMATICALLY    [ PG UP / PG DN ] TABS    [ ESC ] BACK"
 horizontal_alignment = 2
-vertical_alignment = 1
 
-[node name="HeaderRule" type="ColorRect" parent="Margin/Box"]
-custom_minimum_size = Vector2(0, 2)
-layout_mode = 2
-color = Color(0.3, 0.85, 1, 0.6)
-
-[node name="Tabs" type="TabContainer" parent="Margin/Box"]
+[node name="Tabs" parent="Margin/Box" instance=ExtResource("4_tabs")]
 layout_mode = 2
 size_flags_vertical = 3
-tab_alignment = 1
 
-[node name="Video" type="ScrollContainer" parent="Margin/Box/Tabs"]
-layout_mode = 2
+[node name="Video" type="ScrollContainer" parent="Margin/Box/Tabs/Layout/Pages"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 horizontal_scroll_mode = 0
 
-[node name="Pad" type="MarginContainer" parent="Margin/Box/Tabs/Video"]
+[node name="Pad" type="MarginContainer" parent="Margin/Box/Tabs/Layout/Pages/Video"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 16
@@ -77,17 +91,21 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="Rows" type="VBoxContainer" parent="Margin/Box/Tabs/Video/Pad"]
+[node name="Rows" type="VBoxContainer" parent="Margin/Box/Tabs/Layout/Pages/Video/Pad"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 8
 
-[node name="Audio" type="ScrollContainer" parent="Margin/Box/Tabs"]
-visible = false
-layout_mode = 2
+[node name="Audio" type="ScrollContainer" parent="Margin/Box/Tabs/Layout/Pages"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 horizontal_scroll_mode = 0
 
-[node name="Pad" type="MarginContainer" parent="Margin/Box/Tabs/Audio"]
+[node name="Pad" type="MarginContainer" parent="Margin/Box/Tabs/Layout/Pages/Audio"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 16
@@ -95,31 +113,35 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="Content" type="VBoxContainer" parent="Margin/Box/Tabs/Audio/Pad"]
+[node name="Content" type="VBoxContainer" parent="Margin/Box/Tabs/Layout/Pages/Audio/Pad"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 8
 
-[node name="Rows" type="VBoxContainer" parent="Margin/Box/Tabs/Audio/Pad/Content"]
+[node name="Rows" type="VBoxContainer" parent="Margin/Box/Tabs/Layout/Pages/Audio/Pad/Content"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="BusHeading" type="Label" parent="Margin/Box/Tabs/Audio/Pad/Content"]
+[node name="BusHeading" type="Label" parent="Margin/Box/Tabs/Layout/Pages/Audio/Pad/Content"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 18
 text = "// AUDIO BUSES //"
 
-[node name="BusRows" type="VBoxContainer" parent="Margin/Box/Tabs/Audio/Pad/Content"]
+[node name="BusRows" type="VBoxContainer" parent="Margin/Box/Tabs/Layout/Pages/Audio/Pad/Content"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Graphics" type="ScrollContainer" parent="Margin/Box/Tabs"]
-visible = false
-layout_mode = 2
+[node name="Graphics" type="ScrollContainer" parent="Margin/Box/Tabs/Layout/Pages"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 horizontal_scroll_mode = 0
 
-[node name="Pad" type="MarginContainer" parent="Margin/Box/Tabs/Graphics"]
+[node name="Pad" type="MarginContainer" parent="Margin/Box/Tabs/Layout/Pages/Graphics"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 16
@@ -127,17 +149,21 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="Rows" type="VBoxContainer" parent="Margin/Box/Tabs/Graphics/Pad"]
+[node name="Rows" type="VBoxContainer" parent="Margin/Box/Tabs/Layout/Pages/Graphics/Pad"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 8
 
-[node name="Gameplay" type="ScrollContainer" parent="Margin/Box/Tabs"]
-visible = false
-layout_mode = 2
+[node name="Gameplay" type="ScrollContainer" parent="Margin/Box/Tabs/Layout/Pages"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 horizontal_scroll_mode = 0
 
-[node name="Pad" type="MarginContainer" parent="Margin/Box/Tabs/Gameplay"]
+[node name="Pad" type="MarginContainer" parent="Margin/Box/Tabs/Layout/Pages/Gameplay"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 16
@@ -145,29 +171,26 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="Rows" type="VBoxContainer" parent="Margin/Box/Tabs/Gameplay/Pad"]
+[node name="Rows" type="VBoxContainer" parent="Margin/Box/Tabs/Layout/Pages/Gameplay/Pad"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 8
-
-[node name="FooterRule" type="ColorRect" parent="Margin/Box"]
-custom_minimum_size = Vector2(0, 2)
-layout_mode = 2
-color = Color(0.3, 0.85, 1, 0.6)
 
 [node name="Footer" type="HBoxContainer" parent="Margin/Box"]
 layout_mode = 2
 
 [node name="ResetButton" parent="Margin/Box/Footer" instance=ExtResource("3_btn")]
-custom_minimum_size = Vector2(260, 52)
+custom_minimum_size = Vector2(300, 84)
 layout_mode = 2
-text = "[center]RESET TAB[/center]"
+text = "RESET TAB"
+index_text = "R"
 
 [node name="Spacer" type="Control" parent="Margin/Box/Footer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="BackButton" parent="Margin/Box/Footer" instance=ExtResource("3_btn")]
-custom_minimum_size = Vector2(260, 52)
+custom_minimum_size = Vector2(300, 84)
 layout_mode = 2
-text = "[center]BACK[/center]"
+text = "BACK"
+index_text = "ESC"

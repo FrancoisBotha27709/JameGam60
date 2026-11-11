@@ -2,58 +2,10 @@
 
 [ext_resource type="Script" uid="uid://0jesrkqvuh82" path="res://Assets/Nodes/upgrade_card.gd" id="1_1ncmc"]
 [ext_resource type="Theme" uid="uid://dap6826f78p24" path="res://Assets/theme.tres" id="1_kwgwu"]
-[ext_resource type="PackedScene" uid="uid://225m7a2jyn8r" path="res://Assets/Nodes/better_button.tscn" id="2_ejs0x"]
+[ext_resource type="PackedScene" path="res://Assets/Nodes/Menu/hangar_button.tscn" id="2_hangar"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ncmc"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.1, 0.1, 0.1, 0.6)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ejs0x"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0, 0, 0, 0.6)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kwgwu"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.225, 0.225, 0.225, 0.6)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kll4a"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.1, 0.1, 0.1, 0.3)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ldcyo"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(1, 1, 1, 0.75)
-draw_center = false
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-expand_margin_left = 2.0
-expand_margin_top = 2.0
-expand_margin_right = 2.0
-expand_margin_bottom = 2.0
-
-[node name="UpgradeCard" type="Control" unique_id=421865687 node_paths=PackedStringArray("node_title_lbl", "node_desc_lbl", "node_icon", "node_button")]
+[node name="UpgradeCard" type="Control" node_paths=PackedStringArray("node_title_lbl", "node_desc_lbl", "node_icon", "node_button")]
+custom_minimum_size = Vector2(360, 300)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -64,32 +16,21 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("1_kwgwu")
 script = ExtResource("1_1ncmc")
-node_title_lbl = NodePath("MarginContainer/VBoxContainer/Title")
-node_desc_lbl = NodePath("MarginContainer/VBoxContainer/Desc")
-node_icon = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/TextureRect")
-node_button = NodePath("Button/HBoxContainer/Control/Button")
+node_title_lbl = NodePath("Margin/Rows/Title")
+node_desc_lbl = NodePath("Margin/Rows/Desc")
+node_icon = NodePath("Margin/Rows/IconRow/TextureRect")
+node_button = NodePath("Button")
 
-[node name="Button" parent="." unique_id=668546363 instance=ExtResource("2_ejs0x")]
+[node name="Button" parent="." instance=ExtResource("2_hangar")]
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+hover_slide = 0.0
 
-[node name="HBoxContainer" parent="Button" index="0" unique_id=1657227851]
-theme_override_constants/separation = 16
-
-[node name="Button" parent="Button/HBoxContainer/Control" parent_id_path=PackedInt32Array(668546363, 1028046267) index="0" unique_id=195598314]
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_1ncmc")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ejs0x")
-theme_override_styles/hover = SubResource("StyleBoxFlat_kwgwu")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_kll4a")
-theme_override_styles/focus = SubResource("StyleBoxFlat_ldcyo")
-
-[node name="RichTextLabel" parent="Button/HBoxContainer/Control" parent_id_path=PackedInt32Array(668546363, 1028046267) index="1" unique_id=24974045]
-theme_override_font_sizes/normal_font_size = 32
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1656523757]
+[node name="Margin" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -97,46 +38,55 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
+theme_override_constants/margin_left = 46
+theme_override_constants/margin_top = 26
+theme_override_constants/margin_right = 38
+theme_override_constants/margin_bottom = 26
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1532418494]
+[node name="Rows" type="VBoxContainer" parent="Margin"]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 10
 
-[node name="Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1957433133]
-custom_minimum_size = Vector2(0, 64)
+[node name="Title" type="Label" parent="Margin/Rows"]
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
-horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.88, 0.96, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.9, 1, 0.45)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 8
+theme_override_font_sizes/font_size = 30
 vertical_alignment = 1
 autowrap_mode = 3
 uppercase = true
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=786494520]
+[node name="Rule" type="ColorRect" parent="Margin/Rows"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.3, 0.85, 1, 0.6)
+
+[node name="IconRow" type="HBoxContainer" parent="Margin/Rows"]
 visible = false
-custom_minimum_size = Vector2(0, 128)
+custom_minimum_size = Vector2(0, 112)
 layout_mode = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1761896047]
+[node name="TextureRect" type="TextureRect" parent="Margin/Rows/IconRow"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Desc" type="RichTextLabel" parent="MarginContainer/VBoxContainer" unique_id=581163426]
+[node name="Desc" type="RichTextLabel" parent="Margin/Rows"]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
+theme_override_colors/default_color = Color(0.72, 0.86, 0.94, 1)
+theme_override_font_sizes/normal_font_size = 22
+theme_override_font_sizes/bold_font_size = 22
 bbcode_enabled = true
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[editable path="Button"]

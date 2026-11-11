@@ -3,18 +3,22 @@
 [ext_resource type="PackedScene" uid="uid://2ldixl4hfc68" path="res://Data/Debris/Resource/Debris/UI/debris_object_ui.tscn" id="1_bfcyi"]
 [ext_resource type="Theme" uid="uid://dap6826f78p24" path="res://Assets/theme.tres" id="1_lp6sp"]
 [ext_resource type="Script" uid="uid://cfr6ei68wvjvu" path="res://Data/Player/ui.gd" id="1_yk0yh"]
-[ext_resource type="PackedScene" uid="uid://blvdksbtdj3uy" path="res://Assets/Nodes/progress_bar.tscn" id="2_bl2fu"]
+[ext_resource type="Script" uid="uid://cd2m4ls5seipq" path="res://Assets/Nodes/Menu/hangar_plate.gd" id="2_plate"]
+[ext_resource type="Script" uid="uid://dd02d5ef6xcpi" path="res://Assets/Nodes/Menu/hangar_progress_bar.gd" id="3_bar"]
 [ext_resource type="PackedScene" uid="uid://dnauxc4tcis2n" path="res://Data/Upgrades/UpgradeScreen.tscn" id="4_ug852"]
 [ext_resource type="PackedScene" uid="uid://bcbp1txr7i5rt" path="res://Data/Menu/RunEndBanner.tscn" id="5_ejbcy"]
-[ext_resource type="PackedScene" uid="uid://225m7a2jyn8r" path="res://Assets/Nodes/better_button.tscn" id="7_dipik"]
+[ext_resource type="PackedScene" path="res://Assets/Nodes/Menu/hangar_button.tscn" id="7_hangar"]
 
-[node name="UI" type="Control" unique_id=1598766862 node_paths=PackedStringArray("node_debris_container", "node_score_lbl", "node_timer_lbl", "node_fuel_bar", "node_heat_bar", "node_speed_lbl", "run_end_banner", "node_continue_btn", "node_menu_btn", "upgrade_screen")]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_panel"]
+
+[node name="UI" type="Control" node_paths=PackedStringArray("node_debris_container", "node_score_lbl", "node_timer_lbl", "node_fuel_bar", "node_heat_bar", "node_speed_lbl", "run_end_banner", "node_continue_btn", "node_menu_btn", "upgrade_screen")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("1_lp6sp")
 script = ExtResource("1_yk0yh")
 node_debris_container = NodePath("MarginContainer2/MarginContainer/PanelContainer/MarginContainer/PanelContainer/HBoxContainer/DebrisContainer")
@@ -25,75 +29,108 @@ node_heat_bar = NodePath("MarginContainer2/MarginContainer/PanelContainer/Margin
 node_speed_lbl = NodePath("SpeedLbl")
 run_end_banner = NodePath("RunEndBanner")
 debris_item_scene = ExtResource("1_bfcyi")
-node_continue_btn = NodePath("HBoxContainer/Button/HBoxContainer/Control/Button")
-node_menu_btn = NodePath("HBoxContainer/Button2/HBoxContainer/Control/Button")
+node_continue_btn = NodePath("Buttons/Continue")
+node_menu_btn = NodePath("Buttons/Menu")
 upgrade_screen = NodePath("UpgradeScreen")
 
-[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=2086985880]
+[node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 48
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2" unique_id=1990695559]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2"]
 visible = false
 custom_minimum_size = Vector2(384, 256)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
+mouse_filter = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer2/MarginContainer" unique_id=1530947525]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer2/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_panel")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/MarginContainer/PanelContainer" unique_id=1079805371]
+[node name="Plate" type="Control" parent="MarginContainer2/MarginContainer/PanelContainer"]
 layout_mode = 2
+mouse_filter = 2
+script = ExtResource("2_plate")
+slide_reserve = 0.0
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer2/MarginContainer/PanelContainer/MarginContainer" unique_id=1391817853]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/MarginContainer/PanelContainer"]
 layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 36
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 36
+theme_override_constants/margin_bottom = 16
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/MarginContainer/PanelContainer/MarginContainer/PanelContainer" unique_id=334896120]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer2/MarginContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_panel")
 
-[node name="DebrisContainer" type="VBoxContainer" parent="MarginContainer2/MarginContainer/PanelContainer/MarginContainer/PanelContainer/HBoxContainer" unique_id=1613130329]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/MarginContainer/PanelContainer/MarginContainer/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="DebrisContainer" type="VBoxContainer" parent="MarginContainer2/MarginContainer/PanelContainer/MarginContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Bars" type="VBoxContainer" parent="MarginContainer2/MarginContainer/PanelContainer/MarginContainer/PanelContainer/HBoxContainer" unique_id=473831531]
+[node name="Bars" type="VBoxContainer" parent="MarginContainer2/MarginContainer/PanelContainer/MarginContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/MarginContainer/PanelContainer/MarginContainer/PanelContainer/HBoxContainer/Bars" unique_id=1964188683]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/MarginContainer/PanelContainer/MarginContainer/PanelContainer/HBoxContainer/Bars"]
 layout_mode = 2
 
-[node name="ScoreLbl" type="Label" parent="MarginContainer2/MarginContainer/PanelContainer/MarginContainer/PanelContainer/HBoxContainer/Bars/HBoxContainer" unique_id=554044572]
+[node name="ScoreLbl" type="Label" parent="MarginContainer2/MarginContainer/PanelContainer/MarginContainer/PanelContainer/HBoxContainer/Bars/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 28
 text = "500"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FuelBar" parent="MarginContainer2/MarginContainer/PanelContainer/MarginContainer/PanelContainer/HBoxContainer/Bars" unique_id=1919688242 instance=ExtResource("2_bl2fu")]
+[node name="FuelBar" type="Control" parent="MarginContainer2/MarginContainer/PanelContainer/MarginContainer/PanelContainer/HBoxContainer/Bars"]
+custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 size_flags_vertical = 3
-bar_text = "Fuel"
+mouse_filter = 2
+script = ExtResource("3_bar")
+slant = 10.0
+slide_reserve = 0.0
 
-[node name="HeatBar" parent="MarginContainer2/MarginContainer/PanelContainer/MarginContainer/PanelContainer/HBoxContainer/Bars" unique_id=1648255209 instance=ExtResource("2_bl2fu")]
+[node name="HeatBar" type="Control" parent="MarginContainer2/MarginContainer/PanelContainer/MarginContainer/PanelContainer/HBoxContainer/Bars"]
+custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 size_flags_vertical = 3
-bar_text = "Heat"
+mouse_filter = 2
+script = ExtResource("3_bar")
+slant = 10.0
+slide_reserve = 0.0
 
-[node name="UpgradeScreen" parent="." unique_id=423598974 instance=ExtResource("4_ug852")]
+[node name="UpgradeScreen" parent="." instance=ExtResource("4_ug852")]
 visible = false
 layout_mode = 1
 
-[node name="RunEndBanner" parent="." unique_id=711584712 instance=ExtResource("5_ejbcy")]
+[node name="RunEndBanner" parent="." instance=ExtResource("5_ejbcy")]
 visible = false
 layout_mode = 1
 
-[node name="TimerLbl" type="Label" parent="." unique_id=467214372]
+[node name="TimerLbl" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -107,9 +144,14 @@ offset_bottom = -286.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.88, 0.96, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.9, 1, 0.55)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 8
 theme_override_font_sizes/font_size = 32
 
-[node name="SpeedLbl" type="Label" parent="." unique_id=1663950436]
+[node name="SpeedLbl" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -122,48 +164,39 @@ offset_right = -6.0
 offset_bottom = -258.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_font_sizes/font_size = 32
+theme_override_colors/font_color = Color(0.55, 0.7, 0.8, 1)
+theme_override_font_sizes/font_size = 24
 text = "Speed"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1543414757]
-layout_mode = 0
-offset_left = 1282.0
-offset_top = 940.0
-offset_right = 1674.0
-offset_bottom = 1015.0
-theme_override_constants/separation = 32
+[node name="Buttons" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -724.0
+offset_top = -140.0
+offset_right = -64.0
+offset_bottom = -48.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 24
 
-[node name="Button" parent="HBoxContainer" unique_id=668546363 instance=ExtResource("7_dipik")]
+[node name="Continue" parent="Buttons" instance=ExtResource("7_hangar")]
+visible = false
+custom_minimum_size = Vector2(318, 92)
 layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 8
-text = "Continue"
+size_flags_horizontal = 3
+text = "TRY AGAIN"
+index_text = "01"
 
-[node name="Button" parent="HBoxContainer/Button/HBoxContainer/Control" parent_id_path=PackedInt32Array(668546363, 1028046267) index="0" unique_id=195598314]
-theme_override_font_sizes/font_size = 48
-
-[node name="RichTextLabel" parent="HBoxContainer/Button/HBoxContainer/Control" parent_id_path=PackedInt32Array(668546363, 1028046267) index="1" unique_id=24974045]
-theme_override_font_sizes/normal_font_size = 48
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Button2" parent="HBoxContainer" unique_id=584169177 instance=ExtResource("7_dipik")]
+[node name="Menu" parent="Buttons" instance=ExtResource("7_hangar")]
+visible = false
+custom_minimum_size = Vector2(318, 92)
 layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 8
+size_flags_horizontal = 3
 text = "MENU"
-
-[node name="Button" parent="HBoxContainer/Button2/HBoxContainer/Control" parent_id_path=PackedInt32Array(584169177, 1028046267) index="0" unique_id=195598314]
-theme_override_font_sizes/font_size = 48
-
-[node name="RichTextLabel" parent="HBoxContainer/Button2/HBoxContainer/Control" parent_id_path=PackedInt32Array(584169177, 1028046267) index="1" unique_id=24974045]
-theme_override_font_sizes/normal_font_size = 48
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[editable path="HBoxContainer/Button"]
-[editable path="HBoxContainer/Button2"]
+index_text = "02"

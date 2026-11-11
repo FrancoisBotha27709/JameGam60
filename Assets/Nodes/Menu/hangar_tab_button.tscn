@@ -1,0 +1,16 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Assets/Nodes/Menu/hangar_button.tscn" id="1_base"]
+[ext_resource type="Script" path="res://Assets/Nodes/Menu/hangar_tab_button.gd" id="2_script"]
+
+[node name="HangarTabButton" instance=ExtResource("1_base")]
+custom_minimum_size = Vector2(220, 56)
+script = ExtResource("2_script")
+hover_slide = 0.0
+
+[node name="RichTextLabel" parent="HBoxContainer/Control" index="1"]
+offset_top = 11.0
+theme_override_font_sizes/normal_font_size = 24
+
+[node name="CaptionLabel" parent="HBoxContainer/Control" index="3"]
+visible = false

@@ -1,0 +1,100 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Assets/Nodes/Menu/hangar_button.tscn" id="1_base"]
+[ext_resource type="Script" path="res://Assets/Nodes/Menu/hangar_option_button.gd" id="2_script"]
+
+[node name="HangarOptionButton" node_paths=PackedStringArray("node_value_zone", "node_value_label", "node_pips") instance=ExtResource("1_base")]
+custom_minimum_size = Vector2(640, 76)
+script = ExtResource("2_script")
+node_value_zone = NodePath("HBoxContainer/Control/ValueZone")
+node_value_label = NodePath("HBoxContainer/Control/ValueZone/ValueLabel")
+node_pips = NodePath("HBoxContainer/Control/ValueZone/Pips")
+
+[node name="ValueZone" type="Control" parent="HBoxContainer/Control" index="4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+mouse_filter = 2
+
+[node name="ValueLabel" type="Label" parent="HBoxContainer/Control/ValueZone"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 36.0
+offset_top = -30.0
+offset_right = -36.0
+offset_bottom = 2.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.88, 0.96, 1, 1)
+theme_override_font_sizes/font_size = 26
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+uppercase = true
+
+[node name="Pips" type="HBoxContainer" parent="HBoxContainer/Control/ValueZone"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 36.0
+offset_top = 14.0
+offset_right = -36.0
+offset_bottom = 22.0
+mouse_filter = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="Pip1" type="ColorRect" parent="HBoxContainer/Control/ValueZone/Pips"]
+custom_minimum_size = Vector2(12, 4)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.3, 0.85, 1, 0.3)
+
+[node name="Pip2" type="ColorRect" parent="HBoxContainer/Control/ValueZone/Pips"]
+custom_minimum_size = Vector2(12, 4)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.3, 0.85, 1, 0.3)
+
+[node name="Pip3" type="ColorRect" parent="HBoxContainer/Control/ValueZone/Pips"]
+custom_minimum_size = Vector2(12, 4)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.3, 0.85, 1, 0.3)
+
+[node name="Pip4" type="ColorRect" parent="HBoxContainer/Control/ValueZone/Pips"]
+custom_minimum_size = Vector2(12, 4)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.3, 0.85, 1, 0.3)
+
+[node name="Pip5" type="ColorRect" parent="HBoxContainer/Control/ValueZone/Pips"]
+custom_minimum_size = Vector2(12, 4)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.3, 0.85, 1, 0.3)
+
+[node name="Pip6" type="ColorRect" parent="HBoxContainer/Control/ValueZone/Pips"]
+custom_minimum_size = Vector2(12, 4)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.3, 0.85, 1, 0.3)
+
+[node name="Pip7" type="ColorRect" parent="HBoxContainer/Control/ValueZone/Pips"]
+custom_minimum_size = Vector2(12, 4)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.3, 0.85, 1, 0.3)
+
+[node name="Pip8" type="ColorRect" parent="HBoxContainer/Control/ValueZone/Pips"]
+custom_minimum_size = Vector2(12, 4)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.3, 0.85, 1, 0.3)

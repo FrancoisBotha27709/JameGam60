@@ -6,14 +6,14 @@ signal close_requested
 @export var row_scene : PackedScene
 
 @export_group("Nodes", "node_")
-@export var node_tabs : TabContainer
+@export var node_tabs : HangarTabContainer
 @export var node_video_rows : VBoxContainer
 @export var node_audio_rows : VBoxContainer
 @export var node_graphics_rows : VBoxContainer
 @export var node_gameplay_rows : VBoxContainer
 @export var node_bus_rows : VBoxContainer
-@export var node_reset_btn : BetterButton
-@export var node_back_btn : BetterButton
+@export var node_reset_btn : HangarButton
+@export var node_back_btn : HangarButton
 
 var _rows : Dictionary = {}
 var _bus_keys : Array[String] = []
@@ -35,8 +35,16 @@ func _exit_tree() -> void:
 		Settings.changed.disconnect(_on_changed)
 
 func _on_visibility_changed() -> void:
-	if visible:
-		_refresh_audio_buses()
+	if not visible:
+		return
+	_refresh_audio_buses()
+	_focus_current_tab.call_deferred()
+
+# Page up/down only works while focus is inside the tab container, so focus the open tab's button.
+func _focus_current_tab() -> void:
+	var tab_buttons := node_tabs.tab_bar.get_children().filter(func(node : Node) -> bool: return node is HangarTabButton)
+	if node_tabs.current_tab < tab_buttons.size():
+		(tab_buttons[node_tabs.current_tab] as HangarTabButton).focus_button()
 
 func _category_box(category : String) -> VBoxContainer:
 	match category:
@@ -86,11 +94,11 @@ func _refresh_audio_buses() -> void:
 		_rows[key] = row
 		_bus_keys.append(key)
 
-# Resets only the tab that is currently open (the tab's node name is the category).
+# Resets only the open tab (the page's node name is the category).
 func _on_reset_pressed() -> void:
-	var tab := node_tabs.get_current_tab_control()
-	if tab != null:
-		Settings.reset_category(tab.name.to_lower())
+	var page := node_tabs.get_current_page()
+	if page != null:
+		Settings.reset_category(page.name.to_lower())
 
 func _on_changed(key : String, value : Variant) -> void:
 	var row : SettingRow = _rows.get(key)

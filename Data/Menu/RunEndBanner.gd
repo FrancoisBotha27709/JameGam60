@@ -3,132 +3,132 @@ class_name RunEndBanner
 
 signal sequence_finished
 
-const PAYLOAD : String = "[color=red][ ERROR ] [/color] Memory buffer overflow
-[color=red][ ERROR ] [/color] Stack corruption detected
-[color=yellow][ WARN ] [/color] CPU temp critical: 98C
-[color=red][ ERROR ] [/color] Page fault in kernel space
-[color=red][ ERROR ] [/color] Heap allocation failed
-[color=yellow][ WARN ] [/color] Fan speed 0 RPM
-[color=red][ ERROR ] [/color] Segmentation fault
-[color=red][ ERROR ] [/color] Disk I/O timeout
-[color=red][ ERROR ] [/color] Filesystem journal corrupted
-[color=yellow][ WARN ] [/color] Swap space exhausted
-[color=red][ ERROR ] [/color] Process 1337 unresponsive
-[color=red][ ERROR ] [/color] Kernel panic: unable to sync
-[color=red][ ERROR ] [/color] Watchdog timer expired
-[color=red][ ERROR ] [/color] NULL pointer dereference
-[color=yellow][ WARN ] [/color] Voltage drop on 3.3V rail
-[color=red][ ERROR ] [/color] Network stack failure
-[color=red][ ERROR ] [/color] DNS resolver crashed
-[color=red][ ERROR ] [/color] Packet checksum mismatch
-[color=red][ ERROR ] [/color] Cache coherency violation
-[color=red][ ERROR ] [/color] Interrupt storm on IRQ 7
-[color=yellow][ WARN ] [/color] Thermal throttle ignored
-[color=red][ ERROR ] [/color] GPU driver hung
-[color=red][ ERROR ] [/color] Framebuffer unmapped
-[color=red][ ERROR ] [/color] Mutex deadlock detected
-[color=red][ ERROR ] [/color] Race condition in scheduler
-[color=red][ ERROR ] [/color] Bootloader signature invalid
-[color=red][ ERROR ] [/color] RAID array degraded
-[color=red][ ERROR ] [/color] Sector 0x00FF unreadable
-[color=red][ ERROR ] [/color] Encryption keys lost
-[color=yellow][ WARN ] [/color] Backup power failing
-[color=red][ ERROR ] [/color] Double fault exception
-[color=red][ ERROR ] [/color] Recovery routine failed
-[color=red][ ERROR ] [/color] Recovery routine failed
-[color=red][ ERROR ] [/color] Recovery routine failed
-[color=red][ ERROR ] [/color] Kernel module unload failed
-[color=red][ ERROR ] [/color] Orphaned process tree
-[color=red][ ERROR ] [/color] Zombie process overflow
-[color=yellow][ WARN ] [/color] File descriptors exhausted
-[color=red][ ERROR ] [/color] Socket bind failed
-[color=red][ ERROR ] [/color] Connection reset by peer
-[color=red][ ERROR ] [/color] TLS handshake aborted
-[color=red][ ERROR ] [/color] Certificate chain invalid
-[color=red][ ERROR ] [/color] Authentication daemon dead
-[color=red][ ERROR ] [/color] Privilege escalation blocked
-[color=yellow][ WARN ] [/color] Unauthorized memory access
-[color=red][ ERROR ] [/color] Syscall table modified
-[color=red][ ERROR ] [/color] Kernel integrity check failed
-[color=red][ ERROR ] [/color] ACPI table corrupted
-[color=red][ ERROR ] [/color] BIOS checksum error
-[color=red][ ERROR ] [/color] CMOS battery dead
-[color=yellow][ WARN ] [/color] System clock drift: +4382s
-[color=red][ ERROR ] [/color] Timer interrupt lost
-[color=red][ ERROR ] [/color] Scheduler queue overflow
-[color=red][ ERROR ] [/color] Context switch failed
-[color=red][ ERROR ] [/color] Thread pool exhausted
-[color=red][ ERROR ] [/color] Pipe broken
-[color=red][ ERROR ] [/color] Buffer underrun
-[color=red][ ERROR ] [/color] Buffer overrun
-[color=red][ ERROR ] [/color] Unhandled exception 0xC0000005
-[color=red][ ERROR ] [/color] Unhandled exception 0xC0000094
-[color=red][ ERROR ] [/color] Unhandled exception 0xDEADBEEF
-[color=yellow][ WARN ] [/color] Disk SMART status: FAILING
-[color=red][ ERROR ] [/color] Bad block count: 40960
-[color=red][ ERROR ] [/color] Inode table destroyed
-[color=red][ ERROR ] [/color] Superblock invalid
-[color=red][ ERROR ] [/color] Mount failed: /home
-[color=red][ ERROR ] [/color] Mount failed: /var
-[color=red][ ERROR ] [/color] Mount failed: /boot
-[color=red][ ERROR ] [/color] Mount failed: /
-[color=yellow][ WARN ] [/color] Read-only filesystem forced
-[color=red][ ERROR ] [/color] Write failed: no space left
-[color=red][ ERROR ] [/color] Log rotation failed
-[color=red][ ERROR ] [/color] Audit subsystem offline
-[color=red][ ERROR ] [/color] Firewall rules purged
-[color=red][ ERROR ] [/color] Intrusion detection offline
-[color=yellow][ WARN ] [/color] Unknown device on PCI bus
-[color=red][ ERROR ] [/color] PCI bus error
-[color=red][ ERROR ] [/color] USB controller reset loop
-[color=red][ ERROR ] [/color] Audio driver crashed
-[color=red][ ERROR ] [/color] Input device lost
-[color=red][ ERROR ] [/color] Display signal lost
-[color=red][ ERROR ] [/color] VRAM corruption detected
-[color=red][ ERROR ] [/color] Shader compile failed
-[color=red][ ERROR ] [/color] Render pipeline stalled
-[color=yellow][ WARN ] [/color] GPU temp critical: 112C
-[color=red][ ERROR ] [/color] Voltage regulator fault
-[color=red][ ERROR ] [/color] Power rail 12V unstable
-[color=red][ ERROR ] [/color] Power rail 5V unstable
-[color=red][ ERROR ] [/color] Power rail 3.3V collapsed
-[color=yellow][ WARN ] [/color] Battery critical: 1%
-[color=red][ ERROR ] [/color] Machine check exception
-[color=red][ ERROR ] [/color] ECC uncorrectable error
-[color=red][ ERROR ] [/color] ECC uncorrectable error
-[color=red][ ERROR ] [/color] ECC uncorrectable error
-[color=red][ ERROR ] [/color] DIMM 0 not responding
-[color=red][ ERROR ] [/color] DIMM 1 not responding
-[color=red][ ERROR ] [/color] DIMM 2 not responding
-[color=red][ ERROR ] [/color] DIMM 3 not responding
-[color=red][ ERROR ] [/color] Memory map destroyed
-[color=red][ ERROR ] [/color] Triple fault imminent
-[color=red][ ERROR ] [/color] Memory integrity c0rrupt3d
-[color=red][ ERROR ] [/color] St4ck 0v3rfl0w
-[color=red][ ERROR ] [/color] K3rn3l p4n1c
-[color=red][ ERROR ] [/color] Ret_urn addr3ss ov3rwr1tt3n
-[color=red][ ERROR ] [/color] ░▒▓█ SYSTEM UNSTABLE █▓▒░
-[color=red][ ERROR ] [/color] ▓▒░ DATA LOSS IN PROGRESS ░▒▓
-[color=red][ ERROR ] [/color] Cor3 t3mp3r4tur3 runaway
-[color=red][ ERROR ] [/color] Thermal shutdown FAILED
-[color=red][ ERROR ] [/color] Emergency halt FAILED
-[color=red][ ERROR ] [/color] Emergency halt FAILED
-[color=red][ ERROR ] [/color] Emergency halt FAILED
-[color=red][ ERROR ] [/color] ERROR ERROR ERROR ERROR
-[color=red][ ERROR ] [/color] ERROR ERROR ERROR ERROR
-[color=red][ ERROR ] [/color] ERROR ERROR ERROR ERROR
-[color=red][ ERROR ] [/color] 0x00000000 0x00000000 0x0000
-[color=red][ ERROR ] [/color] ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-[color=red][ ERROR ] [/color] All processes terminated
-[color=red][ ERROR ] [/color] All memory freed
-[color=red][ ERROR ] [/color] All drives unmounted
-[color=red][ ERROR ] [/color] Shutdown sequence failed
-[color=red][ ERROR ] [/color] Power supply fail
+const PAYLOAD : String = "[color=#ff5966][ ERROR ] [/color] Memory buffer overflow
+[color=#ff5966][ ERROR ] [/color] Stack corruption detected
+[color=#ff8c33][ WARN ] [/color] CPU temp critical: 98C
+[color=#ff5966][ ERROR ] [/color] Page fault in kernel space
+[color=#ff5966][ ERROR ] [/color] Heap allocation failed
+[color=#ff8c33][ WARN ] [/color] Fan speed 0 RPM
+[color=#ff5966][ ERROR ] [/color] Segmentation fault
+[color=#ff5966][ ERROR ] [/color] Disk I/O timeout
+[color=#ff5966][ ERROR ] [/color] Filesystem journal corrupted
+[color=#ff8c33][ WARN ] [/color] Swap space exhausted
+[color=#ff5966][ ERROR ] [/color] Process 1337 unresponsive
+[color=#ff5966][ ERROR ] [/color] Kernel panic: unable to sync
+[color=#ff5966][ ERROR ] [/color] Watchdog timer expired
+[color=#ff5966][ ERROR ] [/color] NULL pointer dereference
+[color=#ff8c33][ WARN ] [/color] Voltage drop on 3.3V rail
+[color=#ff5966][ ERROR ] [/color] Network stack failure
+[color=#ff5966][ ERROR ] [/color] DNS resolver crashed
+[color=#ff5966][ ERROR ] [/color] Packet checksum mismatch
+[color=#ff5966][ ERROR ] [/color] Cache coherency violation
+[color=#ff5966][ ERROR ] [/color] Interrupt storm on IRQ 7
+[color=#ff8c33][ WARN ] [/color] Thermal throttle ignored
+[color=#ff5966][ ERROR ] [/color] GPU driver hung
+[color=#ff5966][ ERROR ] [/color] Framebuffer unmapped
+[color=#ff5966][ ERROR ] [/color] Mutex deadlock detected
+[color=#ff5966][ ERROR ] [/color] Race condition in scheduler
+[color=#ff5966][ ERROR ] [/color] Bootloader signature invalid
+[color=#ff5966][ ERROR ] [/color] RAID array degraded
+[color=#ff5966][ ERROR ] [/color] Sector 0x00FF unreadable
+[color=#ff5966][ ERROR ] [/color] Encryption keys lost
+[color=#ff8c33][ WARN ] [/color] Backup power failing
+[color=#ff5966][ ERROR ] [/color] Double fault exception
+[color=#ff5966][ ERROR ] [/color] Recovery routine failed
+[color=#ff5966][ ERROR ] [/color] Recovery routine failed
+[color=#ff5966][ ERROR ] [/color] Recovery routine failed
+[color=#ff5966][ ERROR ] [/color] Kernel module unload failed
+[color=#ff5966][ ERROR ] [/color] Orphaned process tree
+[color=#ff5966][ ERROR ] [/color] Zombie process overflow
+[color=#ff8c33][ WARN ] [/color] File descriptors exhausted
+[color=#ff5966][ ERROR ] [/color] Socket bind failed
+[color=#ff5966][ ERROR ] [/color] Connection reset by peer
+[color=#ff5966][ ERROR ] [/color] TLS handshake aborted
+[color=#ff5966][ ERROR ] [/color] Certificate chain invalid
+[color=#ff5966][ ERROR ] [/color] Authentication daemon dead
+[color=#ff5966][ ERROR ] [/color] Privilege escalation blocked
+[color=#ff8c33][ WARN ] [/color] Unauthorized memory access
+[color=#ff5966][ ERROR ] [/color] Syscall table modified
+[color=#ff5966][ ERROR ] [/color] Kernel integrity check failed
+[color=#ff5966][ ERROR ] [/color] ACPI table corrupted
+[color=#ff5966][ ERROR ] [/color] BIOS checksum error
+[color=#ff5966][ ERROR ] [/color] CMOS battery dead
+[color=#ff8c33][ WARN ] [/color] System clock drift: +4382s
+[color=#ff5966][ ERROR ] [/color] Timer interrupt lost
+[color=#ff5966][ ERROR ] [/color] Scheduler queue overflow
+[color=#ff5966][ ERROR ] [/color] Context switch failed
+[color=#ff5966][ ERROR ] [/color] Thread pool exhausted
+[color=#ff5966][ ERROR ] [/color] Pipe broken
+[color=#ff5966][ ERROR ] [/color] Buffer underrun
+[color=#ff5966][ ERROR ] [/color] Buffer overrun
+[color=#ff5966][ ERROR ] [/color] Unhandled exception 0xC0000005
+[color=#ff5966][ ERROR ] [/color] Unhandled exception 0xC0000094
+[color=#ff5966][ ERROR ] [/color] Unhandled exception 0xDEADBEEF
+[color=#ff8c33][ WARN ] [/color] Disk SMART status: FAILING
+[color=#ff5966][ ERROR ] [/color] Bad block count: 40960
+[color=#ff5966][ ERROR ] [/color] Inode table destroyed
+[color=#ff5966][ ERROR ] [/color] Superblock invalid
+[color=#ff5966][ ERROR ] [/color] Mount failed: /home
+[color=#ff5966][ ERROR ] [/color] Mount failed: /var
+[color=#ff5966][ ERROR ] [/color] Mount failed: /boot
+[color=#ff5966][ ERROR ] [/color] Mount failed: /
+[color=#ff8c33][ WARN ] [/color] Read-only filesystem forced
+[color=#ff5966][ ERROR ] [/color] Write failed: no space left
+[color=#ff5966][ ERROR ] [/color] Log rotation failed
+[color=#ff5966][ ERROR ] [/color] Audit subsystem offline
+[color=#ff5966][ ERROR ] [/color] Firewall rules purged
+[color=#ff5966][ ERROR ] [/color] Intrusion detection offline
+[color=#ff8c33][ WARN ] [/color] Unknown device on PCI bus
+[color=#ff5966][ ERROR ] [/color] PCI bus error
+[color=#ff5966][ ERROR ] [/color] USB controller reset loop
+[color=#ff5966][ ERROR ] [/color] Audio driver crashed
+[color=#ff5966][ ERROR ] [/color] Input device lost
+[color=#ff5966][ ERROR ] [/color] Display signal lost
+[color=#ff5966][ ERROR ] [/color] VRAM corruption detected
+[color=#ff5966][ ERROR ] [/color] Shader compile failed
+[color=#ff5966][ ERROR ] [/color] Render pipeline stalled
+[color=#ff8c33][ WARN ] [/color] GPU temp critical: 112C
+[color=#ff5966][ ERROR ] [/color] Voltage regulator fault
+[color=#ff5966][ ERROR ] [/color] Power rail 12V unstable
+[color=#ff5966][ ERROR ] [/color] Power rail 5V unstable
+[color=#ff5966][ ERROR ] [/color] Power rail 3.3V collapsed
+[color=#ff8c33][ WARN ] [/color] Battery critical: 1%
+[color=#ff5966][ ERROR ] [/color] Machine check exception
+[color=#ff5966][ ERROR ] [/color] ECC uncorrectable error
+[color=#ff5966][ ERROR ] [/color] ECC uncorrectable error
+[color=#ff5966][ ERROR ] [/color] ECC uncorrectable error
+[color=#ff5966][ ERROR ] [/color] DIMM 0 not responding
+[color=#ff5966][ ERROR ] [/color] DIMM 1 not responding
+[color=#ff5966][ ERROR ] [/color] DIMM 2 not responding
+[color=#ff5966][ ERROR ] [/color] DIMM 3 not responding
+[color=#ff5966][ ERROR ] [/color] Memory map destroyed
+[color=#ff5966][ ERROR ] [/color] Triple fault imminent
+[color=#ff5966][ ERROR ] [/color] Memory integrity c0rrupt3d
+[color=#ff5966][ ERROR ] [/color] St4ck 0v3rfl0w
+[color=#ff5966][ ERROR ] [/color] K3rn3l p4n1c
+[color=#ff5966][ ERROR ] [/color] Ret_urn addr3ss ov3rwr1tt3n
+[color=#ff5966][ ERROR ] [/color] ░▒▓█ SYSTEM UNSTABLE █▓▒░
+[color=#ff5966][ ERROR ] [/color] ▓▒░ DATA LOSS IN PROGRESS ░▒▓
+[color=#ff5966][ ERROR ] [/color] Cor3 t3mp3r4tur3 runaway
+[color=#ff5966][ ERROR ] [/color] Thermal shutdown FAILED
+[color=#ff5966][ ERROR ] [/color] Emergency halt FAILED
+[color=#ff5966][ ERROR ] [/color] Emergency halt FAILED
+[color=#ff5966][ ERROR ] [/color] Emergency halt FAILED
+[color=#ff5966][ ERROR ] [/color] ERROR ERROR ERROR ERROR
+[color=#ff5966][ ERROR ] [/color] ERROR ERROR ERROR ERROR
+[color=#ff5966][ ERROR ] [/color] ERROR ERROR ERROR ERROR
+[color=#ff5966][ ERROR ] [/color] 0x00000000 0x00000000 0x0000
+[color=#ff5966][ ERROR ] [/color] ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+[color=#ff5966][ ERROR ] [/color] All processes terminated
+[color=#ff5966][ ERROR ] [/color] All memory freed
+[color=#ff5966][ ERROR ] [/color] All drives unmounted
+[color=#ff5966][ ERROR ] [/color] Shutdown sequence failed
+[color=#ff5966][ ERROR ] [/color] Power supply fail
 "
-const PAYLOAD_TAIL : String = "[color=red][ ERROR ] [/color] Power suppl
-[color=red][ ERROR ] [/color] Pow
-[color=red][ ERROR ] [/color] P
-[color=red][ ERR"
+const PAYLOAD_TAIL : String = "[color=#ff5966][ ERROR ] [/color] Power suppl
+[color=#ff5966][ ERROR ] [/color] Pow
+[color=#ff5966][ ERROR ] [/color] P
+[color=#ff5966][ ERR"
 
 @export_group("Nodes")
 @export var overlay : DitherVignette
@@ -140,11 +140,16 @@ const PAYLOAD_TAIL : String = "[color=red][ ERROR ] [/color] Power suppl
 @export var flash : ColorRect
 @export var overlow : RichTextLabel
 @export var summary_lbl : Label
+@export var backdrop : HangarBackdrop
+@export var progress_bar : HangarProgressBar
 
 @export_group("Error Text")
 @export_range(1, 10) var payload_repeats : int = 1
 @export var shake_meltdown : float = 30.0
 @export var shake_default : float = 14.0
+@export var fade_in_time : float = 0.5
+@export var death_fade : float = 0.3
+@export var crash_time : float = 0.3
 
 @export_group("Phase 1 : Death")
 @export_subgroup("Intro")
@@ -186,14 +191,14 @@ const PAYLOAD_TAIL : String = "[color=red][ ERROR ] [/color] Power suppl
 @export var blackout_hold : float = 0.6
 
 @export_subgroup("Reveal")
-@export var reveal_flash_fade : float = 0.15
+@export var reveal_flash_fade : float = 0.5
 @export var backdrop_fade_time : float = 0.3
 @export_range(0.0, 1.0) var backdrop_text_alpha : float = 0.25
 @export_range(0.0, 1.0) var backdrop_intensity : float = 0.3
-@export var window_open_time : float = 0.3
-@export var title_fade_time : float = 0.05
+@export var window_open_time : float = 0.5
+@export var title_fade_time : float = 0.3
 @export var title_slam_time : float = 0.35
-@export var title_start_scale : float = 3.0
+@export var title_start_scale : float = 1.15
 @export var tag_fade_time : float = 0.2
 @export var pause_before_sub : float = 0.2
 @export var sub_type_time : float = 0.8
@@ -214,8 +219,8 @@ const PAYLOAD_TAIL : String = "[color=red][ ERROR ] [/color] Power suppl
 @export_subgroup("Calm Mode (photosensitive)")
 @export var calm_reveal_time : float = 1.8
 @export var calm_fade_to_black : float = 0.5
-@export var calm_flash_fade : float = 0.4
-@export var calm_title_start_scale : float = 1.2
+@export var calm_flash_fade : float = 0.6
+@export var calm_title_start_scale : float = 1.05
 @export_range(0.0, 1.0) var calm_intensity_start : float = 0.2
 @export_range(0.0, 1.0) var calm_intensity_gain : float = 0.1
 
@@ -223,17 +228,34 @@ var _tween : Tween
 var _blink : Tween
 var _shake_strength : float = 0.0
 var _calm : bool = false
+var _dim : float = 1.0
+var _tag_text : String = ""
+var _title_text : String = ""
+@onready var _layout : Control = get_node_or_null("Layout")
+
+func _ready() -> void:
+	hide()
+	resized.connect(_update_focal_point)
+	_update_focal_point()
+
+func _update_focal_point() -> void:
+	if backdrop:
+		backdrop.focal_point = size * 0.5
+
+func _tint(color : Color) -> void:
+	for node in find_children("*", "HangarPlate", true, false):
+		(node as HangarPlate).accent_color = color
 
 func _config(reason : int) -> Dictionary:
 	match reason:
 		DataCollector.EndReason.MELTDOWN:
 			return {"title": "CRITICAL MELTDOWN", "sub": "REACTOR MELTDOWN - EVACUATE",
-				"tag": "// HULL INTEGRITY 0% //", "color": Color(1.0, 0.2, 0.15), "shake": shake_meltdown}
+				"tag": "// HULL INTEGRITY 0% //", "color": MenuStyle.DANGER, "shake": shake_meltdown}
 		DataCollector.EndReason.FUEL_EMPTY:
 			return {"title": "OUT OF FUEL", "sub": "PROPELLANT EMPTY - JOIN THE ABYSS",
-				"tag": "// FUEL RESERVES 0% //", "color": Color(1.0, 0.65, 0.1), "shake": shake_default}
+				"tag": "// FUEL RESERVES 0% //", "color": MenuStyle.WARNING, "shake": shake_default}
 	return {"title": "QUOTA MISSED", "sub": "THE COLLECTIVE IS NOT IMPRESSED",
-		"tag": "// TIME EXPIRED //", "color": Color(0.3, 0.85, 1.0), "shake": shake_default}
+		"tag": "// TIME EXPIRED //", "color": MenuStyle.ACCENT, "shake": shake_default}
 
 func _player() -> Player:
 	if not is_instance_valid(DataCollector.player):
@@ -270,22 +292,28 @@ func play(reason : int, final_score : int, quota : int) -> void:
 	var cfg := _config(reason)
 	var color : Color = cfg["color"]
 	_shake_strength = cfg["shake"] * Settings.shake_scale()
+	_tag_text = cfg["tag"]
+	_title_text = cfg["title"]
 
 	_kill_tweens()
-	position = Vector2.ZERO
+	_reset_fx()
 	_music_begin(reason)
+	modulate.a = 0.0
 	show()
 
 	overlay.tint = color
 	_set_intensity(0.0)
 	_set_flash(Color(0, 0, 0, 0))
 
-	tag.text = cfg["tag"]
+	tag.text = _tag_text
 	tag.add_theme_color_override("font_color", color)
 	tag.modulate.a = 0.0
-	title.text = cfg["title"]
-	title.add_theme_color_override("font_color", color)
+	title.text = _title_text
 	title.modulate.a = 0.0
+	title.add_theme_color_override("font_shadow_color", Color(color, 0.55))
+	_tint(color)
+	_update_focal_point()
+	progress_bar.value = 0.0
 	title.scale = Vector2.ONE * (calm_title_start_scale if _calm else title_start_scale)
 	sub.text = cfg["sub"]
 	sub.visible_ratio = 0.0
@@ -296,30 +324,46 @@ func play(reason : int, final_score : int, quota : int) -> void:
 	overlow.text = (PAYLOAD + "\n").repeat(payload_repeats) + PAYLOAD_TAIL
 	overlow.visible_ratio = 0.0
 	overlow.modulate.a = 1.0
-	backpanel.scale = Vector2.ZERO
+	backpanel.modulate.a = 0.0
 
 	await get_tree().process_frame
-	title.pivot_offset = title.size / 2.0
-	backpanel.pivot_offset = backpanel.size / 2.0
+	pivot_offset = size / 2.0
+	title.pivot_offset = Vector2(0.0, title.size.y / 2.0)
 
+	# The failure console fades in over the game instead of appearing in one frame.
 	_tween = create_tween()
-	_tween.tween_property(overlay, "intensity", intro_intensity, intro_time)
+	_tween.tween_property(self, "modulate:a", 1.0, fade_in_time)
+	_tween.parallel().tween_property(overlay, "intensity", intro_intensity, fade_in_time)
 	_build_death(reason)
 	_build_reveal(final_score, quota)
 
+func _reset_fx() -> void:
+	position = Vector2.ZERO
+	scale = Vector2.ONE
+	_dim = 1.0
+	if _layout:
+		_layout.position = Vector2.ZERO
+
+# Each ending dies differently, then fades to black before the results come up.
 func _build_death(reason : int) -> void:
+	var to_black := death_fade
 	if _calm:
 		_tween.tween_method(_calm_spew, 0.0, 1.0, calm_reveal_time)
-		_tween.tween_property(flash, "color", Color(0, 0, 0, 1), calm_fade_to_black)
+		to_black = calm_fade_to_black
 	elif reason == DataCollector.EndReason.MELTDOWN:
+		# Errors and viruses pile up faster and faster, then the screen collapses like a dying CRT.
 		_tween.tween_method(_spew, 0.0, 1.0, spew_time) \
 			.set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
+		_tween.tween_method(_crash, 0.0, 1.0, crash_time)
+		to_black = 0.08
 	elif reason == DataCollector.EndReason.FUEL_EMPTY:
-		_tween.tween_method(_sputter, 0.0, 1.0, sputter_time) \
-			.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+		# An engine starving for fuel: misfires get slower and deeper until it quits.
+		_tween.tween_method(_sputter, 0.0, 1.0, sputter_time)
 	else:
+		# Quota missed: a plain, steady countdown with no glitching.
 		_tween.tween_method(_tick, 0.0, 1.0, tick_time)
 
+	_tween.tween_property(flash, "color", Color(0, 0, 0, 1), to_black)
 	_tween.tween_callback(_death)
 	_tween.tween_interval(blackout_hold)
 
@@ -329,12 +373,11 @@ func _build_reveal(final_score : int, quota : int) -> void:
 	_tween.tween_property(flash, "color:a", 0.0, fade)
 	_tween.parallel().tween_property(overlow, "modulate:a", backdrop_text_alpha, backdrop_fade_time)
 	_tween.parallel().tween_property(overlay, "intensity", backdrop_intensity, backdrop_fade_time)
-	_tween.parallel().tween_property(backpanel, "scale", Vector2.ONE, window_open_time) \
-		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	_tween.parallel().tween_property(backpanel, "modulate:a", 1.0, window_open_time)
 	_tween.tween_callback(_slam)
 	_tween.tween_property(title, "modulate:a", 1.0, title_fade_time)
 	_tween.parallel().tween_property(title, "scale", Vector2.ONE, title_slam_time) \
-		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	_tween.tween_property(tag, "modulate:a", 1.0, tag_fade_time)
 	_tween.tween_interval(pause_before_sub)
 	_tween.tween_property(sub, "visible_ratio", 1.0, sub_type_time)
@@ -344,6 +387,16 @@ func _build_reveal(final_score : int, quota : int) -> void:
 	_tween.tween_interval(end_pause)
 	_tween.tween_callback(_finish)
 
+#region Death effects
+const GLITCH_GLYPHS := "░▒▓█#%&@0123456789"
+
+func _garble(text : String, amount : float) -> String:
+	var out := ""
+	for character in text:
+		out += GLITCH_GLYPHS[randi() % GLITCH_GLYPHS.length()] if character != " " and randf() < amount else character
+	return out
+
+# MELTDOWN: errors flood in, the layout tears sideways, text and gauge corrupt.
 func _spew(t : float) -> void:
 	_music_progress(t)
 	overlow.visible_ratio = t
@@ -355,43 +408,70 @@ func _spew(t : float) -> void:
 		_set_flash(Color(spew_strobe_color, randf() * spew_strobe_alpha * t))
 	else:
 		_set_flash(Color(0, 0, 0, 0))
+	if _layout:
+		_layout.position.x = randf_range(-60.0, 60.0) * t if randf() < t * 0.6 else 0.0
+	progress_bar.value = randf() * t if randf() < 0.5 else 1.0 - t
+	tag.modulate.a = minf(t * 4.0, 1.0)
+	tag.text = _garble(_tag_text, t * 0.6)
+	title.modulate.a = minf(t * 4.0, 1.0)
+	title.scale = Vector2.ONE
+	title.text = _garble(_title_text, t * 0.8)
 
+# Last moment of a dying monitor: the picture squeezes to a line, then a dot.
+func _crash(t : float) -> void:
+	overlow.modulate.a = 0.0
+	position = Vector2.ZERO
+	if _layout:
+		_layout.position = Vector2.ZERO
+	scale = Vector2(maxf(1.0 - smoothstep(0.6, 1.0, t), 0.002), maxf(1.0 - smoothstep(0.0, 0.6, t), 0.004))
+	_set_intensity(lerpf(0.9, 0.2, t))
+
+# FUEL_EMPTY: engine misfire. Brightness dips softly, the fuel gauge drains and flickers.
 func _sputter(t : float) -> void:
 	_music_progress(t)
+	var engine_on := sin(t * sputter_frequency * (1.0 - 0.6 * t)) > sputter_threshold_base + t * sputter_threshold_slope
+	var previous_dim := _dim
+	_dim = lerpf(_dim, 1.0 if engine_on else 0.08, 0.4)
 	overlow.visible_ratio = t
-	var on := sin(t * sputter_frequency) > sputter_threshold_base + t * sputter_threshold_slope
-	_set_intensity(sputter_on_intensity if on else sputter_off_intensity)
-	overlow.modulate.a = 1.0 if on else sputter_off_text_alpha
-	position = _jitter(_shake_strength * sputter_shake_mult * (1.0 - t))
-	_set_flash(Color(0, 0, 0, 0.0 if on else sputter_off_blackout))
+	overlow.modulate.a = lerpf(sputter_off_text_alpha, 1.0, _dim)
+	_set_intensity(lerpf(sputter_off_intensity, sputter_on_intensity, _dim))
+	_set_flash(Color(0, 0, 0, (1.0 - _dim) * sputter_off_blackout))
+	position = _jitter(_shake_strength * sputter_shake_mult * (1.0 - t) * clampf(absf(_dim - previous_dim) * 6.0, 0.0, 1.0))
+	progress_bar.value = (1.0 - t) * lerpf(0.5, 1.0, _dim)
+	tag.modulate.a = _dim
+	title.modulate.a = 0.0
 
+# QUOTA MISSED: calm, steady ticks as time runs out.
 func _tick(t : float) -> void:
 	_music_progress(t)
-	overlow.visible_ratio = floorf(t * tick_steps) / tick_steps
-	var glitch := randf() < tick_glitch_chance
-	position = Vector2(randf_range(-tick_glitch_offset, tick_glitch_offset) if glitch else 0.0, 0.0)
+	var stepped := floorf(t * tick_steps) / tick_steps
+	overlow.visible_ratio = stepped
+	progress_bar.value = 1.0 - stepped
 	_set_intensity(tick_intensity_base + tick_intensity_gain * t)
-	_set_flash(Color(1, 1, 1, tick_glitch_flash_alpha) if glitch else Color(0, 0, 0, 0))
 
 func _calm_spew(t : float) -> void:
 	_music_progress(t)
 	overlow.visible_ratio = t
+	progress_bar.value = 1.0 - t
 	_set_intensity(calm_intensity_start + calm_intensity_gain * t)
 
+# Runs under the black fade: puts everything back so the results can fade in clean.
 func _death() -> void:
 	_music_death()
-	position = Vector2.ZERO
-	_set_flash(Color(0, 0, 0, 1))
+	_reset_fx()
 	_set_intensity(0.0)
 	overlow.modulate.a = 0.0
+	tag.text = _tag_text
+	tag.modulate.a = 0.0
+	title.text = _title_text
+	title.modulate.a = 0.0
+	title.scale = Vector2.ONE * (calm_title_start_scale if _calm else title_start_scale)
+	progress_bar.value = 0.0
 
 func _slam() -> void:
-	if _calm:
-		return
-	_set_flash(Color(1, 1, 1, slam_flash_alpha))
-	var t := create_tween().set_parallel(true)
-	t.tween_property(flash, "color:a", 0.0, slam_flash_fade)
-	t.tween_method(_shake, 1.0, 0.0, slam_shake_time)
+	if not _calm:
+		backdrop.trigger_pulse()
+#endregion
 
 func _shake(s : float) -> void:
 	position = _jitter(_shake_strength * s)
@@ -401,6 +481,7 @@ func _set_score(t : float, final_score : int, quota : int) -> void:
 	if t >= 1.0 and final_score < quota:
 		text += "\nSHORT BY %d" % (quota - final_score)
 	score.text = text
+	progress_bar.value = clampf(final_score * t / maxf(quota, 1.0), 0.0, 1.0)
 
 func _finish() -> void:
 	if not _calm:

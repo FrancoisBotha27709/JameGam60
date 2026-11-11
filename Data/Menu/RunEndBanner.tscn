@@ -1,29 +1,23 @@
 [gd_scene format=3 uid="uid://bcbp1txr7i5rt"]
 
-[ext_resource type="Theme" uid="uid://dap6826f78p24" path="res://Assets/theme.tres" id="1_bkkiy"]
-[ext_resource type="Script" uid="uid://cht58hs2woi7k" path="res://Data/Menu/RunEndBanner.gd" id="1_script"]
-[ext_resource type="Shader" uid="uid://bd2ivxe3mx85y" path="res://Data/Menu/DitherVignette.gdshader" id="2_jjhxa"]
-[ext_resource type="Script" uid="uid://c1qhnv5gfhb82" path="res://Data/Menu/DitherVignette.gd" id="3_7fbf0"]
+[ext_resource type="Theme" uid="uid://dap6826f78p24" path="res://Assets/theme.tres" id="1_theme"]
+[ext_resource type="Shader" uid="uid://bd2ivxe3mx85y" path="res://Data/Menu/DitherVignette.gdshader" id="3_shader"]
+[ext_resource type="Script" uid="uid://c1qhnv5gfhb82" path="res://Data/Menu/DitherVignette.gd" id="4_vignette"]
+[ext_resource type="Script" uid="uid://demtto3knvw5u" path="res://Assets/Nodes/Menu/hangar_backdrop.gd" id="5_backdrop"]
+[ext_resource type="Script" uid="uid://cd2m4ls5seipq" path="res://Assets/Nodes/Menu/hangar_plate.gd" id="6_plate"]
+[ext_resource type="Script" uid="uid://dd02d5ef6xcpi" path="res://Assets/Nodes/Menu/hangar_progress_bar.gd" id="7_progress"]
+[ext_resource type="Script" uid="uid://cht58hs2woi7k" path="res://Data/Menu/RunEndBanner.gd" id="2_script"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_r2qbd"]
-shader = ExtResource("2_jjhxa")
-shader_parameter/tint = Color(1, 0.2, 0.2, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vignette"]
+shader = ExtResource("3_shader")
+shader_parameter/tint = Color(1, 0.35, 0.4, 1)
 shader_parameter/intensity = 0.0
 shader_parameter/pixel_size = 4.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bkkiy"]
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
-bg_color = Color(0.1, 0.1, 0.1, 0.043137256)
-border_color = Color(0.3, 0.85, 1, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_panel"]
 
-[node name="RunEndBanner" type="Control" unique_id=711584712 node_paths=PackedStringArray("overlay", "backpanel", "tag", "title", "sub", "score", "flash", "overlow", "summary_lbl")]
+[node name="RunEndBanner" type="Control" node_paths=PackedStringArray("backdrop", "overlay", "backpanel", "tag", "title", "sub", "score", "flash", "overlow", "summary_lbl", "progress_bar")]
+visible = false
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -32,21 +26,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource("1_bkkiy")
-script = ExtResource("1_script")
+theme = ExtResource("1_theme")
+script = ExtResource("2_script")
+backdrop = NodePath("Backdrop")
 overlay = NodePath("Overlay")
-backpanel = NodePath("PanelContainer2/VBoxContainer2/VBoxContainer2/Control/Panel")
-tag = NodePath("PanelContainer2/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer/TagLbl")
-title = NodePath("PanelContainer2/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer/TitleLbl")
-sub = NodePath("PanelContainer2/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer/SubLbl")
-score = NodePath("PanelContainer2/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer/ScoreLbl")
+backpanel = NodePath("Layout/Rows/Body/SummaryPanel")
+tag = NodePath("Layout/Rows/TopBar/TitleBlock/TagLabel")
+title = NodePath("Layout/Rows/TopBar/TitleBlock/TitleLabel")
+sub = NodePath("Layout/Rows/TopBar/TitleBlock/SubtitleLabel")
+score = NodePath("Layout/Rows/TopBar/ScoreLabel")
 flash = NodePath("Flash")
-overlow = NodePath("PanelContainer2/VBoxContainer2/VBoxContainer2/OverflowLbl")
-summary_lbl = NodePath("PanelContainer2/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer/SummaryLbl")
-sputter_time = 0.63
+overlow = NodePath("Layout/Rows/Body/LogPanel/Margin/LogLabel")
+summary_lbl = NodePath("Layout/Rows/Body/SummaryPanel/Margin/SummaryLabel")
+progress_bar = NodePath("Layout/Rows/ProgressBar")
 
-[node name="Overlay" type="ColorRect" parent="." unique_id=806446686]
-material = SubResource("ShaderMaterial_r2qbd")
+[node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -54,10 +48,183 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("3_7fbf0")
+color = Color(0.01, 0.01, 0.05, 1)
+
+[node name="Backdrop" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_backdrop")
+opening_ratio = Vector2(0.755, 0.775)
+parallax_shift = Vector2(78.46, 26)
+rib_count = 6
+lane_count = 6
+pad_radius_ratio = 0.375
+pad_squash = 0.245
+
+[node name="Overlay" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_vignette")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_vignette")
 metadata/_custom_type_script = "uid://c1qhnv5gfhb82"
 
-[node name="Flash" type="ColorRect" parent="." unique_id=720189122]
+[node name="Layout" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 48
+
+[node name="Rows" type="VBoxContainer" parent="Layout"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 24
+
+[node name="TopBar" type="HBoxContainer" parent="Layout/Rows"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TitleBlock" type="VBoxContainer" parent="Layout/Rows/TopBar"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TagLabel" type="Label" parent="Layout/Rows/TopBar/TitleBlock"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "// RUN END //"
+
+[node name="TitleLabel" type="Label" parent="Layout/Rows/TopBar/TitleBlock"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.96, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.9, 1, 0.55)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 56
+text = "RUN ENDED"
+uppercase = true
+
+[node name="SubtitleLabel" type="Label" parent="Layout/Rows/TopBar/TitleBlock"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.7, 0.8, 1)
+theme_override_font_sizes/font_size = 18
+text = ""
+
+[node name="TopSpacer" type="Control" parent="Layout/Rows/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="ScoreLabel" type="Label" parent="Layout/Rows/TopBar"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 28
+text = "SCORE"
+horizontal_alignment = 2
+
+[node name="Body" type="HBoxContainer" parent="Layout/Rows"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="LogPanel" type="Control" parent="Layout/Rows/Body"]
+custom_minimum_size = Vector2(760, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Plate" type="Control" parent="Layout/Rows/Body/LogPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("6_plate")
+slide_reserve = 0.0
+
+[node name="Margin" type="MarginContainer" parent="Layout/Rows/Body/LogPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 44
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 44
+theme_override_constants/margin_bottom = 20
+
+[node name="LogLabel" type="RichTextLabel" parent="Layout/Rows/Body/LogPanel/Margin"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.88, 0.96, 1, 1)
+theme_override_font_sizes/normal_font_size = 22
+theme_override_font_sizes/bold_font_size = 22
+bbcode_enabled = true
+text = ""
+scroll_active = false
+scroll_following_visible_characters = true
+autowrap_mode = 2
+
+[node name="BodySpacer" type="Control" parent="Layout/Rows/Body"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="SummaryPanel" type="PanelContainer" parent="Layout/Rows/Body"]
+size_flags_vertical = 0
+custom_minimum_size = Vector2(520, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_panel")
+
+[node name="Plate" type="Control" parent="Layout/Rows/Body/SummaryPanel"]
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("6_plate")
+slide_reserve = 0.0
+
+[node name="Margin" type="MarginContainer" parent="Layout/Rows/Body/SummaryPanel"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 44
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 44
+theme_override_constants/margin_bottom = 20
+
+[node name="SummaryLabel" type="Label" parent="Layout/Rows/Body/SummaryPanel/Margin"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.7, 0.8, 1)
+theme_override_font_sizes/font_size = 22
+
+[node name="ProgressBar" type="Control" parent="Layout/Rows"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("7_progress")
+slide_reserve = 0.0
+
+[node name="Flash" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -66,203 +233,3 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
-
-[node name="PanelContainer2" type="PanelContainer" parent="." unique_id=341192802]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_bkkiy")
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer2" unique_id=227273413]
-layout_mode = 2
-
-[node name="VBoxContainer2" type="HBoxContainer" parent="PanelContainer2/VBoxContainer2" unique_id=1908241442]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="OverflowLbl" type="RichTextLabel" parent="PanelContainer2/VBoxContainer2/VBoxContainer2" unique_id=214818911]
-custom_minimum_size = Vector2(885, 64)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 3
-bbcode_enabled = true
-text = "[color=red][ ERROR ] [/color] Memory buffer overflow
-[color=red][ ERROR ] [/color] Stack corruption detected
-[color=yellow][ WARN ] [/color] CPU temp critical: 98C
-[color=red][ ERROR ] [/color] Page fault in kernel space
-[color=red][ ERROR ] [/color] Heap allocation failed
-[color=yellow][ WARN ] [/color] Fan speed 0 RPM
-[color=red][ ERROR ] [/color] Segmentation fault
-[color=red][ ERROR ] [/color] Disk I/O timeout
-[color=red][ ERROR ] [/color] Filesystem journal corrupted
-[color=yellow][ WARN ] [/color] Swap space exhausted
-[color=red][ ERROR ] [/color] Process 1337 unresponsive
-[color=red][ ERROR ] [/color] Kernel panic: unable to sync
-[color=red][ ERROR ] [/color] Watchdog timer expired
-[color=red][ ERROR ] [/color] NULL pointer dereference
-[color=yellow][ WARN ] [/color] Voltage drop on 3.3V rail
-[color=red][ ERROR ] [/color] Network stack failure
-[color=red][ ERROR ] [/color] DNS resolver crashed
-[color=red][ ERROR ] [/color] Packet checksum mismatch
-[color=red][ ERROR ] [/color] Cache coherency violation
-[color=red][ ERROR ] [/color] Interrupt storm on IRQ 7
-[color=yellow][ WARN ] [/color] Thermal throttle ignored
-[color=red][ ERROR ] [/color] GPU driver hung
-[color=red][ ERROR ] [/color] Framebuffer unmapped
-[color=red][ ERROR ] [/color] Mutex deadlock detected
-[color=red][ ERROR ] [/color] Race condition in scheduler
-[color=red][ ERROR ] [/color] Bootloader signature invalid
-[color=red][ ERROR ] [/color] RAID array degraded
-[color=red][ ERROR ] [/color] Sector 0x00FF unreadable
-[color=red][ ERROR ] [/color] Encryption keys lost
-[color=yellow][ WARN ] [/color] Backup power failing
-[color=red][ ERROR ] [/color] Double fault exception
-[color=red][ ERROR ] [/color] Recovery routine failed
-[color=red][ ERROR ] [/color] Recovery routine failed
-[color=red][ ERROR ] [/color] Recovery routine failed
-[color=red][ ERROR ] [/color] Kernel module unload failed
-[color=red][ ERROR ] [/color] Orphaned process tree
-[color=red][ ERROR ] [/color] Zombie process overflow
-[color=yellow][ WARN ] [/color] File descriptors exhausted
-[color=red][ ERROR ] [/color] Socket bind failed
-[color=red][ ERROR ] [/color] Connection reset by peer
-[color=red][ ERROR ] [/color] TLS handshake aborted
-[color=red][ ERROR ] [/color] Certificate chain invalid
-[color=red][ ERROR ] [/color] Authentication daemon dead
-[color=red][ ERROR ] [/color] Privilege escalation blocked
-[color=yellow][ WARN ] [/color] Unauthorized memory access
-[color=red][ ERROR ] [/color] Syscall table modified
-[color=red][ ERROR ] [/color] Kernel integrity check failed
-[color=red][ ERROR ] [/color] ACPI table corrupted
-[color=red][ ERROR ] [/color] BIOS checksum error
-[color=red][ ERROR ] [/color] CMOS battery dead
-[color=yellow][ WARN ] [/color] System clock drift: +4382s
-[color=red][ ERROR ] [/color] Timer interrupt lost
-[color=red][ ERROR ] [/color] Scheduler queue overflow
-[color=red][ ERROR ] [/color] Context switch failed
-[color=red][ ERROR ] [/color] Thread pool exhausted
-[color=red][ ERROR ] [/color] Pipe broken
-[color=red][ ERROR ] [/color] Buffer underrun
-[color=red][ ERROR ] [/color] Buffer overrun
-[color=red][ ERROR ] [/color] Unhandled exception 0xC0000005
-[color=red][ ERROR ] [/color] Unhandled exception 0xC0000094
-[color=red][ ERROR ] [/color] Unhandled exception 0xDEADBEEF
-[color=yellow][ WARN ] [/color] Disk SMART status: FAILING
-[color=red][ ERROR ] [/color] Bad block count: 40960
-[color=red][ ERROR ] [/color] Inode table destroyed
-[color=red][ ERROR ] [/color] Superblock invalid
-[color=red][ ERROR ] [/color] Mount failed: /home
-[color=red][ ERROR ] [/color] Mount failed: /var
-[color=red][ ERROR ] [/color] Mount failed: /boot
-[color=red][ ERROR ] [/color] Mount failed: /
-[color=yellow][ WARN ] [/color] Read-only filesystem forced
-[color=red][ ERROR ] [/color] Write failed: no space left
-[color=red][ ERROR ] [/color] Log rotation failed
-[color=red][ ERROR ] [/color] Audit subsystem offline
-[color=red][ ERROR ] [/color] Firewall rules purged
-[color=red][ ERROR ] [/color] Intrusion detection offline
-[color=yellow][ WARN ] [/color] Unknown device on PCI bus
-[color=red][ ERROR ] [/color] PCI bus error
-[color=red][ ERROR ] [/color] USB controller reset loop
-[color=red][ ERROR ] [/color] Audio driver crashed
-[color=red][ ERROR ] [/color] Input device lost
-[color=red][ ERROR ] [/color] Display signal lost
-[color=red][ ERROR ] [/color] VRAM corruption detected
-[color=red][ ERROR ] [/color] Shader compile failed
-[color=red][ ERROR ] [/color] Render pipeline stalled
-[color=yellow][ WARN ] [/color] GPU temp critical: 112C
-[color=red][ ERROR ] [/color] Voltage regulator fault
-[color=red][ ERROR ] [/color] Power rail 12V unstable
-[color=red][ ERROR ] [/color] Power rail 5V unstable
-[color=red][ ERROR ] [/color] Power rail 3.3V collapsed
-[color=yellow][ WARN ] [/color] Battery critical: 1%
-[color=red][ ERROR ] [/color] Machine check exception
-[color=red][ ERROR ] [/color] ECC uncorrectable error
-[color=red][ ERROR ] [/color] ECC uncorrectable error
-[color=red][ ERROR ] [/color] ECC uncorrectable error
-[color=red][ ERROR ] [/color] DIMM 0 not responding
-[color=red][ ERROR ] [/color] DIMM 1 not responding
-[color=red][ ERROR ] [/color] DIMM 2 not responding
-[color=red][ ERROR ] [/color] DIMM 3 not responding
-[color=red][ ERROR ] [/color] Memory map destroyed
-[color=red][ ERROR ] [/color] Triple fault imminent
-[color=red][ ERROR ] [/color] Memory integrity c0rrupt3d
-[color=red][ ERROR ] [/color] St4ck 0v3rfl0w
-[color=red][ ERROR ] [/color] K3rn3l p4n1c
-[color=red][ ERROR ] [/color] Ret_urn addr3ss ov3rwr1tt3n
-[color=red][ ERROR ] [/color] ░▒▓█ SYSTEM UNSTABLE █▓▒░
-[color=red][ ERROR ] [/color] ▓▒░ DATA LOSS IN PROGRESS ░▒▓
-[color=red][ ERROR ] [/color] Cor3 t3mp3r4tur3 runaway
-[color=red][ ERROR ] [/color] Thermal shutdown FAILED
-[color=red][ ERROR ] [/color] Emergency halt FAILED
-[color=red][ ERROR ] [/color] Emergency halt FAILED
-[color=red][ ERROR ] [/color] Emergency halt FAILED
-[color=red][ ERROR ] [/color] ERROR ERROR ERROR ERROR
-[color=red][ ERROR ] [/color] ERROR ERROR ERROR ERROR
-[color=red][ ERROR ] [/color] ERROR ERROR ERROR ERROR
-[color=red][ ERROR ] [/color] 0x00000000 0x00000000 0x0000
-[color=red][ ERROR ] [/color] ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-[color=red][ ERROR ] [/color] All processes terminated
-[color=red][ ERROR ] [/color] All memory freed
-[color=red][ ERROR ] [/color] All drives unmounted
-[color=red][ ERROR ] [/color] Shutdown sequence failed
-[color=red][ ERROR ] [/color] Power supply fail
-[color=red][ ERROR ] [/color] Power suppl
-[color=red][ ERROR ] [/color] Pow
-[color=red][ ERROR ] [/color] P
-[color=red][ ERR"
-scroll_active = false
-scroll_following_visible_characters = true
-autowrap_mode = 2
-
-[node name="Control" type="Control" parent="PanelContainer2/VBoxContainer2/VBoxContainer2" unique_id=1675574607]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Panel" type="PanelContainer" parent="PanelContainer2/VBoxContainer2/VBoxContainer2/Control" unique_id=1075782338]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer2/VBoxContainer2/VBoxContainer2/Control/Panel" unique_id=1988266473]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer2/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer" unique_id=344973796]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="TagLbl" type="Label" parent="PanelContainer2/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer" unique_id=1447505334]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = " // Hul //"
-
-[node name="TitleLbl" type="Label" parent="PanelContainer2/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer" unique_id=1362498994]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "CRITICAL MELTDOWN"
-
-[node name="SubLbl" type="Label" parent="PanelContainer2/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer" unique_id=1774224809]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "REACTOR BREACHED - SHIP DESTROYED"
-
-[node name="ScoreLbl" type="Label" parent="PanelContainer2/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer" unique_id=1328485966]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "SCORE 0 / 5
-SHORT BY 5"
-
-[node name="SummaryLbl" type="Label" parent="PanelContainer2/VBoxContainer2/VBoxContainer2/Control/Panel/MarginContainer/VBoxContainer" unique_id=24649924]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32

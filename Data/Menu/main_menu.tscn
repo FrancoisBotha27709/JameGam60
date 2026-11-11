@@ -1,22 +1,22 @@
 [gd_scene format=3 uid="uid://dpuo78p623q3o"]
 
-[ext_resource type="Theme" uid="uid://dap6826f78p24" path="res://Assets/theme.tres" id="1_a1qbw"]
-[ext_resource type="Script" uid="uid://deslb1x1h7g58" path="res://Data/Menu/main_menu.gd" id="2_cvj8v"]
-[ext_resource type="PackedScene" uid="uid://cvkpk14dqnyt" path="res://Data/Menu/LoadingScreen.tscn" id="3_stymn"]
-[ext_resource type="PackedScene" uid="uid://italmpyxktyx" path="res://Data/Player/sprite_container.tscn" id="4_0gtve"]
-[ext_resource type="Script" uid="uid://yryxog222lnx" path="res://Data/Menu/QuickSettings.gd" id="4_gn7en"]
-[ext_resource type="Shader" uid="uid://camknpyslfl20" path="res://Assets/UI/Ship/ship_dissolve.gdshader" id="4_lb1c2"]
-[ext_resource type="Script" uid="uid://d0wyaxol5hj2n" path="res://Assets/lighting/LightEnvironment.gd" id="4_stymn"]
-[ext_resource type="Texture2D" uid="uid://epw7jv8k7lbw" path="res://Assets/UI/Assets Wenrexa UI Sci-Fi Minimalism #01/Elements/ArrowLeft.png" id="6_0gtve"]
-[ext_resource type="Texture2D" uid="uid://ckd4pnvxe8002" path="res://icon.svg" id="7_a1qbw"]
-[ext_resource type="Texture2D" uid="uid://6dw87451o7hj" path="res://Assets/UI/Assets Wenrexa UI Sci-Fi Minimalism #01/Elements/ArrowRight.png" id="7_sg42i"]
-[ext_resource type="PackedScene" uid="uid://225m7a2jyn8r" path="res://Assets/Nodes/better_button.tscn" id="9_w1dse"]
-[ext_resource type="Shader" uid="uid://debjqjv5642eb" path="res://Data/Menu/main_menu.gdshader" id="10_sg42i"]
-[ext_resource type="PackedScene" uid="uid://dvknivganafji" path="res://Data/Menu/TutorialPopup.tscn" id="13_vdqna"]
-[ext_resource type="Script" uid="uid://cjs0m0kluqqk" path="res://Assets/Nodes/Audio/AudioTrigger.gd" id="14_vdqna"]
+[ext_resource type="Theme" uid="uid://dap6826f78p24" path="res://Assets/theme.tres" id="1_theme"]
+[ext_resource type="Script" uid="uid://deslb1x1h7g58" path="res://Data/Menu/main_menu.gd" id="2_menu"]
+[ext_resource type="PackedScene" uid="uid://cvkpk14dqnyt" path="res://Data/Menu/LoadingScreen.tscn" id="3_game"]
+[ext_resource type="PackedScene" uid="uid://italmpyxktyx" path="res://Data/Player/sprite_container.tscn" id="4_ship"]
+[ext_resource type="Shader" uid="uid://camknpyslfl20" path="res://Assets/UI/Ship/ship_dissolve.gdshader" id="5_dissolve"]
+[ext_resource type="Script" uid="uid://d0wyaxol5hj2n" path="res://Assets/lighting/LightEnvironment.gd" id="6_light"]
+[ext_resource type="Texture2D" uid="uid://ckd4pnvxe8002" path="res://icon.svg" id="7_icon"]
+[ext_resource type="Shader" uid="uid://debjqjv5642eb" path="res://Data/Menu/main_menu.gdshader" id="8_starfield"]
+[ext_resource type="PackedScene" uid="uid://dvknivganafji" path="res://Data/Menu/TutorialPopup.tscn" id="9_tutorial"]
+[ext_resource type="Script" uid="uid://cjs0m0kluqqk" path="res://Assets/Nodes/Audio/AudioTrigger.gd" id="10_audio"]
+[ext_resource type="Script" uid="uid://demtto3knvw5u" path="res://Assets/Nodes/Menu/hangar_backdrop.gd" id="11_backdrop"]
+[ext_resource type="PackedScene" path="res://Assets/Nodes/Menu/hangar_button.tscn" id="12_button"]
+[ext_resource type="Script" uid="uid://yryxog222lnx" path="res://Data/Menu/QuickSettings.gd" id="13_quick"]
+[ext_resource type="PackedScene" path="res://Assets/Nodes/Menu/hangar_option_button.tscn" id="14_option"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jm3ld"]
-shader = ExtResource("10_sg42i")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_starfield"]
+shader = ExtResource("8_starfield")
 shader_parameter/sky_brightness = 1.0
 shader_parameter/palette = 2
 shader_parameter/camera_position = Vector2(0, 0)
@@ -36,7 +36,7 @@ shader_parameter/far_drift_scale = 0.2
 shader_parameter/drift_velocity = Vector2(0.015, 0.006)
 shader_parameter/sway_amplitude = 0.03
 shader_parameter/sway_speed = 0.15
-shader_parameter/star_density = 0.2270000107825
+shader_parameter/star_density = 0.227
 shader_parameter/min_star_radius = 0.03
 shader_parameter/max_star_radius = 0.12
 shader_parameter/star_wobble_amount = 0.05
@@ -45,7 +45,7 @@ shader_parameter/twinkle_speed = 2.5
 shader_parameter/twinkle_speed_variation = 0.6
 shader_parameter/twinkle_depth = 0.5
 shader_parameter/constellation_period = 8.0
-shader_parameter/constellation_chance = 0.02000000095
+shader_parameter/constellation_chance = 0.02
 shader_parameter/constellation_glow_strength = 0.7
 shader_parameter/line_brightness = 0.5
 shader_parameter/line_half_width_pixels = 0.5
@@ -68,16 +68,16 @@ shader_parameter/far_mist_parallax = 0.06
 shader_parameter/far_mist_intensity = 0.55
 shader_parameter/near_mist_scale = 3.4
 shader_parameter/near_mist_parallax = 0.35
-shader_parameter/near_mist_intensity = 0.4850000230375
+shader_parameter/near_mist_intensity = 0.485
 shader_parameter/dust_color = Color(0.55, 0.45, 0.75, 1)
 shader_parameter/dust_strength = 1.0
-shader_parameter/dust_haze_strength = 0.0370000017575
-shader_parameter/dust_star_density = 0.0150000007125
-shader_parameter/band_angle = 0.35640027258505036
+shader_parameter/dust_haze_strength = 0.037
+shader_parameter/dust_star_density = 0.015
+shader_parameter/band_angle = 0.3564
 shader_parameter/band_center = Vector2(0.9, 0.5)
-shader_parameter/band_width = 0.08200000226506
+shader_parameter/band_width = 0.082
 shader_parameter/band_ripple = 1.0
-shader_parameter/dust_parallax = 0.2910000138225
+shader_parameter/dust_parallax = 0.291
 shader_parameter/band_repeat_distance = 3.0
 shader_parameter/shooting_star_color = Color(0.85, 0.93, 1, 1)
 shader_parameter/shooting_star_slots = 4
@@ -93,246 +93,348 @@ shader_parameter/vignette_strength = 0.6
 shader_parameter/vignette_inner_radius = 0.3
 shader_parameter/vignette_outer_radius = 0.85
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a1qbw"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dissolve"]
+shader = ExtResource("5_dissolve")
+shader_parameter/progress = 0.0
+shader_parameter/max_pixel_size = 24.0
+shader_parameter/dissolve_block = 6.0
+shader_parameter/edge_color = Color(0.4, 0.9, 1, 1)
+shader_parameter/edge_width = 0.12
 
-[sub_resource type="LabelSettings" id="LabelSettings_a1qbw"]
-font_size = 48
-outline_size = 8
-outline_color = Color(0, 0, 0, 1)
-shadow_size = 8
-shadow_color = Color(0, 0.9000001, 1, 1)
-shadow_offset = Vector2(2, 2)
-
-[node name="MainMenu" type="Control" unique_id=1796408136 node_paths=PackedStringArray("tut_popup", "play_btn", "options_btn", "quit_btn", "tutorial_btn", "arrow_left", "arrow_right", "ship_sprite_container", "ship_name_label")]
+[node name="MainMenu" type="Control" unique_id=505519044 node_paths=PackedStringArray("starfield", "backdrop", "ship_stage", "ship_container", "status_label", "tutorial_popup", "play_button", "tutorial_button", "options_button", "quit_button", "ship_selector", "previous_ship_button", "next_ship_button", "ship_name_label", "ship_index_label", "ship_pips", "focus_on_open")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_a1qbw")
-script = ExtResource("2_cvj8v")
-game_path = ExtResource("3_stymn")
-tut_popup = NodePath("TutorialPopup")
-play_btn = NodePath("MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer/PlayBtn/HBoxContainer/Control/Button")
-options_btn = NodePath("MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer/OptionsBtn/HBoxContainer/Control/Button")
-quit_btn = NodePath("MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer/QuitBtn/HBoxContainer/Control/Button")
-tutorial_btn = NodePath("MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer2/Button/HBoxContainer/Control/Button")
-arrow_left = NodePath("MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/LeftArrowBtn/HBoxContainer/Control/Button")
-arrow_right = NodePath("MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/RightArrowBtn/HBoxContainer/Control/Button")
-ship_sprite = ExtResource("4_0gtve")
-ship_sprite_container = NodePath("MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Control")
-ship_name_label = NodePath("MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/NameLbl")
-dissolve_shader = ExtResource("4_lb1c2")
+theme = ExtResource("1_theme")
+script = ExtResource("2_menu")
+game_path = ExtResource("3_game")
+starfield = NodePath("Starfield")
+backdrop = NodePath("Backdrop")
+ship_stage = NodePath("ShipStage")
+ship_container = NodePath("ShipStage/ShipContainer")
+status_label = NodePath("Layout/Rows/TopBar/StatusLabel")
+tutorial_popup = NodePath("TutorialPopup")
+play_button = NodePath("Layout/Rows/Body/MenuColumn/PlayButton")
+tutorial_button = NodePath("Layout/Rows/Body/MenuColumn/TutorialButton")
+options_button = NodePath("Layout/Rows/Body/MenuColumn/OptionsButton")
+quit_button = NodePath("Layout/Rows/Body/MenuColumn/QuitButton")
+ship_selector = NodePath("Layout/Rows/BottomBar/ShipSelector")
+previous_ship_button = NodePath("Layout/Rows/BottomBar/ShipSelector/PreviousShipButton")
+next_ship_button = NodePath("Layout/Rows/BottomBar/ShipSelector/NextShipButton")
+ship_name_label = NodePath("Layout/Rows/BottomBar/ShipSelector/ShipInfo/ShipNameLabel")
+ship_index_label = NodePath("Layout/Rows/BottomBar/ShipSelector/ShipInfo/ShipIndexLabel")
+ship_pips = NodePath("Layout/Rows/BottomBar/ShipSelector/ShipInfo/ShipPips")
+focus_on_open = NodePath("Layout/Rows/Body/MenuColumn/PlayButton")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1905508903]
-z_index = -2
-material = SubResource("ShaderMaterial_jm3ld")
+[node name="Starfield" type="TextureRect" parent="." unique_id=1309649277]
+material = SubResource("ShaderMaterial_starfield")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("7_a1qbw")
+mouse_filter = 2
+texture = ExtResource("7_icon")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=518617267]
+[node name="Backdrop" type="Control" parent="." unique_id=1031438819]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("11_backdrop")
+opening_ratio = Vector2(0.755, 0.775)
+parallax_shift = Vector2(78.46, 26)
+rib_count = 6
+lane_count = 6
+pad_radius_ratio = 0.375
+pad_squash = 0.245
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=2065061795]
+[node name="ShipStage" type="Control" parent="." unique_id=711941699 groups=["menu_reveal"]]
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="ShipContainer" parent="ShipStage" unique_id=1155267467 instance=ExtResource("4_ship")]
+material = SubResource("ShaderMaterial_dissolve")
+scale = Vector2(5, 5)
+
+[node name="Layout" type="MarginContainer" parent="." unique_id=515492178]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 48
+
+[node name="Rows" type="VBoxContainer" parent="Layout" unique_id=1583559988]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="TopBar" type="HBoxContainer" parent="Layout/Rows" unique_id=494312125]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=1749020340]
-custom_minimum_size = Vector2(512, 480)
-layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_a1qbw")
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PanelContainer" unique_id=1732399969]
-layout_mode = 2
-size_flags_vertical = 0
-
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer" unique_id=683670937]
-custom_minimum_size = Vector2(0, 480)
+[node name="TitleBlock" type="VBoxContainer" parent="Layout/Rows/TopBar" unique_id=164419071]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer" unique_id=1854376227]
+[node name="TitleLabel" type="Label" parent="Layout/Rows/TopBar/TitleBlock" unique_id=1243906147 groups=["menu_reveal"]]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.96, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.9, 1, 0.55)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 56
+text = "Garbage Collector"
+uppercase = true
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer" unique_id=539494349]
-custom_minimum_size = Vector2(0, 556)
+[node name="SubtitleLabel" type="Label" parent="Layout/Rows/TopBar/TitleBlock" unique_id=995418659 groups=["menu_reveal"]]
 layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/separation = 16
+theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "HANGAR BAY 07  //  STANDBY"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3" unique_id=716335953]
-custom_minimum_size = Vector2(0, 196)
+[node name="TopSpacer" type="Control" parent="Layout/Rows/TopBar" unique_id=1174504798]
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("4_gn7en")
-keys = Array[String](["game_mode", "difficulty", "controls"])
 
-[node name="Button" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer2" unique_id=668546363 instance=ExtResource("9_w1dse")]
-custom_minimum_size = Vector2(0, 64)
+[node name="StatusLabel" type="Label" parent="Layout/Rows/TopBar" unique_id=2140258796 groups=["menu_reveal"]]
 layout_mode = 2
-text = "Tutorial"
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.55, 0.7, 0.8, 1)
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 2
 
-[node name="RichTextLabel" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer2/Button/HBoxContainer/Control" parent_id_path=PackedInt32Array(668546363, 1028046267) index="1" unique_id=24974045]
-text = "Tutorial"
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3" unique_id=659741903]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3" unique_id=73604449]
+[node name="Body" type="HBoxContainer" parent="Layout/Rows" unique_id=1637297098]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=1837843260]
+[node name="MenuColumn" type="VBoxContainer" parent="Layout/Rows/Body" unique_id=320683797]
+custom_minimum_size = Vector2(460, 0)
 layout_mode = 2
-size_flags_vertical = 1
-text = "Garbage Collector"
-label_settings = SubResource("LabelSettings_a1qbw")
+size_flags_vertical = 4
+theme_override_constants/separation = 12
+
+[node name="PlayButton" parent="Layout/Rows/Body/MenuColumn" unique_id=1655120418 groups=["menu_reveal"] instance=ExtResource("12_button")]
+custom_minimum_size = Vector2(460, 76)
+layout_mode = 2
+plate_style = 0
+accent_color = Color(0.3, 0.85, 1, 1)
+slant = 18.0
+hover_slide = 22.0
+index_text = "01"
+caption_text = "Deploy selected vessel"
+text = "LAUNCH"
+
+[node name="TutorialButton" parent="Layout/Rows/Body/MenuColumn" unique_id=1284277680 groups=["menu_reveal"] instance=ExtResource("12_button")]
+custom_minimum_size = Vector2(460, 76)
+layout_mode = 2
+plate_style = 0
+accent_color = Color(0.3, 0.85, 1, 1)
+slant = 18.0
+hover_slide = 22.0
+index_text = "02"
+caption_text = "Flight manual and controls"
+text = "BRIEFING"
+
+[node name="OptionsButton" parent="Layout/Rows/Body/MenuColumn" unique_id=924709563 groups=["menu_reveal"] instance=ExtResource("12_button")]
+custom_minimum_size = Vector2(460, 76)
+layout_mode = 2
+plate_style = 0
+accent_color = Color(0.3, 0.85, 1, 1)
+slant = 18.0
+hover_slide = 22.0
+index_text = "03"
+caption_text = "Video, audio, gameplay"
+text = "SYSTEMS"
+
+[node name="QuitButton" parent="Layout/Rows/Body/MenuColumn" unique_id=1972658963 groups=["menu_reveal"] instance=ExtResource("12_button")]
+custom_minimum_size = Vector2(460, 76)
+layout_mode = 2
+plate_style = 0
+accent_color = Color(1, 0.35, 0.4, 1)
+slant = 18.0
+hover_slide = 22.0
+index_text = "04"
+caption_text = "Exit to desktop"
+text = "POWER DOWN"
+
+[node name="HintLabel" type="Label" parent="Layout/Rows/Body/MenuColumn" unique_id=636555210 groups=["menu_reveal"]]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.7, 0.8, 0.7)
+theme_override_font_sizes/font_size = 14
+text = "UP / DOWN  NAVIGATE        LEFT / RIGHT  SELECT SHIP"
+
+[node name="BodySpacer" type="Control" parent="Layout/Rows/Body" unique_id=1295602742]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="QuickSettingsPanel" type="VBoxContainer" parent="Layout/Rows/Body"]
+custom_minimum_size = Vector2(520, 0)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 12
+
+[node name="QuickSettingsTag" type="Label" parent="Layout/Rows/Body/QuickSettingsPanel" groups=["menu_reveal"]]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "// QUICK SETTINGS"
+
+[node name="QuickSettings" type="VBoxContainer" parent="Layout/Rows/Body/QuickSettingsPanel"]
+layout_mode = 2
+theme_override_constants/separation = 12
+script = ExtResource("13_quick")
+keys = Array[String](["game_mode", "difficulty", "controls"])
+
+[node name="OptionButton1" parent="Layout/Rows/Body/QuickSettingsPanel/QuickSettings" groups=["menu_reveal"] instance=ExtResource("14_option")]
+custom_minimum_size = Vector2(520, 76)
+layout_mode = 2
+plate_style = 0
+accent_color = Color(0.3, 0.85, 1, 1)
+slant = 18.0
+hover_slide = 22.0
+value_zone_width = 220.0
+
+[node name="OptionButton2" parent="Layout/Rows/Body/QuickSettingsPanel/QuickSettings" groups=["menu_reveal"] instance=ExtResource("14_option")]
+custom_minimum_size = Vector2(520, 76)
+layout_mode = 2
+plate_style = 0
+accent_color = Color(0.3, 0.85, 1, 1)
+slant = 18.0
+hover_slide = 22.0
+value_zone_width = 220.0
+
+[node name="OptionButton3" parent="Layout/Rows/Body/QuickSettingsPanel/QuickSettings" groups=["menu_reveal"] instance=ExtResource("14_option")]
+custom_minimum_size = Vector2(520, 76)
+layout_mode = 2
+plate_style = 0
+accent_color = Color(0.3, 0.85, 1, 1)
+slant = 18.0
+hover_slide = 22.0
+value_zone_width = 220.0
+
+[node name="BottomBar" type="HBoxContainer" parent="Layout/Rows" unique_id=1435680406]
+layout_mode = 2
+
+[node name="BottomOffset" type="Control" parent="Layout/Rows/BottomBar" unique_id=529595063]
+custom_minimum_size = Vector2(460, 0)
+layout_mode = 2
+
+[node name="ShipSelector" type="HBoxContainer" parent="Layout/Rows/BottomBar" unique_id=986506045]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="PreviousShipButton" parent="Layout/Rows/BottomBar/ShipSelector" unique_id=150756275 groups=["menu_reveal"] instance=ExtResource("12_button")]
+custom_minimum_size = Vector2(72, 96)
+layout_mode = 2
+size_flags_vertical = 4
+plate_style = 1
+accent_color = Color(0.3, 0.85, 1, 1)
+slant = 18.0
+hover_slide = 10.0
+index_text = ""
+caption_text = ""
+
+[node name="ShipInfo" type="VBoxContainer" parent="Layout/Rows/BottomBar/ShipSelector" unique_id=46080303]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="ShipNameLabel" type="Label" parent="Layout/Rows/BottomBar/ShipSelector/ShipInfo" unique_id=874976522 groups=["menu_reveal"]]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.96, 1, 1)
+theme_override_font_sizes/font_size = 34
 horizontal_alignment = 1
 uppercase = true
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=1032138852]
+[node name="ShipIndexLabel" type="Label" parent="Layout/Rows/BottomBar/ShipSelector/ShipInfo" unique_id=1188075663 groups=["menu_reveal"]]
 layout_mode = 2
-
-[node name="PlayBtn" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=426134724 instance=ExtResource("9_w1dse")]
-layout_mode = 2
-size_flags_vertical = 3
-text = "Play"
-
-[node name="RichTextLabel" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer/PlayBtn/HBoxContainer/Control" parent_id_path=PackedInt32Array(426134724, 1028046267) index="1" unique_id=24974045]
-text = "Play"
-autowrap_mode = 0
+theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 16
 horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="OptionsBtn" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=1108780408 instance=ExtResource("9_w1dse")]
+[node name="ShipPips" type="HBoxContainer" parent="Layout/Rows/BottomBar/ShipSelector/ShipInfo" unique_id=1001040804 groups=["menu_reveal"]]
 layout_mode = 2
-size_flags_vertical = 3
-text = "Options"
-
-[node name="RichTextLabel" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer/OptionsBtn/HBoxContainer/Control" parent_id_path=PackedInt32Array(1108780408, 1028046267) index="1" unique_id=24974045]
-text = "Options"
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="QuitBtn" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=1642554697 instance=ExtResource("9_w1dse")]
-layout_mode = 2
-size_flags_vertical = 3
-text = "Quit"
-
-[node name="RichTextLabel" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer/QuitBtn/HBoxContainer/Control" parent_id_path=PackedInt32Array(1642554697, 1028046267) index="1" unique_id=24974045]
-text = "Quit"
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=1777881159]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxEmpty_a1qbw")
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PanelContainer2" unique_id=683248412]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer" unique_id=1132834904]
-layout_mode = 2
-
-[node name="LeftArrowBtn" parent="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer" unique_id=1432130990 instance=ExtResource("9_w1dse")]
-custom_minimum_size = Vector2(64, 98)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Button" parent="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/LeftArrowBtn/HBoxContainer/Control" parent_id_path=PackedInt32Array(1432130990, 1028046267) index="0" unique_id=195598314]
-icon = ExtResource("6_0gtve")
-
-[node name="RichTextLabel" parent="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/LeftArrowBtn/HBoxContainer/Control" parent_id_path=PackedInt32Array(1432130990, 1028046267) index="1" unique_id=24974045]
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer" unique_id=669231276]
-z_index = -2
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/MarginContainer" unique_id=1373495153]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" unique_id=1723210233]
-layout_mode = 2
-size_flags_vertical = 3
+theme_override_constants/separation = 6
 alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=575296762]
-custom_minimum_size = Vector2(800, 0)
+[node name="Pip1" type="ColorRect" parent="Layout/Rows/BottomBar/ShipSelector/ShipInfo/ShipPips" unique_id=1288226439]
+custom_minimum_size = Vector2(26, 6)
 layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
+color = Color(0.3, 0.85, 1, 0.3)
 
-[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer" unique_id=1147862040]
-custom_minimum_size = Vector2(64, 0)
+[node name="Pip2" type="ColorRect" parent="Layout/Rows/BottomBar/ShipSelector/ShipInfo/ShipPips" unique_id=1405003348]
+custom_minimum_size = Vector2(26, 6)
 layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
+color = Color(0.3, 0.85, 1, 0.3)
 
-[node name="NameLbl" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" unique_id=1687441209]
+[node name="Pip3" type="ColorRect" parent="Layout/Rows/BottomBar/ShipSelector/ShipInfo/ShipPips" unique_id=1606499404]
+custom_minimum_size = Vector2(26, 6)
 layout_mode = 2
-horizontal_alignment = 1
-vertical_alignment = 1
+color = Color(0.3, 0.85, 1, 0.3)
 
-[node name="RightArrowBtn" parent="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer" unique_id=1819931718 instance=ExtResource("9_w1dse")]
-z_index = 100
-custom_minimum_size = Vector2(64, 98)
+[node name="Pip4" type="ColorRect" parent="Layout/Rows/BottomBar/ShipSelector/ShipInfo/ShipPips" unique_id=350656401]
+custom_minimum_size = Vector2(26, 6)
 layout_mode = 2
-size_flags_horizontal = 4
+color = Color(0.3, 0.85, 1, 0.3)
+
+[node name="Pip5" type="ColorRect" parent="Layout/Rows/BottomBar/ShipSelector/ShipInfo/ShipPips" unique_id=161217268]
+custom_minimum_size = Vector2(26, 6)
+layout_mode = 2
+color = Color(0.3, 0.85, 1, 0.3)
+
+[node name="Pip6" type="ColorRect" parent="Layout/Rows/BottomBar/ShipSelector/ShipInfo/ShipPips" unique_id=2060027792]
+custom_minimum_size = Vector2(26, 6)
+layout_mode = 2
+color = Color(0.3, 0.85, 1, 0.3)
+
+[node name="Pip7" type="ColorRect" parent="Layout/Rows/BottomBar/ShipSelector/ShipInfo/ShipPips" unique_id=1642935404]
+custom_minimum_size = Vector2(26, 6)
+layout_mode = 2
+color = Color(0.3, 0.85, 1, 0.3)
+
+[node name="Pip8" type="ColorRect" parent="Layout/Rows/BottomBar/ShipSelector/ShipInfo/ShipPips" unique_id=1736632336]
+custom_minimum_size = Vector2(26, 6)
+layout_mode = 2
+color = Color(0.3, 0.85, 1, 0.3)
+
+[node name="NextShipButton" parent="Layout/Rows/BottomBar/ShipSelector" unique_id=822697237 groups=["menu_reveal"] instance=ExtResource("12_button")]
+custom_minimum_size = Vector2(72, 96)
+layout_mode = 2
 size_flags_vertical = 4
+plate_style = 2
+accent_color = Color(0.3, 0.85, 1, 1)
+slant = 18.0
+hover_slide = 10.0
+index_text = ""
+caption_text = ""
 
-[node name="Button" parent="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/RightArrowBtn/HBoxContainer/Control" parent_id_path=PackedInt32Array(1819931718, 1028046267) index="0" unique_id=195598314]
-icon = ExtResource("7_sg42i")
-
-[node name="RichTextLabel" parent="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/RightArrowBtn/HBoxContainer/Control" parent_id_path=PackedInt32Array(1819931718, 1028046267) index="1" unique_id=24974045]
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TutorialPopup" parent="." unique_id=1984458471 instance=ExtResource("13_vdqna")]
+[node name="TutorialPopup" parent="." unique_id=449693550 instance=ExtResource("9_tutorial")]
 visible = false
 layout_mode = 1
 
-[node name="LightEnvironment" type="Node" parent="." unique_id=1211713012]
-script = ExtResource("4_stymn")
+[node name="LightEnvironment" type="Node" parent="." unique_id=1084189219]
+script = ExtResource("6_light")
 ambient = Color(0.851769, 0.8517689, 0.85176885, 1)
 sun_shadows = false
-metadata/_custom_type_script = "uid://d0wyaxol5hj2n"
 
-[node name="ShipSwitchAudioTrigger" type="Node" parent="." unique_id=680614007]
-script = ExtResource("14_vdqna")
+[node name="ShipSwitchAudioTrigger" type="Node" parent="." unique_id=115340816]
+script = ExtResource("10_audio")
 sound = "hangar_swap"
 event = 1
 signal_name = "ship_switched"
 source = NodePath("..")
 positional = false
 volume_db = -24.0
-metadata/_custom_type_script = "uid://cjs0m0kluqqk"
-
-[editable path="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer2/Button"]
-[editable path="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer/PlayBtn"]
-[editable path="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer/OptionsBtn"]
-[editable path="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer/QuitBtn"]
-[editable path="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/LeftArrowBtn"]
-[editable path="MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/RightArrowBtn"]

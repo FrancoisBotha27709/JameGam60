@@ -4,7 +4,10 @@ class_name BootupScreen
 const MAIN_MENU_PATH := "res://Data/Menu/main_menu.tscn"
 
 @export_group("Loading")
-@export var progress_bar: ProgressBar
+@export var progress_bar: HangarProgressBar
+@export var percent_label: Label
+@export var overlay: DitherVignette
+@export var backdrop: HangarBackdrop
 @export var smooth_progress: bool = true
 @export var progress_speed: float = 3.0
 
@@ -34,17 +37,24 @@ var _information_sequence_started: bool = false
 var _main_menu_scene: PackedScene
 var _target_progress: float = 0.0
 
-
 func _ready() -> void:
+	overlay.tint = MenuStyle.ACCENT
+	overlay.intensity = 0.35
+	resized.connect(_update_focal_point)
+	_update_focal_point()
 	_start_loading()
 	_start_information_sequence()
-
 
 func _process(delta: float) -> void:
 	if not _loading_started:
 		return
 	_update_loading_progress(delta)
+	if percent_label != null and progress_bar != null:
+		percent_label.text = "LOADING  %d%%" % roundi(progress_bar.value * 100.0)
 
+func _update_focal_point() -> void:
+	if backdrop != null:
+		backdrop.focal_point = size * 0.5
 
 func _start_loading() -> void:
 	if _loading_started:
@@ -54,7 +64,6 @@ func _start_loading() -> void:
 	var error := ResourceLoader.load_threaded_request(MAIN_MENU_PATH, "PackedScene")
 	if error != OK:
 		push_error("BootupScreen: Failed to start loading Main Menu.")
-
 
 func _update_loading_progress(delta: float) -> void:
 	if _menu_loaded:
@@ -67,9 +76,9 @@ func _update_loading_progress(delta: float) -> void:
 		_target_progress = progress[0] * 100.0
 		if progress_bar != null:
 			if smooth_progress:
-				progress_bar.value = move_toward(progress_bar.value, _target_progress, progress_speed * 100.0 * delta)
+				progress_bar.value = move_toward(progress_bar.value, progress[0], progress_speed * delta)
 			else:
-				progress_bar.value = _target_progress
+				progress_bar.value = progress[0]
 
 	match status:
 		ResourceLoader.THREAD_LOAD_LOADED:
@@ -78,7 +87,7 @@ func _update_loading_progress(delta: float) -> void:
 			if _menu_loaded:
 				_target_progress = 100.0
 				if progress_bar != null:
-					progress_bar.value = 100.0
+					progress_bar.value = 1.0
 				_try_finish()
 		ResourceLoader.THREAD_LOAD_FAILED, ResourceLoader.THREAD_LOAD_INVALID_RESOURCE:
 			push_error("BootupScreen: Main Menu failed to load.")
