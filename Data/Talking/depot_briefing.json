@@ -1,0 +1,242 @@
+
+{
+	"id": "depot_briefing",
+	"title": "Recovery Assignment",
+	"start": "greeting",
+	"nodes": {
+		"greeting": {
+			"character": "quartermaster_vael",
+			"text": "[color=#8fb8e8]Salvage vessel, this is Depot Command. Respond.[/color]",
+			"next": "pilot_greeting"
+		},
+		"pilot_greeting": {
+			"character": "player",
+			"text": "Reading you, Command. Cadet reporting in. Is this thing supposed to make that noise?",
+			"next": "vael_intro"
+		},
+		"vael_intro": {
+			"character": "quartermaster_vael",
+			"text": "Probably. Most of them do. Commander Vael. Listen carefully, Cadet. I have a long shift ahead of me, and I'd rather not spend it explaining why you drifted into an asteroid.",
+			"next": "pilot_response"
+		},
+		"pilot_response": {
+			"character": "player",
+			"text": "I'll try to keep the asteroid incidents to a minimum, sir.",
+			"next": "vael_situation"
+		},
+		"vael_situation": {
+			"character": "quartermaster_vael",
+			"text": "See that you do. [color=#e88f79]Sector X13 is gone.[/color] Stations, mining platforms, civilian transports, military vessels. Something tore through the belt and left most of it in pieces. Then the Hive showed up. We haven't had a quiet minute since.",
+			"next": "pilot_question_situation"
+		},
+		"pilot_question_situation": {
+			"character": "player",
+			"text": "The whole sector? What could do that?",
+			"next": "vael_unknown"
+		},
+		"vael_unknown": {
+			"character": "quartermaster_vael",
+			"text": "If I knew, I'd be somewhere considerably more important than this depot. We have a battle on our hands, and the front needs supplies. That's what concerns you.",
+			"next": "vael_assignment"
+		},
+		"vael_assignment": {
+			"character": "quartermaster_vael",
+			"text": "The Collective has deployed recovery vessels throughout the belt. You're in one of them. Collect usable material from the wreckage and bring it back here. We need metal, plastics, anything we can put back to use. [color=#e8c76b]Every delivery counts.[/color]",
+			"next": "pilot_reaction"
+		},
+		"pilot_reaction": {
+			"character": "player",
+			"text": "I just finished academy training. I was expecting a rifle, not a flying rubbish bin.",
+			"next": "vael_reaction"
+		},
+		"vael_reaction": {
+			"character": "quartermaster_vael",
+			"text": "And I was expecting an experienced pilot. Neither of us got what we wanted. You'll manage. Just don't confuse confidence with competence. I've buried enough cadets who did.",
+			"next": "pilot_silence"
+		},
+		"pilot_silence": {
+			"character": "player",
+			"text": "...Understood, Commander.",
+			"next": "vael_aegis"
+		},
+		"vael_aegis": {
+			"character": "quartermaster_vael",
+			"text": "Good. Your ship has an onboard diagnostic system. AEGIS. It can answer questions about the vessel. Ask it if you need to. I'll handle the assignment.",
+			"next": "aegis_intro"
+		},
+		"aegis_intro": {
+			"character": "aegis",
+			"text": "AEGIS online. Flight systems nominal. Collection equipment operational. No critical faults detected.",
+			"next": "pilot_aegis"
+		},
+		"pilot_aegis": {
+			"character": "player",
+			"text": "Comforting. At least one of us knows what we're doing.",
+			"next": "vael_warning"
+		},
+		"vael_warning": {
+			"character": "quartermaster_vael",
+			"text": "Don't get attached to that feeling. Your recovery quota is displayed on your console. Meet it before your time or fuel runs out. Bring the cargo back to the depot. [color=#e88f79]Cargo still attached to your ship is not a delivery.[/color]",
+			"next": "question_hub"
+		},
+		"question_hub": {
+			"character": "player",
+			"text": "Right. Before I embarrass myself out there, can I ask a few things?",
+			"choices": [
+				{
+					"text": "How do I actually fly this thing?",
+					"next": "ask_controls"
+				},
+				{
+					"text": "How does the collection equipment work?",
+					"next": "ask_collection"
+				},
+				{
+					"text": "What happens if I run out of fuel?",
+					"next": "ask_fuel"
+				},
+				{
+					"text": "What's the quota based on?",
+					"next": "ask_quota"
+				},
+				{
+					"text": "What's happening with the Hive?",
+					"next": "ask_hive"
+				},
+				{
+					"text": "What if something goes wrong out there?",
+					"next": "ask_rescue"
+				},
+				{
+					"text": "That's enough. I'm ready.",
+					"next": "launch_clearance"
+				}
+			]
+		},
+		"ask_controls": {
+			"character": "aegis",
+			"text": "Flight controls: [color=#8fb8e8]A / D[/color] rotate the vessel. [color=#8fb8e8]W[/color] engages the main thrusters. Brief input produces a short impulse. Sustained input increases thrust. [color=#8fb8e8]S[/color] applies braking. [color=#8fb8e8]SPACE[/color] activates boost. Boost doubles fuel consumption.",
+			"next": "pilot_controls"
+		},
+		"pilot_controls": {
+			"character": "player",
+			"text": "So, point in the direction I want to go and press the big expensive button. Got it.",
+			"next": "aegis_controls"
+		},
+		"aegis_controls": {
+			"character": "aegis",
+			"text": "That description is incomplete. It is also functional.",
+			"next": "question_hub"
+		},
+		"ask_collection": {
+			"character": "aegis",
+			"text": "The collection rig secures nearby debris and attaches it to the vessel by tether. Return to the depot and enter the [color=#8fb8e8]delivery zone[/color] to unload. Additional cargo mass reduces acceleration and increases fuel consumption.",
+			"next": "pilot_collection"
+		},
+		"pilot_collection": {
+			"character": "player",
+			"text": "So the more I collect, the harder it gets to fly. That's a slightly cruel design.",
+			"next": "vael_collection"
+		},
+		"vael_collection": {
+			"character": "quartermaster_vael",
+			"text": "It's a cargo hauler, not a racing craft. Make sensible trips. A full tether is worthless if you can't get it home.",
+			"next": "question_hub"
+		},
+		"ask_fuel": {
+			"character": "aegis",
+			"text": "Fuel powers the main thrusters and boost system. Vessel momentum persists without thrust. At zero fuel, propulsion becomes unavailable. [color=#e88f79]A return journey without fuel is not possible under normal operating conditions.[/color]",
+			"next": "pilot_fuel"
+		},
+		"pilot_fuel": {
+			"character": "player",
+			"text": "I'll try not to test that theory.",
+			"next": "vael_fuel"
+		},
+		"vael_fuel": {
+			"character": "quartermaster_vael",
+			"text": "Good. The depot can replenish your supplies between runs. Until then, what you have is what you have. Watch the gauge.",
+			"next": "question_hub"
+		},
+		"ask_quota": {
+			"character": "quartermaster_vael",
+			"text": "Salvage has a value. Different materials are worth different amounts, and the quota is the minimum you need to deliver. Meet it and you'll be assigned another run. There's equipment available between sorties, too. You'll want it.",
+			"next": "pilot_quota"
+		},
+		"pilot_quota": {
+			"character": "player",
+			"text": "And if I don't meet it?",
+			"next": "vael_quota"
+		},
+		"vael_quota": {
+			"character": "quartermaster_vael",
+			"text": "Then the Collective gets less material than it asked for. I get another report to file. You get a very unpleasant conversation with someone who doesn't know your name. I'd avoid it.",
+			"next": "question_hub"
+		},
+		"ask_hive": {
+			"character": "quartermaster_vael",
+			"text": "The Hive is why this region is running short on supplies. It consumes whatever it can reach. Ships, stations, entire worlds. We've been holding the line for longer than I'd care to remember. X13 has made things considerably worse.",
+			"next": "pilot_hive"
+		},
+		"pilot_hive": {
+			"character": "player",
+			"text": "And we're going into the wreckage while they're still out there?",
+			"next": "vael_hive"
+		},
+		"vael_hive": {
+			"character": "quartermaster_vael",
+			"text": "The front needs material. The recovery zones are considered acceptable risk. That's the language they use, anyway. Keep your eyes open and don't approach anything you don't recognise.",
+			"next": "question_hub"
+		},
+		"ask_rescue": {
+			"character": "player",
+			"text": "If I get stranded, will Command send someone to pick me up?",
+			"next": "vael_rescue"
+		},
+		"vael_rescue": {
+			"character": "quartermaster_vael",
+			"text": "...No. The Collective has restricted recovery deployments. No rescue vessel will be authorised for a lost salvage craft. I can keep a channel open. That's all I'm permitted to do.",
+			"next": "pilot_rescue"
+		},
+		"pilot_rescue": {
+			"character": "player",
+			"text": "That's... good to know. I'll make sure I don't get lost, then.",
+			"next": "vael_rescue_response"
+		},
+		"vael_rescue_response": {
+			"character": "quartermaster_vael",
+			"text": "See that you don't, Cadet. I'm not saying that to frighten you. I'm saying it because I can't bring you back if you make a mistake out there.",
+			"next": "question_hub"
+		},
+		"launch_clearance": {
+			"character": "player",
+			"text": "I think I've got the general idea. Collect the scrap, bring it home, try not to explode.",
+			"next": "vael_launch"
+		},
+		"vael_launch": {
+			"character": "quartermaster_vael",
+			"text": "That's the short version. [color=#e8c76b]Recover the material. Meet the quota. Return to this depot.[/color] Don't chase a bigger haul if it means losing the one you've already got.",
+			"next": "aegis_ready"
+		},
+		"aegis_ready": {
+			"character": "aegis",
+			"text": "[color=#8fb8e8]Flight systems ready. Collection rig ready. Undocking clearance pending.[/color]",
+			"next": "pilot_ready"
+		},
+		"pilot_ready": {
+			"character": "player",
+			"text": "Well, here goes nothing.",
+			"next": "vael_final"
+		},
+		"vael_final": {
+			"character": "quartermaster_vael",
+			"text": "It isn't nothing, Cadet. It's your first run. Take it seriously, and come back in one piece. [color=#8fb8e8]Vael out. You're cleared to undock.[/color]",
+			"next": null,
+			"record": {
+				"flags": {
+					"briefing_completed": true
+				}
+			}
+		}
+	}
+}

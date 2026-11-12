@@ -3,8 +3,92 @@
 [ext_resource type="Theme" uid="uid://dap6826f78p24" path="res://Assets/theme.tres" id="1_of656"]
 [ext_resource type="Script" uid="uid://dyt24gm04sbg0" path="res://Data/Talking/talking_screen.gd" id="2_44ff0"]
 [ext_resource type="Script" uid="uid://cd2m4ls5seipq" path="res://Assets/Nodes/Menu/hangar_plate.gd" id="2_v3abw"]
+[ext_resource type="Shader" uid="uid://debjqjv5642eb" path="res://Data/Menu/main_menu.gdshader" id="4_5cf66"]
+[ext_resource type="Script" uid="uid://d0wyaxol5hj2n" path="res://Assets/lighting/LightEnvironment.gd" id="6_light"]
+[ext_resource type="Texture2D" uid="uid://ckd4pnvxe8002" path="res://icon.svg" id="7_icon"]
+[ext_resource type="Script" uid="uid://demtto3knvw5u" path="res://Assets/Nodes/Menu/hangar_backdrop.gd" id="8_backdrop"]
+[ext_resource type="Script" uid="uid://cjs0m0kluqqk" path="res://Assets/Nodes/Audio/AudioTrigger.gd" id="9_gm2r7"]
+[ext_resource type="PackedScene" path="res://Assets/Nodes/Menu/hangar_button.tscn" id="12_button"]
 
-[node name="TalkingScreen" type="Control" unique_id=777680014]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b5nm6"]
+shader = ExtResource("4_5cf66")
+shader_parameter/sky_brightness = 1.0
+shader_parameter/palette = 2
+shader_parameter/camera_position = Vector2(0, 0)
+shader_parameter/view_height_world = 1080.0
+shader_parameter/camera_influence = 0.6
+shader_parameter/ambient_motion = 1.0
+shader_parameter/background_color = Color(0.01, 0.01, 0.05, 1)
+shader_parameter/cool_star_color = Color(0.7, 0.8, 1, 1)
+shader_parameter/warm_star_color = Color(1, 0.9, 0.7, 1)
+shader_parameter/line_color = Color(0.6, 0.75, 1, 1)
+shader_parameter/pixel_size = 2.0
+shader_parameter/star_levels = 8
+shader_parameter/layer_count = 4
+shader_parameter/far_cell_count = 30.0
+shader_parameter/near_cell_count = 8.0
+shader_parameter/far_drift_scale = 0.2
+shader_parameter/drift_velocity = Vector2(0.015, 0.006)
+shader_parameter/sway_amplitude = 0.03
+shader_parameter/sway_speed = 0.15
+shader_parameter/star_density = 0.227
+shader_parameter/min_star_radius = 0.03
+shader_parameter/max_star_radius = 0.12
+shader_parameter/star_wobble_amount = 0.05
+shader_parameter/star_wobble_speed = 0.6
+shader_parameter/twinkle_speed = 2.5
+shader_parameter/twinkle_speed_variation = 0.6
+shader_parameter/twinkle_depth = 0.5
+shader_parameter/constellation_period = 8.0
+shader_parameter/constellation_chance = 0.02
+shader_parameter/constellation_glow_strength = 0.7
+shader_parameter/line_brightness = 0.5
+shader_parameter/line_half_width_pixels = 0.5
+shader_parameter/max_line_length = 2.0
+shader_parameter/flare_strength = 0.9
+shader_parameter/flare_size_threshold = 0.8
+shader_parameter/mist_color_a = Color(0.25, 0.1, 0.5, 1)
+shader_parameter/mist_color_b = Color(0.06, 0.3, 0.55, 1)
+shader_parameter/mist_highlight_color = Color(0.95, 0.42, 0.62, 1)
+shader_parameter/mist_highlight_amount = 0.7
+shader_parameter/mist_octaves = 5
+shader_parameter/mist_threshold = 0.42
+shader_parameter/mist_softness = 0.32
+shader_parameter/mist_warp_strength = 1.6
+shader_parameter/mist_flow_speed = 0.025
+shader_parameter/mist_breathing = 0.15
+shader_parameter/mist_levels = 5
+shader_parameter/far_mist_scale = 2.2
+shader_parameter/far_mist_parallax = 0.06
+shader_parameter/far_mist_intensity = 0.55
+shader_parameter/near_mist_scale = 3.4
+shader_parameter/near_mist_parallax = 0.35
+shader_parameter/near_mist_intensity = 0.485
+shader_parameter/dust_color = Color(0.55, 0.45, 0.75, 1)
+shader_parameter/dust_strength = 1.0
+shader_parameter/dust_haze_strength = 0.037
+shader_parameter/dust_star_density = 0.015
+shader_parameter/band_angle = 0.3564
+shader_parameter/band_center = Vector2(0.9, 0.5)
+shader_parameter/band_width = 0.082
+shader_parameter/band_ripple = 1.0
+shader_parameter/dust_parallax = 0.291
+shader_parameter/band_repeat_distance = 3.0
+shader_parameter/shooting_star_color = Color(0.85, 0.93, 1, 1)
+shader_parameter/shooting_star_slots = 4
+shader_parameter/shooting_star_period = 10.0
+shader_parameter/shooting_star_duration = 1.4
+shader_parameter/shooting_star_chance = 0.8
+shader_parameter/shooting_star_travel = 0.6
+shader_parameter/shooting_star_trail_length = 0.15
+shader_parameter/horizon_color = Color(0.1, 0.06, 0.24, 1)
+shader_parameter/horizon_strength = 0.5
+shader_parameter/horizon_falloff = 2.8
+shader_parameter/vignette_strength = 0.6
+shader_parameter/vignette_inner_radius = 0.3
+shader_parameter/vignette_outer_radius = 0.85
+
+[node name="TalkingScreen" type="Control" unique_id=890364093 node_paths=PackedStringArray("node_backdrop", "node_npc_stage", "node_player_stage", "node_npc_portrait", "node_ship", "node_header", "node_name_label", "node_rank_label", "player_node_name_label", "player_node_rank_label", "node_speech", "node_choices", "node_topic_label", "node_notice_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,45 +97,368 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_of656")
 script = ExtResource("2_44ff0")
+discussion_path = "res://Data/Talking/depot_briefing.json"
+node_backdrop = NodePath("Backdrop")
+node_npc_stage = NodePath("Layout/Rows/Stage/NpcStage")
+node_player_stage = NodePath("Layout/Rows/Stage/PlayerStage")
+node_npc_portrait = NodePath("Layout/Rows/Stage/NpcStage/NpcPortrait")
+node_ship = NodePath("Layout/Rows/Stage/PlayerStage/Ship")
+node_header = NodePath("Layout/Rows/Stage/Dialogue/HBoxContainer/Header")
+node_name_label = NodePath("Layout/Rows/Stage/Dialogue/HBoxContainer/Header/NameLabel")
+node_rank_label = NodePath("Layout/Rows/Stage/Dialogue/HBoxContainer/Header/RankLabel")
+player_node_name_label = NodePath("Layout/Rows/Stage/Dialogue/Header/PlayerNameLabel")
+player_node_rank_label = NodePath("Layout/Rows/Stage/Dialogue/Header/PlayerRankLabel")
+node_speech = NodePath("Layout/Rows/Stage/Dialogue/Plate/Pad/Speech")
+node_choices = NodePath("Layout/Rows/Stage/Dialogue/HBoxContainer/Body/Choices")
+node_topic_label = NodePath("Layout/Rows/TopBar/TitleBlock/TopicLabel")
+node_notice_label = NodePath("Layout/Rows/Footer/NoticeLabel")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1170431505]
+[node name="LightEnvironment" type="Node" parent="." unique_id=1111446021]
+script = ExtResource("6_light")
+ambient = Color(0.851769, 0.8517689, 0.85176885, 1)
+sun_shadows = false
+
+[node name="Starfield" type="TextureRect" parent="." unique_id=588714238]
+material = SubResource("ShaderMaterial_b5nm6")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 109.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("7_icon")
+
+[node name="Backdrop" type="Control" parent="." unique_id=704425755]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("8_backdrop")
+opening_ratio = Vector2(0.755, 0.775)
+parallax_shift = Vector2(78.46, 26)
+rib_count = 6
+lane_count = 6
+pad_radius_ratio = 0.375
+pad_squash = 0.245
 
-[node name="HangarPlate" type="Control" parent="MarginContainer" unique_id=253291271]
-custom_minimum_size = Vector2(0, 256)
+[node name="Layout" type="MarginContainer" parent="." unique_id=1695436948]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 48
+
+[node name="Rows" type="VBoxContainer" parent="Layout" unique_id=962628410]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 24
+
+[node name="TopBar" type="HBoxContainer" parent="Layout/Rows" unique_id=567213506]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TitleBlock" type="VBoxContainer" parent="Layout/Rows/TopBar" unique_id=1244126063]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TagLabel" type="Label" parent="Layout/Rows/TopBar/TitleBlock" unique_id=45708294]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "// COMMS LINK //"
+
+[node name="TopicLabel" type="Label" parent="Layout/Rows/TopBar/TitleBlock" unique_id=9672176]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.96, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.9, 1, 0.55)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 56
+text = "TRANSMISSION"
+uppercase = true
+
+[node name="StatusLabel" type="Label" parent="Layout/Rows/TopBar/TitleBlock" unique_id=741543287]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.7, 0.8, 1)
+theme_override_font_sizes/font_size = 18
+text = "CHANNEL ENCRYPTED  //  SIGNAL STABLE"
+
+[node name="Stage" type="HBoxContainer" parent="Layout/Rows" unique_id=53840037]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/separation = 32
+
+[node name="NpcStage" type="Control" parent="Layout/Rows/Stage" unique_id=725370302]
+custom_minimum_size = Vector2(300, 360)
 layout_mode = 2
 size_flags_vertical = 8
+mouse_filter = 2
+
+[node name="NpcPortrait" type="TextureRect" parent="Layout/Rows/Stage/NpcStage" unique_id=988144311]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("7_icon")
+expand_mode = 1
+stretch_mode = 5
+flip_h = true
+
+[node name="Dialogue" type="VBoxContainer" parent="Layout/Rows/Stage" unique_id=661227923]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Layout/Rows/Stage/Dialogue" unique_id=627074974]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+
+[node name="Header" type="HBoxContainer" parent="Layout/Rows/Stage/Dialogue/HBoxContainer" unique_id=592040610]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="NameLabel" type="Label" parent="Layout/Rows/Stage/Dialogue/HBoxContainer/Header" unique_id=1447414936]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.96, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.9, 1, 0.55)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 34
+text = "Character Name"
+uppercase = true
+
+[node name="RankLabel" type="Label" parent="Layout/Rows/Stage/Dialogue/HBoxContainer/Header" unique_id=1087304595]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "// RANK"
+
+[node name="Body" type="HBoxContainer" parent="Layout/Rows/Stage/Dialogue/HBoxContainer" unique_id=1983746762]
+layout_mode = 2
+size_flags_horizontal = 10
+mouse_filter = 2
+
+[node name="Choices" type="VBoxContainer" parent="Layout/Rows/Stage/Dialogue/HBoxContainer/Body" unique_id=46116318]
+custom_minimum_size = Vector2(520, 0)
+layout_mode = 2
+size_flags_vertical = 8
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="Choice1" parent="Layout/Rows/Stage/Dialogue/HBoxContainer/Body/Choices" unique_id=73844443 instance=ExtResource("12_button")]
+visible = false
+custom_minimum_size = Vector2(600, 64)
+layout_mode = 2
+plate_style = 0
+accent_color = Color(0.3, 0.85, 1, 1)
+slant = 18.0
+hover_slide = 22.0
+index_text = "01"
+caption_text = ""
+text = "Choice 1"
+
+[node name="Choice2" parent="Layout/Rows/Stage/Dialogue/HBoxContainer/Body/Choices" unique_id=513218414 instance=ExtResource("12_button")]
+visible = false
+custom_minimum_size = Vector2(600, 64)
+layout_mode = 2
+plate_style = 0
+accent_color = Color(0.3, 0.85, 1, 1)
+slant = 18.0
+hover_slide = 22.0
+index_text = "02"
+caption_text = ""
+text = "Choice 2"
+
+[node name="Choice3" parent="Layout/Rows/Stage/Dialogue/HBoxContainer/Body/Choices" unique_id=1128867542 instance=ExtResource("12_button")]
+visible = false
+custom_minimum_size = Vector2(600, 64)
+layout_mode = 2
+plate_style = 0
+accent_color = Color(0.3, 0.85, 1, 1)
+slant = 18.0
+hover_slide = 22.0
+index_text = "03"
+caption_text = ""
+text = "Choice 3"
+
+[node name="Choice4" parent="Layout/Rows/Stage/Dialogue/HBoxContainer/Body/Choices" unique_id=733405757 instance=ExtResource("12_button")]
+visible = false
+custom_minimum_size = Vector2(600, 64)
+layout_mode = 2
+plate_style = 0
+accent_color = Color(0.3, 0.85, 1, 1)
+slant = 18.0
+hover_slide = 22.0
+index_text = "04"
+caption_text = ""
+text = "Choice 4"
+
+[node name="Plate" type="Control" parent="Layout/Rows/Stage/Dialogue" unique_id=899317845]
+custom_minimum_size = Vector2(0, 240)
+layout_mode = 2
+mouse_filter = 2
 script = ExtResource("2_v3abw")
 plate_style = 1
 metadata/_custom_type_script = "uid://cd2m4ls5seipq"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HangarPlate" unique_id=1095368042]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 1896.0
-offset_bottom = 248.0
+[node name="Pad" type="MarginContainer" parent="Layout/Rows/Stage/Dialogue/Plate" unique_id=700103477]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 24
 
-[node name="CharacterNameTag" type="Label" parent="MarginContainer/HangarPlate/VBoxContainer" unique_id=1883692427 groups=["menu_reveal"]]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
-theme_override_font_sizes/font_size = 18
-text = "// CHARACTER NAME"
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HangarPlate/VBoxContainer" unique_id=366849618]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Body" type="RichTextLabel" parent="MarginContainer/HangarPlate/VBoxContainer/MarginContainer" unique_id=199227487]
+[node name="Speech" type="RichTextLabel" parent="Layout/Rows/Stage/Dialogue/Plate/Pad" unique_id=364782700]
 layout_mode = 2
 focus_mode = 0
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.88, 0.96, 1, 1)
-theme_override_font_sizes/normal_font_size = 22
+theme_override_font_sizes/normal_font_size = 26
 bbcode_enabled = true
-fit_content = true
+
+[node name="Header" type="HBoxContainer" parent="Layout/Rows/Stage/Dialogue" unique_id=19100679]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 8
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="PlayerNameLabel" type="Label" parent="Layout/Rows/Stage/Dialogue/Header" unique_id=1649958175]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.96, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.9, 1, 0.55)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 34
+text = "Character Name"
+uppercase = true
+
+[node name="PlayerRankLabel" type="Label" parent="Layout/Rows/Stage/Dialogue/Header" unique_id=1811014810]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "// RANK"
+
+[node name="PlayerStage" type="Control" parent="Layout/Rows/Stage" unique_id=900281547]
+custom_minimum_size = Vector2(300, 360)
+layout_mode = 2
+size_flags_vertical = 8
+mouse_filter = 2
+
+[node name="Ship" type="TextureRect" parent="Layout/Rows/Stage/PlayerStage" unique_id=841213687]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Footer" type="HBoxContainer" parent="Layout/Rows" unique_id=915284541]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HintLabel" type="Label" parent="Layout/Rows/Footer" unique_id=911020941]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.7, 0.8, 1)
+theme_override_font_sizes/font_size = 18
+text = "[ CLICK / ENTER ] ADVANCE"
+
+[node name="FooterSpacer" type="Control" parent="Layout/Rows/Footer" unique_id=1990509554]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="NoticeLabel" type="Label" parent="Layout/Rows/Footer" unique_id=46857237]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 2
+
+[node name="AudioTriggers" type="Node" parent="." unique_id=2079502084]
+
+[node name="RadioOpenAudioTrigger" type="Node" parent="AudioTriggers" unique_id=83434187]
+script = ExtResource("9_gm2r7")
+sound = "radio_open"
+bus = "Voice"
+event = 1
+signal_name = "line_started"
+source = NodePath("../..")
+positional = false
+volume_db = -8.0
+metadata/_custom_type_script = "uid://cjs0m0kluqqk"
+
+[node name="RadioCloseAudioTrigger" type="Node" parent="AudioTriggers" unique_id=2069899791]
+script = ExtResource("9_gm2r7")
+sound = "radio_close"
+bus = "Voice"
+event = 1
+signal_name = "line_finished"
+source = NodePath("../..")
+positional = false
+volume_db = -8.0
+metadata/_custom_type_script = "uid://cjs0m0kluqqk"
+
+[node name="NPCAudio" type="Node" parent="AudioTriggers" unique_id=28792653]
+
+[node name="VoiceAudioTrigger" type="Node" parent="AudioTriggers/NPCAudio" unique_id=153620945]
+script = ExtResource("9_gm2r7")
+sound = "vo_human_f_loop"
+bus = "Voice"
+event = 4
+signal_name = "character_started_talking"
+stop_signal_name = "character_stopped_talking"
+source = NodePath("../../..")
+positional = false
+volume_db = -8.0
+metadata/_custom_type_script = "uid://cjs0m0kluqqk"
+
+[node name="PlayerAudio" type="Node" parent="AudioTriggers" unique_id=1909095477]
+
+[node name="AudioTrigger" type="Node" parent="AudioTriggers/PlayerAudio" unique_id=2005770287]
+script = ExtResource("9_gm2r7")
+sound = "vo_sultry_f_loop"
+bus = "Voice"
+event = 4
+signal_name = "player_started_talking"
+stop_signal_name = "player_stopped_talking"
+source = NodePath("../../..")
+positional = false
+volume_db = -8.0
+metadata/_custom_type_script = "uid://cjs0m0kluqqk"

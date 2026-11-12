@@ -145,7 +145,8 @@ func _mark_launched() -> void:
 
 #region Button actions
 func _show_tutorial() -> void:
-	tutorial_popup.show_popup()
+	#tutorial_popup.show_popup()
+	get_tree().change_scene_to_file("res://Data/Talking/talking_screen.tscn")
 
 func _on_options_pressed() -> void:
 	Settings.show_options()

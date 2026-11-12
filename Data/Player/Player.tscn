@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://vj71jr4yeyw7" path="res://Data/Particles/shader/New FX/fx_player.gd" id="2_b3cwg"]
 [ext_resource type="PackedScene" uid="uid://carf6gmsridye" path="res://Data/Player/ui.tscn" id="4_x8ab7"]
 [ext_resource type="PackedScene" uid="uid://byqlfywo2eb5g" path="res://Data/Menu/meltdown_screen.tscn" id="5_3nxmj"]
-[ext_resource type="PackedScene" uid="uid://rgseei16qvjd" path="res://Data/Talking/talking_screen.tscn" id="5_dk4bn"]
 [ext_resource type="PackedScene" uid="uid://wbm18bsvunt7" path="res://Assets/lighting/light_rig.tscn" id="9_e5wor"]
 [ext_resource type="Resource" uid="uid://fhaxfu5ae136" path="res://Assets/lighting/Presets/headlight.tres" id="10_tuul6"]
 [ext_resource type="PackedScene" uid="uid://italmpyxktyx" path="res://Data/Player/sprite_container.tscn" id="11_8mrtr"]
@@ -92,8 +91,6 @@ position = Vector2(0, -188)
 
 [node name="MeltdownScreen" parent="CanvasLayer" unique_id=919328823 instance=ExtResource("5_3nxmj")]
 
-[node name="TalkingScreen" parent="CanvasLayer" unique_id=777680014 instance=ExtResource("5_dk4bn")]
-
 [node name="UI" parent="CanvasLayer" unique_id=1598766862 instance=ExtResource("4_x8ab7")]
 
 [node name="LightRig" parent="." unique_id=623708359 instance=ExtResource("9_e5wor")]
@@ -140,7 +137,7 @@ reverse_color_progression = true
 texture_filter = 1
 position = Vector2(0, 30)
 color = Color(0.15, 1, 0.3, 1)
-energy = 0.7090353
+energy = 0.23749934
 range_z_min = -4096
 range_z_max = 4096
 range_layer_min = -128

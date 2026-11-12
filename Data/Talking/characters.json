@@ -1,0 +1,21 @@
+
+{
+	"player": {
+		"name": "Pilot",
+		"rank": "Salvage Operator",
+		"portrait": "res://Assets/Portraits/sword n sorcery portrait asset pack 1.1/sword n sorcery portrait asset pack/Indiviual_portraits/portrait_002.svg",
+		"voice": "vo_sultry_f_loop"
+	},
+	"quartermaster_vael": {
+		"name": "Vael Okonkwo",
+		"rank": "Depot Quartermaster",
+		"portrait": "res://Assets/Portraits/sword n sorcery portrait asset pack 1.1/sword n sorcery portrait asset pack/Indiviual_portraits/portrait_014.svg",
+		"voice": "vo_human_f_loop"
+	},
+	"aegis": {
+		"name": "AEGIS",
+		"rank": "Onboard Systems Intelligence",
+		"portrait": "res://Assets/Portraits/sword n sorcery portrait asset pack 1.1/sword n sorcery portrait asset pack/Indiviual_portraits/portrait_018.svg",
+		"voice": "vo_ai_m_loop"
+	}
+}

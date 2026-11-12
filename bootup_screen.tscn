@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://6tep2uajxs5q"]
 
 [ext_resource type="Theme" uid="uid://dap6826f78p24" path="res://Assets/theme.tres" id="1_theme"]
+[ext_resource type="Script" uid="uid://c7qsui7faehom" path="res://bootup_screen.gd" id="2_script"]
+[ext_resource type="Script" uid="uid://cjs0m0kluqqk" path="res://Assets/Nodes/Audio/AudioTrigger.gd" id="3_audio"]
 [ext_resource type="Shader" uid="uid://bd2ivxe3mx85y" path="res://Data/Menu/DitherVignette.gdshader" id="3_shader"]
 [ext_resource type="Script" uid="uid://c1qhnv5gfhb82" path="res://Data/Menu/DitherVignette.gd" id="4_vignette"]
+[ext_resource type="Script" uid="uid://d0wyaxol5hj2n" path="res://Assets/lighting/LightEnvironment.gd" id="4_wak18"]
 [ext_resource type="Script" uid="uid://demtto3knvw5u" path="res://Assets/Nodes/Menu/hangar_backdrop.gd" id="5_backdrop"]
 [ext_resource type="Script" uid="uid://cd2m4ls5seipq" path="res://Assets/Nodes/Menu/hangar_plate.gd" id="6_plate"]
 [ext_resource type="Script" uid="uid://dd02d5ef6xcpi" path="res://Assets/Nodes/Menu/hangar_progress_bar.gd" id="7_progress"]
-[ext_resource type="Script" uid="uid://c7qsui7faehom" path="res://bootup_screen.gd" id="2_script"]
-[ext_resource type="Script" uid="uid://cjs0m0kluqqk" path="res://Assets/Nodes/Audio/AudioTrigger.gd" id="3_audio"]
-[ext_resource type="Script" uid="uid://d0wyaxol5hj2n" path="res://Assets/lighting/LightEnvironment.gd" id="4_wak18"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vignette"]
 shader = ExtResource("3_shader")
@@ -16,7 +16,7 @@ shader_parameter/tint = Color(0.3, 0.85, 1, 1)
 shader_parameter/intensity = 0.0
 shader_parameter/pixel_size = 4.0
 
-[node name="BootupScreen" type="Control" node_paths=PackedStringArray("progress_bar", "information_label", "percent_label", "overlay", "backdrop")]
+[node name="BootupScreen" type="Control" unique_id=1748600440 node_paths=PackedStringArray("progress_bar", "percent_label", "overlay", "backdrop", "information_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,23 +38,23 @@ credit_sections = Array[Dictionary]([{
 Francois Botha"
 }])
 
-[node name="AudioContainer" type="Node" parent="."]
+[node name="AudioContainer" type="Node" parent="." unique_id=2129105536]
 
-[node name="BootupAudioTrigger" type="Node" parent="AudioContainer"]
+[node name="BootupAudioTrigger" type="Node" parent="AudioContainer" unique_id=953664293]
 script = ExtResource("3_audio")
 sound = "console_boot_up"
 bus = "UI"
 positional = false
 metadata/_custom_type_script = "uid://cjs0m0kluqqk"
 
-[node name="BootWhirrAudioTrigger" type="Node" parent="AudioContainer"]
+[node name="BootWhirrAudioTrigger" type="Node" parent="AudioContainer" unique_id=148863039]
 script = ExtResource("3_audio")
 sound = "boot_whirr"
 bus = "SFX"
 positional = false
 metadata/_custom_type_script = "uid://cjs0m0kluqqk"
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=13590121]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -64,7 +64,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.01, 0.01, 0.05, 1)
 
-[node name="Backdrop" type="Control" parent="."]
+[node name="Backdrop" type="Control" parent="." unique_id=323455938]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -80,7 +80,7 @@ lane_count = 6
 pad_radius_ratio = 0.375
 pad_squash = 0.245
 
-[node name="Overlay" type="ColorRect" parent="."]
+[node name="Overlay" type="ColorRect" parent="." unique_id=1178802129]
 material = SubResource("ShaderMaterial_vignette")
 layout_mode = 1
 anchors_preset = 15
@@ -92,7 +92,7 @@ mouse_filter = 2
 script = ExtResource("4_vignette")
 metadata/_custom_type_script = "uid://c1qhnv5gfhb82"
 
-[node name="Layout" type="MarginContainer" parent="."]
+[node name="Layout" type="MarginContainer" parent="." unique_id=1017442607]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -105,26 +105,26 @@ theme_override_constants/margin_top = 48
 theme_override_constants/margin_right = 64
 theme_override_constants/margin_bottom = 48
 
-[node name="Rows" type="VBoxContainer" parent="Layout"]
+[node name="Rows" type="VBoxContainer" parent="Layout" unique_id=2009533524]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 24
 
-[node name="TopBar" type="HBoxContainer" parent="Layout/Rows"]
+[node name="TopBar" type="HBoxContainer" parent="Layout/Rows" unique_id=809370237]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="TitleBlock" type="VBoxContainer" parent="Layout/Rows/TopBar"]
+[node name="TitleBlock" type="VBoxContainer" parent="Layout/Rows/TopBar" unique_id=1370009842]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="TagLabel" type="Label" parent="Layout/Rows/TopBar/TitleBlock"]
+[node name="TagLabel" type="Label" parent="Layout/Rows/TopBar/TitleBlock" unique_id=1051358893]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
 theme_override_font_sizes/font_size = 18
 text = "// SYSTEM INITIALIZATION //"
 
-[node name="TitleLabel" type="Label" parent="Layout/Rows/TopBar/TitleBlock"]
+[node name="TitleLabel" type="Label" parent="Layout/Rows/TopBar/TitleBlock" unique_id=1366829919]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.88, 0.96, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0.9, 1, 0.55)
@@ -135,18 +135,18 @@ theme_override_font_sizes/font_size = 56
 text = "GARBAGE COLLECTOR"
 uppercase = true
 
-[node name="SubtitleLabel" type="Label" parent="Layout/Rows/TopBar/TitleBlock"]
+[node name="SubtitleLabel" type="Label" parent="Layout/Rows/TopBar/TitleBlock" unique_id=519157861]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.55, 0.7, 0.8, 1)
 theme_override_font_sizes/font_size = 18
 text = "ESTABLISHING CONNECTION // PREPARING FLIGHT SYSTEMS"
 
-[node name="TopSpacer" type="Control" parent="Layout/Rows/TopBar"]
+[node name="TopSpacer" type="Control" parent="Layout/Rows/TopBar" unique_id=1388402426]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="ScoreLabel" type="Label" parent="Layout/Rows/TopBar"]
+[node name="ScoreLabel" type="Label" parent="Layout/Rows/TopBar" unique_id=944010402]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
@@ -154,17 +154,17 @@ theme_override_font_sizes/font_size = 28
 text = "LOADING  0%"
 horizontal_alignment = 2
 
-[node name="Body" type="HBoxContainer" parent="Layout/Rows"]
+[node name="Body" type="HBoxContainer" parent="Layout/Rows" unique_id=2130767631]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="InfoPanel" type="Control" parent="Layout/Rows/Body"]
+[node name="InfoPanel" type="Control" parent="Layout/Rows/Body" unique_id=281512642]
 custom_minimum_size = Vector2(760, 0)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Plate" type="Control" parent="Layout/Rows/Body/InfoPanel"]
+[node name="Plate" type="Control" parent="Layout/Rows/Body/InfoPanel" unique_id=1880607901]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -175,7 +175,7 @@ mouse_filter = 2
 script = ExtResource("6_plate")
 slide_reserve = 0.0
 
-[node name="Margin" type="MarginContainer" parent="Layout/Rows/Body/InfoPanel"]
+[node name="Margin" type="MarginContainer" parent="Layout/Rows/Body/InfoPanel" unique_id=1326575662]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -188,7 +188,7 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 44
 theme_override_constants/margin_bottom = 20
 
-[node name="Body" type="RichTextLabel" parent="Layout/Rows/Body/InfoPanel/Margin"]
+[node name="Body" type="RichTextLabel" parent="Layout/Rows/Body/InfoPanel/Margin" unique_id=571987309]
 visible = false
 layout_mode = 2
 focus_mode = 0
@@ -198,26 +198,26 @@ theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
 scroll_active = false
 
-[node name="BodySpacer" type="Control" parent="Layout/Rows/Body"]
+[node name="BodySpacer" type="Control" parent="Layout/Rows/Body" unique_id=1298723904]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="Hint" type="Label" parent="Layout/Rows"]
+[node name="Hint" type="Label" parent="Layout/Rows" unique_id=270038109]
 modulate = Color(1, 1, 1, 0.55)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.55, 0.7, 0.8, 1)
 theme_override_font_sizes/font_size = 14
 text = "[ ANY KEY ] SKIP WHEN READY"
 
-[node name="ProgressBar" type="Control" parent="Layout/Rows"]
+[node name="ProgressBar" type="Control" parent="Layout/Rows" unique_id=967117914]
 custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 mouse_filter = 2
 script = ExtResource("7_progress")
 slide_reserve = 0.0
 
-[node name="LightEnvironment" type="Node" parent="."]
+[node name="LightEnvironment" type="Node" parent="." unique_id=1954058591]
 script = ExtResource("4_wak18")
 ambient = Color(1, 1, 1, 1)
 metadata/_custom_type_script = "uid://d0wyaxol5hj2n"
